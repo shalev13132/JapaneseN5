@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שבוע 1 — להציג ולציין | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre", Georgia, serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px, rgba(120,100,70,.06) 1px, transparent 0);
+    background-size:22px 22px;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 90px;}
+  .jp{font-family:"Noto Sans JP", system-ui, sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+  .big{font-size:1.35em; line-height:1;}
+
+  header.masthead{text-align:center; padding:56px 20px 34px; border-bottom:3px double var(--line); margin-bottom:6px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(28px,5.5vw,40px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:17px;}
+
+  .lead{background:var(--card); border:1px solid var(--line); border-right:5px solid var(--accent); border-radius:12px; padding:18px 22px; margin:26px 0;}
+  .lead h2{font-family:"Heebo",sans-serif; font-size:18px; margin:0 0 6px;}
+  .lead ol{margin:6px 0 0; padding-inline-start:1.3em;}
+  .lead li{margin:3px 0;}
+
+  .topic{margin:46px 0;}
+  .topic-tag{display:inline-block; background:var(--accent); color:#fff; font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; padding:5px 14px; border-radius:999px; box-shadow:0 3px 8px rgba(150,60,30,.22);}
+  .topic h2{font-family:"Heebo",sans-serif; font-weight:800; font-size:25px; margin:12px 0 8px;}
+  .topic p{margin:.6em 0;}
+  .topic strong{color:#7e2a13;}
+
+  .ex{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:6px 16px; margin:16px 0;}
+  .ex-row{padding:10px 0; border-bottom:1px dashed var(--line);}
+  .ex-row:last-child{border-bottom:none;}
+  .ex-jp{direction:ltr; unicode-bidi:isolate; text-align:right; font-family:"Noto Sans JP",sans-serif; font-size:19px; font-weight:500;}
+  .ex-jp .r{color:var(--muted); font-size:15px; font-weight:400;}
+  .ex-he{color:var(--ink); font-size:16px;}
+  .ex-x .ex-jp{color:#9a4a35; text-decoration:line-through;}
+
+  .note{background:#faf5ea; border:1px dashed var(--line); border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .note b{color:var(--accent);}
+
+  /* quiz blocks */
+  .qbox{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:16px 0; box-shadow:0 2px 8px rgba(80,60,30,.04);}
+  .qbox .htag{font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; color:var(--ok); margin-bottom:8px; display:flex; align-items:center; gap:7px;}
+  .qbox .htag::before{content:"✎"; font-size:15px;}
+  .q-text{font-size:18px; margin:0 0 12px; font-weight:500;}
+  .q-options{display:flex; flex-direction:column; gap:9px;}
+  .opt{
+    font-family:inherit; font-size:17px; text-align:right; background:#fff; border:1.5px solid var(--line);
+    border-radius:9px; padding:11px 16px; cursor:pointer; transition:.15s; color:var(--ink);
+  }
+  .opt:hover:not(:disabled){border-color:var(--accent); background:#fffaf3;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:var(--ok-soft); border-color:var(--ok); color:#1f4d43; font-weight:700;}
+  .opt.wrong{background:var(--no-soft); border-color:var(--no); color:#7e2a13;}
+  .fb{margin:11px 0 0; font-size:16px; font-weight:600; min-height:1px;}
+  .fb-ok{color:var(--ok);} .fb-no{color:var(--no);}
+
+  .reveal{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .reveal-btn,.next-btn{font-family:"Heebo",sans-serif; font-weight:700; font-size:15px; background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 18px; cursor:pointer; transition:.15s;}
+  .reveal-btn:hover,.next-btn:hover{background:#8e2f17;}
+  .reveal-ans{display:none; margin-top:12px; padding:12px 16px; background:var(--ok-soft); border-radius:8px; font-size:17px;}
+
+  /* big quiz widget */
+  .quiz-widget{background:linear-gradient(160deg,#fffdf8,#fbf4e8); border:1.5px solid var(--line); border-radius:14px; padding:22px; margin:18px 0; box-shadow:0 4px 14px rgba(80,60,30,.07);}
+  .q-progress{font-family:"Heebo",sans-serif; font-size:13px; color:var(--muted); margin-bottom:10px; display:flex; justify-content:space-between;}
+  .q-bar{height:6px; background:#eadfc9; border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  .q-bar span{display:block; height:100%; background:var(--accent); transition:width .3s;}
+  .q-result{text-align:center; padding:14px 0;}
+  .score-big{font-family:"Heebo",sans-serif; font-weight:800; font-size:46px; color:var(--accent); line-height:1;}
+  .q-result p{font-size:18px; margin:10px 0 16px;}
+
+  h2.section{font-family:"Heebo",sans-serif; font-weight:800; font-size:26px; margin:54px 0 8px; padding:12px 20px; color:#fff; background:linear-gradient(100deg,var(--gold),#7d6324); border-radius:10px;}
+  h2.section.k{background:linear-gradient(100deg,var(--accent),#8e2f17);}
+
+  table{width:100%; border-collapse:collapse; margin:.4em 0 18px; font-size:16px; background:#fff; border-radius:10px; overflow:hidden; border:1px solid var(--line);}
+  thead th{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px; padding:9px 12px; text-align:right;}
+  td{padding:9px 12px; border-top:1px solid var(--line);}
+  tbody tr:nth-child(even){background:#fbf7ee;}
+  td.jp{text-align:right;} td.jp.big{text-align:center; color:var(--accent);}
+
+  .done-banner{text-align:center; margin:50px 0 0; padding:26px; background:var(--ok-soft); border:1px solid #bcd9d0; border-radius:14px;}
+  .done-banner h2{font-family:"Heebo",sans-serif; color:#1f4d43; margin:0 0 6px;}
+  .footer-note{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0; transform:translateY(8px);} to{opacity:1;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">שבוע 1 מתוך 20 · <span class="jp" dir="ltr">JLPT N5</span></div>
+  <h1>להציג ולציין: "X הוא Y"</h1>
+  <p class="sub">משפטי שם, החלקיק <span class="jp">は</span>, מילות הצבעה, ושאלות עם <span class="jp">か</span></p>
+</header>
+
+<div class="lead">
+  <h2>מה נלמד השבוע</h2>
+  <ol>
+    <li>משפט שם מנומס: "X הוא Y" עם <span class="jp">です</span> (וגם שלילה).</li>
+    <li>החלקיק <span class="jp">は</span> (נושא) והמילית <span class="jp">も</span> ("גם").</li>
+    <li>מילות הצבעה: <span class="jp">これ・それ・あれ</span> ו-<span class="jp">この・その・あの</span>.</li>
+    <li>הפיכת משפט לשאלה עם <span class="jp">か</span>.</li>
+  </ol>
+  <p style="margin:10px 0 0; font-size:15px; color:var(--muted)">בסוף כל נושא יש שאלות תרגול, ובסוף השבוע — תיבות בחינה לאוצר המילים ולקאנג'י.</p>
+</div>
+
+<!-- ===== TOPIC 1 ===== -->
+<div class="topic">
+  <span class="topic-tag">נושא 1</span>
+  <h2>משפט שם: "X הוא Y" עם <span class="jp">です</span></h2>
+  <p>המשפט הבסיסי ביותר ביפנית פשוט מצהיר <em>מה</em> משהו הוא. המבנה:</p>
+  <p style="text-align:center; font-size:20px;"><strong>[נושא] <span class="jp">は</span> [שם עצם] <span class="jp">です</span></strong></p>
+  <p>המילה <span class="jp">です</span> היא האוגד המנומס — מקבילה ל"הוא / היא / אני / הם". חשוב: <strong>היא לא משתנה לפי הגוף</strong> — אותו <span class="jp">です</span> משמש לכולם. בנוסף, יפנית משמיטה את הנושא כשהוא ברור מההקשר, כך ש-<span class="jp">学生です</span> לבדו יכול להיות "אני סטודנט".</p>
+  <div class="ex">
+    <div class="ex-row"><div class="ex-jp"><span class="jp">私は学生です。</span> <span class="r">（わたしは がくせいです）</span></div><div class="ex-he">אני סטודנט/ית.</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">田中さんは先生です。</span> <span class="r">（たなかさんは せんせいです）</span></div><div class="ex-he">טַנַקַה הוא/היא מורה.</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">これは本です。</span> <span class="r">（これは ほんです）</span></div><div class="ex-he">זה ספר.</div></div>
+  </div>
+  <p><strong>שלילה</strong> — "אינו": מחליפים את <span class="jp">です</span> ב-<span class="jp">ではありません</span> (רשמי) או <span class="jp">じゃありません</span> (מעט פחות רשמי, נפוץ בדיבור).</p>
+  <div class="ex">
+    <div class="ex-row"><div class="ex-jp"><span class="jp">私は先生ではありません。</span> <span class="r">（わたしは せんせいでは ありません）</span></div><div class="ex-he">אני לא מורה.</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">これは水じゃありません。</span> <span class="r">（これは みずじゃ ありません）</span></div><div class="ex-he">זה לא מים.</div></div>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="המבנה הוא [נושא] は [שם] です — הנושא בא ראשון.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "אני סטודנט"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">私は学生です。</span></button>
+      <button class="opt"><span class="jp">私は学生か。</span></button>
+      <button class="opt"><span class="jp">学生は私です。</span></button>
+      <button class="opt"><span class="jp">私を学生です。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="שלילה נוצרת על־ידי החלפת です ב-ではありません.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "זה לא ספר"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">これは本です。</span></button>
+      <button class="opt"><span class="jp">これは本ですか。</span></button>
+      <button class="opt"><span class="jp">これは本ではありません。</span></button>
+      <button class="opt"><span class="jp">これは本も。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"טנקה הוא מורה."</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans"><span class="jp">田中さんは先生です。</span> <span style="color:var(--muted)">（たなかさんは せんせいです）</span></div>
+  </div>
+</div>
+
+<!-- ===== TOPIC 2 ===== -->
+<div class="topic">
+  <span class="topic-tag">נושא 2</span>
+  <h2>החלקיק <span class="jp">は</span> והמילית <span class="jp">も</span></h2>
+  <p>החלקיק <span class="jp">は</span> מסמן את <strong>נושא המשפט</strong> — "אשר ל...". זו נקודת המפתח: <span class="jp">は</span> <strong>אינו אומר "הוא"</strong>; ה"הוא" מגיע מ-<span class="jp">です</span>. כשאתה רואה <span class="jp">は</span>, תחשוב "אשר ל___", לא "הנושא הוא".</p>
+  <div class="note"><b>הגייה:</b> כאשר <span class="jp">は</span> משמש כחלקיק, הוא נכתב <span class="jp">は</span> אבל נהגה <span class="jp" dir="ltr">"wa"</span> (ולא "ha").</div>
+  <p>כדי לומר <strong>"גם"</strong> מחליפים את <span class="jp">は</span> ב-<span class="jp">も</span>:</p>
+  <div class="ex">
+    <div class="ex-row"><div class="ex-jp"><span class="jp">私も学生です。</span> <span class="r">（わたしも がくせいです）</span></div><div class="ex-he">גם אני סטודנט.</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">田中さんも先生です。</span> <span class="r">（たなかさんも せんせいです）</span></div><div class="ex-he">גם טנקה מורה.</div></div>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="כחלקיק נושא, は נהגה wa.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">במשפט <span class="jp">私は学生です</span>, איך נהגית המילית <span class="jp">は</span>?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp" dir="ltr">ha</span></button>
+      <button class="opt"><span class="jp" dir="ltr">wa</span></button>
+      <button class="opt"><span class="jp" dir="ltr">a</span></button>
+      <button class="opt"><span class="jp" dir="ltr">ba</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="'גם' = も, שמחליף את は.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "גם טנקה מורה"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">田中さんは先生です。</span></button>
+      <button class="opt"><span class="jp">田中さんを先生です。</span></button>
+      <button class="opt"><span class="jp">田中さんも先生です。</span></button>
+      <button class="opt"><span class="jp">田中さんか先生です。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"גם אני סטודנט."</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans"><span class="jp">私も学生です。</span> <span style="color:var(--muted)">（わたしも がくせいです）</span></div>
+  </div>
+</div>
+
+<!-- ===== TOPIC 3 ===== -->
+<div class="topic">
+  <span class="topic-tag">נושא 3</span>
+  <h2>מילות הצבעה: <span class="jp">これ・それ・あれ</span></h2>
+  <p>ביפנית, "זה / זה / זה שם" תלויים ב<strong>מרחק מהדובר ומהמאזין</strong>:</p>
+  <div class="ex">
+    <div class="ex-row"><div class="ex-jp"><span class="jp">これ</span></div><div class="ex-he">זה — קרוב <u>אליי</u> (הדובר).</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">それ</span></div><div class="ex-he">זה — קרוב <u>אליך</u> (המאזין).</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">あれ</span></div><div class="ex-he">זה — רחוק <u>משנינו</u> (שם).</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">どれ</span></div><div class="ex-he">איזה? (מבין כמה).</div></div>
+  </div>
+  <p>אלו <strong>כינויים שעומדים בפני עצמם</strong>: <span class="jp">これは本です</span> ("זה ספר"). אבל אם רוצים לומר <strong>"הספר הזה"</strong> — כלומר להצמיד מילת הצבעה <em>לשם עצם</em> — משתמשים בצורה אחרת: <span class="jp">この・その・あの</span> (+ שם עצם). הן <strong>לא</strong> יכולות לעמוד לבד.</p>
+  <div class="ex">
+    <div class="ex-row"><div class="ex-jp"><span class="jp">これは本です。</span> <span class="r">（これは ほんです）</span></div><div class="ex-he">זה ספר. ← <span class="jp">これ</span> לבד</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">この人は学生です。</span> <span class="r">（このひとは がくせいです）</span></div><div class="ex-he">האדם הזה הוא סטודנט. ← <span class="jp">この</span> + שם</div></div>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="לפני שם עצם משתמשים ב-この (לא これ). これ עומד לבד.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "הספר הזה" (לפני שם עצם)?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">これ本</span></button>
+      <button class="opt"><span class="jp">この本</span></button>
+      <button class="opt"><span class="jp">これは本</span></button>
+      <button class="opt"><span class="jp">あれ本</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="3" data-explain="どれ פירושו 'איזה?' מבין כמה אפשרויות.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איזו מילה פירושה "איזה?"</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">これ</span></button>
+      <button class="opt"><span class="jp">それ</span></button>
+      <button class="opt"><span class="jp">あれ</span></button>
+      <button class="opt"><span class="jp">どれ</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"זה (שם, רחוק) בית ספר."</strong> (בית ספר = <span class="jp">学校 / がっこう</span>)</p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans"><span class="jp">あれは学校です。</span> <span style="color:var(--muted)">（あれは がっこうです）</span></div>
+  </div>
+</div>
+
+<!-- ===== TOPIC 4 ===== -->
+<div class="topic">
+  <span class="topic-tag">נושא 4</span>
+  <h2>שאלות עם <span class="jp">か</span></h2>
+  <p>כדי להפוך משפט לשאלת כן/לא, פשוט מוסיפים <span class="jp">か</span> בסוף. <strong>אין צורך לשנות את סדר המילים</strong>, ואין חובה בסימן שאלה.</p>
+  <div class="ex">
+    <div class="ex-row"><div class="ex-jp"><span class="jp">これは本です。</span></div><div class="ex-he">זה ספר.</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">これは本ですか。</span> <span class="r">（これは ほんですか）</span></div><div class="ex-he">האם זה ספר?</div></div>
+  </div>
+  <p>תשובות אופייניות: <span class="jp">はい、そうです</span> ("כן, נכון") או <span class="jp">いいえ、ちがいます</span> ("לא, לא נכון"). אפשר גם לשלב מילת שאלה, למשל <span class="jp">何 (なん)</span> = "מה":</p>
+  <div class="ex">
+    <div class="ex-row"><div class="ex-jp"><span class="jp">これは何ですか。</span> <span class="r">（これは なんですか）</span></div><div class="ex-he">מה זה?</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">あなたは学生ですか。</span> <span class="r">（あなたは がくせいですか）</span></div><div class="ex-he">האם אתה סטודנט?</div></div>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="מוסיפים か בסוף משפט רגיל כדי ליצור שאלה.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "האם אתה סטודנט?"</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">あなたは学生ですか。</span></button>
+      <button class="opt"><span class="jp">あなたは学生です。</span></button>
+      <button class="opt"><span class="jp">あなたも学生です。</span></button>
+      <button class="opt"><span class="jp">あなたは学生では。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"מה זה?"</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans"><span class="jp">これは何ですか。</span> <span style="color:var(--muted)">（これは なんですか）</span></div>
+  </div>
+</div>
+
+<!-- ===== VOCAB ===== -->
+<h2 class="section">אוצר מילים — שבוע 1</h2>
+<table>
+  <thead><tr><th>יפנית</th><th>עברית</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">こんにちは</td><td>שלום</td></tr>
+    <tr><td class="jp">ありがとう</td><td>תודה</td></tr>
+    <tr><td class="jp">すみません</td><td>סליחה</td></tr>
+    <tr><td class="jp">はい</td><td>כן</td></tr>
+    <tr><td class="jp">いいえ</td><td>לא</td></tr>
+    <tr><td class="jp">私（わたし）</td><td>אני</td></tr>
+    <tr><td class="jp">あなた</td><td>אתה / את</td></tr>
+    <tr><td class="jp">これ</td><td>זה</td></tr>
+    <tr><td class="jp">学生（がくせい）</td><td>סטודנט</td></tr>
+    <tr><td class="jp">先生（せんせい）</td><td>מורה</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 תיבת בחינה — אוצר מילים</div>
+</div>
+
+<!-- ===== KANJI ===== -->
+<h2 class="section k">קאנג'י — שבוע 1 (מספרים 1–7)</h2>
+<table class="kanji">
+  <thead><tr><th>קאנג'י</th><th>קריאה</th><th>משמעות</th></tr></thead>
+  <tbody>
+    <tr><td class="jp big">一</td><td class="jp">いち</td><td>אחד (1)</td></tr>
+    <tr><td class="jp big">二</td><td class="jp">に</td><td>שתיים (2)</td></tr>
+    <tr><td class="jp big">三</td><td class="jp">さん</td><td>שלוש (3)</td></tr>
+    <tr><td class="jp big">四</td><td class="jp">し / よん</td><td>ארבע (4)</td></tr>
+    <tr><td class="jp big">五</td><td class="jp">ご</td><td>חמש (5)</td></tr>
+    <tr><td class="jp big">六</td><td class="jp">ろく</td><td>שש (6)</td></tr>
+    <tr><td class="jp big">七</td><td class="jp">しち / なな</td><td>שבע (7)</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-kanji">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🔢 תיבת בחינה — קאנג'י</div>
+</div>
+
+<!-- ===== FINAL ===== -->
+<h2 class="section">מבחן סיכום — שבוע 1</h2>
+<p style="margin-top:-2px;color:var(--muted)">שאלות מעורבות: דקדוק, אוצר מילים וקאנג'י. נסה להגיע ל-80% ומעלה.</p>
+<div class="quiz-widget" id="quiz-final">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🎓 מבחן סיכום</div>
+</div>
+
+<h2 class="section" style="background:linear-gradient(100deg,#4b6a8f,#2e4d6b)">🧩 תרגול מעמיק — שבוע 1</h2>
+<p style="margin-top:-2px;color:var(--muted)">13 שאלות מעורבות: רב-ברירה + השלמת משפט. מכסות הבנת משפט, דקדוק, קאנג'י ותרגום.</p>
+<div class="quiz-widget" id="quiz-bonus">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:#4b6a8f;margin-bottom:8px">🧩 תרגול מעמיק</div>
+</div>
+
+<div class="done-banner">
+  <h2>סיימת את שבוע 1! <span class="jp">よくできました</span> 🎉</h2>
+  <p>עכשיו אתה יכול להציג את עצמך, לשלול, לשאול שאלות, ולקרוא את הספרות 1–7.<br>כשתהיה מוכן — נבנה את שבוע 2 (החלקיק <span class="jp">の</span>, מספרים וכסף).</p>
+</div>
+
+<p class="footer-note"><span class="jp" dir="ltr">日本語 N5</span> · שבוע 1 מתוך 20 · <span class="jp" dir="ltr">頑張って！</span></p>
+
+</div>
+
+<script>
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+/* inline single-question checks */
+document.querySelectorAll('.check').forEach(q=>{
+  const ans=+q.dataset.answer, fb=q.querySelector('.fb'), opts=q.querySelectorAll('.opt');
+  opts.forEach((btn,i)=>{
+    btn.addEventListener('click',()=>{
+      if(q.classList.contains('done'))return;
+      q.classList.add('done');
+      opts.forEach((b,j)=>{ b.disabled=true; if(j===ans)b.classList.add('correct'); else if(j===i)b.classList.add('wrong'); });
+      const ok=i===ans;
+      fb.textContent=(ok?'✓ נכון! ':'✗ לא מדויק. ')+(q.dataset.explain||'');
+      fb.className='fb '+(ok?'fb-ok':'fb-no');
+    });
+  });
+});
+
+/* reveal answers */
+document.querySelectorAll('.reveal-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const a=b.nextElementSibling, show=a.style.display!=='block';
+    a.style.display=show?'block':'none'; b.textContent=show?'הסתר תשובה':'הצג תשובה';
+  });
+});
+
+/* quiz widget engine */
+function makeQuiz(rootId,data){
+  const root=document.getElementById(rootId);
+  const head=root.querySelector('.htag');
+  let order,idx,score,locked;
+  function start(){ order=shuffle([...data.keys()]); idx=0; score=0; locked=false; render(); }
+  function render(){
+    [...root.children].forEach(c=>{if(c!==head)c.remove();});
+    if(idx>=order.length)return result();
+    const item=data[order[idx]];
+    const opts=shuffle(item.options.map((t,i)=>({t,correct:i===item.answer})));
+    const box=document.createElement('div');
+    box.innerHTML=`
+      <div class="q-progress"><span>שאלה ${idx+1} מתוך ${order.length}</span><span>ניקוד: ${score}</span></div>
+      <div class="q-bar"><span style="width:${idx/order.length*100}%"></span></div>
+      <p class="q-text">${item.q}</p>
+      <div class="q-options"></div>
+      <p class="fb"></p>
+      <button class="next-btn" style="display:none;margin-top:12px">הבא ←</button>`;
+    root.appendChild(box);
+    const wrap=box.querySelector('.q-options'), fb=box.querySelector('.fb'), next=box.querySelector('.next-btn');
+    opts.forEach(o=>{
+      const btn=document.createElement('button');
+      btn.className='opt'; btn.innerHTML=o.t;
+      btn.addEventListener('click',()=>{
+        if(locked)return; locked=true;
+        wrap.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        if(o.correct){ btn.classList.add('correct'); score++; fb.textContent='✓ נכון!'; fb.className='fb fb-ok'; }
+        else { btn.classList.add('wrong'); fb.textContent='✗ לא מדויק'+(item.note?(' — '+item.note):''); fb.className='fb fb-no';
+          [...wrap.children].forEach((c,k)=>{ if(opts[k].correct)c.classList.add('correct'); }); }
+        next.style.display='inline-block';
+      });
+      wrap.appendChild(btn);
+    });
+    next.addEventListener('click',()=>{ idx++; locked=false; render(); });
+  }
+  function result(){
+    const pct=Math.round(score/data.length*100);
+    const msg=pct>=80?'מצוין! אתה שולט בחומר 🎉':pct>=60?'יפה! עוד קצת חזרה ותהיה מצוין.':'כדאי לחזור על החומר ולנסות שוב.';
+    const box=document.createElement('div'); box.className='q-result';
+    box.innerHTML=`<div class="score-big">${score} / ${data.length}</div><p>${msg}</p><button class="next-btn">התחל מחדש 🔁</button>`;
+    root.appendChild(box);
+    box.querySelector('.next-btn').addEventListener('click',start);
+  }
+  start();
+}
+
+const J=s=>`<span class="jp">${s}</span>`;
+
+makeQuiz('quiz-vocab',[
+  {q:'מה הפירוש של '+J('先生')+'?',options:['מורה','סטודנט','חבר','אבא'],answer:0},
+  {q:'מה הפירוש של '+J('学生')+'?',options:['סטודנט','מורה','ספר','בית ספר'],answer:0},
+  {q:'מה הפירוש של '+J('私')+'?',options:['אני','אתה','הוא','זה'],answer:0},
+  {q:'מה הפירוש של '+J('あなた')+'?',options:['אתה / את','אני','הם','מי'],answer:0},
+  {q:'מה הפירוש של '+J('これ')+'?',options:['זה','שם','מה','מי'],answer:0},
+  {q:'מה הפירוש של '+J('こんにちは')+'?',options:['שלום','תודה','סליחה','להתראות'],answer:0},
+  {q:'מה הפירוש של '+J('ありがとう')+'?',options:['תודה','סליחה','שלום','כן'],answer:0},
+  {q:'מה הפירוש של '+J('すみません')+'?',options:['סליחה','תודה','בבקשה','לא'],answer:0},
+  {q:'מה הפירוש של '+J('はい')+'?',options:['כן','לא','אולי','מה'],answer:0},
+  {q:'מה הפירוש של '+J('いいえ')+'?',options:['לא','כן','גם','רק'],answer:0}
+]);
+
+makeQuiz('quiz-kanji',[
+  {q:'איזה מספר הוא '+J('<span class="big">三</span>')+'?',options:['3','2','5','4'],answer:0},
+  {q:'איזה מספר הוא '+J('<span class="big">五</span>')+'?',options:['5','6','4','9'],answer:0},
+  {q:'איזה מספר הוא '+J('<span class="big">七</span>')+'?',options:['7','1','4','6'],answer:0},
+  {q:'איזה קאנג\'י הוא המספר 2?',options:[J('二'),J('三'),J('四'),J('六')],answer:0},
+  {q:'איזה מספר הוא '+J('<span class="big">一</span>')+'?',options:['1','10','2','7'],answer:0},
+  {q:'איזה מספר הוא '+J('<span class="big">六</span>')+'?',options:['6','8','4','5'],answer:0},
+  {q:'איזה מספר הוא '+J('<span class="big">四</span>')+'?',options:['4','6','3','7'],answer:0}
+]);
+
+makeQuiz('quiz-final',[
+  {q:'איך אומרים "אני סטודנט"?',options:[J('私は学生です。'),J('私は学生か。'),J('学生は私です。'),J('私も学生か。')],answer:0,note:'המבנה: נושא + は + שם + です.'},
+  {q:'איך אומרים "זה לא ספר"?',options:[J('これは本ではありません。'),J('これは本です。'),J('これは本ですか。'),J('これも本です。')],answer:0,note:'שלילה = ではありません.'},
+  {q:'איך אומרים "האם אתה מורה?"',options:[J('あなたは先生ですか。'),J('あなたは先生です。'),J('あなたも先生です。'),J('あなたは先生では。')],answer:0,note:'שאלה = הוספת か בסוף.'},
+  {q:'איזו מילית פירושה "גם"?',options:[J('も'),J('は'),J('か'),J('です')],answer:0},
+  {q:'במשפט '+J('私は学生です')+' — איך נהגית '+J('は')+'?',options:['wa','ha','wo','a'],answer:0,note:'は כחלקיק נושא נהגה wa.'},
+  {q:'מה הפירוש של '+J('すみません')+'?',options:['סליחה','תודה','שלום','כן'],answer:0},
+  {q:'איזה מספר הוא '+J('<span class="big">四</span>')+'?',options:['4','6','3','7'],answer:0},
+  {q:'איזה קאנג\'י הוא המספר 7?',options:[J('七'),J('一'),J('四'),J('六')],answer:0}
+]);
+
+// ── BONUS DRILL ──
+makeQuiz('quiz-bonus',[
+  // רב-ברירה — הבנת משפט
+  {q:'מה הפירוש של המשפט: '+J('これは私の本ではありません。')+'?',
+   options:['זה לא הספר שלי','זה הספר שלי','זה ספרו של המורה','האם זה ספרי?'],answer:0,
+   note:'これは = זה; 私の = שלי; 本 = ספר; ではありません = לא.'},
+  {q:'מה הפירוש של '+J('あれは何ですか。')+'?',
+   options:['מה זה (שם, רחוק)?','מה זה (קרוב)?','מה זה (אצלך)?','מי זה?'],answer:0,
+   note:'あれ = שם רחוק משנינו; 何 = מה.'},
+  {q:'מה הפירוש של '+J('田中さんも先生ですか。')+'?',
+   options:['האם גם טנקה מורה?','האם טנקה מורה?','טנקה הוא מורה','גם אני מורה'],answer:0,
+   note:'も = גם; か = שאלה.'},
+  // השלמת משפט
+  {q:'השלם: "זה ___." — "זה (רחוק, שם) בית-ספר." '+J('___は学校です。'),
+   options:[J('あれ'),J('これ'),J('それ'),J('どれ')],answer:0,
+   note:'רחוק משנינו ← あれ.'},
+  {q:'השלם: "אני ___ מורה." (שלילה) '+J('私は先生___。'),
+   options:[J('ではありません'),J('です'),J('ですか'),J('も')],answer:0,
+   note:'שלילה = ではありません.'},
+  {q:'השלם: "האם ___ ספר?" (זה, קרוב אליי) '+J('___は本ですか。'),
+   options:[J('これ'),J('あれ'),J('それ'),J('どれ')],answer:0,
+   note:'קרוב לדובר = これ.'},
+  // רב-ברירה — דקדוק
+  {q:'איזה משפט נכון לשאול "מה זה"?',
+   options:[J('これは何ですか。'),J('これが何ですか。'),J('なんはこれですか。'),J('これは何か。')],answer:0,
+   note:'מה זה = これは何ですか.'},
+  {q:'מה ההבדל בין '+J('これ')+' ל-'+J('この')+'?',
+   options:[J('これ')+' עומד לבד; '+J('この')+' + שם עצם',J('この')+' עומד לבד; '+J('これ')+' + שם עצם','אין הבדל, שניהם זהים',''+J('これ')+' = קרוב; '+J('この')+' = רחוק'],answer:0,
+   note:'これ לבד (כינוי); この + שם (תואר).'},
+  {q:'איזה משפט אומר "גם הספר הזה של המורה"?',
+   options:[J('この本も先生のです。'),J('この本は先生のです。'),J('この本が先生のですか。'),J('先生もこの本です。')],answer:0,
+   note:'も = גם; מחליף את は.'},
+  // קאנג'י — זיהוי מתוך הקשר
+  {q:'איזה מספר חסר? '+J('一、二、三、___、五'),
+   options:[J('四'),J('六'),J('七'),J('二')],answer:0,
+   note:'הרצף 1,2,3,_,5 — החסר הוא 4 = 四.'},
+  {q:'מה הקריאה של '+J('六')+'?',
+   options:[J('ろく'),J('なな'),J('はち'),J('ご')],answer:0},
+  {q:'מה הקריאה של '+J('五')+'?',
+   options:[J('ご'),J('し'),J('ろく'),J('いち')],answer:0},
+  // רב-ברירה — הקשר תרגום
+  {q:'איך אומרים "שלום" ביפנית?',
+   options:[J('こんにちは'),J('ありがとう'),J('すみません'),J('いいえ')],answer:0},
+]);
+</script>
+</body>
+</html>

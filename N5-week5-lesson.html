@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שבוע 5 — נושא מול מזהה | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+    --blue:#4b6a8f; --blue-soft:#e3eaf3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre", Georgia, serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px, rgba(120,100,70,.06) 1px, transparent 0);
+    background-size:22px 22px;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 90px;}
+  .jp{font-family:"Noto Sans JP", system-ui, sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+  .big{font-size:1.35em; line-height:1;}
+
+  header.masthead{text-align:center; padding:56px 20px 34px; border-bottom:3px double var(--line); margin-bottom:6px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(28px,5.5vw,40px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:17px;}
+  .nav-links{display:flex; justify-content:space-between; margin:14px 0 0; font-size:14px;}
+  .nav-links span{color:var(--muted); font-family:"Heebo",sans-serif; font-weight:700;}
+
+  .lead{background:var(--card); border:1px solid var(--line); border-right:5px solid var(--accent); border-radius:12px; padding:18px 22px; margin:26px 0;}
+  .lead h2{font-family:"Heebo",sans-serif; font-size:18px; margin:0 0 6px;}
+  .lead ol{margin:6px 0 0; padding-inline-start:1.3em;}
+  .lead li{margin:3px 0;}
+
+  .topic{margin:46px 0;}
+  .topic-tag{display:inline-block; background:var(--accent); color:#fff; font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; padding:5px 14px; border-radius:999px; box-shadow:0 3px 8px rgba(150,60,30,.22);}
+  .topic h2{font-family:"Heebo",sans-serif; font-weight:800; font-size:25px; margin:12px 0 8px;}
+  .topic p{margin:.6em 0;}
+  .topic strong{color:#7e2a13;}
+
+  .formula{text-align:center; font-size:19px; background:#fff3ec; border:1px solid #e8c9b8; border-radius:10px; padding:12px 20px; margin:14px 0;}
+  .formula-blue{text-align:center; font-size:19px; background:#eef3fa; border:1px solid #c5d5e8; border-radius:10px; padding:12px 20px; margin:14px 0;}
+
+  h3.sub-head{font-family:"Heebo",sans-serif; font-weight:700; font-size:19px; color:var(--accent); margin:22px 0 8px; border-right:4px solid var(--accent); padding-right:10px;}
+
+  .ex{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:6px 16px; margin:16px 0;}
+  .ex-row{padding:10px 0; border-bottom:1px dashed var(--line);}
+  .ex-row:last-child{border-bottom:none;}
+  .ex-jp{direction:ltr; unicode-bidi:isolate; text-align:right; font-family:"Noto Sans JP",sans-serif; font-size:19px; font-weight:500;}
+  .ex-jp .r{color:var(--muted); font-size:15px; font-weight:400;}
+  .ex-he{color:var(--ink); font-size:16px;}
+
+  /* side-by-side contrast boxes */
+  .contrast{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0;}
+  @media(max-width:500px){.contrast{grid-template-columns:1fr;}}
+  .contrast-box{border-radius:12px; padding:14px 18px; border:1.5px solid;}
+  .contrast-box.ha{background:#fff8f5; border-color:#e8c9b8;}
+  .contrast-box.ga{background:#eef3fa; border-color:#c5d5e8;}
+  .contrast-box .cb-label{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; margin-bottom:8px; display:flex; align-items:center; gap:8px;}
+  .contrast-box.ha .cb-label{color:var(--accent);}
+  .contrast-box.ga .cb-label{color:var(--blue);}
+  .contrast-box .cb-sym{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:28px; font-weight:700; line-height:1;}
+  .contrast-box .cb-rule{font-size:15px; margin-bottom:8px; line-height:1.5;}
+  .contrast-box .cb-ex{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:15px; background:rgba(255,255,255,.7); border-radius:6px; padding:5px 10px; margin-top:6px;}
+  .contrast-box .cb-tr{font-size:13px; color:var(--muted); margin-top:4px;}
+
+  /* dialogue box */
+  .dialogue{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .dialogue-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--gold); margin-bottom:12px;}
+  .d-row{display:flex; gap:10px; align-items:flex-start; margin:10px 0;}
+  .d-who{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--muted); min-width:40px; padding-top:4px;}
+  .d-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px; font-weight:500; flex:1;}
+  .d-he{font-size:15px; color:var(--muted);}
+
+  /* suki grid */
+  .suki-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:16px 0;}
+  @media(max-width:500px){.suki-grid{grid-template-columns:1fr;}}
+  .suki-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 16px;}
+  .suki-card .s-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:20px; font-weight:700; color:var(--accent);}
+  .suki-card .s-read{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:13px; color:var(--muted);}
+  .suki-card .s-he{font-size:15px; margin-top:4px;}
+
+  .compare{background:var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden; margin:16px 0;}
+  .compare-head{display:grid; background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px;}
+  .compare-head.cols2{grid-template-columns:1fr 1fr;}
+  .compare-head.cols3{grid-template-columns:1fr 1fr 1fr;}
+  .compare-head div,.compare-row div{padding:9px 14px;}
+  .compare-row{display:grid; border-top:1px solid var(--line); font-size:16px;}
+  .compare-row.cols2{grid-template-columns:1fr 1fr;}
+  .compare-row.cols3{grid-template-columns:1fr 1fr 1fr;}
+  .compare-row div.jp-cell{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px;}
+
+  .note{background:#faf5ea; border:1px dashed var(--line); border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .note b{color:var(--accent);}
+  .note-blue{background:#eef3fa; border:1px dashed #c5d5e8; border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .note-blue b{color:var(--blue);}
+  .warn{background:#fff5f3; border:1px dashed #e8b8aa; border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .warn b{color:var(--no);}
+
+  /* deepen / study-deeper section */
+  .deepen{background:linear-gradient(160deg,#f3eee0,#ece3cf); border:1.5px solid #d8c89a; border-radius:14px; padding:20px 24px; margin:24px 0;}
+  .deepen-head{display:flex; align-items:center; gap:8px; font-family:"Heebo",sans-serif; font-weight:800; font-size:14px; color:#7d6324; margin-bottom:12px;}
+  .deepen-head::before{content:"🔎"; font-size:16px;}
+  .deepen h4{font-family:"Heebo",sans-serif; font-weight:700; font-size:16px; color:#7d6324; margin:16px 0 6px;}
+  .deepen h4:first-of-type{margin-top:0;}
+  .deepen p{margin:.5em 0; font-size:16px;}
+  .deepen .ex{background:#fffdf8;}
+
+  .qbox{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:16px 0; box-shadow:0 2px 8px rgba(80,60,30,.04);}
+  .qbox .htag{font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; color:var(--ok); margin-bottom:8px; display:flex; align-items:center; gap:7px;}
+  .qbox .htag::before{content:"✎"; font-size:15px;}
+  .q-text{font-size:18px; margin:0 0 12px; font-weight:500;}
+  .q-options{display:flex; flex-direction:column; gap:9px;}
+  .opt{font-family:inherit; font-size:17px; text-align:right; background:#fff; border:1.5px solid var(--line); border-radius:9px; padding:11px 16px; cursor:pointer; transition:.15s; color:var(--ink);}
+  .opt:hover:not(:disabled){border-color:var(--accent); background:#fffaf3;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:var(--ok-soft); border-color:var(--ok); color:#1f4d43; font-weight:700;}
+  .opt.wrong{background:var(--no-soft); border-color:var(--no); color:#7e2a13;}
+  .fb{margin:11px 0 0; font-size:16px; font-weight:600; min-height:1px;}
+  .fb-ok{color:var(--ok);} .fb-no{color:var(--no);}
+
+  .reveal{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .reveal-btn,.next-btn{font-family:"Heebo",sans-serif; font-weight:700; font-size:15px; background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 18px; cursor:pointer; transition:.15s;}
+  .reveal-btn:hover,.next-btn:hover{background:#8e2f17;}
+  .reveal-ans{display:none; margin-top:12px; padding:12px 16px; background:var(--ok-soft); border-radius:8px; font-size:17px;}
+
+  .quiz-widget{background:linear-gradient(160deg,#fffdf8,#fbf4e8); border:1.5px solid var(--line); border-radius:14px; padding:22px; margin:18px 0; box-shadow:0 4px 14px rgba(80,60,30,.07);}
+  .q-progress{font-family:"Heebo",sans-serif; font-size:13px; color:var(--muted); margin-bottom:10px; display:flex; justify-content:space-between;}
+  .q-bar{height:6px; background:#eadfc9; border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  .q-bar span{display:block; height:100%; background:var(--accent); transition:width .3s;}
+  .q-result{text-align:center; padding:14px 0;}
+  .score-big{font-family:"Heebo",sans-serif; font-weight:800; font-size:46px; color:var(--accent); line-height:1;}
+  .q-result p{font-size:18px; margin:10px 0 16px;}
+
+  h2.section{font-family:"Heebo",sans-serif; font-weight:800; font-size:26px; margin:54px 0 8px; padding:12px 20px; color:#fff; background:linear-gradient(100deg,var(--gold),#7d6324); border-radius:10px;}
+  h2.section.k{background:linear-gradient(100deg,var(--accent),#8e2f17);}
+
+  table{width:100%; border-collapse:collapse; margin:.4em 0 18px; font-size:16px; background:#fff; border-radius:10px; overflow:hidden; border:1px solid var(--line);}
+  thead th{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px; padding:9px 12px; text-align:right;}
+  td{padding:9px 12px; border-top:1px solid var(--line);}
+  tbody tr:nth-child(even){background:#fbf7ee;}
+  td.jp{text-align:right;} td.jp.big{text-align:center; color:var(--accent); font-size:1.5em;}
+
+  .done-banner{text-align:center; margin:50px 0 0; padding:26px; background:var(--ok-soft); border:1px solid #bcd9d0; border-radius:14px;}
+  .done-banner h2{font-family:"Heebo",sans-serif; color:#1f4d43; margin:0 0 6px;}
+  .footer-note{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">שבוע 5 מתוך 20 · <span class="jp" dir="ltr">JLPT N5</span> · חלק ב'</div>
+  <h1>נושא מול מזהה: <span class="jp">は</span> ו-<span class="jp">が</span></h1>
+  <p class="sub">ההבדל בין שני החלקיקים הנפוצים ביותר ביפנית</p>
+  <div class="nav-links">
+    <span>← שבוע 4: קיום (あります/います)</span>
+    <span>שבוע 6: פעלים בצורת ます ←</span>
+  </div>
+</header>
+
+<div class="lead">
+  <h2>מה נלמד השבוע</h2>
+  <ol>
+    <li>ההבדל הבסיסי בין <span class="jp">は</span> (נושא/רקע) ל-<span class="jp">が</span> (מזהה/הדגשה).</li>
+    <li><span class="jp">が</span> עם <span class="jp">好き・嫌い・上手・下手</span> — אוהב, שונא, מיומן,서툴.</li>
+    <li><span class="jp">が</span> כ-"אבל" — חיבור ניגוד בין שני משפטים.</li>
+  </ol>
+  <p style="margin:10px 0 0;font-size:15px;color:var(--muted)">זהו הנושא הכי "מבלבל" לדוברי עברית — אבל עם ההסבר הנכון הוא הופך להגיוני לחלוטין. קח את הזמן עם הדוגמאות.</p>
+</div>
+
+<!-- ===== PREVIEW VOCAB TABLE (NEW) ===== -->
+<h2 class="section" style="margin-top:30px">📋 כל אוצר המילים של השבוע — מבט מקדים</h2>
+<p style="margin-top:-2px;color:var(--muted)">טבלה זו אוספת את כל המילים החדשות שתפגוש השבוע — גם אלה שבטבלת הסיכום בהמשך, וגם אלה שמופיעות רק בתוך ההסברים והדוגמאות. עברית ואנגלית.</p>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th><th>English</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">は</td><td class="jp">は</td><td>חלקיק נושא/רקע</td><td>topic particle</td></tr>
+    <tr><td class="jp">が</td><td class="jp">が</td><td>חלקיק זיהוי/הדגשה</td><td>identification particle</td></tr>
+    <tr><td class="jp">かわいい</td><td class="jp">かわいい</td><td>חמוד</td><td>cute</td></tr>
+    <tr><td class="jp">イスラエル人</td><td class="jp">いすらえるじん</td><td>ישראלי</td><td>Israeli (person)</td></tr>
+    <tr><td class="jp">寿司</td><td class="jp">すし</td><td>סושי</td><td>sushi</td></tr>
+    <tr><td class="jp">好き</td><td class="jp">すき</td><td>אהוב / אוהב</td><td>liked / fond of (な-adj)</td></tr>
+    <tr><td class="jp">嫌い</td><td class="jp">きらい</td><td>שנוא / שונא</td><td>disliked / hated (な-adj)</td></tr>
+    <tr><td class="jp">上手</td><td class="jp">じょうず</td><td>מיומן / טוב ב...</td><td>skilled / good at (な-adj)</td></tr>
+    <tr><td class="jp">下手</td><td class="jp">へた</td><td>גרוע ב...</td><td>bad / poor at (な-adj)</td></tr>
+    <tr><td class="jp">音楽</td><td class="jp">おんがく</td><td>מוזיקה</td><td>music</td></tr>
+    <tr><td class="jp">料理</td><td class="jp">りょうり</td><td>בישול / אוכל</td><td>cooking / cuisine</td></tr>
+    <tr><td class="jp">歌</td><td class="jp">うた</td><td>שיר / שירה</td><td>song / singing</td></tr>
+    <tr><td class="jp">サッカー</td><td class="jp">さっかー</td><td>כדורגל</td><td>soccer</td></tr>
+    <tr><td class="jp">難しい</td><td class="jp">むずかしい</td><td>קשה</td><td>difficult</td></tr>
+    <tr><td class="jp">楽しい</td><td class="jp">たのしい</td><td>כיפי / מהנה</td><td>fun / enjoyable</td></tr>
+    <tr><td class="jp">英語</td><td class="jp">えいご</td><td>אנגלית</td><td>English</td></tr>
+    <tr><td class="jp">日本語</td><td class="jp">にほんご</td><td>יפנית</td><td>Japanese (language)</td></tr>
+    <tr><td class="jp">レストラン</td><td class="jp">れすとらん</td><td>מסעדה</td><td>restaurant</td></tr>
+    <tr><td class="jp">わかる</td><td class="jp">わかる</td><td>להבין (לי, +が)</td><td>to understand (+が)</td></tr>
+    <tr><td class="jp">できる</td><td class="jp">できる</td><td>יכול (+が)</td><td>to be able to (+が)</td></tr>
+    <tr><td class="jp">ほしい</td><td class="jp">ほしい</td><td>רצוי (לי, +が)</td><td>desired / wanted (+が)</td></tr>
+    <tr><td class="jp">父</td><td class="jp">ちち / おとうさん</td><td>אבא (שלי / כבוד)</td><td>father (my / polite)</td></tr>
+    <tr><td class="jp">母</td><td class="jp">はは / おかあさん</td><td>אמא (שלי / כבוד)</td><td>mother (my / polite)</td></tr>
+    <tr><td class="jp">兄</td><td class="jp">あに / おにいさん</td><td>אח גדול (שלי / כבוד)</td><td>older brother (my / polite)</td></tr>
+    <tr><td class="jp">姉</td><td class="jp">あね / おねえさん</td><td>אחות גדולה (שלי / כבוד)</td><td>older sister (my / polite)</td></tr>
+    <tr><td class="jp">家族</td><td class="jp">かぞく</td><td>משפחה</td><td>family</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab-preview">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 מבחן מקדים — כל אוצר המילים של השבוע</div>
+</div>
+
+<!-- ========== TOPIC 1: は vs が ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 1</span>
+  <h2>הבדל <span class="jp">は</span> ו-<span class="jp">が</span></h2>
+
+  <p>שניהם יכולים לסמן את מה שמדברים עליו, אבל הם עושים זאת בצורה <strong>שונה לחלוטין</strong>:</p>
+
+  <div class="contrast">
+    <div class="contrast-box ha">
+      <div class="cb-label"><span class="cb-sym">は</span> נושא / רקע</div>
+      <div class="cb-rule">מציג <strong>נושא כללי</strong> — "אשר ל-X..." זהו מידע שכבר ידוע, או שאתה מציג כנושא לדיון.</div>
+      <div class="cb-ex">田中さん<b>は</b>先生です。</div>
+      <div class="cb-tr">（たなかさんはせんせいです）<br>"אשר לטנקה — היא מורה."</div>
+    </div>
+    <div class="contrast-box ga">
+      <div class="cb-label"><span class="cb-sym">が</span> מזהה / הדגשה</div>
+      <div class="cb-rule">מזהה <strong>מי בדיוק</strong> עושה או הוא מה — עונה לשאלה "מי? מה?", מידע חדש.</div>
+      <div class="cb-ex">田中さん<b>が</b>先生です。</div>
+      <div class="cb-tr">（たなかさんがせんせいです）<br>"טנקה היא המורה." (היא, לא אחרת)</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">איך לחשוב על זה</h3>
+  <p>דמיין שני סוגי שאלות:</p>
+  <div class="compare">
+    <div class="compare-head cols2"><div>שאלה שמצריכה は</div><div>שאלה שמצריכה が</div></div>
+    <div class="compare-row cols2">
+      <div>"מה עם טנקה? מה היא עושה?"<br><span style="font-size:14px;color:var(--muted)">← הנושא ידוע, הפעולה/תיאור חדש</span></div>
+      <div>"מי הוא המורה?"<br><span style="font-size:14px;color:var(--muted)">← מחפשים להזדהות: מי בדיוק?</span></div>
+    </div>
+    <div class="compare-row cols2">
+      <div class="jp-cell">田中さん<b>は</b>先生です。</div>
+      <div class="jp-cell">田中さん<b>が</b>先生です。</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">דוגמאות השוואתיות</h3>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">私<b>は</b>学生です。</span> <span class="r">（わたしはがくせいです）</span></div>
+      <div class="ex-he">אני סטודנט. ← הצגה עצמית רגילה, "אני" הוא הנושא.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">私<b>が</b>学生です。</span> <span class="r">（わたしががくせいです）</span></div>
+      <div class="ex-he"><em>אני</em> הסטודנט. ← עונה ל"מי הסטודנט?", מדגיש שאני ולא מישהו אחר.</div>
+    </div>
+  </div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">猫<b>は</b>かわいいです。</span> <span class="r">（ねこはかわいいです）</span></div>
+      <div class="ex-he">חתולים — הם חמודים. ← אמירה כללית על חתולים.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">猫<b>が</b>かわいいです。</span> <span class="r">（ねこがかわいいです）</span></div>
+      <div class="ex-he">חתולים הם מה שחמוד (ולא כלבים). ← מזהה מה בדיוק חמוד.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">שאלות עם מילת שאלה ← תמיד が</h3>
+  <p>כשמילת שאלה (<span class="jp">誰・何・どれ</span>) היא הנושא של השאלה — היא תמיד מסומנת ב-<span class="jp">が</span>, לא ב-<span class="jp">は</span>:</p>
+  <div class="formula-blue"><span class="jp">誰<b>が</b>先生ですか。</span> ← "מי המורה?" — שואלים על הזיהוי</div>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">誰<b>が</b>学生ですか。</span> <span class="r">（だれががくせいですか）</span></div>
+      <div class="ex-he">מי הסטודנט?</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">田中さん<b>が</b>学生です。</span> <span class="r">（たなかさんががくせいです）</span></div>
+      <div class="ex-he">טנקה הוא/היא הסטודנט.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">何<b>が</b>おいしいですか。</span> <span class="r">（なにがおいしいですか）</span></div>
+      <div class="ex-he">מה טעים?</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">寿司<b>が</b>おいしいです。</span> <span class="r">（すしがおいしいです）</span></div>
+      <div class="ex-he">סושי טעים. (= זה שטעים)</div>
+    </div>
+  </div>
+
+  <div class="note-blue"><b>כלל האצבע לרמת N5:</b> אם יש מילת שאלה כנושא — <span class="jp">が</span>. אם אתה מצהיר על נושא ידוע — <span class="jp">は</span>. אם אתה מדגיש "מי בדיוק" — <span class="jp">が</span>. בכל ספק — <span class="jp">は</span> בטוח יותר בהצהרות רגילות.</div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — は מול が</div>
+
+    <h4>"נושא" מול "מושא הצהרה" — מינוח בלשני מדויק יותר</h4>
+    <p>בבלשנות, <span class="jp">は</span> מסומן כ<strong>חלקיק נושא (טופיק)</strong> — הוא קובע "על מה אנחנו מדברים", ולא חלק מהמבנה התחבירי-הדקדוקי הבסיסי (נושא/נשוא) כמו במשפט אנגלי או עברי. <span class="jp">が</span>, לעומת זאת, מסמן את <strong>הנושא הדקדוקי</strong> (subject) במובן המסורתי — מי מבצע את הפעולה או מי מוצהר עליו. ביפנית אפשר אפילו שיהיו שניהם באותו משפט: <span class="jp">象は鼻が長い</span> ("אשר לפילים, החדק [שלהם] ארוך") — <span class="jp">象</span> הוא הטופיק, <span class="jp">鼻</span> הוא הנושא הדקדוקי של "ארוך".</p>
+
+    <h4>"טווח התוקף" של は — עד מתי הוא נשאר בתוקף בשיחה</h4>
+    <p>תופעה מעניינת: ברגע שדובר מסמן נושא עם <span class="jp">は</span>, הוא נשאר "בתוקף" עד שמישהו מחליף אותו במפורש. בשיחה: <span class="jp">これは何ですか。 — 本です。高いですか。 — いいえ、安いです。</span> — בכל המשפטים האלה ה"זה" (הספר) נשאר הנושא הסמוי, גם בלי לחזור על <span class="jp">は</span> בכל משפט. זו הסיבה שיפנית משמיטה כל כך הרבה — ה-<span class="jp">は</span> הראשון "מחזיק" את הנושא לאורך כל קטע השיחה.</p>
+
+    <h4>הקשר בין が ל"מוקד תשומת הלב" (focus)</h4>
+    <p>חשוב על <span class="jp">が</span> כ"זרקור" שמושם על מילה מסוימת: <span class="jp">誰が来ましたか</span> שם זרקור על ה<em>מי</em> — מצפים לתשובה שתשלים את החלל. כשעונים, התשובה גם היא מקבלת <span class="jp">が</span> כי היא ממלאת את אותו "חלל מידע": <span class="jp">田中さんが来ました</span>. זו הסיבה ש"שאלה עם が" עונים תמיד "תשובה עם が" — שניהם ממלאים את אותו תפקיד מידעי.</p>
+
+    <h4>למה מורים יפניים אומרים "אל תתרגם は כ-is"</h4>
+    <p>הטעות הנפוצה ביותר בקרב לומדים היא לחשוב על <span class="jp">は</span> כ"is" באנגלית (או "הוא" בעברית). זו אסטרטגיה שמובילה לבלבול ברגע שמגיעים למשפטים מורכבים יותר. הדרך הבטוחה: בכל פעם שאתה רואה <span class="jp">は</span>, תרגם בלב "אשר ל___" ותמשיך לקרוא את שאר המשפט כדי לגלות מה אומרים עליו.</p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="'מי...' = שאלת זיהוי ← が. תמיד: 誰が, 何が.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מאיזה חלקיק משתמשים ב"מי המורה?"</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">誰<b>が</b>先生ですか。</span></button>
+      <button class="opt"><span class="jp">誰<b>は</b>先生ですか。</span></button>
+      <button class="opt"><span class="jp">先生<b>が</b>誰ですか。</span></button>
+      <button class="opt"><span class="jp">先生<b>は</b>誰がですか。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="הצהרה רגילה על עצמך = נושא ידוע ← は. 私はイスラエル人です.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "אני ישראלי" בהצהרה רגילה?<br><span style="font-size:15px;color:var(--muted)">(ישראלי = <span class="jp">イスラエル人 / いすらえるじん</span>)</span></p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">私<b>が</b>イスラエル人です。</span></button>
+      <button class="opt"><span class="jp">私<b>は</b>イスラエル人です。</span></button>
+      <button class="opt"><span class="jp">イスラエル人<b>は</b>私です。</span></button>
+      <button class="opt"><span class="jp">私<b>も</b>イスラエル人です。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="'מה טעים כאן?' = שאלת זיהוי על 'מה', תמיד が.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך שואלים "מה טעים כאן?"</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">何<b>は</b>おいしいですか。</span></button>
+      <button class="opt"><span class="jp">おいしい<b>は</b>何ですか。</span></button>
+      <button class="opt"><span class="jp">何<b>が</b>おいしいですか。</span></button>
+      <button class="opt"><span class="jp">おいしい<b>が</b>何ですか。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם שני המשפטים וסביר את ההבדל:<br>
+    א. <strong>"אני מורה."</strong> (הצגה עצמית)<br>
+    ב. <strong>"<em>אני</em> המורה."</strong> (מישהו שאל מי המורה)</p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      א. <span class="jp">私<b>は</b>先生です。</span> — הצגה עצמית, נושא כללי.<br>
+      ב. <span class="jp">私<b>が</b>先生です。</span> — עונה ל"מי המורה?", מדגיש "אני, לא מישהו אחר."<br>
+      <span style="color:var(--muted);font-size:15px">ההבדל הוא בהקשר ובמה שנשאל לפני — לא בתרגום!</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 2: が with 好き etc ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 2</span>
+  <h2><span class="jp">が</span> עם <span class="jp">好き・嫌い・上手・下手</span></h2>
+
+  <p>קבוצת שמות תואר ב-<span class="jp">な</span> מיוחדת — הם <strong>תמיד לוקחים</strong> <span class="jp">が</span> למה שמתייחסים אליהם, לא <span class="jp">を</span> (מושא). זה מאוד שונה מעברית, אז שים לב:</p>
+
+  <div class="suki-grid">
+    <div class="suki-card">
+      <div class="s-jp">好き（すき）</div>
+      <div class="s-read">na-adj</div>
+      <div class="s-he">אהוב / אוהב את...</div>
+    </div>
+    <div class="suki-card">
+      <div class="s-jp">嫌い（きらい）</div>
+      <div class="s-read">na-adj</div>
+      <div class="s-he">שנוא / שונא את...</div>
+    </div>
+    <div class="suki-card">
+      <div class="s-jp">上手（じょうず）</div>
+      <div class="s-read">na-adj</div>
+      <div class="s-he">מיומן / טוב ב...</div>
+    </div>
+    <div class="suki-card">
+      <div class="s-jp">下手（へた）</div>
+      <div class="s-read">na-adj</div>
+      <div class="s-he">서툰 / גרוע ב...</div>
+    </div>
+  </div>
+
+  <div class="formula"><strong>[נושא] <span class="jp">は</span> [מה שאוהב] <span class="jp">が</span> 好き/嫌い/上手/下手 <span class="jp">です</span>。</strong></div>
+
+  <p>המבנה הוא: <em>"אשר לX (<span class="jp">は</span>), Y (<span class="jp">が</span>) הוא אהוב/שנוא/..."</em>. ה-<span class="jp">が</span> מסמן את <strong>מה שמדובר</strong> עליו — מה שאוהבים/שונאים/מיומנים בו.</p>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">私は寿司<b>が</b>好きです。</span> <span class="r">（わたしはすしがすきです）</span></div>
+      <div class="ex-he">אני אוהב סושי. (מילולית: "אשר לי, סושי הוא אהוב")</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">田中さんは猫<b>が</b>嫌いです。</span> <span class="r">（たなかさんはねこがきらいです）</span></div>
+      <div class="ex-he">טנקה שונא/ת חתולים.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">田中さんは料理<b>が</b>上手です。</span> <span class="r">（たなかさんはりょうりがじょうずです）</span></div>
+      <div class="ex-he">טנקה מיומן/ת בבישול.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">私は歌<b>が</b>下手です。</span> <span class="r">（わたしはうたがへたです）</span></div>
+      <div class="ex-he">אני גרוע בשירה.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">שאלה: "מה אתה אוהב?"</h3>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">何<b>が</b>好きですか。</span> <span class="r">（なにがすきですか）</span></div>
+      <div class="ex-he">מה אתה אוהב? (מה אהוב עליך?)</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">音楽<b>が</b>好きです。</span> <span class="r">（おんがくがすきです）</span></div>
+      <div class="ex-he">אני אוהב מוזיקה.</div>
+    </div>
+  </div>
+
+  <div class="warn"><b>טעות נפוצה:</b> <span class="jp">寿司<b>を</b>好きです</span> ❌ — לא משתמשים ב-<span class="jp">を</span> עם 好き/嫌い/上手/下手. תמיד <span class="jp">が</span>!</div>
+
+  <div class="dialogue">
+    <div class="dialogue-title">💬 שיחה לדוגמה</div>
+    <div class="d-row"><div class="d-who">A:</div><div><div class="d-jp">田中さんは何が好きですか。</div><div class="d-he">טנקה, מה אתה אוהב?</div></div></div>
+    <div class="d-row"><div class="d-who">B:</div><div><div class="d-jp">私はサッカーが好きです。田中さんは？</div><div class="d-he">אני אוהב כדורגל. ואתה, טנקה?</div></div></div>
+    <div class="d-row"><div class="d-who">A:</div><div><div class="d-jp">私は音楽が好きですが、歌が下手です。</div><div class="d-he">אני אוהב מוזיקה, אבל אני גרוע בשירה.</div></div></div>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — が עם 好き・嫌い・上手・下手</div>
+
+    <h4>פעלי-תחושה ביפנית — הכיוון ההפוך מעברית</h4>
+    <p>ביפנית, הרגשות וההעדפות מבוטאים לא כפעולה שהדובר עושה (כמו "אני אוהב"), אלא כ<strong>תכונה של האובייקט</strong> שמתוארת בנוגע לדובר. <span class="jp">私は寿司が好きです</span> מילולית הוא "אשר לי, סושי הוא [דבר] אהוב". זו הסיבה שהמושא (סושי) מקבל <span class="jp">が</span> — הוא הנושא הדקדוקי של התכונה "אהוב/שנוא/מיומן-בו", לא מושא ישיר של פעולת "לאהוב".</p>
+
+    <h4>אותו עיקרון בפעלים אחרים — קבוצה גדולה יותר</h4>
+    <p>הדפוס הזה (תכונה + が) חוזר על עצמו במספר מילים נוספות שתפגוש בהמשך: <span class="jp">わかる</span> ("מובן [לי]" — לא "אני מבין"), <span class="jp">できる</span> ("יכול [להיעשות]"), ו-<span class="jp">ほしい</span> ("רצוי [לי]", שתלמד בשבוע 13). כל אלה הם תיאורי-מצב שמתייחסים למשהו חיצוני, ולא פעלים "פעילים" עם מושא ישיר. ברגע שתפנים את ההיגיון הזה, כל המבנים האלה יהיו טבעיים בהרבה.</p>
+
+    <h4>למה זה לא "שגיאה" אלא היגיון תרבותי-לשוני אחר</h4>
+    <p>חשוב להבין: זו לא "יפנית מוזרה" אלא נקודת מבט שונה על איפה "ממוקם" הרגש. בעברית/אנגלית, הדובר הוא הפועל הפעיל ("אני אוהב X"). ביפנית, X הוא שנושא את התכונה, והדובר הוא רק ה"הקשר" שבו התכונה מתממשת (באמצעות <span class="jp">は</span>). שתי הגישות תקפות לשונית — פשוט שונות.</p>
+
+    <h4>טבלת זיהוי מהירה — איזה מילים דורשות が</h4>
+    <p>כלל אצבע: כל מילה שמתארת <em>יחס נפשי/יכולת</em> כלפי דבר-מה (לא פעולה פיזית) סביר שתדרוש <span class="jp">が</span>: <span class="jp">好き・嫌い・上手・下手・わかる・ほしい・できる</span>. לעומת זאת, פעלי פעולה רגילים (<span class="jp">食べる・読む・買う</span>) ממשיכים לדרוש <span class="jp">を</span> כמושא ישיר, כמו שלמדת בשבוע 6.</p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="好き תמיד לוקח が, לא を. המבנה: [נושא]は[מה]が好きです.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "אני אוהב יפנית"? (<span class="jp">日本語 / にほんご</span>)</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">私は日本語を好きです。</span></button>
+      <button class="opt"><span class="jp">私は日本語は好きです。</span></button>
+      <button class="opt"><span class="jp">私は日本語が好きです。</span></button>
+      <button class="opt"><span class="jp">日本語が私は好きです。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="上手 = מיומן/טוב ב... (な-תואר). 下手 = גרוע ב... שניהם עם が.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה הפירוש של <span class="jp">田中さんは料理が上手です</span>?</p>
+    <div class="q-options">
+      <button class="opt">טנקה שונא בישול</button>
+      <button class="opt">טנקה מיומן/ת בבישול</button>
+      <button class="opt">טנקה גרוע/ה בבישול</button>
+      <button class="opt">טנקה אוהב/ת בישול</button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"אני גרוע באנגלית אבל אני אוהב מוזיקה."</strong><br>
+    <span style="font-size:15px;color:var(--muted)">(אנגלית = <span class="jp">英語 / えいご</span>; מוזיקה = <span class="jp">音楽 / おんがく</span>; אבל = <span class="jp">が</span>)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">私は英語が下手ですが、音楽が好きです。</span><br>
+      <span style="color:var(--muted);font-size:15px">（わたしはえいごがへたですが、おんがくがすきです）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 3: が as "but" ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 3</span>
+  <h2><span class="jp">～が、～</span> — "אבל" בין שני משפטים</h2>
+
+  <p><span class="jp">が</span> לא רק מזהה נושא — הוא גם משמש כמחבר <strong>"אבל / ואולם"</strong> בין שני משפטים. זו פונקציה שונה לחלוטין מהחלקיק <span class="jp">が</span> שלמדנו, אבל כתובה אותה מילה.</p>
+
+  <div class="formula"><strong>[משפט 1] <span class="jp">が</span>、[משפט 2]。</strong> = "[משפט 1] אבל [משפט 2]."</div>
+
+  <p>ה-<span class="jp">が</span> בא <strong>בסוף הפסוקית הראשונה</strong>, אחרי הנשוא. שים לב שהנשוא לפני <span class="jp">が</span> מנומס (מסתיים ב-<span class="jp">です／ます</span>) גם בדיבור רגיל.</p>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">この本は高いです<b>が</b>、おもしろいです。</span></div>
+      <div class="ex-he">הספר הזה יקר, אבל מעניין.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">日本語は難しいです<b>が</b>、楽しいです。</span> <span class="r">（にほんごはむずかしいですが、たのしいです）</span></div>
+      <div class="ex-he">יפנית קשה, אבל כיפית.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">私は音楽が好きです<b>が</b>、歌が下手です。</span></div>
+      <div class="ex-he">אני אוהב מוזיקה, אבל גרוע בשירה.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">このレストランは高いです<b>が</b>、おいしいです。</span></div>
+      <div class="ex-he">המסעדה הזאת יקרה, אבל טעימה.</div>
+    </div>
+  </div>
+
+  <div class="note"><b>גוון עדין:</b> <span class="jp">が</span> כ"אבל" הוא לפעמים <em>רך יותר</em> מ"אבל" בעברית — לפעמים הוא מחבר שני עובדות ניגודיות בלי להדגיש מאוד את הניגוד. בעברית אפשר לתרגם גם "ו-" לפעמים: "הספר יקר ו(בכל זאת) מעניין."</div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — が כמילת חיבור "אבל"</div>
+
+    <h4>אותה מילה, שתי משפחות תפקיד שונות לחלוטין</h4>
+    <p>חשוב להבין: <span class="jp">が</span> כחלקיק (מסמן נושא דקדוקי, כמו בשבועות הקודמים) ו-<span class="jp">が</span> כמילת חיבור ("אבל") הם <strong>שני תפקידים שונים היסטורית</strong> שבמקרה מתלכדים באותו צליל וכתיב. בלשנים מתייחסים לזה כשני "מורפמות" נפרדות. אל תנסה לקשר אותם רעיונית — זה רק צירוף מקרים בהיסטוריה של השפה, לא קשר לוגי.</p>
+
+    <h4>דרגות הניגוד — מ-が הרך ל-けど ול-でも החזק</h4>
+    <p>ביפנית יש כמה דרכים לבטא "אבל", ולכל אחת רמת חיבור/רשמיות שונה: <span class="jp">が</span> (בתוך משפט, רשמי ורך) ← <span class="jp">けど</span> (בתוך משפט, לא-רשמי, נפוץ בדיבור) ← <span class="jp">でも</span> (פותח משפט נפרד, רשמי בינוני) ← <span class="jp">しかし</span> (פותח משפט נפרד, רשמי מאוד, כתיבה). ברמת N5 מתמקדים ב-<span class="jp">が</span> ו-<span class="jp">でも</span>, אבל שווה לזכור ש-<span class="jp">けど</span> שכיח ביותר בדיבור יומיומי.</p>
+
+    <h4>מבנה הצורה הרגילה לפני が — תזכורת מוקדמת לשבוע 9</h4>
+    <p>בדיבור לא-פורמלי, הפסוקית שלפני <span class="jp">が</span> יכולה לבוא בצורה רגילה (לא מנומסת) — <span class="jp">高いが、おいしい</span> במקום <span class="jp">高いですが、おいしいです</span>. תפגוש את ההבחנה בין צורה רגילה למנומסת בהרחבה בשבוע 9, אבל זה מועיל לדעת כבר עכשיו שגם <span class="jp">が</span> וגם <span class="jp">けど</span> מתחברים באופן טבעי לשתי הצורות.</p>
+
+    <h4>השמטת חלק שני — "אבל" שמרחף באוויר</h4>
+    <p>בשיחה יפנית טבעית, הרבה פעמים משאירים את <span class="jp">が</span> בסוף משפט בלי להשלים את החלק השני בכלל — זה מרכך את האמירה ומשאיר רמז עדין: <span class="jp">ちょっと忙しいんですが…</span> ("אני קצת עסוק, אבל...") יכול לרמוז על בקשה לדחות פגישה, בלי לומר זאת במפורש. זו טכניקת נימוס נפוצה ביפנית — לא חובה ל-N5, אבל מעניין לדעת.</p>
+  </div>
+
+  <div class="qbox check" data-answer="3" data-explain="が בסוף המשפט הראשון = 'אבל'. [משפט 1]が、[משפט 2].">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "יפנית קשה אבל כיפית"? (<span class="jp">難しい = むずかしい</span> = קשה)</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">日本語は難しいですか、楽しいです。</span></button>
+      <button class="opt"><span class="jp">日本語が難しいが楽しいです。</span></button>
+      <button class="opt"><span class="jp">日本語は楽しいですが、難しいです。</span></button>
+      <button class="opt"><span class="jp">日本語は難しいですが、楽しいです。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"אני אוהב כדורגל אבל גרוע בו."</strong><br>
+    <span style="font-size:15px;color:var(--muted)">(כדורגל = <span class="jp">サッカー</span>)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">私はサッカーが好きですが、下手です。</span><br>
+      <span style="color:var(--muted);font-size:15px">（わたしはさっかーがすきですが、へたです）</span><br>
+      <span style="font-size:15px">שלב: 好き + が (אבל) + 下手.</span>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"המסעדה הזאת זולה אבל לא טעימה."</strong><br>
+    <span style="font-size:15px;color:var(--muted)">(מסעדה = <span class="jp">レストラン</span>; זול = <span class="jp">安い</span>; לא טעים = <span class="jp">おいしくない</span>)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">このレストランは安いですが、おいしくないです。</span><br>
+      <span style="color:var(--muted);font-size:15px">（このれすとらんはやすいですが、おいしくないです）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== VOCAB TABLE ===== -->
+<h2 class="section">אוצר מילים — שבוע 5</h2>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">好き（すき）</td><td class="jp">すき</td><td>אהוב / אוהב (な-תואר)</td></tr>
+    <tr><td class="jp">嫌い（きらい）</td><td class="jp">きらい</td><td>שנוא / שונא (な-תואר)</td></tr>
+    <tr><td class="jp">上手（じょうず）</td><td class="jp">じょうず</td><td>מיומן / טוב ב... (な-תואר)</td></tr>
+    <tr><td class="jp">下手（へた）</td><td class="jp">へた</td><td>גרוע ב... (な-תואר)</td></tr>
+    <tr><td class="jp">難しい（むずかしい）</td><td class="jp">むずかしい</td><td>קשה (い-תואר)</td></tr>
+    <tr><td class="jp">楽しい（たのしい）</td><td class="jp">たのしい</td><td>כיפי / מהנה (い-תואר)</td></tr>
+    <tr><td class="jp">かわいい</td><td class="jp">かわいい</td><td>חמוד (い-תואר)</td></tr>
+    <tr><td class="jp">音楽（おんがく）</td><td class="jp">おんがく</td><td>מוזיקה</td></tr>
+    <tr><td class="jp">料理（りょうり）</td><td class="jp">りょうり</td><td>בישול / אוכל</td></tr>
+    <tr><td class="jp">歌（うた）</td><td class="jp">うた</td><td>שיר / שירה</td></tr>
+    <tr><td class="jp">英語（えいご）</td><td class="jp">えいご</td><td>אנגלית</td></tr>
+    <tr><td class="jp">日本語（にほんご）</td><td class="jp">にほんご</td><td>יפנית</td></tr>
+    <tr><td class="jp">サッカー</td><td class="jp">さっかー</td><td>כדורגל</td></tr>
+    <tr><td class="jp">父（ちち）/ お父さん</td><td class="jp">ちち / おとうさん</td><td>אבא (שלי / כבוד)</td></tr>
+    <tr><td class="jp">母（はは）/ お母さん</td><td class="jp">はは / おかあさん</td><td>אמא (שלי / כבוד)</td></tr>
+    <tr><td class="jp">兄（あに）/ お兄さん</td><td class="jp">あに / おにいさん</td><td>אח גדול (שלי / כבוד)</td></tr>
+    <tr><td class="jp">姉（あね）/ お姉さん</td><td class="jp">あね / おねえさん</td><td>אחות גדולה (שלי / כבוד)</td></tr>
+    <tr><td class="jp">家族（かぞく）</td><td class="jp">かぞく</td><td>משפחה</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 תיבת בחינה — אוצר מילים</div>
+</div>
+
+<!-- ===== KANJI TABLE ===== -->
+<h2 class="section k">קאנג'י — שבוע 5 (טבע ואנשים)</h2>
+<table>
+  <thead><tr><th>קאנג'י</th><th>קריאה</th><th>משמעות</th><th>דוגמה</th></tr></thead>
+  <tbody>
+    <tr><td class="jp big">山</td><td class="jp">やま / さん</td><td>הר</td><td class="jp">富士山（ふじさん）</td></tr>
+    <tr><td class="jp big">川</td><td class="jp">かわ / がわ</td><td>נהר</td><td class="jp">川（かわ）</td></tr>
+    <tr><td class="jp big">田</td><td class="jp">た / だ</td><td>שדה אורז</td><td class="jp">田中（たなか）</td></tr>
+    <tr><td class="jp big">天</td><td class="jp">てん</td><td>שמיים</td><td class="jp">天気（てんき）= מזג אוויר</td></tr>
+    <tr><td class="jp big">気</td><td class="jp">き / け</td><td>אוויר / מצב-רוח / אנרגיה</td><td class="jp">元気（げんき）= בריא; 天気（てんき）</td></tr>
+    <tr><td class="jp big">雨</td><td class="jp">あめ / う</td><td>גשם</td><td class="jp">雨（あめ）</td></tr>
+    <tr><td class="jp big">花</td><td class="jp">はな</td><td>פרח</td><td class="jp">花（はな）</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-kanji">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🔢 תיבת בחינה — קאנג'י</div>
+</div>
+
+<!-- ===== FINAL QUIZ ===== -->
+<h2 class="section">מבחן סיכום — שבוע 5</h2>
+<p style="margin-top:-2px;color:var(--muted)">שאלות מעורבות: דקדוק, אוצר מילים, קאנג'י + חזרה על שבועות 1–4.</p>
+<div class="quiz-widget" id="quiz-final">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🎓 מבחן סיכום</div>
+</div>
+
+<h2 class="section" style="background:linear-gradient(100deg,#4b6a8f,#2e4d6b)">🧩 תרגול מעמיק — שבוע 5</h2>
+<p style="margin-top:-2px;color:var(--muted)">13 שאלות מעורבות: הבנת משפט, השלמה, זיהוי שגיאות, ושילוב חומר כל השבועות.</p>
+<div class="quiz-widget" id="quiz-bonus">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:#4b6a8f;margin-bottom:8px">🧩 תרגול מעמיק</div>
+</div>
+
+<div class="done-banner">
+  <h2>סיימת את שבוע 5! <span class="jp">よくできました</span> 🎉</h2>
+  <p>
+    עכשיו אתה מבין את ההבדל בין <span class="jp">は</span> ל-<span class="jp">が</span>,<br>
+    יכול לומר מה אתה אוהב/שונא/מיומן בו,<br>
+    ולחבר שני רעיונות עם "אבל".<br><br>
+    כשתהיה מוכן — שבוע 6: פעלים בצורת <span class="jp">ます</span> — הלב של היפנית!
+  </p>
+</div>
+
+<p class="footer-note"><span class="jp" dir="ltr">日本語 N5</span> · שבוע 5 מתוך 20 · <span class="jp" dir="ltr">頑張って！</span></p>
+</div>
+
+<script>
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+document.querySelectorAll('.check').forEach(q=>{
+  const ans=+q.dataset.answer,fb=q.querySelector('.fb'),opts=q.querySelectorAll('.opt');
+  opts.forEach((btn,i)=>{
+    btn.addEventListener('click',()=>{
+      if(q.classList.contains('done'))return;
+      q.classList.add('done');
+      opts.forEach((b,j)=>{b.disabled=true;if(j===ans)b.classList.add('correct');else if(j===i)b.classList.add('wrong');});
+      const ok=i===ans;
+      fb.textContent=(ok?'✓ נכון! ':'✗ לא מדויק. ')+(q.dataset.explain||'');
+      fb.className='fb '+(ok?'fb-ok':'fb-no');
+    });
+  });
+});
+
+document.querySelectorAll('.reveal-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const a=b.nextElementSibling,show=a.style.display!=='block';
+    a.style.display=show?'block':'none';b.textContent=show?'הסתר תשובה':'הצג תשובה';
+  });
+});
+
+function makeQuiz(rootId,data){
+  const root=document.getElementById(rootId);
+  const head=root.querySelector('.htag');
+  let order,idx,score,locked;
+  function start(){order=shuffle([...data.keys()]);idx=0;score=0;locked=false;render();}
+  function render(){
+    [...root.children].forEach(c=>{if(c!==head)c.remove();});
+    if(idx>=order.length)return result();
+    const item=data[order[idx]];
+    const opts=shuffle(item.options.map((t,i)=>({t,correct:i===item.answer})));
+    const box=document.createElement('div');
+    box.innerHTML=`
+      <div class="q-progress"><span>שאלה ${idx+1} מתוך ${order.length}</span><span>ניקוד: ${score}</span></div>
+      <div class="q-bar"><span style="width:${idx/order.length*100}%"></span></div>
+      <p class="q-text">${item.q}</p>
+      <div class="q-options"></div>
+      <p class="fb"></p>
+      <button class="next-btn" style="display:none;margin-top:12px">הבא ←</button>`;
+    root.appendChild(box);
+    const wrap=box.querySelector('.q-options'),fb=box.querySelector('.fb'),next=box.querySelector('.next-btn');
+    opts.forEach(o=>{
+      const btn=document.createElement('button');btn.className='opt';btn.innerHTML=o.t;
+      btn.addEventListener('click',()=>{
+        if(locked)return;locked=true;
+        wrap.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        if(o.correct){btn.classList.add('correct');score++;fb.textContent='✓ נכון!';fb.className='fb fb-ok';}
+        else{btn.classList.add('wrong');fb.textContent='✗ לא מדויק'+(item.note?(' — '+item.note):'');fb.className='fb fb-no';
+          [...wrap.children].forEach((c,k)=>{if(opts[k].correct)c.classList.add('correct');});}
+        next.style.display='inline-block';
+      });
+      wrap.appendChild(btn);
+    });
+    next.addEventListener('click',()=>{idx++;locked=false;render();});
+  }
+  function result(){
+    const pct=Math.round(score/data.length*100);
+    const msg=pct>=80?'מצוין! אתה שולט בחומר 🎉':pct>=60?'יפה! עוד קצת חזרה ותהיה מצוין.':'כדאי לחזור על החומר ולנסות שוב.';
+    const box=document.createElement('div');box.className='q-result';
+    box.innerHTML=`<div class="score-big">${score} / ${data.length}</div><p>${msg}</p><button class="next-btn">התחל מחדש 🔁</button>`;
+    root.appendChild(box);
+    box.querySelector('.next-btn').addEventListener('click',start);
+  }
+  start();
+}
+
+const J=s=>`<span class="jp">${s}</span>`;
+
+makeQuiz('quiz-vocab-preview',[
+  {q:'מה הפירוש של '+J('は')+'?',options:['חלקיק נושא/רקע','חלקיק זיהוי','שאלה','שלילה'],answer:0},
+  {q:'מה הפירוש של '+J('が')+'?',options:['חלקיק זיהוי/הדגשה','חלקיק נושא','גם','אבל בלבד'],answer:0},
+  {q:'מה הפירוש של '+J('かわいい')+'?',options:['חמוד','יפה','גדול','קטן'],answer:0},
+  {q:'מה הפירוש של '+J('寿司')+'?',options:['סושי','ראמן','אורז','דג'],answer:0},
+  {q:'מה הפירוש של '+J('好き')+'?',options:['אהוב / אוהב','שנוא / שונא','מיומן ב','גרוע ב'],answer:0},
+  {q:'מה הפירוש של '+J('嫌い')+'?',options:['שנוא / שונא','אהוב / אוהב','קשה','כיפי'],answer:0},
+  {q:'מה הפירוש של '+J('上手')+'?',options:['מיומן / טוב ב','גרוע ב','קשה','קל'],answer:0},
+  {q:'מה הפירוש של '+J('下手')+'?',options:['גרוע ב','מיומן ב','נמוך','ישן'],answer:0},
+  {q:'מה הפירוש של '+J('音楽')+'?',options:['מוזיקה','שיר','ריקוד','אמנות'],answer:0},
+  {q:'מה הפירוש של '+J('料理')+'?',options:['בישול / אוכל','מוזיקה','ספורט','שיר'],answer:0},
+  {q:'מה הפירוש של '+J('歌')+'?',options:['שיר / שירה','מוזיקה','ריקוד','סרט'],answer:0},
+  {q:'מה הפירוש של '+J('サッカー')+'?',options:['כדורגל','כדורסל','טניס','שחייה'],answer:0},
+  {q:'מה הפירוש של '+J('難しい')+'?',options:['קשה','קל','כיפי','מעניין'],answer:0},
+  {q:'מה הפירוש של '+J('楽しい')+'?',options:['כיפי / מהנה','קשה','משעמם','עצוב'],answer:0},
+  {q:'מה הפירוש של '+J('英語')+'?',options:['אנגלית','יפנית','עברית','צרפתית'],answer:0},
+  {q:'מה הפירוש של '+J('レストラン')+'?',options:['מסעדה','חנות','בית קפה','בר'],answer:0},
+  {q:'מה הפירוש של '+J('わかる')+'?',options:['להבין','לדעת','לשמוע','לראות'],answer:0},
+  {q:'מה הפירוש של '+J('できる')+'?',options:['יכול','רוצה','חושב','אוהב'],answer:0},
+  {q:'מה הפירוש של '+J('ほしい')+'?',options:['רצוי / רוצה','אהוב','שנוא','קשה'],answer:0},
+  {q:'מה ההבדל בין '+J('父（ちち）')+' ל-'+J('お父さん（おとうさん）')+'?',
+   options:['ちち = אבא שלי; おとうさん = אבא של מישהו אחר (כבוד)','אין הבדל','ちち = פורמלי; おとうさん = לא-פורמלי','ちち = לנשים; おとうさん = לגברים'],answer:0},
+  {q:'מה הפירוש של '+J('家族')+'?',options:['משפחה','חבר','שכן','קולגה'],answer:0}
+]);
+
+makeQuiz('quiz-vocab',[
+  {q:'מה הפירוש של '+J('好き')+'?',options:['אהוב / אוהב','שנוא / שונא','מיומן ב','גרוע ב'],answer:0},
+  {q:'מה הפירוש של '+J('嫌い')+'?',options:['שנוא / שונא','אהוב / אוהב','קשה','כיפי'],answer:0},
+  {q:'מה הפירוש של '+J('上手')+'?',options:['מיומן / טוב ב','גרוע ב','קשה','קל'],answer:0},
+  {q:'מה הפירוש של '+J('下手')+'?',options:['גרוע ב','מיומן ב','נמוך','ישן'],answer:0},
+  {q:'מה הפירוש של '+J('難しい')+'?',options:['קשה','קל','כיפי','מעניין'],answer:0},
+  {q:'מה הפירוש של '+J('楽しい')+'?',options:['כיפי / מהנה','קשה','משעמם','עצוב'],answer:0},
+  {q:'מה הפירוש של '+J('音楽')+'?',options:['מוזיקה','שיר','ריקוד','אמנות'],answer:0},
+  {q:'מה הפירוש של '+J('料理')+'?',options:['בישול / אוכל','מוזיקה','ספורט','שיר'],answer:0},
+  {q:'מה הפירוש של '+J('英語')+'?',options:['אנגלית','יפנית','עברית','צרפתית'],answer:0},
+  {q:'מה הפירוש של '+J('家族')+'?',options:['משפחה','חבר','שכן','קולגה'],answer:0},
+  {q:'מה ההבדל בין '+J('父（ちち）')+' ל-'+J('お父さん（おとうさん）')+'?',
+   options:['ちち = אבא שלי; おとうさん = אבא של מישהו אחר (כבוד)','אין הבדל','ちち = פורמלי; おとうさん = לא-פורמלי','ちち = לנשים; おとうさん = לגברים'],answer:0}
+]);
+
+makeQuiz('quiz-kanji',[
+  {q:'מה הפירוש של '+J('<span class="big">山</span>')+'?',options:['הר','נהר','שדה','ים'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">川</span>')+'?',options:['נהר','הר','אגם','ים'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">雨</span>')+'?',options:['גשם','שמש','רוח','שלג'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">花</span>')+'?',options:['פרח','עץ','דשא','עלה'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">天</span>')+'?',options:['שמיים','אדמה','שמש','ירח'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">気</span>')+'?',options:['אוויר / רוח / מצב-רוח','מים','אש','עץ'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">田</span>')+'?',options:['שדה אורז','הר','יער','חוף'],answer:0},
+  {q:'מה הקריאה של '+J('天気')+'?',options:[J('てんき'),J('あまき'),J('てんけ'),J('てき')],answer:0,note:'天気 = てんき = מזג אוויר.'},
+  {q:'מה הקריאה של '+J('元気')+'?',options:[J('げんき'),J('もとき'),J('げんけ'),J('きもと')],answer:0,note:'元気 = げんき = בריא / שמח.'}
+]);
+
+makeQuiz('quiz-final',[
+  {q:'איזה חלקיק משמש בשאלת "מי?"',options:[J('が'),J('は'),J('を'),J('に')],answer:0,note:'מילות שאלה כנושא ← が תמיד.'},
+  {q:'מה הפירוש של '+J('私は寿司が好きです')+'?',options:['אני אוהב סושי','אני שונא סושי','אני טוב בסושי','סושי אוהב אותי'],answer:0},
+  {q:'איזה חלקיק משתמשים עם 好き?',options:[J('が'),J('を'),J('は'),J('に')],answer:0,note:'好き/嫌い/上手/下手 תמיד עם が.'},
+  {q:'מה הפירוש של '+J('日本語は難しいですが、楽しいです')+'?',options:['יפנית קשה אבל כיפית','יפנית קלה ומשעממת','יפנית קשה ומשעממת','יפנית כיפית אבל קשה'],answer:0},
+  {q:'איך אומרים "אני גרוע בשירה"?',options:[J('私は歌が下手です。'),J('私は歌を下手です。'),J('私は歌が上手です。'),J('歌が私は下手です。')],answer:0,note:'下手 + が.'},
+  {q:'מה הפירוש של '+J('<span class="big">雨</span>')+'?',options:['גשם','שמש','רוח','ענן'],answer:0},
+  {q:'מה הפירוש של '+J('上手')+'?',options:['מיומן ב','גרוע ב','אוהב','שונא'],answer:0},
+  {q:'הכי נכון — "אני סטודנט" בהצגה עצמית רגילה:',options:[J('私は学生です。'),J('私が学生です。'),J('学生は私です。'),J('私も学生が。')],answer:0,note:'הצגה עצמית = נושא ידוע ← は.'},
+  {q:'מה הפירוש של '+J('天気')+'?',options:['מזג אוויר','שמיים','ענן','גשם'],answer:0},
+  {q:'איך אומרים "מה אתה אוהב?"',options:[J('何が好きですか。'),J('何は好きですか。'),J('好きが何ですか。'),J('何を好きですか。')],answer:0,note:'מילת שאלה כנושא ← が.'},
+  {q:'איך אומרים "אני אוהב כדורגל אבל גרוע בו"?',
+   options:[J('私はサッカーが好きですが、下手です。'),J('私はサッカーが好きですか、下手です。'),J('私はサッカーを好きですが、下手です。'),J('私はサッカーが好きで、下手です。')],
+   answer:0,note:'好き + が (אבל) + 下手.'}
+]);
+
+// ── BONUS DRILL ──
+makeQuiz('quiz-bonus',[
+  // הבנת משפט מלא
+  {q:'מה הפירוש של '+J('私は料理が好きですが、あまり上手じゃありません。')+'?',
+   options:['אני אוהב לבשל אבל לא ממש מיומן','אני שונא לבשל אבל מיומן','אני טוב בבישול ואוהב אותו','אני לא אוהב לבשל'],answer:0,
+   note:'好き = אוהב; が (אבל); あまり + שלילה = לא ממש; 上手じゃありません = לא מיומן.'},
+  {q:'מה הפירוש של '+J('田中さんは英語が上手ですが、日本語が下手です。')+'?',
+   options:['טנקה טוב באנגלית אבל גרוע ביפנית','טנקה גרוע באנגלית ויפנית','טנקה טוב ביפנית ואנגלית','טנקה לומד יפנית ואנגלית'],answer:0,
+   note:'上手 = טוב; が (אבל); 下手 = גרוע.'},
+  // השלמת משפט — は מול が
+  {q:'השלם: "מי הסטודנט?" — "___ הוא הסטודנט." '+J('田中さん___学生です。'),
+   options:[J('が'),J('は'),J('も'),J('の')],answer:0,
+   note:'עונה לשאלת "מי?" ← が.'},
+  {q:'השלם: "אני אוהב מוזיקה." '+J('私は音楽___好きです。'),
+   options:[J('が'),J('は'),J('を'),J('に')],answer:0,
+   note:'好き תמיד עם が.'},
+  {q:'השלם: "יפנית קשה אבל כיפית." '+J('日本語は難しいです___、楽しいです。'),
+   options:[J('が'),J('か'),J('は'),J('も')],answer:0,
+   note:'אבל בין שני משפטים = が בסוף המשפט הראשון.'},
+  // זיהוי שגיאה
+  {q:'מי הנכון מבין השניים?',
+   options:[J('私は寿司が好きです。'),J('私は寿司を好きです。')],answer:0,
+   note:'好き לוקח が, לא を!'},
+  {q:'מי הנכון?',
+   options:[J('何が好きですか。'),J('何は好きですか。')],answer:0,
+   note:'מילת שאלה כנושא ← が תמיד.'},
+  // קאנג'י בהקשר
+  {q:'המשפט '+J('今日の天気はいいです')+' — מה פירושו?',
+   options:['מזג האוויר של היום טוב','היום קר','מחר מזג אוויר טוב','מזג האוויר לא טוב'],answer:0,
+   note:'今日 = היום; 天気 = מזג אוויר; いい = טוב.'},
+  {q:'מה הפירוש של '+J('山の上に花があります。')+'?',
+   options:['על ההר יש פרחים','מתחת לפרח יש הר','בתוך הפרח יש הר','הפרח על ההר קטן'],answer:0,
+   note:'山の上に = על ההר; 花 = פרח; あります = יש.'},
+  // שילוב עם שבועות קודמים
+  {q:'איך אומרים "אתמול מזג האוויר לא היה טוב"?',
+   options:[J('昨日は天気がよくなかったです。'),J('昨日は天気がよかったです。'),J('明日は天気がよくないです。'),J('昨日は天気はよくなかったです。')],answer:0,
+   note:'昨日 = אתמול; よくなかった = לא היה טוב (עבר שלילי של いい).'},
+  {q:'איך אומרים "בחדר יש חבר שלי"? (חבר = '+J('友達')+')',
+   options:[J('部屋に友達がいます。'),J('部屋に友達があります。'),J('部屋が友達にいます。'),J('友達は部屋があります。')],answer:0,
+   note:'חבר = חי ← います; מיקום ← に.'},
+  // גישה לשאלה
+  {q:'מישהו שאל: '+J('誰が先生ですか。')+' — מה התשובה הנכונה?',
+   options:[J('田中さんが先生です。'),J('田中さんは先生です。'),J('先生が田中さんです。'),J('田中さんも先生です。')],answer:0,
+   note:'עונים לשאלת מי? ← が בתשובה גם.'},
+  {q:'מה ההבדל בין '+J('私は先生です')+' ל-'+J('私が先生です')+'?',
+   options:['הראשון = הצגה רגילה; השני = אני המורה (לא אחר)','אין הבדל','הראשון = שאלה; השני = הצהרה','הראשון = לגברים; השני = לנשים'],answer:0,
+   note:'は = נושא כללי; が = מדגיש "דווקא אני".'},
+]);
+</script>
+</body>
+</html>

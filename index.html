@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קורס יפנית N5 — דף הבית</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb;
+    --locked:#c8bfae; --locked-soft:#f0ece4;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre", Georgia, serif; font-size:18px; line-height:1.75;
+    background-image:radial-gradient(circle at 1px 1px, rgba(120,100,70,.06) 1px, transparent 0);
+    background-size:22px 22px; min-height:100vh;
+  }
+  .jp{font-family:"Noto Sans JP",system-ui,sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+
+  /* ── HERO ── */
+  .hero{
+    text-align:center; padding:64px 24px 48px;
+    background:linear-gradient(175deg,#fffdf8 0%,#f4eee2 100%);
+    border-bottom:3px double var(--line); position:relative; overflow:hidden;
+  }
+  .hero::before{
+    content:"日本語"; position:absolute; font-family:"Noto Sans JP",sans-serif;
+    font-size:180px; font-weight:700; color:rgba(178,58,30,.04);
+    top:50%; left:50%; transform:translate(-50%,-50%);
+    pointer-events:none; white-space:nowrap; direction:ltr;
+  }
+  .hero .badge{
+    display:inline-block; background:var(--accent); color:#fff;
+    font-family:"Heebo",sans-serif; font-weight:800; font-size:13px;
+    letter-spacing:.08em; padding:5px 16px; border-radius:999px;
+    box-shadow:0 4px 12px rgba(150,60,30,.25); margin-bottom:20px;
+  }
+  .hero h1{
+    font-family:"Heebo",sans-serif; font-weight:800;
+    font-size:clamp(32px,6vw,52px); line-height:1.1; margin-bottom:10px;
+  }
+  .hero h1 span{color:var(--accent);}
+  .hero p{color:var(--muted); font-size:18px; max-width:480px; margin:0 auto 28px;}
+  .hero-stats{display:flex; justify-content:center; gap:32px; flex-wrap:wrap;}
+  .stat{text-align:center;}
+  .stat .num{font-family:"Heebo",sans-serif; font-weight:800; font-size:32px; color:var(--accent); line-height:1;}
+  .stat .lbl{font-size:14px; color:var(--muted); font-family:"Heebo",sans-serif;}
+
+  /* ── PROGRESS BAR ── */
+  .progress-wrap{max-width:700px; margin:32px auto 0; padding:0 24px;}
+  .progress-label{display:flex; justify-content:space-between; font-family:"Heebo",sans-serif; font-size:14px; color:var(--muted); margin-bottom:8px;}
+  .progress-bar{height:10px; background:#e0d5be; border-radius:99px; overflow:hidden;}
+  .progress-fill{height:100%; background:linear-gradient(90deg,var(--accent),var(--gold)); border-radius:99px; transition:width .6s ease;}
+
+  /* ── PHASES ── */
+  .wrap{max-width:780px; margin:0 auto; padding:40px 20px 80px;}
+  .phase-label{
+    font-family:"Heebo",sans-serif; font-weight:800; font-size:13px;
+    letter-spacing:.06em; color:#fff; background:linear-gradient(100deg,var(--accent),#8e2f17);
+    display:inline-block; padding:5px 16px; border-radius:999px; margin-bottom:14px; margin-top:36px;
+  }
+  .phase-label.gold{background:linear-gradient(100deg,var(--gold),#7d6324);}
+  .phase-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:22px; margin-bottom:4px;}
+  .phase-sub{color:var(--muted); font-size:15px; margin-bottom:18px;}
+
+  /* ── WEEK CARDS ── */
+  .weeks-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:8px;}
+  @media(max-width:540px){.weeks-grid{grid-template-columns:1fr;}}
+
+  .week-card{
+    background:var(--card); border:1.5px solid var(--line); border-radius:14px;
+    padding:18px 20px; display:flex; flex-direction:column; gap:10px;
+    transition:.2s; position:relative; overflow:hidden;
+  }
+  .week-card::before{
+    content:''; position:absolute; top:0; right:0;
+    width:5px; height:100%; background:var(--accent); border-radius:0 13px 13px 0;
+  }
+  .week-card.locked{border-color:var(--locked); background:var(--locked-soft);}
+  .week-card.locked::before{background:var(--locked);}
+
+  .week-num{
+    font-family:"Heebo",sans-serif; font-weight:800; font-size:11px;
+    letter-spacing:.08em; color:var(--accent);
+  }
+  .week-card.locked .week-num{color:var(--locked);}
+  .week-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:18px; line-height:1.2;}
+  .week-card.locked .week-title{color:var(--muted);}
+  .week-topics{font-size:14px; color:var(--muted); line-height:1.5;}
+  .week-tags{display:flex; gap:6px; flex-wrap:wrap;}
+  .tag{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:11px;
+    padding:2px 10px; border-radius:999px; background:var(--accent-soft,#f3ddd2);
+    color:var(--accent);
+  }
+  .tag.g{background:#e3f0eb; color:var(--ok);}
+  .tag.v{background:#f5f0e3; color:var(--gold);}
+  .tag.locked-tag{background:var(--locked-soft); color:var(--locked);}
+
+  .week-btn{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:"Heebo",sans-serif; font-weight:800; font-size:15px;
+    background:var(--accent); color:#fff; border:none; border-radius:9px;
+    padding:10px 18px; cursor:pointer; text-decoration:none;
+    transition:.15s; align-self:flex-start; margin-top:2px;
+  }
+  .week-btn:hover{background:#8e2f17; transform:translateY(-1px);}
+  .week-btn.locked-btn{background:var(--locked); cursor:not-allowed;}
+  .week-btn.locked-btn:hover{transform:none; background:var(--locked);}
+  .week-btn .arrow{font-size:13px;}
+
+  /* ── TIPS BOX ── */
+  .tips{
+    background:var(--card); border:1px solid var(--line); border-right:5px solid var(--gold);
+    border-radius:12px; padding:18px 22px; margin:40px 0 0;
+  }
+  .tips h3{font-family:"Heebo",sans-serif; font-weight:800; font-size:17px; color:var(--gold); margin-bottom:10px;}
+  .tips ul{padding-inline-start:1.3em;}
+  .tips li{margin:.4em 0; font-size:16px;}
+  .tips a{color:var(--accent); font-weight:700; text-decoration:none;}
+  .tips a:hover{text-decoration:underline;}
+
+  .footer-note{text-align:center; color:var(--muted); font-size:14px; margin-top:40px; padding-top:20px; border-top:1px solid var(--line);}
+
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">JLPT N5 · קורס עברית מלא</div>
+  <h1>קורס <span>יפנית</span> מאפס<br>עד מבחן <span class="jp" dir="ltr" style="font-size:.9em">N5</span></h1>
+  <p>20 שבועות · הסברים בעברית · שאלות אינטראקטיביות · קאנג'י · אוצר מילים</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="num">20</div><div class="lbl">שבועות לימוד</div></div>
+    <div class="stat"><div class="num">110</div><div class="lbl">קאנג'י</div></div>
+    <div class="stat"><div class="num">800</div><div class="lbl">מילים</div></div>
+  </div>
+</div>
+
+
+
+<div class="wrap">
+
+  <!-- ══ PHASE 1 ══ -->
+  <div class="phase-label">חלק א'</div>
+  <div class="phase-title">יסודות — שבועות 1–4</div>
+  <div class="phase-sub">משפטי שם · חלקיקים בסיסיים · שמות תואר · קיום</div>
+
+  <div class="weeks-grid">
+
+    <div class="week-card">
+      <div class="week-num">שבוע 1</div>
+      <div class="week-title">להציג ולציין</div>
+      <div class="week-topics">משפט שם עם <span class="jp">です</span>, החלקיק <span class="jp">は</span>, מילות הצבעה <span class="jp">これ・それ・あれ</span>, שאלות עם <span class="jp">か</span></div>
+      <div class="week-tags">
+        <span class="tag g">דקדוק: 4 נושאים</span>
+        <span class="tag v">מילים: 10</span>
+        <span class="tag">קאנג'י: 1–7</span>
+      </div>
+      <div style="font-size:11px;color:var(--muted);font-family:'Heebo',sans-serif;margin-bottom:4px">שם קובץ: N5-week1-lesson.html</div>
+      <a class="week-btn" href="N5-week1-lesson.html">פתח שבוע 1 <span class="arrow">←</span></a>
+    </div>
+
+    <div class="week-card">
+      <div class="week-num">שבוע 2</div>
+      <div class="week-title">קישור שמות והכמויות</div>
+      <div class="week-topics">החלקיק <span class="jp">の</span>, מספרים 1–10,000, שאלת מחיר עם <span class="jp">いくら</span>, המטבע <span class="jp">円</span></div>
+      <div class="week-tags">
+        <span class="tag g">דקדוק: 3 נושאים</span>
+        <span class="tag v">מילים: 12</span>
+        <span class="tag">קאנג'י: 8–10, 百千万円</span>
+      </div>
+      <a class="week-btn" href="N5-week2-lesson.html">פתח שבוע 2 <span class="arrow">←</span></a>
+    </div>
+
+    <div class="week-card">
+      <div class="week-num">שבוע 3</div>
+      <div class="week-title">שמות תואר וימי השבוע</div>
+      <div class="week-topics">שמות תואר ב-<span class="jp">い</span> (הטיה מלאה), שמות תואר ב-<span class="jp">な</span>, ימי השבוע, אתמול/היום/מחר</div>
+      <div class="week-tags">
+        <span class="tag g">דקדוק: 3 נושאים</span>
+        <span class="tag v">מילים: 18</span>
+        <span class="tag">קאנג'י: ימי השבוע ×7</span>
+      </div>
+      <a class="week-btn" href="N5-week3-lesson.html">פתח שבוע 3 <span class="arrow">←</span></a>
+    </div>
+
+    <div class="week-card">
+      <div class="week-num">שבוע 4</div>
+      <div class="week-title">קיום: יש / נמצא</div>
+      <div class="week-topics"><span class="jp">あります</span> ו-<span class="jp">います</span>, החלקיק <span class="jp">に</span> למיקום, מילות מיקום, רשימות עם <span class="jp">と</span> ו-<span class="jp">や</span></div>
+      <div class="week-tags">
+        <span class="tag g">דקדוק: 3 נושאים</span>
+        <span class="tag v">מילים: 18</span>
+        <span class="tag">קאנג'י: זמן ×7</span>
+      </div>
+      <a class="week-btn" href="N5-week4-lesson.html">פתח שבוע 4 <span class="arrow">←</span></a>
+    </div>
+
+  </div>
+
+  <!-- ══ PHASE 2 ══ -->
+  <div class="phase-label gold">חלק ב'</div>
+  <div class="phase-title">פעלים מנומסים — שבועות 5–8</div>
+  <div class="phase-sub">הבדל <span class="jp">は</span> מול <span class="jp">が</span> · פעלים בצורת <span class="jp">ます</span> · עבר מנומס · חלקיקי תנועה</div>
+
+  <div class="weeks-grid">
+
+    <div class="week-card">
+      <div class="week-num">שבוע 5</div>
+      <div class="week-title">נושא מול מזהה</div>
+      <div class="week-topics"><span class="jp">は</span> מול <span class="jp">が</span>, שימוש עם <span class="jp">好き／嫌い／上手／下手</span>, חיבור עם "אבל"</div>
+      <div class="week-tags">
+        <span class="tag g">דקדוק: 3 נושאים</span>
+        <span class="tag v">מילים: 18</span>
+        <span class="tag">קאנג'י: טבע ×7</span>
+      </div>
+      <a class="week-btn" href="N5-week5-lesson.html">פתח שבוע 5 <span class="arrow">←</span></a>
+    </div>
+
+    <div class="week-card">
+      <div class="week-num">שבוע 6</div>
+      <div class="week-title">פעלים בצורת ます</div>
+      <div class="week-topics">קבוצות פעלים (う/る/חריגים), צורת <span class="jp">ます</span> / <span class="jp">ません</span>, החלקיק <span class="jp">を</span>, הזמנה והצעה</div>
+      <div class="week-tags">
+        <span class="tag g">דקדוק: 4 נושאים</span>
+        <span class="tag v">מילים: 18</span>
+        <span class="tag">קאנג'י: משפחה ×7</span>
+      </div>
+      <a class="week-btn" href="N5-week6-lesson.html">פתח שבוע 6 <span class="arrow">←</span></a>
+    </div>
+
+    <div class="week-card">
+      <div class="week-num">שבוע 7</div>
+      <div class="week-title">עבר מנומס ותנועה</div>
+      <div class="week-topics">עבר <span class="jp">ました／ませんでした</span>, זמן עם <span class="jp">に</span>, כיוון עם <span class="jp">へ／に</span>, מקום פעולה עם <span class="jp">で</span></div>
+      <div class="week-tags">
+        <span class="tag g">דקדוק: 4 נושאים</span>
+        <span class="tag v">מילים: 18</span>
+        <span class="tag">קאנג'י: לימודים ×7</span>
+      </div>
+      <a class="week-btn" href="N5-week7-lesson.html">פתח שבוע 7 <span class="arrow">←</span></a>
+    </div>
+
+    <div class="week-card">
+      <div class="week-num">שבוע 8</div>
+      <div class="week-title">אמצעי וסיבה</div>
+      <div class="week-topics"><span class="jp">で</span> כאמצעי, <span class="jp">と</span> עם אדם, <span class="jp">から〜まで</span> (מ...עד...), <span class="jp">から</span> כסיבה</div>
+      <div class="week-tags">
+        <span class="tag g">דקדוק: 4 נושאים</span>
+        <span class="tag v">מילים: 18</span>
+        <span class="tag">קאנג'י: גדלים ×7</span>
+      </div>
+      <a class="week-btn" href="N5-week8-lesson.html">פתח שבוע 8 <span class="arrow">←</span></a>
+    </div>
+
+  </div>
+
+  <!-- ══ PHASE 3 ══ -->
+  <div class="phase-label">חלק ג'</div>
+  <div class="phase-title">הצורה הרגילה וצורת て — שבועות 9–12</div>
+  <div class="phase-sub">צורת מילון · <span class="jp">ない</span> · <span class="jp">た</span> · צורת <span class="jp">て</span> ושימושיה</div>
+  <div class="weeks-grid">
+    <div class="week-card">
+      <div class="week-num">שבוע 9</div>
+      <div class="week-title">צורת מילון וצורת ない</div>
+      <div class="week-topics">קבוצות פעלים, צורת מילון (רגיל), שלילה רגילה <span class="jp">ない</span>, רגיל מול מנומס, <span class="jp">と思います</span></div>
+      <div class="week-tags">
+        <span class="tag g">דקדוק: 4 נושאים</span>
+        <span class="tag v">מילים: 18</span>
+        <span class="tag">קאנג'י: כיוונים ×7</span>
+      </div>
+      <a class="week-btn" href="N5-week9-lesson.html">פתח שבוע 9 <span class="arrow">←</span></a>
+    </div>
+    <div class="week-card">
+      <div class="week-num">שבוע 10</div>
+      <div class="week-title">עבר רגיל (た)</div>
+      <div class="week-topics">צורת <span class="jp">た</span> וחמשת קבוצות שינוי הצליל, עבר שלילי <span class="jp">なかった</span>, דיבור יומיומי לא-פורמלי</div>
+      <div class="week-tags">
+        <span class="tag g">דקדוק: 3 נושאים</span>
+        <span class="tag v">מילים: 16</span>
+        <span class="tag">קאנג'י: כיוונים ×7</span>
+      </div>
+      <a class="week-btn" href="N5-week10-lesson.html">פתח שבוע 10 <span class="arrow">←</span></a>
+    </div>
+    <div class="week-card">
+      <div class="week-num">שבוע 11</div>
+      <div class="week-title">צורת て: בקשות והתמשכות</div>
+      <div class="week-topics">יצירת צורת <span class="jp">て</span>, בקשות <span class="jp">てください</span>, פעולה מתמשכת ומצב <span class="jp">〜ています</span></div>
+      <div class="week-tags">
+        <span class="tag g">דקדוק: 3 נושאים</span>
+        <span class="tag v">מילים: 15</span>
+        <span class="tag">קאנג'י: מדינות ×7</span>
+      </div>
+      <a class="week-btn" href="N5-week11-lesson.html">פתח שבוע 11 <span class="arrow">←</span></a>
+    </div>
+    <div class="week-card">
+      <div class="week-num">שבוע 12</div>
+      <div class="week-title">רשות ואיסור</div>
+      <div class="week-topics"><span class="jp">てもいいです</span> (רשות), <span class="jp">てはいけません</span> (איסור), הצעת עזרה <span class="jp">ましょうか</span></div>
+      <div class="week-tags">
+        <span class="tag g">דקדוק: 3 נושאים</span>
+        <span class="tag v">מילים: 15</span>
+        <span class="tag">קאנג'י: חזרה ×7</span>
+      </div>
+      <a class="week-btn" href="N5-week12-lesson.html">פתח שבוע 12 <span class="arrow">←</span></a>
+    </div>
+  </div>
+
+  <!-- ══ PHASE 4 ══ -->
+  <div class="phase-label gold">חלק ד'</div>
+  <div class="phase-title">השלמת דקדוק N5 — שבועות 13–16</div>
+  <div class="phase-sub">רצונות · השוואות · מילות מנייה · חיבור רעיונות</div>
+  <div class="weeks-grid">
+    <div class="week-card">
+      <div class="week-num">שבוע 13</div>
+      <div class="week-title">רצונות</div>
+      <div class="week-topics"><span class="jp">たい</span> (רוצה לפעולה), <span class="jp">がほしい</span> (רוצה חפץ), שילוב עם סיבות</div>
+      <div class="week-tags">
+        <span class="tag g">דקדוק: 3 נושאים</span>
+        <span class="tag v">מילים: 11</span>
+        <span class="tag">קאנג'י: זמן ורצון ×5</span>
+      </div>
+      <a class="week-btn" href="N5-week13-lesson.html">פתח שבוע 13 <span class="arrow">←</span></a>
+    </div>
+    <div class="week-card">
+      <div class="week-num">שבוע 14</div>
+      <div class="week-title">חיבור רעיונות</div>
+      <div class="week-topics">שרשור תארי-<span class="jp">い</span> עם <span class="jp">くて</span>, שרשור תארי-<span class="jp">な</span> עם <span class="jp">で</span>, <span class="jp">もう</span> / <span class="jp">まだ</span></div>
+      <div class="week-tags">
+        <span class="tag g">דקדוק: 3 נושאים</span>
+        <span class="tag v">מילים: 10</span>
+        <span class="tag">קאנג'י: אור וגודל ×5</span>
+      </div>
+      <a class="week-btn" href="N5-week14-lesson.html">פתח שבוע 14 <span class="arrow">←</span></a>
+    </div>
+    <div class="week-card">
+      <div class="week-num">שבוע 15</div>
+      <div class="week-title">השוואות ומנייה</div>
+      <div class="week-topics"><span class="jp">より / のほうが</span> (השוואה), מילות מנייה (人/枚/本/冊/匹), חזרה על מילות שאלה</div>
+      <div class="week-tags">
+        <span class="tag g">דקדוק: 3 נושאים</span>
+        <span class="tag v">מילים: 11</span>
+        <span class="tag">קאנג'י: מנייה ×4</span>
+      </div>
+      <a class="week-btn" href="N5-week15-lesson.html">פתח שבוע 15 <span class="arrow">←</span></a>
+    </div>
+    <div class="week-card">
+      <div class="week-num">שבוע 16</div>
+      <div class="week-title">חיבור וסיוג</div>
+      <div class="week-topics"><span class="jp">ね / よ</span> (חלקיקי סוף-משפט), <span class="jp">だけ</span> (רק), <span class="jp">とき</span> (כש...), חזרה כוללת על חלק ד'</div>
+      <div class="week-tags">
+        <span class="tag g">דקדוק: 4 נושאים</span>
+        <span class="tag v">מילים: 10</span>
+        <span class="tag">קאנג'י: סיכום ×4</span>
+      </div>
+      <a class="week-btn" href="N5-week16-lesson.html">פתח שבוע 16 <span class="arrow">←</span></a>
+    </div>
+  </div>
+
+  <!-- ══ PHASE 5 ══ -->
+  <div class="phase-label">חלק ה'</div>
+  <div class="phase-title">הכנה למבחן — שבועות 17–20</div>
+  <div class="phase-sub">חזרה כוללת · מבחני סימולציה · חיזוק חולשות</div>
+  <div class="weeks-grid">
+    <div class="week-card">
+      <div class="week-num">שבוע 17</div>
+      <div class="week-title">חזרה שיטתית על דקדוק</div>
+      <div class="week-topics">טבלת-אב לכל החלקיקים (מאורגנת לפי תפקיד), טבלת-אב להטיות הפועל, מלכודות מבחן נפוצות</div>
+      <div class="week-tags">
+        <span class="tag g">דקדוק: 2 נושאים</span>
+        <span class="tag v">מילים: 7</span>
+        <span class="tag">קאנג'י: מבחן ×4</span>
+      </div>
+      <a class="week-btn" href="N5-week17-lesson.html">פתח שבוע 17 <span class="arrow">←</span></a>
+    </div>
+    <div class="week-card">
+      <div class="week-num">שבוע 18</div>
+      <div class="week-title">קריאה והאזנה אינטנסיביות</div>
+      <div class="week-topics">קטעי קריאה בסגנון מבחן עם שאלות הבנה, דיאלוגים לתרגול האזנה, אסטרטגיית מבחן</div>
+      <div class="week-tags">
+        <span class="tag g">תרגול: 2 נושאים</span>
+        <span class="tag v">מילים: 8</span>
+        <span class="tag">קאנג'י: ×4</span>
+      </div>
+      <a class="week-btn" href="N5-week18-lesson.html">פתח שבוע 18 <span class="arrow">←</span></a>
+    </div>
+    <div class="week-card">
+      <div class="week-num">שבוע 19</div>
+      <div class="week-title">סימולציית מבחן 1</div>
+      <div class="week-topics">מבחן N5 מלא בתנאי זמן — 35 שאלות בשלושה חלקים (אוצר מילים, דקדוק/קריאה, הבנה)</div>
+      <div class="week-tags">
+        <span class="tag g">מבחן מלא</span>
+        <span class="tag v">35 שאלות</span>
+      </div>
+      <a class="week-btn" href="N5-week19-lesson.html">פתח שבוע 19 <span class="arrow">←</span></a>
+    </div>
+    <div class="week-card">
+      <div class="week-num">שבוע 20</div>
+      <div class="week-title">סימולציה 2 + סיום הקורס</div>
+      <div class="week-topics">מבחן N5 שני, מבחן חזרה מסכם מכל 20 השבועות, וצעדים להמשך לימוד מעבר ל-N5</div>
+      <div class="week-tags">
+        <span class="tag g">מבחן מלא + סיכום</span>
+        <span class="tag v">50+ שאלות</span>
+      </div>
+      <a class="week-btn" href="N5-week20-lesson.html">פתח שבוע 20 <span class="arrow">←</span></a>
+    </div>
+  </div>
+
+  <!-- ══ TIPS ══ -->
+  <div class="tips">
+    <h3>📚 חומרי לימוד משלימים (חינם)</h3>
+    <ul>
+      <li><a href="https://jisho.org" target="_blank">Jisho.org</a> — מילון יפני-אנגלי עם רמת JLPT וסדר משיכה</li>
+      <li><a href="https://www.nhk.or.jp/news/easy/" target="_blank">NHK News Web Easy</a> — חדשות מפושטות עם פוריגאנה ושמע</li>
+      <li><a href="https://tadoku.org/japanese/free-books/" target="_blank">Tadoku</a> — ספרוני קריאה חינמיים, מרמה 0</li>
+      <li><a href="https://jlptsensei.com/jlpt-n5-grammar-list/" target="_blank">JLPT Sensei</a> — רשימת דקדוק N5 מלאה + תרגול</li>
+      <li><a href="https://www.japanesetest4you.com" target="_blank">Japanese Test 4 You</a> — מבחני N5 לתרגול</li>
+      <li><strong>Anki</strong> — חבילת JLPT N5 להורדה: חפש "JLPT N5" ב-AnkiWeb</li>
+    </ul>
+  </div>
+
+</div>
+
+</body>
+</html>

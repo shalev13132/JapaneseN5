@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שבוע 7 — עבר מנומס וחלקיקי תנועה | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+    --blue:#4b6a8f; --blue-soft:#e3eaf3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre", Georgia, serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px, rgba(120,100,70,.06) 1px, transparent 0);
+    background-size:22px 22px;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 90px;}
+  .jp{font-family:"Noto Sans JP", system-ui, sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+  .big{font-size:1.35em; line-height:1;}
+
+  header.masthead{text-align:center; padding:56px 20px 34px; border-bottom:3px double var(--line); margin-bottom:6px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(28px,5.5vw,40px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:17px;}
+  .nav-links{display:flex; justify-content:space-between; margin:14px 0 0; font-size:14px;}
+  .nav-links span{color:var(--muted); font-family:"Heebo",sans-serif; font-weight:700;}
+
+  .lead{background:var(--card); border:1px solid var(--line); border-right:5px solid var(--accent); border-radius:12px; padding:18px 22px; margin:26px 0;}
+  .lead h2{font-family:"Heebo",sans-serif; font-size:18px; margin:0 0 6px;}
+  .lead ol{margin:6px 0 0; padding-inline-start:1.3em;}
+  .lead li{margin:3px 0;}
+
+  .topic{margin:46px 0;}
+  .topic-tag{display:inline-block; background:var(--accent); color:#fff; font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; padding:5px 14px; border-radius:999px; box-shadow:0 3px 8px rgba(150,60,30,.22);}
+  .topic h2{font-family:"Heebo",sans-serif; font-weight:800; font-size:25px; margin:12px 0 8px;}
+  .topic p{margin:.6em 0;}
+  .topic strong{color:#7e2a13;}
+
+  .formula{text-align:center; font-size:19px; background:#fff3ec; border:1px solid #e8c9b8; border-radius:10px; padding:12px 20px; margin:14px 0;}
+  .formula-blue{text-align:center; font-size:19px; background:#eef3fa; border:1px solid #c5d5e8; border-radius:10px; padding:12px 20px; margin:14px 0;}
+
+  h3.sub-head{font-family:"Heebo",sans-serif; font-weight:700; font-size:19px; color:var(--accent); margin:22px 0 8px; border-right:4px solid var(--accent); padding-right:10px;}
+
+  .ex{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:6px 16px; margin:16px 0;}
+  .ex-row{padding:10px 0; border-bottom:1px dashed var(--line);}
+  .ex-row:last-child{border-bottom:none;}
+  .ex-jp{direction:ltr; unicode-bidi:isolate; text-align:right; font-family:"Noto Sans JP",sans-serif; font-size:19px; font-weight:500;}
+  .ex-jp .r{color:var(--muted); font-size:15px; font-weight:400;}
+  .ex-he{color:var(--ink); font-size:16px;}
+
+  /* masu conjugation grid */
+  .conj-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:16px 0;}
+  @media(max-width:500px){.conj-grid{grid-template-columns:1fr;}}
+  .conj-cell{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 16px;}
+  .conj-cell .label{font-family:"Heebo",sans-serif; font-weight:800; font-size:12px; color:var(--muted); margin-bottom:6px;}
+  .conj-cell .jp-form{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:20px; font-weight:700; color:var(--accent);}
+  .conj-cell .jp-read{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:13px; color:var(--muted);}
+  .conj-cell .he-form{font-size:15px; margin-top:4px;}
+
+  /* particle compare */
+  .particle-row{display:grid; grid-template-columns:80px 1fr 1fr; gap:0; margin:16px 0; background:var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden;}
+  .particle-row.head{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:13px;}
+  .particle-row > div{padding:10px 14px; border-top:1px solid var(--line);}
+  .particle-row.head > div{border-top:none;}
+  .particle-row .p-sym{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:22px; font-weight:700; color:var(--accent); text-align:center;}
+  .particle-row .p-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:16px;}
+
+  /* timeline */
+  .timeline{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .timeline-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--gold); margin-bottom:12px;}
+  .tl-row{display:flex; align-items:flex-start; gap:12px; margin:10px 0; padding:10px 0; border-bottom:1px dashed var(--line);}
+  .tl-row:last-child{border-bottom:none;}
+  .tl-time{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:15px; font-weight:700; color:var(--blue); min-width:80px; flex:0 0 auto;}
+  .tl-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:16px; font-weight:500; flex:1;}
+  .tl-he{font-size:14px; color:var(--muted);}
+
+  /* dialogue */
+  .dialogue{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .dialogue-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--gold); margin-bottom:12px;}
+  .d-row{display:flex; gap:10px; align-items:flex-start; margin:10px 0;}
+  .d-who{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--muted); min-width:40px; padding-top:4px;}
+  .d-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px; font-weight:500; flex:1;}
+  .d-he{font-size:15px; color:var(--muted);}
+
+  .note{background:#faf5ea; border:1px dashed var(--line); border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .note b{color:var(--accent);}
+  .warn{background:#fff5f3; border:1px dashed #e8b8aa; border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .warn b{color:var(--no);}
+
+  /* deepen / study-deeper section */
+  .deepen{background:linear-gradient(160deg,#f3eee0,#ece3cf); border:1.5px solid #d8c89a; border-radius:14px; padding:20px 24px; margin:24px 0;}
+  .deepen-head{display:flex; align-items:center; gap:8px; font-family:"Heebo",sans-serif; font-weight:800; font-size:14px; color:#7d6324; margin-bottom:12px;}
+  .deepen-head::before{content:"🔎"; font-size:16px;}
+  .deepen h4{font-family:"Heebo",sans-serif; font-weight:700; font-size:16px; color:#7d6324; margin:16px 0 6px;}
+  .deepen h4:first-of-type{margin-top:0;}
+  .deepen p{margin:.5em 0; font-size:16px;}
+  .deepen .ex{background:#fffdf8;}
+
+  .qbox{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:16px 0; box-shadow:0 2px 8px rgba(80,60,30,.04);}
+  .qbox .htag{font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; color:var(--ok); margin-bottom:8px; display:flex; align-items:center; gap:7px;}
+  .qbox .htag::before{content:"✎"; font-size:15px;}
+  .q-text{font-size:18px; margin:0 0 12px; font-weight:500;}
+  .q-options{display:flex; flex-direction:column; gap:9px;}
+  .opt{font-family:inherit; font-size:17px; text-align:right; background:#fff; border:1.5px solid var(--line); border-radius:9px; padding:11px 16px; cursor:pointer; transition:.15s; color:var(--ink);}
+  .opt:hover:not(:disabled){border-color:var(--accent); background:#fffaf3;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:var(--ok-soft); border-color:var(--ok); color:#1f4d43; font-weight:700;}
+  .opt.wrong{background:var(--no-soft); border-color:var(--no); color:#7e2a13;}
+  .fb{margin:11px 0 0; font-size:16px; font-weight:600; min-height:1px;}
+  .fb-ok{color:var(--ok);} .fb-no{color:var(--no);}
+
+  .reveal{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .reveal-btn,.next-btn{font-family:"Heebo",sans-serif; font-weight:700; font-size:15px; background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 18px; cursor:pointer; transition:.15s;}
+  .reveal-btn:hover,.next-btn:hover{background:#8e2f17;}
+  .reveal-ans{display:none; margin-top:12px; padding:12px 16px; background:var(--ok-soft); border-radius:8px; font-size:17px;}
+
+  .quiz-widget{background:linear-gradient(160deg,#fffdf8,#fbf4e8); border:1.5px solid var(--line); border-radius:14px; padding:22px; margin:18px 0; box-shadow:0 4px 14px rgba(80,60,30,.07);}
+  .q-progress{font-family:"Heebo",sans-serif; font-size:13px; color:var(--muted); margin-bottom:10px; display:flex; justify-content:space-between;}
+  .q-bar{height:6px; background:#eadfc9; border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  .q-bar span{display:block; height:100%; background:var(--accent); transition:width .3s;}
+  .q-result{text-align:center; padding:14px 0;}
+  .score-big{font-family:"Heebo",sans-serif; font-weight:800; font-size:46px; color:var(--accent); line-height:1;}
+  .q-result p{font-size:18px; margin:10px 0 16px;}
+
+  h2.section{font-family:"Heebo",sans-serif; font-weight:800; font-size:26px; margin:54px 0 8px; padding:12px 20px; color:#fff; background:linear-gradient(100deg,var(--gold),#7d6324); border-radius:10px;}
+  h2.section.k{background:linear-gradient(100deg,var(--accent),#8e2f17);}
+
+  table{width:100%; border-collapse:collapse; margin:.4em 0 18px; font-size:16px; background:#fff; border-radius:10px; overflow:hidden; border:1px solid var(--line);}
+  thead th{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px; padding:9px 12px; text-align:right;}
+  td{padding:9px 12px; border-top:1px solid var(--line);}
+  tbody tr:nth-child(even){background:#fbf7ee;}
+  td.jp{text-align:right;} td.jp.big{text-align:center; color:var(--accent); font-size:1.5em;}
+
+  .done-banner{text-align:center; margin:50px 0 0; padding:26px; background:var(--ok-soft); border:1px solid #bcd9d0; border-radius:14px;}
+  .done-banner h2{font-family:"Heebo",sans-serif; color:#1f4d43; margin:0 0 6px;}
+  .footer-note{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">שבוע 7 מתוך 20 · <span class="jp" dir="ltr">JLPT N5</span> · חלק ב'</div>
+  <h1>עבר מנומס וחלקיקי תנועה</h1>
+  <p class="sub"><span class="jp">ました</span> · זמן עם <span class="jp">に</span> · כיוון עם <span class="jp">へ／に</span> · מקום פעולה עם <span class="jp">で</span></p>
+  <div class="nav-links">
+    <span>← שבוע 6: פעלים בצורת ます</span>
+    <span>שבוע 8: אמצעי וסיבה ←</span>
+  </div>
+</header>
+
+<div class="lead">
+  <h2>מה נלמד השבוע</h2>
+  <ol>
+    <li>עבר מנומס — <span class="jp">ました</span> (חיובי) ו-<span class="jp">ませんでした</span> (שלילי).</li>
+    <li>החלקיק <span class="jp">に</span> לזמן — "ב-3 לינואר", "ב-8 בבוקר".</li>
+    <li>חלקיקי כיוון <span class="jp">へ</span> ו-<span class="jp">に</span> — ההבדל בגוון.</li>
+    <li>החלקיק <span class="jp">で</span> — מקום שבו מתקיימת הפעולה.</li>
+  </ol>
+  <p style="margin:10px 0 0;font-size:15px;color:var(--muted)">בסוף השבוע הזה תוכל לספר מה עשית, מתי, לאן הלכת, ואיפה זה קרה — כל המרכיבים של סיפור פשוט.</p>
+</div>
+
+<!-- ===== PREVIEW VOCAB TABLE (NEW) ===== -->
+<h2 class="section" style="margin-top:30px">📋 כל אוצר המילים של השבוע — מבט מקדים</h2>
+<p style="margin-top:-2px;color:var(--muted)">טבלה זו אוספת את כל המילים החדשות שתפגוש השבוע — גם אלה שבטבלת הסיכום בהמשך, וגם אלה שמופיעות רק בתוך ההסברים והדוגמאות. עברית ואנגלית.</p>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th><th>English</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">帰る</td><td class="jp">かえる</td><td>לחזור (הביתה)</td><td>to return / go home</td></tr>
+    <tr><td class="jp">起きる</td><td class="jp">おきる</td><td>לקום</td><td>to wake up</td></tr>
+    <tr><td class="jp">寝る</td><td class="jp">ねる</td><td>לישון</td><td>to sleep</td></tr>
+    <tr><td class="jp">会う</td><td class="jp">あう</td><td>להיפגש (+に)</td><td>to meet (+に)</td></tr>
+    <tr><td class="jp">送る</td><td class="jp">おくる</td><td>לשלוח</td><td>to send</td></tr>
+    <tr><td class="jp">朝ごはん</td><td class="jp">あさごはん</td><td>ארוחת בוקר</td><td>breakfast</td></tr>
+    <tr><td class="jp">手紙</td><td class="jp">てがみ</td><td>מכתב</td><td>letter</td></tr>
+    <tr><td class="jp">学校</td><td class="jp">がっこう</td><td>בית-ספר</td><td>school</td></tr>
+    <tr><td class="jp">大学</td><td class="jp">だいがく</td><td>אוניברסיטה</td><td>university</td></tr>
+    <tr><td class="jp">図書館</td><td class="jp">としょかん</td><td>ספרייה</td><td>library</td></tr>
+    <tr><td class="jp">公園</td><td class="jp">こうえん</td><td>פארק</td><td>park</td></tr>
+    <tr><td class="jp">それから</td><td class="jp">それから</td><td>אחר כך / ואז</td><td>after that / then</td></tr>
+    <tr><td class="jp">午前</td><td class="jp">ごぜん</td><td>לפנה"צ</td><td>morning (AM)</td></tr>
+    <tr><td class="jp">午後</td><td class="jp">ごご</td><td>אחה"צ</td><td>afternoon (PM)</td></tr>
+    <tr><td class="jp">夜</td><td class="jp">よる</td><td>לילה / ערב</td><td>night / evening</td></tr>
+    <tr><td class="jp">に</td><td class="jp">に</td><td>חלקיק זמן מדויק/יעד</td><td>exact-time / destination particle</td></tr>
+    <tr><td class="jp">へ</td><td class="jp">へ</td><td>חלקיק כיוון</td><td>direction particle</td></tr>
+    <tr><td class="jp">で</td><td class="jp">で</td><td>חלקיק מקום פעולה</td><td>location-of-action particle</td></tr>
+    <tr><td class="jp">行く</td><td class="jp">いく</td><td>ללכת</td><td>to go</td></tr>
+    <tr><td class="jp">来る</td><td class="jp">くる</td><td>לבוא</td><td>to come</td></tr>
+    <tr><td class="jp">スーパー</td><td class="jp">すーぱー</td><td>סופרמרקט</td><td>supermarket</td></tr>
+    <tr><td class="jp">カフェ</td><td class="jp">かふぇ</td><td>קפה (מקום)</td><td>cafe</td></tr>
+    <tr><td class="jp">夕方</td><td class="jp">ゆうがた</td><td>שעת בין-ערביים</td><td>early evening</td></tr>
+    <tr><td class="jp">電話する</td><td class="jp">でんわする</td><td>להתקשר ל...</td><td>to phone / call</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab-preview">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 מבחן מקדים — כל אוצר המילים של השבוע</div>
+</div>
+
+<!-- ========== TOPIC 1: ました PAST ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 1</span>
+  <h2>עבר מנומס: <span class="jp">ました</span> ו-<span class="jp">ませんでした</span></h2>
+
+  <p>בשבוע 6 למדנו את צורת <span class="jp">ます</span> להווה/עתיד. ה<strong>עבר</strong> נוצר בשינוי פשוט מאוד של הסיומת — ואותו שינוי עובד לכל הפעלים, לא משנה מאיזו קבוצה:</p>
+
+  <div class="conj-grid">
+    <div class="conj-cell">
+      <div class="label">הווה/עתיד חיובי</div>
+      <div class="jp-form">～ます</div>
+      <div class="he-form">אוכל / אוכל (בעתיד)</div>
+    </div>
+    <div class="conj-cell">
+      <div class="label">עבר חיובי ← ます → ました</div>
+      <div class="jp-form">～ました</div>
+      <div class="he-form">אכלתי / אכל</div>
+    </div>
+    <div class="conj-cell">
+      <div class="label">הווה שלילי</div>
+      <div class="jp-form">～ません</div>
+      <div class="he-form">לא אוכל</div>
+    </div>
+    <div class="conj-cell">
+      <div class="label">עבר שלילי ← ません → ませんでした</div>
+      <div class="jp-form">～ませんでした</div>
+      <div class="he-form">לא אכלתי / לא אכל</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">דוגמאות עם פעלים שונים</h3>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">朝ごはんを食べ<b>ました</b>。</span> <span class="r">（あさごはんを たべました）</span></div>
+      <div class="ex-he">אכלתי ארוחת בוקר.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">昨日は日本語を勉強し<b>ました</b>。</span> <span class="r">（きのうは にほんごを べんきょうしました）</span></div>
+      <div class="ex-he">אתמול למדתי יפנית.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">田中さんは来<b>ませんでした</b>。</span> <span class="r">（たなかさんは きませんでした）</span></div>
+      <div class="ex-he">טנקה לא הגיע.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">先週は映画を見<b>ませんでした</b>。</span> <span class="r">（せんしゅうは えいがを みませんでした）</span></div>
+      <div class="ex-he">שבוע שעבר לא צפיתי בסרט.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">何時に起き<b>ましたか</b>。</span> <span class="r">（なんじに おきましたか）</span></div>
+      <div class="ex-he">באיזו שעה קמת?</div>
+    </div>
+  </div>
+
+  <div class="note"><b>זמן עתיד ביפנית:</b> אין בדיוק "עתיד" ביפנית — אותה צורת <span class="jp">ます</span> משמשת גם להווה וגם לעתיד. ההקשר (מילות זמן כמו <span class="jp">明日 / あした</span>) מבהיר. רק העבר (<span class="jp">ました</span>) הוא מובחן.</div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — עבר מנומס ました</div>
+
+    <h4>מבנה אחיד לעבר — בלי קשר לקבוצת הפועל</h4>
+    <p>שים לב לכוח האחידות של ました: בעוד שצורת た (שתלמד בשבוע 10) דורשת חמשת חוקי שינוי צליל שונים בקבוצה 1, צורת ました פשוט מחליפה ます → ました <strong>תמיד</strong>, ללא יוצא מהכלל. זו הסיבה ש-ました נלמדת ראשונה — היא הדרך המהירה והבטוחה ביותר לדבר על עבר ביפנית מנומסת, בלי לדאוג כלל לקבוצות.</p>
+
+    <h4>למה "אספקט" (aspect) מדויק יותר מ"זמן" (tense) ביפנית</h4>
+    <p>בלשנים מעדיפים לתאר את היפנית במונחי "אספקט" ולא "זמן": ההבחנה היפנית היחידה היא בין <strong>מוּשלם</strong> (העבר, פעולה שהסתיימה) לבין <strong>לא-מוּשלם</strong> (הווה/עתיד, פעולה שלא הסתיימה או עוד לא התרחשה). זה דומה לאספקט שמופיע גם בשפות שמיות אחרות, ומסביר טוב יותר מדוע "עתיד" ו"הווה" חולקים את אותה צורה ביפנית — מנקודת המבט הדקדוקית, שניהם "לא-מושלמים" עדיין.</p>
+
+    <h4>השוואה: ました מול なかった — שתי הצורות לעבר</h4>
+    <p>זכור שב-N5 יש שני "מסלולי עבר" נפרדים: ました (מנומס, שלמדת כאן) ו-た/なかった (רגיל, שתלמד בשבוע 9-10). אלה לא שני זמנים שונים — הם אותו זמן דקדוקי (עבר) ברמת נימוס שונה. ככל שתתקדם בקורס, תוכל לבחור בין השתיים בהתאם להקשר החברתי.</p>
+
+    <h4>何時に + ました — צירוף זמן ועבר באותו משפט</h4>
+    <p>במשפט <span class="jp">何時に起きましたか</span> ("באיזו שעה קמת?") רואים שני אלמנטים שלמדנו בנפרד מתחברים: <span class="jp">何時に</span> (שאלת זמן מדויק עם に, נושא 2 של השבוע) ו-<span class="jp">起きました</span> (עבר מנומס). זו דוגמה טובה לכך שדקדוק יפני בנוי משכבות שמצטרפות זו לזו בטבעיות — ברגע שיש לך את החלקים, אתה יכול לחבר אותם בכל קומבינציה הגיונית.</p>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="עבר חיובי: ます → ました. 飲みます → 飲みました.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה עבר חיובי של <span class="jp">飲みます</span>?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">飲みませんでした</span></button>
+      <button class="opt"><span class="jp">飲みました</span></button>
+      <button class="opt"><span class="jp">飲みません</span></button>
+      <button class="opt"><span class="jp">飲みましょう</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="3" data-explain="עבר שלילי: ません → ませんでした. 食べません → 食べませんでした.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה עבר שלילי של <span class="jp">食べます</span>?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">食べました</span></button>
+      <button class="opt"><span class="jp">食べません</span></button>
+      <button class="opt"><span class="jp">食べましょう</span></button>
+      <button class="opt"><span class="jp">食べませんでした</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"אתמול כתבתי מכתב אבל לא שלחתי אותו."</strong><br>
+    <span style="font-size:14px;color:var(--muted)">(מכתב = <span class="jp">手紙 / てがみ</span>; שלח = <span class="jp">送る / おくる</span>)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">昨日、手紙を書きましたが、送りませんでした。</span><br>
+      <span style="color:var(--muted);font-size:14px">（きのう、てがみをかきましたが、おくりませんでした）</span><br>
+      <span style="font-size:14px">שלב: עבר ました + が (אבל) + עבר שלילי ませんでした.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 2: に FOR TIME ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 2</span>
+  <h2>החלקיק <span class="jp">に</span> לזמן — "ב-..."</h2>
+
+  <p>החלקיק <span class="jp">に</span> לזמן הוא כמו "ב-" בעברית — מציין <strong>מתי בדיוק</strong> פעולה מתרחשת. אבל לא כל ביטוי זמן לוקח <span class="jp">に</span>! יש כלל פשוט:</p>
+
+  <div class="conj-grid">
+    <div class="conj-cell" style="border-color:var(--ok)">
+      <div class="label" style="color:var(--ok)">✓ לוקח に — זמנים מדויקים</div>
+      <div class="jp-form" style="font-size:16px;color:var(--ok)">שעות · ימים בשבוע · תאריכים · חודשים · שנים</div>
+      <div class="he-form"><span class="jp">3時に</span> (ב-3) · <span class="jp">月曜日に</span> (ביום שני) · <span class="jp">1月に</span> (בינואר)</div>
+    </div>
+    <div class="conj-cell" style="border-color:var(--no)">
+      <div class="label" style="color:var(--no)">✗ אין に — ביטויי זמן יחסיים</div>
+      <div class="jp-form" style="font-size:16px;color:var(--no)">היום · אתמול · מחר · עכשיו · כל יום · בקרוב</div>
+      <div class="he-form"><span class="jp">今日</span> · <span class="jp">昨日</span> · <span class="jp">明日</span> · <span class="jp">今</span> · <span class="jp">毎日</span> — <b>בלי</b> に!</div>
+    </div>
+  </div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">7時<b>に</b>起きました。</span> <span class="r">（しちじに おきました）</span></div>
+      <div class="ex-he">קמתי ב-7.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">月曜日<b>に</b>日本語を勉強します。</span> <span class="r">（げつようびに にほんごを べんきょうします）</span></div>
+      <div class="ex-he">ביום שני אני לומד יפנית.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">今日、田中さんが来ました。</span> <span class="r">（きょう、たなかさんが きました）</span></div>
+      <div class="ex-he">היום טנקה הגיע. ← <b>בלי</b> に לאחר 今日!</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">毎日、6時<b>に</b>起きます。</span> <span class="r">（まいにち、ろくじに おきます）</span></div>
+      <div class="ex-he">כל יום קם ב-6. ← 毎日 בלי に, 6時 עם に!</div>
+    </div>
+  </div>
+
+  <div class="note"><b>הכלל בפשטות:</b> אם אתה יכול לשאול "ב<em>כמה</em> / ב<em>איזה</em> יום / ב<em>איזה</em> חודש" — כנראה צריך に. אם זה ביטוי יחסי ("אתמול", "עכשיו", "כל יום") — אין に.</div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — に לזמן מדויק</div>
+
+    <h4>ההבדל הבלשני: "נקודת זמן" מול "פרק זמן יחסי"</h4>
+    <p>ההבחנה בין זמן עם に לזמן בלי に מבוססת על קטגוריה בלשנית רחבה: זמנים <strong>אבסולוטיים</strong> (שאפשר להצביע עליהם בלוח שנה — שעה, יום בשבוע, תאריך, חודש, שנה) מקבלים に, בעוד שזמנים <strong>דייקטיים</strong> (תלויי-נקודת-מבט, כמו "אתמול"/"עכשיו"/"בקרוב") אינם מקבלים. ההיגיון: זמן אבסולוטי "נמצא במקום" קבוע על ציר הזמן (בדיוק כמו ש-に מסמן מיקום קבוע, כפי שלמדת בשבוע 4!), בעוד זמן דייקטי "זז" יחד עם הדובר.</p>
+
+    <h4>הקשר העמוק בין に-מיקום ו-に-זמן — אותו עיקרון, שני צירים</h4>
+    <p>זה לא מקרי שאותו חלקיק משמש גם למיקום במרחב (שבוע 4) וגם למיקום בזמן (כאן): שניהם מבטאים "מיקום ב<em>נקודה</em> ספציפית" — רק שאחד על ציר המרחב (איפה) והשני על ציר הזמן (מתי). זו דרך מצוינת לזכור את הכלל: דמיין את הזמן כקו ישר, ו-<span class="jp">に</span> "מצמיד" את הפעולה לנקודה מדויקת על הקו.</p>
+
+    <h4>מקרי גבול — מילים שיכולות לקבל או לא לקבל に</h4>
+    <p>חלק מהביטויים גמישים יותר ממה שהכלל הפשוט מרמז: <span class="jp">来週</span> ("שבוע הבא") יכולה להופיע גם עם וגם בלי に, תלוי בהדגשה: <span class="jp">来週、行きます</span> (טבעי) מול <span class="jp">来週に、行きます</span> (מדגיש את "בשבוע הבא דווקא"). ברמת N5 ובמבחן, הכלל הפשוט (יחסי=בלי に, מוחלט=עם に) מספיק כדי לעבור כל שאלה — אבל בקריאה אמיתית תראה גמישות.</p>
+
+    <h4>השלכה למבחן — איך שואלים על זה ב-N5</h4>
+    <p>שאלות מבחן ב-N5 לרוב בודקות את הכלל הזה באמצעות זיהוי "מתי <em>אין</em> צורך ב-に" — סוג השאלה שמבלבל הכי הרבה לומדים כי הם רגילים "להוסיף חלקיק" ולא "להשמיט" אותו. תרגול טוב: קח רשימת ביטויי זמן (今日・明日・毎日・3時・月曜日・1月) וסמן עליהם +に או -に — חזור על זה כמה פעמים עד שזה אוטומטי.</p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="3時 = שעה מדויקת ← צריך に. 昨日 = יחסי ← בלי に.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איזה משפט נכון?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">3時に食べました。昨日、映画を見ました。</span></button>
+      <button class="opt"><span class="jp">3時食べました。昨日に映画を見ました。</span></button>
+      <button class="opt"><span class="jp">3時に食べました。昨日に映画を見ました。</span></button>
+      <button class="opt"><span class="jp">3時食べました。昨日映画に見ました。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="月曜日 = יום מדויק ← に. 毎日 = יחסי ← בלי に.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">השלם: "כל יום בוקר ב-7, ביום שני הולך לאוניברסיטה."<br>
+    <span style="font-size:14px;color:var(--muted)">(אוניברסיטה = <span class="jp">大学 / だいがく</span>)</span></p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">毎日に朝7時に、月曜日に大学へ行きます。</span></button>
+      <button class="opt"><span class="jp">毎日朝7時、月曜日大学へ行きます。</span></button>
+      <button class="opt"><span class="jp">毎日朝7時に起きて、月曜日に大学へ行きます。</span></button>
+      <button class="opt"><span class="jp">毎日に7時、月曜日に大学に行きます。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"אתמול ב-9 בלילה קראתי ספר."</strong><br>
+    <span style="font-size:14px;color:var(--muted)">(9 בלילה = <span class="jp">夜9時 / よるくじ</span>)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">昨日、夜9時に本を読みました。</span><br>
+      <span style="color:var(--muted);font-size:14px">（きのう、よるくじに ほんをよみました）</span><br>
+      <span style="font-size:14px">昨日 = בלי に; 9時 = עם に.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 3: へ and に FOR DIRECTION ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 3</span>
+  <h2>כיוון תנועה: <span class="jp">へ</span> ו-<span class="jp">に</span></h2>
+
+  <p>כשמדברים על <strong>לאן</strong> הולכים, שני חלקיקים יכולים לשמש: <span class="jp">へ</span> ו-<span class="jp">に</span>. שניהם תקינים עם פעלי תנועה, אך יש ביניהם <strong>הבדל גוון עדין</strong>:</p>
+
+  <div class="conj-grid">
+    <div class="conj-cell" style="border-color:#9a7b2e">
+      <div class="label" style="color:#9a7b2e">へ — כיוון / כלפי</div>
+      <div class="jp-form" style="color:#9a7b2e;font-size:22px">へ</div>
+      <div class="he-form">מדגיש את ה<strong>כיוון</strong> עצמו — "לכיוון X". פחות נפוץ בדיבור.</div>
+    </div>
+    <div class="conj-cell" style="border-color:var(--blue)">
+      <div class="label" style="color:var(--blue)">に — יעד / הגעה</div>
+      <div class="jp-form" style="color:var(--blue);font-size:22px">に</div>
+      <div class="he-form">מדגיש את ה<strong>יעד</strong> / נקודת ההגעה. נפוץ יותר בדיבור.</div>
+    </div>
+  </div>
+
+  <div class="note"><b>לרמת N5:</b> שני החלקיקים כמעט תמיד ניתנים להחלפה עם פעלי תנועה (行く, 来る, 帰る). הכר שניהם, אבל אל תדאג יתר על המידה — אפשר להצליח במבחן עם שניהם.</div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">学校<b>へ</b>行きます。</span> / <span class="jp">学校<b>に</b>行きます。</span></div>
+      <div class="ex-he">הולך לבית-הספר. (שניהם נכונים)</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">日本<b>へ</b>来ました。</span> <span class="r">（にほんへ きました）</span></div>
+      <div class="ex-he">הגעתי ליפן.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">家<b>に</b>帰りました。</span> <span class="r">（いえに かえりました）</span></div>
+      <div class="ex-he">חזרתי הביתה.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">どこ<b>へ</b>行きましたか。</span> <span class="r">（どこへ いきましたか）</span></div>
+      <div class="ex-he">לאן הלכת?</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">פעלי תנועה עיקריים</h3>
+  <div class="ex">
+    <div class="ex-row"><div class="ex-jp"><span class="jp">行く（いく）</span></div><div class="ex-he">ללכת (מהמיקום הנוכחי)</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">来る（くる）</span></div><div class="ex-he">לבוא (לכיוון הדובר)</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">帰る（かえる）</span></div><div class="ex-he">לחזור (הביתה / למקום המוצא)</div></div>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — כיוון תנועה へ ו-に</div>
+
+    <h4>מקור היסטורי של へ — מילה עצמאית שהפכה לחלקיק</h4>
+    <p>ה-<span class="jp">へ</span> ככתב כתיב ייחודי (נהגה "e" כחלקיק, לא "he") הוא שריד של מילה יפנית עתיקה שהתכוונה ל"צד/כיוון" (<span class="jp">辺 / へ</span> — "סביבה, צד"). זו הסיבה שהיא נכתבת בהירגנה ה-へ ולא ב-え, אף שההגייה כחלקיק זהה. ה-<span class="jp">に</span>, לעומת זאת, הוא חלקיק "צעיר" יותר היסטורית שהתפתח מהמשמעות הכללית של "מיקום/יעד" — בדיוק כמו ה-に שלמדת לקיום ולזמן.</p>
+
+    <h4>למה ביפנית מודרנית שניהם כמעט תמיד מתחלפים</h4>
+    <p>בעברית/אנגלית קיימת הבחנה בין "לכיוון X" (לא בהכרח מגיע) לבין "ל-X" (מגיע ליעד). ביפנית מודרנית, ה-<span class="jp">へ</span> "ספג" את המשמעות של <span class="jp">に</span> במרוצת הדורות, ולכן ההבחנה ההיסטורית כמעט נעלמה בדיבור יומיומי. מקרה אחד שבו עדיין יש הבדל קל: כשרוצים להדגיש את הכיוון הכללי בלי יעד ספציפי (כמו בכתובת מכתב <span class="jp">日本へ</span> — "ליפן", בלי לציין עיר), <span class="jp">へ</span> נשמעת קצת יותר טבעית.</p>
+
+    <h4>שלושת פעלי התנועה — מערכת יחס מורכבת לדובר</h4>
+    <p>שלושת הפעלים <span class="jp">行く・来る・帰る</span> לא רק מתארים תנועה — הם גם מקודדים <strong>יחס לדובר ולמקום המוצא</strong>. <span class="jp">来る</span> תמיד מתאר תנועה <em>לכיוון</em> הדובר (או נקודת ההתייחסות בשיחה), <span class="jp">行く</span> מתאר תנועה <em>מהדובר והלאה</em>, ו-<span class="jp">帰る</span> מתאר תנועה <em>למקום שנחשב "בית" / מקור</em> (לא בהכרח הבית הפיזי — יכול להיות גם המדינה, החברה, וכו'). זו הסיבה ש"לחזור" ל-<span class="jp">帰る</span> תמיד יש קונוטציה של "מקום שמשתייכים לו".</p>
+
+    <h4>פועל-תנועה + で — איך זה שונה ממיקום פעולה (שבוע זה, נושא 4)</h4>
+    <p>שים לב להבדיל בין <span class="jp">学校へ行く</span> (יעד התנועה — לאן הולכים) לבין <span class="jp">学校で勉強する</span> (מקום שבו הפעולה מתבצעת — איפה לומדים, נושא 4 בשבוע זה). אלו שני חלקיקים שונים לחלוטין למרות שבעברית שניהם מתורגמים "ל-/ב-בית-הספר".</p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="שאלת כיוון: どこへ/どこに + פועל תנועה + ますか/ましたか.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך שואלים "לאן אתה הולך?"</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">どこが行きますか。</span></button>
+      <button class="opt"><span class="jp">どこを行きますか。</span></button>
+      <button class="opt"><span class="jp">どこへ行きますか。</span></button>
+      <button class="opt"><span class="jp">どこは行きますか。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="帰る = לחזור הביתה. עם כיוון (הביתה) ← に/へ. 家に帰りました = חזרתי הביתה.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "חזרתי הביתה"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">家に帰りました。</span></button>
+      <button class="opt"><span class="jp">家を帰りました。</span></button>
+      <button class="opt"><span class="jp">家が帰りました。</span></button>
+      <button class="opt"><span class="jp">家は帰りました。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"אתמול ב-3 הלכתי לסופרמרקט ואחר כך חזרתי הביתה."</strong><br>
+    <span style="font-size:14px;color:var(--muted)">(סופרמרקט = <span class="jp">スーパー</span>; אחר כך = <span class="jp">それから</span>)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">昨日、3時にスーパーへ行きました。それから家に帰りました。</span><br>
+      <span style="color:var(--muted);font-size:14px">（きのう、さんじにすーぱーへいきました。それからいえにかえりました）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 4: で FOR LOCATION OF ACTION ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 4</span>
+  <h2>החלקיק <span class="jp">で</span> — מקום הפעולה</h2>
+
+  <p>ראינו את <span class="jp">に</span> שמסמן מיקום קיום (שבוע 4: "יש X ב-Y"). אבל כשרוצים לומר <strong>איפה מתקיימת פעולה</strong> — משתמשים ב-<span class="jp">で</span>.</p>
+
+  <div class="conj-grid">
+    <div class="conj-cell" style="border-color:var(--blue)">
+      <div class="label" style="color:var(--blue)">に — מיקום קיום (שבוע 4)</div>
+      <div class="jp-form" style="color:var(--blue);font-size:17px">図書館に本があります。</div>
+      <div class="he-form">בספרייה יש ספר. (ספר <em>קיים</em> שם)</div>
+    </div>
+    <div class="conj-cell" style="border-color:var(--accent)">
+      <div class="label" style="color:var(--accent)">で — מקום פעולה (שבוע 7)</div>
+      <div class="jp-form" style="color:var(--accent);font-size:17px">図書館で本を読みます。</div>
+      <div class="he-form">בספרייה אני קורא ספר. (קריאה <em>מתרחשת</em> שם)</div>
+    </div>
+  </div>
+
+  <div class="formula"><strong>[מקום] <span class="jp">で</span> [מושא] <span class="jp">を</span> [פועל]ます。</strong></div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">学校<b>で</b>日本語を勉強します。</span> <span class="r">（がっこうで にほんごをべんきょうします）</span></div>
+      <div class="ex-he">לומד יפנית בבית-הספר.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">カフェ<b>で</b>コーヒーを飲みました。</span> <span class="r">（かふぇで こーひーをのみました）</span></div>
+      <div class="ex-he">שתיתי קפה בקפה.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">家<b>で</b>映画を見ます。</span> <span class="r">（いえで えいがをみます）</span></div>
+      <div class="ex-he">צופה בסרטים בבית.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">どこ<b>で</b>食べましたか。</span> <span class="r">（どこで たべましたか）</span></div>
+      <div class="ex-he">איפה אכלת?</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">公園<b>で</b>友達に会いました。</span> <span class="r">（こうえんで ともだちに あいました）</span></div>
+      <div class="ex-he">נפגשתי עם חבר בפארק. (<span class="jp">会う = に会う</span> = להיפגש עם)</div>
+    </div>
+  </div>
+
+  <div class="note"><b>שלושת ה-に לעומת で:</b><br>
+  <span class="jp">図書館<b>に</b>本があります</span> — קיום: "בספרייה יש ספר".<br>
+  <span class="jp">図書館<b>に</b>行きます</span> — כיוון: "הולך לספרייה".<br>
+  <span class="jp">図書館<b>で</b>勉強します</span> — פעולה: "לומד בספרייה".</div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — החלקיק で למקום פעולה</div>
+
+    <h4>למה דווקא で ולא חלקיק חדש?</h4>
+    <p>ה-<span class="jp">で</span> שמסמן מקום פעולה הוא בעצם אותו <span class="jp">で</span> שתפגוש בשבוע 8 כ"אמצעי" (<span class="jp">バスで行く</span> — "באוטובוס"). הקשר ביניהם: שניהם מבטאים את <strong>ה"זירה" או "הכלי" שמאפשר את הפעולה</strong> — מקום פעולה הוא "הזירה הפיזית" שבה הפעולה קורית, ואמצעי הוא "הכלי" שבעזרתו. זה אותו עיקרון בלשני בשתי הופעות שונות, וזו הסיבה שלא צריך חלקיק שלישי נפרד.</p>
+
+    <h4>מבחן ה"שלוש שאלות" — דרך בטוחה להבחין בין に ל-で</h4>
+    <p>כלי מעשי: שאל את עצמך 3 שאלות על המשפט. (1) האם הפועל הוא あります/います? אם כן ← <span class="jp">に</span> (קיום). (2) האם הפועל הוא פועל תנועה (行く/来る/帰る) ויש לו יעד? אם כן ← <span class="jp">に/へ</span> (כיוון). (3) האם הפועל הוא פעולה אחרת לגמרי (קריאה, אכילה, לימוד, עבודה) שמתבצעת במקום? אם כן ← <span class="jp">で</span> (מקום פעולה). השאלות האלה מסדרות את כל מה שלמדת עד כה במקום אחד.</p>
+
+    <h4>会う כפועל מיוחד — דורש に, לא と או で</h4>
+    <p>שים לב למבנה <span class="jp">友達に会う</span> ("להיפגש עם חבר") — כאן <span class="jp">会う</span> דורש <span class="jp">に</span> לציון <em>עם מי</em> נפגשים, לא <span class="jp">と</span> כמו ברוב פעלי ה"עם" (כפי שתלמד בשבוע 8). זהו חריג נקודתי שכדאי לשנן בנפרד: <span class="jp">会う</span> הוא ב"קבוצה קטנה" של פעלים שמתייחסים לאדם כמטרת-מגע עם に, בדומה ל-<span class="jp">電話する</span> ("להתקשר ל...").</p>
+
+    <h4>השלכה למשפטים מורכבים — שילוב כל החלקיקים</h4>
+    <p>עד עכשיו צברת ארסנל מרשים: <span class="jp">は・が・を・に（קיום/זמן/יעד）・へ・で（פעולה）</span>. במשפט אחד אפשר לשלב כמה: <span class="jp">私は9時に図書館で日本語を勉強します</span> ("אני, ב-9, בספרייה, לומד יפנית") — כל חלקיק תורם שכבת מידע אחת, וברגע שתפנים את התפקיד של כל אחד, תוכל לבנות משפטים מורכבים בביטחון.</p>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="פעולה (קריאה) מתרחשת במקום ← で. קיום ← に.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "קראתי ספר בפארק"? (<span class="jp">公園 / こうえん</span> = פארק)</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">公園に本を読みました。</span></button>
+      <button class="opt"><span class="jp">公園で本を読みました。</span></button>
+      <button class="opt"><span class="jp">公園を本で読みました。</span></button>
+      <button class="opt"><span class="jp">本が公園で読みました。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="שאלת מקום פעולה: どこで + פועל. שאלת קיום: どこに.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך שואלים "איפה אתה לומד?"</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">どこに勉強しますか。</span></button>
+      <button class="opt"><span class="jp">どこが勉強しますか。</span></button>
+      <button class="opt"><span class="jp">どこで勉強しますか。</span></button>
+      <button class="opt"><span class="jp">どこを勉強しますか。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"ביום שני למדתי יפנית בבית-הספר ואחר כך שתיתי קפה בקפה."</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">月曜日に学校で日本語を勉強しました。それからカフェでコーヒーを飲みました。</span><br>
+      <span style="color:var(--muted);font-size:14px">（げつようびにがっこうでにほんごをべんきょうしました。それからかふぇでこーひーをのみました）</span>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-title">📅 יום ביומן — שלב את כל מה שלמדנו השבוע</div>
+    <div class="tl-row">
+      <div class="tl-time">7時に</div>
+      <div><div class="tl-jp">起きました。</div><div class="tl-he">קמתי ב-7.</div></div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-time">8時に</div>
+      <div><div class="tl-jp">家で朝ごはんを食べました。</div><div class="tl-he">אכלתי ארוחת בוקר בבית ב-8.</div></div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-time">9時に</div>
+      <div><div class="tl-jp">学校へ行きました。</div><div class="tl-he">הלכתי לבית-הספר ב-9.</div></div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-time">午後</div>
+      <div><div class="tl-jp">図書館で日本語を勉強しました。</div><div class="tl-he">אחה"צ למדתי יפנית בספרייה.</div></div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-time">夕方</div>
+      <div><div class="tl-jp">カフェで友達に会いました。</div><div class="tl-he">בערב נפגשתי עם חבר בקפה.</div></div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-time">10時に</div>
+      <div><div class="tl-jp">家に帰りました。</div><div class="tl-he">חזרתי הביתה ב-10.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== VOCAB TABLE ===== -->
+<h2 class="section">אוצר מילים — שבוע 7</h2>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">帰る</td><td class="jp">かえる</td><td>לחזור (הביתה)</td></tr>
+    <tr><td class="jp">起きる</td><td class="jp">おきる</td><td>לקום</td></tr>
+    <tr><td class="jp">寝る</td><td class="jp">ねる</td><td>לישון</td></tr>
+    <tr><td class="jp">会う</td><td class="jp">あう</td><td>להיפגש</td></tr>
+    <tr><td class="jp">送る</td><td class="jp">おくる</td><td>לשלוח</td></tr>
+    <tr><td class="jp">朝ごはん</td><td class="jp">あさごはん</td><td>ארוחת בוקר</td></tr>
+    <tr><td class="jp">昼ごはん</td><td class="jp">ひるごはん</td><td>ארוחת צהריים</td></tr>
+    <tr><td class="jp">晩ごはん</td><td class="jp">ばんごはん</td><td>ארוחת ערב</td></tr>
+    <tr><td class="jp">手紙</td><td class="jp">てがみ</td><td>מכתב</td></tr>
+    <tr><td class="jp">学校</td><td class="jp">がっこう</td><td>בית-ספר</td></tr>
+    <tr><td class="jp">大学</td><td class="jp">だいがく</td><td>אוניברסיטה</td></tr>
+    <tr><td class="jp">図書館</td><td class="jp">としょかん</td><td>ספרייה</td></tr>
+    <tr><td class="jp">公園</td><td class="jp">こうえん</td><td>פארק</td></tr>
+    <tr><td class="jp">それから</td><td class="jp">それから</td><td>אחר כך / ואז</td></tr>
+    <tr><td class="jp">午前</td><td class="jp">ごぜん</td><td>לפנה"צ</td></tr>
+    <tr><td class="jp">午後</td><td class="jp">ごご</td><td>אחה"צ</td></tr>
+    <tr><td class="jp">夜</td><td class="jp">よる</td><td>לילה / ערב</td></tr>
+    <tr><td class="jp">名前</td><td class="jp">なまえ</td><td>שם</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 תיבת בחינה — אוצר מילים</div>
+</div>
+
+<!-- ===== KANJI TABLE ===== -->
+<h2 class="section k">קאנג'י — שבוע 7 (בית-ספר ולימודים)</h2>
+<table>
+  <thead><tr><th>קאנג'י</th><th>קריאה</th><th>משמעות</th><th>דוגמה</th></tr></thead>
+  <tbody>
+    <tr><td class="jp big">先</td><td class="jp">せん / さき</td><td>קודם / לפני</td><td class="jp">先生（せんせい）= מורה</td></tr>
+    <tr><td class="jp big">生</td><td class="jp">せい / う・い</td><td>חיים / לידה</td><td class="jp">学生（がくせい）= סטודנט</td></tr>
+    <tr><td class="jp big">名</td><td class="jp">めい / な</td><td>שם</td><td class="jp">名前（なまえ）= שם</td></tr>
+    <tr><td class="jp big">学</td><td class="jp">がく / まな</td><td>לימוד</td><td class="jp">大学（だいがく）= אוניברסיטה</td></tr>
+    <tr><td class="jp big">校</td><td class="jp">こう</td><td>בית-ספר</td><td class="jp">学校（がっこう）= בית-ספר</td></tr>
+    <tr><td class="jp big">午</td><td class="jp">ご</td><td>שעה עגולה / צהריים</td><td class="jp">午前（ごぜん）/ 午後（ごご）</td></tr>
+    <tr><td class="jp big">毎</td><td class="jp">まい</td><td>כל / בכל</td><td class="jp">毎日（まいにち）/ 毎週（まいしゅう）</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-kanji">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🔢 תיבת בחינה — קאנג'י</div>
+</div>
+
+<!-- ===== FINAL QUIZ ===== -->
+<h2 class="section">מבחן סיכום — שבוע 7</h2>
+<p style="margin-top:-2px;color:var(--muted)">שאלות מעורבות: דקדוק, אוצר מילים, קאנג'י + חזרה על שבועות 1–6.</p>
+<div class="quiz-widget" id="quiz-final">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🎓 מבחן סיכום</div>
+</div>
+
+<!-- ===== BONUS DRILL ===== -->
+<h2 class="section" style="background:linear-gradient(100deg,#4b6a8f,#2e4d6b)">🧩 תרגול מעמיק — שבוע 7</h2>
+<p style="margin-top:-2px;color:var(--muted)">13 שאלות: הבנת משפט, השלמה, הבחנת חלקיקים, ושילוב שבועות.</p>
+<div class="quiz-widget" id="quiz-bonus">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:#4b6a8f;margin-bottom:8px">🧩 תרגול מעמיק</div>
+</div>
+
+<div class="done-banner">
+  <h2>סיימת את שבוע 7! <span class="jp">よくできました</span> 🎉</h2>
+  <p>
+    עכשיו אתה יכול לספר סיפור שלם: <em>מתי</em> (<span class="jp">に</span>), <em>לאן</em> (<span class="jp">へ／に</span>),
+    <em>איפה</em> עשית (<span class="jp">で</span>) ומה עשית (<span class="jp">ました</span>).<br><br>
+    כשתהיה מוכן — שבוע 8: אמצעי (<span class="jp">で</span>), "מ... עד..." (<span class="jp">から〜まで</span>), וסיבה (<span class="jp">から</span>).
+  </p>
+</div>
+
+<p class="footer-note"><span class="jp" dir="ltr">日本語 N5</span> · שבוע 7 מתוך 20 · <span class="jp" dir="ltr">頑張って！</span></p>
+</div>
+
+<script>
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+document.querySelectorAll('.check').forEach(q=>{
+  const ans=+q.dataset.answer,fb=q.querySelector('.fb'),opts=q.querySelectorAll('.opt');
+  opts.forEach((btn,i)=>{
+    btn.addEventListener('click',()=>{
+      if(q.classList.contains('done'))return; q.classList.add('done');
+      opts.forEach((b,j)=>{b.disabled=true;if(j===ans)b.classList.add('correct');else if(j===i)b.classList.add('wrong');});
+      const ok=i===ans;
+      fb.textContent=(ok?'✓ נכון! ':'✗ לא מדויק. ')+(q.dataset.explain||'');
+      fb.className='fb '+(ok?'fb-ok':'fb-no');
+    });
+  });
+});
+document.querySelectorAll('.reveal-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const a=b.nextElementSibling,show=a.style.display!=='block';
+    a.style.display=show?'block':'none';b.textContent=show?'הסתר תשובה':'הצג תשובה';
+  });
+});
+function makeQuiz(rootId,data){
+  const root=document.getElementById(rootId);
+  const head=root.querySelector('.htag');
+  let order,idx,score,locked;
+  function start(){order=shuffle([...data.keys()]);idx=0;score=0;locked=false;render();}
+  function render(){
+    [...root.children].forEach(c=>{if(c!==head)c.remove();});
+    if(idx>=order.length)return result();
+    const item=data[order[idx]];
+    const opts=shuffle(item.options.map((t,i)=>({t,correct:i===item.answer})));
+    const box=document.createElement('div');
+    box.innerHTML=`
+      <div class="q-progress"><span>שאלה ${idx+1} מתוך ${order.length}</span><span>ניקוד: ${score}</span></div>
+      <div class="q-bar"><span style="width:${idx/order.length*100}%"></span></div>
+      <p class="q-text">${item.q}</p>
+      <div class="q-options"></div>
+      <p class="fb"></p>
+      <button class="next-btn" style="display:none;margin-top:12px">הבא ←</button>`;
+    root.appendChild(box);
+    const wrap=box.querySelector('.q-options'),fb=box.querySelector('.fb'),next=box.querySelector('.next-btn');
+    opts.forEach(o=>{
+      const btn=document.createElement('button');btn.className='opt';btn.innerHTML=o.t;
+      btn.addEventListener('click',()=>{
+        if(locked)return;locked=true;
+        wrap.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        if(o.correct){btn.classList.add('correct');score++;fb.textContent='✓ נכון!';fb.className='fb fb-ok';}
+        else{btn.classList.add('wrong');fb.textContent='✗ לא מדויק'+(item.note?(' — '+item.note):'');fb.className='fb fb-no';
+          [...wrap.children].forEach((c,k)=>{if(opts[k].correct)c.classList.add('correct');});}
+        next.style.display='inline-block';
+      });
+      wrap.appendChild(btn);
+    });
+    next.addEventListener('click',()=>{idx++;locked=false;render();});
+  }
+  function result(){
+    const pct=Math.round(score/data.length*100);
+    const msg=pct>=80?'מצוין! אתה שולט בחומר 🎉':pct>=60?'יפה! עוד קצת חזרה ותהיה מצוין.':'כדאי לחזור על החומר ולנסות שוב.';
+    const box=document.createElement('div');box.className='q-result';
+    box.innerHTML=`<div class="score-big">${score} / ${data.length}</div><p>${msg}</p><button class="next-btn">התחל מחדש 🔁</button>`;
+    root.appendChild(box);
+    box.querySelector('.next-btn').addEventListener('click',start);
+  }
+  start();
+}
+const J=s=>`<span class="jp">${s}</span>`;
+
+makeQuiz('quiz-vocab-preview',[
+  {q:'מה הפירוש של '+J('帰る')+'?',options:['לחזור הביתה','ללכת','לבוא','לצאת'],answer:0},
+  {q:'מה הפירוש של '+J('起きる')+'?',options:['לקום','לישון','ללכת','לשבת'],answer:0},
+  {q:'מה הפירוש של '+J('会う')+'?',options:['להיפגש','לשמוע','לראות','לדבר'],answer:0},
+  {q:'מה הפירוש של '+J('送る')+'?',options:['לשלוח','לקבל','לקנות','למכור'],answer:0},
+  {q:'מה הפירוש של '+J('朝ごはん')+'?',options:['ארוחת בוקר','ארוחת ערב','ארוחת צהריים','חטיף'],answer:0},
+  {q:'מה הפירוש של '+J('手紙')+'?',options:['מכתב','עיתון','ספר','מחברת'],answer:0},
+  {q:'מה הפירוש של '+J('大学')+'?',options:['אוניברסיטה','בית-ספר','גן ילדים','מכללה'],answer:0},
+  {q:'מה הפירוש של '+J('図書館')+'?',options:['ספרייה','בית-ספר','מסעדה','חנות'],answer:0},
+  {q:'מה הפירוש של '+J('公園')+'?',options:['פארק','רחוב','כיכר','שוק'],answer:0},
+  {q:'מה הפירוש של '+J('それから')+'?',options:['אחר כך / ואז','לפני כן','בזמן ש','למרות ש'],answer:0},
+  {q:'מה הפירוש של '+J('午前')+'?',options:['לפנה"צ','אחה"צ','לילה','בוקר'],answer:0},
+  {q:'מה הפירוש של '+J('午後')+'?',options:['אחה"צ','לפנה"צ','לילה','בוקר'],answer:0},
+  {q:'מה הפירוש של '+J('夜')+'?',options:['לילה / ערב','בוקר','צהריים','אחה"צ'],answer:0},
+  {q:'מה הפירוש של '+J('スーパー')+'?',options:['סופרמרקט','חנות קטנה','שוק','מסעדה'],answer:0},
+  {q:'מה הפירוש של '+J('カフェ')+'?',options:['קפה (מקום)','מסעדה','בית-קפה ביתי','חנות'],answer:0},
+  {q:'מה הפירוש של '+J('夕方')+'?',options:['שעת בין-ערביים','בוקר','חצות','אחה"צ'],answer:0},
+  {q:'מה הפירוש של '+J('電話する')+'?',options:['להתקשר','לכתוב מייל','לשלוח מכתב','לבקר'],answer:0}
+]);
+
+makeQuiz('quiz-vocab',[
+  {q:'מה הפירוש של '+J('帰る')+'?',options:['לחזור הביתה','ללכת','לבוא','לצאת'],answer:0},
+  {q:'מה הפירוש של '+J('起きる')+'?',options:['לקום','לישון','ללכת','לשבת'],answer:0},
+  {q:'מה הפירוש של '+J('会う')+'?',options:['להיפגש','לשמוע','לראות','לדבר'],answer:0},
+  {q:'מה הפירוש של '+J('朝ごはん')+'?',options:['ארוחת בוקר','ארוחת ערב','ארוחת צהריים','חטיף'],answer:0},
+  {q:'מה הפירוש של '+J('手紙')+'?',options:['מכתב','עיתון','ספר','מחברת'],answer:0},
+  {q:'מה הפירוש של '+J('図書館')+'?',options:['ספרייה','בית-ספר','מסעדה','חנות'],answer:0},
+  {q:'מה הפירוש של '+J('公園')+'?',options:['פארק','רחוב','כיכר','שוק'],answer:0},
+  {q:'מה הפירוש של '+J('それから')+'?',options:['אחר כך / ואז','לפני כן','בזמן ש','למרות ש'],answer:0},
+  {q:'מה הפירוש של '+J('午後')+'?',options:['אחה"צ','לפנה"צ','לילה','בוקר'],answer:0},
+  {q:'מה הפירוש של '+J('大学')+'?',options:['אוניברסיטה','בית-ספר','גן ילדים','מכללה'],answer:0},
+  {q:'מה הפירוש של '+J('夜')+'?',options:['לילה / ערב','בוקר','צהריים','אחה"צ'],answer:0}
+]);
+
+makeQuiz('quiz-kanji',[
+  {q:'מה הפירוש של '+J('<span class="big">先</span>')+'?',options:['קודם / לפני','אחרי','עכשיו','אחר כך'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">生</span>')+'?',options:['חיים / לידה','מוות','גדילה','לימוד'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">名</span>')+'?',options:['שם','מספר','כתובת','מקצוע'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">学</span>')+'?',options:['לימוד','עבודה','שחקן','מנוחה'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">校</span>')+'?',options:['בית-ספר','מסעדה','בית-חולים','חנות'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">毎</span>')+'?',options:['כל / בכל','פעם אחת','אף פעם','לפעמים'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">午</span>')+'?',options:['שעה עגולה / צהריים','בוקר','ערב','לילה'],answer:0},
+  {q:'מה הקריאה של '+J('学校')+'?',options:[J('がっこう'),J('だいがく'),J('がくこ'),J('こがく')],answer:0,note:'学校 = がっこう = בית-ספר.'},
+  {q:'מה הקריאה של '+J('先生')+'?',options:[J('せんせい'),J('さきせい'),J('せいせん'),J('せんき')],answer:0,note:'先生 = せんせい = מורה.'}
+]);
+
+makeQuiz('quiz-final',[
+  {q:'מה עבר חיובי של '+J('行きます')+'?',options:[J('行きました'),J('行きません'),J('行きませんでした'),J('行きましょう')],answer:0,note:'עבר חיובי: ます → ました.'},
+  {q:'איזה חלקיק עם "כל יום" ('+J('毎日')+')?',options:['בלי חלקיק',J('に'),J('で'),J('へ')],answer:0,note:'毎日 = ביטוי יחסי ← בלי に!'},
+  {q:'איזה חלקיק עם "ב-8" ('+J('8時')+')?',options:[J('に'),J('で'),J('へ'),J('を')],answer:0,note:'שעה מדויקת ← に.'},
+  {q:'איך אומרים "למדתי בספרייה"?',options:[J('図書館で勉強しました。'),J('図書館に勉強しました。'),J('図書館へ勉強しました。'),J('図書館を勉強しました。')],answer:0,note:'פעולה במקום ← で.'},
+  {q:'מה ההבדל בין '+J('図書館に本があります')+' ל-'+J('図書館で本を読みます')+'?',
+   options:['הראשון = קיום; השני = פעולה','הראשון = פעולה; השני = קיום','שניהם קיום','שניהם פעולה'],answer:0},
+  {q:'איך שואלים "לאן הלכת?"',options:[J('どこへ行きましたか。'),J('どこに行きましたか。'),J('どこで行きましたか。'),J('どこを行きましたか。')],answer:0,note:'כיוון ← へ/に, שניהם נכונים, אבל へ נפוץ יותר בשאלת כיוון.'},
+  {q:'מה הפירוש של '+J('公園で友達に会いました')+'?',options:['נפגשתי עם חבר בפארק','הלכתי לפארק עם חבר','חבר נמצא בפארק','יש חבר בפארק'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">毎</span>')+'?',options:['כל / בכל','שוב','פעם','מיוחד'],answer:0},
+  {q:'איך אומרים "חזרתי הביתה ב-10"?',options:[J('10時に家に帰りました。'),J('10時で家に帰りました。'),J('10時に家で帰りました。'),J('家に10時帰りました。')],answer:0,note:'זמן ← に; כיוון/יעד ← に. 10時に = ב-10; 家に = לבית.'},
+  {q:'מה עבר שלילי של '+J('来ます')+'?',options:[J('来ませんでした'),J('来ました'),J('来ません'),J('来ましょう')],answer:0,note:'עבר שלילי: ません → ませんでした.'},
+  {q:'מה הפירוש של '+J('大学')+'?',options:['אוניברסיטה','בית-ספר','ספרייה','פארק'],answer:0}
+]);
+
+makeQuiz('quiz-bonus',[
+  // הבנת משפט שלם
+  {q:'מה הפירוש של '+J('昨日の夜9時に友達と公園で話しました。')+'?',
+   options:['אתמול ב-9 בלילה שוחחתי עם חבר בפארק','אתמול בבוקר הלכתי לפארק עם חבר','אתמול בלילה חבר בא לפארק','דיברתי עם חבר ב-9 בבוקר'],answer:0,
+   note:'昨日の夜9時に = אתמול ב-9 בלילה; 友達と = עם חבר; 公園で = בפארק; 話しました = שוחחתי.'},
+  {q:'מה הפירוש של '+J('毎朝7時に起きて、学校へ行きます。')+'?',
+   options:['כל בוקר קם ב-7 והולך לבית-הספר','כל ערב קם ב-7 והולך לאוניברסיטה','ב-7 בלילה הולך לבית-הספר','קם ב-7 ביום שני'],answer:0,
+   note:'毎朝 = כל בוקר; 7時に = ב-7 (עם に); 起きて = קם ו-; 学校へ = לבית-הספר.'},
+  // השלמת חלקיק
+  {q:'השלם: "שתיתי קה בקפה ב-3." '+J('3時___カフェ___コーヒーを飲みました。'),
+   options:[J('に・で'),J('で・に'),J('に・に'),J('で・で')],answer:0,
+   note:'זמן מדויק ← に; מקום פעולה ← で.'},
+  {q:'השלם: "הלכתי לאוניברסיטה אתמול." '+J('昨日、大学___行きました。'),
+   options:[J('へ'),J('で'),J('に'),J('を')],answer:0,
+   note:'כיוון = へ (גם に נכון, אבל へ ברור יותר לכיוון).'},
+  {q:'השלם: "כל שבוע ביום שני הוא לומד יפנית." '+J('___月曜日___日本語を勉強します。'),
+   options:[J('毎週・に'),J('毎週に・に'),J('毎週・で'),J('毎週に・で')],answer:0,
+   note:'毎週 = ביטוי יחסי → בלי に; 月曜日 = יום מדויק → に.'},
+  // の בין זמן לאחר
+  {q:'מה הפירוש של '+J('昨日の夜')+'?',
+   options:['לילה אתמול','לילה של מחר','כל לילה','הלילה'],answer:0,
+   note:'昨日の夜 = "הלילה של אתמול" ← の מחבר זמן + זמן.'},
+  // に לעומת で
+  {q:'איזה משפט נכון?',
+   options:[J('カフェでコーヒーを飲みました。'),J('カフェにコーヒーを飲みました。'),J('カフェへコーヒーを飲みました。'),J('カフェをコーヒーを飲みました。')],answer:0,
+   note:'שתייה = פעולה במקום ← で.'},
+  {q:'איזה משפט נכון?',
+   options:[J('カフェにコーヒーがあります。'),J('カフェでコーヒーがあります。'),J('カフェへコーヒーがあります。'),J('カフェをコーヒーがあります。')],answer:0,
+   note:'קיום = יש קפה ← に.'},
+  // עבר + חיבור
+  {q:'מה הפירוש של '+J('朝ごはんを食べましたが、昼ごはんは食べませんでした。')+'?',
+   options:['אכלתי ארוחת בוקר אבל לא ארוחת צהריים','אכלתי ארוחת צהריים אבל לא בוקר','לא אכלתי ארוחת בוקר ולא צהריים','אכלתי בוקר וצהריים'],answer:0,
+   note:'ました = אכלתי; が (אבל); ませんでした = לא אכלתי.'},
+  // שאלה נכונה
+  {q:'מי הנכון — "באיזו שעה קמת?"',
+   options:[J('何時に起きましたか。'),J('何時で起きましたか。'),J('何時へ起きましたか。'),J('何時起きましたか。')],answer:0,
+   note:'שעה מדויקת ← に.'},
+  // שילוב מלא
+  {q:'איך מתרגמים: "ביום שישי ב-8 בערב הלכתי לפארק עם חבר ושוחחנו"?',
+   options:[
+     J('金曜日の夜8時に友達と公園へ行って、話しました。'),
+     J('金曜日の夜8時で友達と公園に行って、話しました。'),
+     J('金曜日夜8時に友達と公園で行って、話しました。'),
+     J('金曜日に夜8時で友達に公園へ行きました。')
+   ],answer:0,
+   note:'金曜日の夜8時に = ביום שישי ב-8 בערב; 友達と = עם חבר; 公園へ = לפארק.'},
+  // קאנג'י בהקשר
+  {q:'מה הפירוש של '+J('毎週月曜日に学校へ行きます。')+'?',
+   options:['כל שבוע ביום שני הולך לבית-הספר','כל יום שני הולך לאוניברסיטה','שבוע שעבר הלך לבית-הספר','כל שני יש לו חופש'],answer:0,
+   note:'毎週 = כל שבוע; 月曜日に = ביום שני; 学校へ行く = הולך לבית-הספר.'},
+  {q:'מה הפירוש של '+J('午後3時に図書館で勉強しました。')+'?',
+   options:['למדתי בספרייה ב-3 אחה"צ','הלכתי לספרייה ב-3 בבוקר','3 אנשים למדו בספרייה','שלחתי ספר לספרייה ב-3'],answer:0,
+   note:'午後3時に = ב-3 אחה"צ; 図書館で = בספרייה; 勉強しました = למדתי.'}
+]);
+</script>
+</body>
+</html>

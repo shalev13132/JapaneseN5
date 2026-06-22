@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שבוע 2 — קישור שמות והכמויות | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre", Georgia, serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px, rgba(120,100,70,.06) 1px, transparent 0);
+    background-size:22px 22px;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 90px;}
+  .jp{font-family:"Noto Sans JP", system-ui, sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+  .big{font-size:1.35em; line-height:1;}
+
+  header.masthead{text-align:center; padding:56px 20px 34px; border-bottom:3px double var(--line); margin-bottom:6px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(28px,5.5vw,40px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:17px;}
+  .nav-links{display:flex; justify-content:space-between; margin:14px 0 0; font-size:14px;}
+  .nav-links a{color:var(--accent); text-decoration:none; font-family:"Heebo",sans-serif; font-weight:700;}
+  .nav-links a:hover{text-decoration:underline;}
+
+  .lead{background:var(--card); border:1px solid var(--line); border-right:5px solid var(--accent); border-radius:12px; padding:18px 22px; margin:26px 0;}
+  .lead h2{font-family:"Heebo",sans-serif; font-size:18px; margin:0 0 6px;}
+  .lead ol{margin:6px 0 0; padding-inline-start:1.3em;}
+  .lead li{margin:3px 0;}
+
+  .topic{margin:46px 0;}
+  .topic-tag{display:inline-block; background:var(--accent); color:#fff; font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; padding:5px 14px; border-radius:999px; box-shadow:0 3px 8px rgba(150,60,30,.22);}
+  .topic h2{font-family:"Heebo",sans-serif; font-weight:800; font-size:25px; margin:12px 0 8px;}
+  .topic p{margin:.6em 0;}
+  .topic strong{color:#7e2a13;}
+
+  .formula{text-align:center; font-size:20px; background:#fff3ec; border:1px solid #e8c9b8; border-radius:10px; padding:12px 20px; margin:14px 0;}
+
+  .ex{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:6px 16px; margin:16px 0;}
+  .ex-row{padding:10px 0; border-bottom:1px dashed var(--line);}
+  .ex-row:last-child{border-bottom:none;}
+  .ex-jp{direction:ltr; unicode-bidi:isolate; text-align:right; font-family:"Noto Sans JP",sans-serif; font-size:19px; font-weight:500;}
+  .ex-jp .r{color:var(--muted); font-size:15px; font-weight:400;}
+  .ex-he{color:var(--ink); font-size:16px;}
+
+  .note{background:#faf5ea; border:1px dashed var(--line); border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .note b{color:var(--accent);}
+  .warn{background:#fff5f3; border:1px dashed #e8b8aa; border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .warn b{color:var(--no);}
+
+  .chain-box{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 18px; margin:14px 0; display:flex; flex-direction:column; gap:6px;}
+  .chain-row{display:flex; align-items:center; gap:10px; font-size:17px;}
+  .chain-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:18px; font-weight:500; flex:0 0 auto;}
+  .arrow{color:var(--accent); font-weight:700;}
+
+  /* quiz blocks */
+  .qbox{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:16px 0; box-shadow:0 2px 8px rgba(80,60,30,.04);}
+  .qbox .htag{font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; color:var(--ok); margin-bottom:8px; display:flex; align-items:center; gap:7px;}
+  .qbox .htag::before{content:"✎"; font-size:15px;}
+  .q-text{font-size:18px; margin:0 0 12px; font-weight:500;}
+  .q-options{display:flex; flex-direction:column; gap:9px;}
+  .opt{font-family:inherit; font-size:17px; text-align:right; background:#fff; border:1.5px solid var(--line); border-radius:9px; padding:11px 16px; cursor:pointer; transition:.15s; color:var(--ink);}
+  .opt:hover:not(:disabled){border-color:var(--accent); background:#fffaf3;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:var(--ok-soft); border-color:var(--ok); color:#1f4d43; font-weight:700;}
+  .opt.wrong{background:var(--no-soft); border-color:var(--no); color:#7e2a13;}
+  .fb{margin:11px 0 0; font-size:16px; font-weight:600; min-height:1px;}
+  .fb-ok{color:var(--ok);} .fb-no{color:var(--no);}
+
+  .reveal{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .reveal-btn,.next-btn{font-family:"Heebo",sans-serif; font-weight:700; font-size:15px; background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 18px; cursor:pointer; transition:.15s;}
+  .reveal-btn:hover,.next-btn:hover{background:#8e2f17;}
+  .reveal-ans{display:none; margin-top:12px; padding:12px 16px; background:var(--ok-soft); border-radius:8px; font-size:17px;}
+
+  /* big quiz widget */
+  .quiz-widget{background:linear-gradient(160deg,#fffdf8,#fbf4e8); border:1.5px solid var(--line); border-radius:14px; padding:22px; margin:18px 0; box-shadow:0 4px 14px rgba(80,60,30,.07);}
+  .q-progress{font-family:"Heebo",sans-serif; font-size:13px; color:var(--muted); margin-bottom:10px; display:flex; justify-content:space-between;}
+  .q-bar{height:6px; background:#eadfc9; border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  .q-bar span{display:block; height:100%; background:var(--accent); transition:width .3s;}
+  .q-result{text-align:center; padding:14px 0;}
+  .score-big{font-family:"Heebo",sans-serif; font-weight:800; font-size:46px; color:var(--accent); line-height:1;}
+  .q-result p{font-size:18px; margin:10px 0 16px;}
+
+  h2.section{font-family:"Heebo",sans-serif; font-weight:800; font-size:26px; margin:54px 0 8px; padding:12px 20px; color:#fff; background:linear-gradient(100deg,var(--gold),#7d6324); border-radius:10px;}
+  h2.section.k{background:linear-gradient(100deg,var(--accent),#8e2f17);}
+
+  table{width:100%; border-collapse:collapse; margin:.4em 0 18px; font-size:16px; background:#fff; border-radius:10px; overflow:hidden; border:1px solid var(--line);}
+  thead th{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px; padding:9px 12px; text-align:right;}
+  td{padding:9px 12px; border-top:1px solid var(--line);}
+  tbody tr:nth-child(even){background:#fbf7ee;}
+  td.jp{text-align:right;} td.jp.big{text-align:center; color:var(--accent); font-size:1.5em;}
+
+  .done-banner{text-align:center; margin:50px 0 0; padding:26px; background:var(--ok-soft); border:1px solid #bcd9d0; border-radius:14px;}
+  .done-banner h2{font-family:"Heebo",sans-serif; color:#1f4d43; margin:0 0 6px;}
+  .footer-note{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0; transform:translateY(8px);} to{opacity:1;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">שבוע 2 מתוך 20 · <span class="jp" dir="ltr">JLPT N5</span></div>
+  <h1>קישור שמות והכמויות</h1>
+  <p class="sub">החלקיק <span class="jp">の</span>, מספרים, מחירים, ו-<span class="jp">いくら</span></p>
+  <div class="nav-links">
+    <span>← שבוע 1: הצגה ושאלות</span>
+    <span>שבוע 3: שמות תואר ←</span>
+  </div>
+</header>
+
+<div class="lead">
+  <h2>מה נלמד השבוע</h2>
+  <ol>
+    <li>החלקיק <span class="jp">の</span> — קישור שמות ושייכות ("של", "מסוג").</li>
+    <li>מספרים: 1–10,000 ואיך לבנות מספרים מורכבים.</li>
+    <li>שאלת מחיר עם <span class="jp">いくら</span> ("כמה עולה") והמטבע <span class="jp">円（えん）</span>.</li>
+  </ol>
+  <p style="margin:10px 0 0; font-size:15px; color:var(--muted)">בסוף כל נושא יש שאלות תרגול ותרגילי תרגום, ובסוף השבוע — תיבות בחינה לאוצר המילים ולקאנג'י.</p>
+</div>
+
+<!-- ===== PREVIEW VOCAB TABLE (NEW) ===== -->
+<h2 class="section" style="margin-top:30px">📋 כל אוצר המילים של השבוע — מבט מקדים</h2>
+<p style="margin-top:-2px;color:var(--muted)">טבלה זו אוספת את כל המילים החדשות שתפגוש השבוע — גם אלה שבטבלת הסיכום בהמשך, וגם אלה שמופיעות רק בתוך ההסברים והדוגמאות. עברית ואנגלית.</p>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th><th>English</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">の</td><td class="jp">の</td><td>חלקיק שייכות/סוג ("של")</td><td>possessive/type particle ("of")</td></tr>
+    <tr><td class="jp">一〜十</td><td class="jp">いち〜じゅう</td><td>1–10 (מספרים)</td><td>1–10 (numbers)</td></tr>
+    <tr><td class="jp">一つ〜十</td><td class="jp">ひとつ〜とお</td><td>1–10 (ספירה כללית)</td><td>1–10 (general counting)</td></tr>
+    <tr><td class="jp">百</td><td class="jp">ひゃく</td><td>מאה</td><td>hundred</td></tr>
+    <tr><td class="jp">千</td><td class="jp">せん</td><td>אלף</td><td>thousand</td></tr>
+    <tr><td class="jp">万</td><td class="jp">まん</td><td>עשרת אלפים</td><td>ten thousand</td></tr>
+    <tr><td class="jp">いくら</td><td class="jp">いくら</td><td>כמה עולה</td><td>how much (price)</td></tr>
+    <tr><td class="jp">円</td><td class="jp">えん</td><td>ין (מטבע יפני)</td><td>yen (Japanese currency)</td></tr>
+    <tr><td class="jp">お金</td><td class="jp">おかね</td><td>כסף</td><td>money</td></tr>
+    <tr><td class="jp">高い</td><td class="jp">たかい</td><td>יקר / גבוה</td><td>expensive / tall</td></tr>
+    <tr><td class="jp">安い</td><td class="jp">やすい</td><td>זול / בטוח</td><td>cheap / safe</td></tr>
+    <tr><td class="jp">本</td><td class="jp">ほん</td><td>ספר</td><td>book</td></tr>
+    <tr><td class="jp">猫</td><td class="jp">ねこ</td><td>חתול</td><td>cat</td></tr>
+    <tr><td class="jp">車</td><td class="jp">くるま</td><td>מכונית</td><td>car</td></tr>
+    <tr><td class="jp">日本語</td><td class="jp">にほんご</td><td>יפנית (שפה)</td><td>Japanese (language)</td></tr>
+    <tr><td class="jp">学校</td><td class="jp">がっこう</td><td>בית ספר</td><td>school</td></tr>
+    <tr><td class="jp">先生</td><td class="jp">せんせい</td><td>מורה</td><td>teacher</td></tr>
+    <tr><td class="jp">私</td><td class="jp">わたし</td><td>אני</td><td>I / me</td></tr>
+    <tr><td class="jp">カメラ</td><td class="jp">かめら</td><td>מצלמה</td><td>camera</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab-preview">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 מבחן מקדים — כל אוצר המילים של השבוע</div>
+</div>
+
+<!-- ===== TOPIC 1: の ===== -->
+<div class="topic">
+  <span class="topic-tag">נושא 1</span>
+  <h2>החלקיק <span class="jp">の</span> — קישור שמות</h2>
+
+  <p>החלקיק <span class="jp">の</span> מחבר שני שמות כשהראשון <strong>מתאר, מסביר או שייך ל</strong>שני. המבנה הוא:</p>
+  <div class="formula"><strong>[שם A] <span class="jp">の</span> [שם B]</strong> = "B של A" / "B מסוג A"</div>
+
+  <p>שם A בא <strong>לפני</strong> <span class="jp">の</span> ומגדיר את B. בעברית לרוב נתרגם "של" — אבל לא תמיד. לפעמים A מציין <em>סוג</em> או <em>נושא</em> של B:</p>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">私の本</span> <span class="r">（わたしのほん）</span></div>
+      <div class="ex-he">הספר שלי ← <em>שייכות</em></div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">田中さんの猫</span> <span class="r">（たなかさんのねこ）</span></div>
+      <div class="ex-he">החתול של טנקה ← <em>שייכות</em></div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">日本語の本</span> <span class="r">（にほんごのほん）</span></div>
+      <div class="ex-he">ספר ביפנית ← <em>סוג / נושא</em></div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">学校の先生</span> <span class="r">（がっこうのせんせい）</span></div>
+      <div class="ex-he">מורה בבית-הספר ← <em>שייכות למוסד</em></div>
+    </div>
+  </div>
+
+  <p>אפשר גם לשרשר: <span class="jp">A の B の C</span> — C של B של A:</p>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">私の学校の先生</span> <span class="r">（わたしのがっこうのせんせい）</span></div>
+      <div class="ex-he">המורה של בית-הספר שלי</div>
+    </div>
+  </div>
+
+  <p><strong>שימוש עם משפט שלם:</strong> מחברים <span class="jp">の</span> ל-<span class="jp">は</span> כמקודם ומוסיפים את הנשוא:</p>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">これは私の本です。</span> <span class="r">（これはわたしのほんです）</span></div>
+      <div class="ex-he">זה הספר שלי.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">あれは田中さんの車ですか。</span> <span class="r">（あれはたなかさんのくるまですか）</span></div>
+      <div class="ex-he">האם זה (שם) המכונית של טנקה?</div>
+    </div>
+  </div>
+
+  <div class="note"><b>טיפ חשוב:</b> שם A לפני <span class="jp">の</span> הוא <em>תמיד שם עצם</em> — לא שם תואר. שמות תואר מחוברים אחרת (נלמד בשבוע הבא).</div>
+
+  <div class="qbox check" data-answer="1" data-explain="A の B = 'B של A', כלומר 'ספר של מורה'.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה הפירוש של <span class="jp">先生の本</span>?</p>
+    <div class="q-options">
+      <button class="opt">הספר הטוב</button>
+      <button class="opt">הספר של המורה</button>
+      <button class="opt">המורה של הספר</button>
+      <button class="opt">ספר גדול</button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="の מחבר שני שמות; הראשון מגדיר את השני. A の B = 'B של A / מסוג A'.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "החתול של טנקה"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">猫は田中さんです。</span></button>
+      <button class="opt"><span class="jp">田中さんは猫です。</span></button>
+      <button class="opt"><span class="jp">田中さんの猫</span></button>
+      <button class="opt"><span class="jp">猫の田中さん</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="A の B の C = 'C של B של A'. כאן: המורה של בית-הספר שלי.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה הפירוש של <span class="jp">私の学校の先生</span>?</p>
+    <div class="q-options">
+      <button class="opt">המורה של בית-הספר שלי</button>
+      <button class="opt">בית-הספר של המורה שלי</button>
+      <button class="opt">המורה שלי</button>
+      <button class="opt">בית-הספר שלי</button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"זה הספר של טנקה."</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">これは田中さんの本です。</span><br>
+      <span style="color:var(--muted); font-size:15px">（これはたなかさんのほんです）</span>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"האם זה ספר יפנית?"</strong> (יפנית = <span class="jp">日本語 / にほんご</span>)</p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">これは日本語の本ですか。</span><br>
+      <span style="color:var(--muted); font-size:15px">（これはにほんごのほんですか）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOPIC 2: NUMBERS ===== -->
+<div class="topic">
+  <span class="topic-tag">נושא 2</span>
+  <h2>מספרים — מ-1 עד 10,000</h2>
+
+  <p>הספרות היפניות בנויות בצורה <strong>הגיונית לחלוטין</strong>: ברגע שאתה יודע 1–10 ו-100, 1000, 10000 — אתה יכול לבנות כל מספר.</p>
+
+  <h3 style="font-family:'Heebo';font-weight:700;color:var(--accent);margin:20px 0 8px">ספרות בסיסיות</h3>
+  <table>
+    <thead><tr><th>מספר</th><th>קאנג'י</th><th>קריאה</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td class="jp">一</td><td class="jp">いち</td></tr>
+      <tr><td>2</td><td class="jp">二</td><td class="jp">に</td></tr>
+      <tr><td>3</td><td class="jp">三</td><td class="jp">さん</td></tr>
+      <tr><td>4</td><td class="jp">四</td><td class="jp">し / よん</td></tr>
+      <tr><td>5</td><td class="jp">五</td><td class="jp">ご</td></tr>
+      <tr><td>6</td><td class="jp">六</td><td class="jp">ろく</td></tr>
+      <tr><td>7</td><td class="jp">七</td><td class="jp">しち / なな</td></tr>
+      <tr><td>8</td><td class="jp">八</td><td class="jp">はち</td></tr>
+      <tr><td>9</td><td class="jp">九</td><td class="jp">きゅう / く</td></tr>
+      <tr><td>10</td><td class="jp">十</td><td class="jp">じゅう</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-family:'Heebo';font-weight:700;color:var(--accent);margin:20px 0 8px">יחידות גדולות</h3>
+  <table>
+    <thead><tr><th>מספר</th><th>קאנג'י</th><th>קריאה</th></tr></thead>
+    <tbody>
+      <tr><td>100</td><td class="jp">百</td><td class="jp">ひゃく</td></tr>
+      <tr><td>1,000</td><td class="jp">千</td><td class="jp">せん</td></tr>
+      <tr><td>10,000</td><td class="jp">万</td><td class="jp">まん</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-family:'Heebo';font-weight:700;color:var(--accent);margin:20px 0 8px">איך בונים מספרים מורכבים?</h3>
+  <p>פשוט מכפילים: ספרה × יחידה, ומחברים. <strong>אין מילת "אחד" לפני 百 ו-千 בדיבור רגיל</strong> — אומרים <span class="jp">ひゃく</span> (לא <span class="jp">いちひゃく</span>) ו-<span class="jp">せん</span> (לא <span class="jp">いちせん</span>). אבל לפני <span class="jp">まん</span> כן: <span class="jp">いちまん</span>.</p>
+
+  <div class="chain-box">
+    <div class="chain-row"><span class="chain-jp">十一</span><span class="arrow">←</span><span>11 = じゅう (10) + いち (1)</span></div>
+    <div class="chain-row"><span class="chain-jp">二十</span><span class="arrow">←</span><span>20 = に (2) + じゅう (10)</span></div>
+    <div class="chain-row"><span class="chain-jp">三十五</span><span class="arrow">←</span><span>35 = さん + じゅう + ご</span></div>
+    <div class="chain-row"><span class="chain-jp">二百</span><span class="arrow">←</span><span>200 = に (2) + ひゃく (100)</span></div>
+    <div class="chain-row"><span class="chain-jp">三千</span><span class="arrow">←</span><span>3,000 = さん + せん</span></div>
+    <div class="chain-row"><span class="chain-jp">一万五千</span><span class="arrow">←</span><span>15,000 = いちまん + ごせん</span></div>
+  </div>
+
+  <div class="warn"><b>שים לב — שינויי הגייה!</b> כמה מספרים משנים הגייה בחיבור:<br>
+  300 = <span class="jp">さんびゃく</span> (לא <span class="jp">さんひゃく</span>)<br>
+  600 = <span class="jp">ろっぴゃく</span> · 800 = <span class="jp">はっぴゃく</span><br>
+  3,000 = <span class="jp">さんぜん</span> · 8,000 = <span class="jp">はっせん</span><br>
+  כל שאר המקרים רגילים.</div>
+
+  <div class="qbox check" data-answer="2" data-explain="45 = よん (4) + じゅう (10) + ご (5) = よんじゅうご.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה הקריאה של 45?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">しじゅうご</span></button>
+      <button class="opt"><span class="jp">よんじゅうし</span></button>
+      <button class="opt"><span class="jp">よんじゅうご</span></button>
+      <button class="opt"><span class="jp">ごじゅうよん</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="300 = さんびゃく (לא さんひゃく — שינוי הגייה).">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה הקריאה הנכונה של 300?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">さんひゃく</span></button>
+      <button class="opt"><span class="jp">さんびゃく</span></button>
+      <button class="opt"><span class="jp">さんぴゃく</span></button>
+      <button class="opt"><span class="jp">みびゃく</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="3" data-explain="二千三百 = に + せん + さん + びゃく = 2,300.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה המספר <span class="jp">二千三百</span>?</p>
+    <div class="q-options">
+      <button class="opt">230</button>
+      <button class="opt">2,030</button>
+      <button class="opt">3,200</button>
+      <button class="opt">2,300</button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">איך אומרים <strong>780</strong> ביפנית?</p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">七百八十</span> — <span class="jp">ななひゃくはちじゅう</span><br>
+      <span style="color:var(--muted);font-size:15px">7 × 100 + 8 × 10 = なな + ひゃく + はち + じゅう</span>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">איך אומרים <strong>4,500</strong> ביפנית?</p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">四千五百</span> — <span class="jp">よんせんごひゃく</span><br>
+      <span style="color:var(--muted);font-size:15px">4 × 1000 + 5 × 100</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOPIC 3: MONEY ===== -->
+<div class="topic">
+  <span class="topic-tag">נושא 3</span>
+  <h2>מחיר ורכישה: <span class="jp">いくら</span> ו-<span class="jp">円（えん）</span></h2>
+
+  <p>כדי לשאול "כמה עולה?", משתמשים ב-<span class="jp">いくら</span> ("כמה / מה המחיר"). המטבע היפני הוא <span class="jp">円（えん）</span> — ין. המבנה הוא:</p>
+  <div class="formula"><strong>[חפץ] <span class="jp">は</span> <span class="jp">いくらですか</span>。</strong> = "כמה עולה [חפץ]?"</div>
+  <div class="formula"><strong>[מחיר] <span class="jp">円です</span>。</strong> = "עולה [מחיר] ין."</div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">この本はいくらですか。</span> <span class="r">（このほんはいくらですか）</span></div>
+      <div class="ex-he">כמה עולה הספר הזה?</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">五百円です。</span> <span class="r">（ごひゃくえんです）</span></div>
+      <div class="ex-he">עולה 500 ין.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">あのカメラはいくらですか。</span> <span class="r">（あのかめらはいくらですか）</span></div>
+      <div class="ex-he">כמה עולה המצלמה ההיא?</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">三万二千円です。</span> <span class="r">（さんまんにせんえんです）</span></div>
+      <div class="ex-he">עולה 32,000 ין.</div>
+    </div>
+  </div>
+
+  <p>מילים שימושיות נוספות בהקשר קנייה:</p>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">高い（たかい）</span></div>
+      <div class="ex-he">יקר (גם: גבוה)</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">安い（やすい）</span></div>
+      <div class="ex-he">זול (גם: בטוח)</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">お金（おかね）</span></div>
+      <div class="ex-he">כסף</div>
+    </div>
+  </div>
+
+  <div class="note"><b>שים לב:</b> <span class="jp">高い</span> ו-<span class="jp">安い</span> הם שמות תואר ב-<span class="jp">い</span> — כלומר הם עומדים לפני שם עצם בלי כלום, או מסיימים משפט לבד: <span class="jp">この本は高いです</span> = "הספר הזה יקר."</div>
+
+  <div class="qbox check" data-answer="3" data-explain="いくら = 'כמה (עולה)?' — שאלת מחיר.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה הפירוש של <span class="jp">いくら</span>?</p>
+    <div class="q-options">
+      <button class="opt">כמה אנשים</button>
+      <button class="opt">כמה זמן</button>
+      <button class="opt">כמה יחידות</button>
+      <button class="opt">כמה עולה / מה המחיר</button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="המחיר + 円です = 'עולה X ין'. 千二百 = 1,200.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך עונים "עולה 1,200 ין"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">千二百はいくらですか。</span></button>
+      <button class="opt"><span class="jp">千二百円です。</span></button>
+      <button class="opt"><span class="jp">お金は千二百です。</span></button>
+      <button class="opt"><span class="jp">いくらは千二百円。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"כמה עולה הספר של טנקה?"</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">田中さんの本はいくらですか。</span><br>
+      <span style="color:var(--muted);font-size:15px">（たなかさんのほんはいくらですか）</span><br>
+      <span style="font-size:15px;color:var(--ink)">שים לב: של + שאלת מחיר — שני הנושאים של שבוע 1 ו-2 יחד!</span>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"המצלמה הזאת יקרה."</strong> (מצלמה = <span class="jp">カメラ</span>)</p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">このカメラは高いです。</span><br>
+      <span style="color:var(--muted);font-size:15px">（このかめらはたかいです）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== VOCAB TABLE ===== -->
+<h2 class="section">אוצר מילים — שבוע 2</h2>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">一つ〜十（ひとつ〜とお）</td><td class="jp">ひとつ〜とお</td><td>1–10 (ספירה כללית)</td></tr>
+    <tr><td class="jp">百（ひゃく）</td><td class="jp">ひゃく</td><td>מאה</td></tr>
+    <tr><td class="jp">千（せん）</td><td class="jp">せん</td><td>אלף</td></tr>
+    <tr><td class="jp">万（まん）</td><td class="jp">まん</td><td>עשרת אלפים</td></tr>
+    <tr><td class="jp">いくら</td><td class="jp">いくら</td><td>כמה עולה</td></tr>
+    <tr><td class="jp">円（えん）</td><td class="jp">えん</td><td>ין (מטבע יפני)</td></tr>
+    <tr><td class="jp">お金（おかね）</td><td class="jp">おかね</td><td>כסף</td></tr>
+    <tr><td class="jp">高い（たかい）</td><td class="jp">たかい</td><td>יקר / גבוה</td></tr>
+    <tr><td class="jp">安い（やすい）</td><td class="jp">やすい</td><td>זול / בטוח</td></tr>
+    <tr><td class="jp">本（ほん）</td><td class="jp">ほん</td><td>ספר</td></tr>
+    <tr><td class="jp">猫（ねこ）</td><td class="jp">ねこ</td><td>חתול</td></tr>
+    <tr><td class="jp">車（くるま）</td><td class="jp">くるま</td><td>מכונית</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 תיבת בחינה — אוצר מילים</div>
+</div>
+
+<!-- ===== KANJI TABLE ===== -->
+<h2 class="section k">קאנג'י — שבוע 2 (מספרים 8–10, מאה, אלף, רבבה, ין)</h2>
+<table>
+  <thead><tr><th>קאנג'י</th><th>קריאה</th><th>משמעות</th><th>דוגמה</th></tr></thead>
+  <tbody>
+    <tr><td class="jp big">八</td><td class="jp">はち</td><td>שמונה (8)</td><td class="jp">八百（はっぴゃく）= 800</td></tr>
+    <tr><td class="jp big">九</td><td class="jp">きゅう / く</td><td>תשע (9)</td><td class="jp">九時（くじ）= שעה 9</td></tr>
+    <tr><td class="jp big">十</td><td class="jp">じゅう</td><td>עשר (10)</td><td class="jp">十円（じゅうえん）= 10 ין</td></tr>
+    <tr><td class="jp big">百</td><td class="jp">ひゃく</td><td>מאה (100)</td><td class="jp">百円（ひゃくえん）= 100 ין</td></tr>
+    <tr><td class="jp big">千</td><td class="jp">せん</td><td>אלף (1,000)</td><td class="jp">千円（せんえん）= 1,000 ין</td></tr>
+    <tr><td class="jp big">万</td><td class="jp">まん</td><td>רבבה (10,000)</td><td class="jp">一万（いちまん）= 10,000</td></tr>
+    <tr><td class="jp big">円</td><td class="jp">えん</td><td>ין / עיגול</td><td class="jp">五百円（ごひゃくえん）= 500 ין</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-kanji">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🔢 תיבת בחינה — קאנג'י</div>
+</div>
+
+<!-- ===== FINAL QUIZ ===== -->
+<h2 class="section">מבחן סיכום — שבוע 2</h2>
+<p style="margin-top:-2px;color:var(--muted)">שאלות מעורבות: דקדוק, אוצר מילים וקאנג'י. נסה להגיע ל-80% ומעלה.</p>
+<div class="quiz-widget" id="quiz-final">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🎓 מבחן סיכום</div>
+</div>
+
+<h2 class="section" style="background:linear-gradient(100deg,#4b6a8f,#2e4d6b)">🧩 תרגול מעמיק — שבוע 2</h2>
+<p style="margin-top:-2px;color:var(--muted)">13 שאלות מעורבות: רב-ברירה + השלמת משפט. מכסות הבנת משפט, חלקיק の, מספרים ותרגום.</p>
+<div class="quiz-widget" id="quiz-bonus">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:#4b6a8f;margin-bottom:8px">🧩 תרגול מעמיק</div>
+</div>
+
+<div class="done-banner">
+  <h2>סיימת את שבוע 2! <span class="jp">よくできました</span> 🎉</h2>
+  <p>
+    עכשיו אתה יכול לקשר שמות עם <span class="jp">の</span>, לקרוא ולבנות מספרים עד 10,000, ולשאול על מחיר.<br>
+    כשתהיה מוכן — נבנה את שבוע 3: שמות תואר ב-<span class="jp">い</span> וב-<span class="jp">な</span>, וימי השבוע.
+  </p>
+</div>
+
+<p class="footer-note"><span class="jp" dir="ltr">日本語 N5</span> · שבוע 2 מתוך 20 · <span class="jp" dir="ltr">頑張って！</span></p>
+
+</div>
+
+<script>
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+/* inline checks */
+document.querySelectorAll('.check').forEach(q=>{
+  const ans=+q.dataset.answer, fb=q.querySelector('.fb'), opts=q.querySelectorAll('.opt');
+  opts.forEach((btn,i)=>{
+    btn.addEventListener('click',()=>{
+      if(q.classList.contains('done'))return;
+      q.classList.add('done');
+      opts.forEach((b,j)=>{ b.disabled=true; if(j===ans)b.classList.add('correct'); else if(j===i)b.classList.add('wrong'); });
+      const ok=i===ans;
+      fb.textContent=(ok?'✓ נכון! ':'✗ לא מדויק. ')+(q.dataset.explain||'');
+      fb.className='fb '+(ok?'fb-ok':'fb-no');
+    });
+  });
+});
+
+/* reveal */
+document.querySelectorAll('.reveal-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const a=b.nextElementSibling, show=a.style.display!=='block';
+    a.style.display=show?'block':'none'; b.textContent=show?'הסתר תשובה':'הצג תשובה';
+  });
+});
+
+/* quiz engine */
+function makeQuiz(rootId,data){
+  const root=document.getElementById(rootId);
+  const head=root.querySelector('.htag');
+  let order,idx,score,locked;
+  function start(){ order=shuffle([...data.keys()]); idx=0; score=0; locked=false; render(); }
+  function render(){
+    [...root.children].forEach(c=>{if(c!==head)c.remove();});
+    if(idx>=order.length)return result();
+    const item=data[order[idx]];
+    const opts=shuffle(item.options.map((t,i)=>({t,correct:i===item.answer})));
+    const box=document.createElement('div');
+    box.innerHTML=`
+      <div class="q-progress"><span>שאלה ${idx+1} מתוך ${order.length}</span><span>ניקוד: ${score}</span></div>
+      <div class="q-bar"><span style="width:${idx/order.length*100}%"></span></div>
+      <p class="q-text">${item.q}</p>
+      <div class="q-options"></div>
+      <p class="fb"></p>
+      <button class="next-btn" style="display:none;margin-top:12px">הבא ←</button>`;
+    root.appendChild(box);
+    const wrap=box.querySelector('.q-options'), fb=box.querySelector('.fb'), next=box.querySelector('.next-btn');
+    opts.forEach(o=>{
+      const btn=document.createElement('button'); btn.className='opt'; btn.innerHTML=o.t;
+      btn.addEventListener('click',()=>{
+        if(locked)return; locked=true;
+        wrap.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        if(o.correct){ btn.classList.add('correct'); score++; fb.textContent='✓ נכון!'; fb.className='fb fb-ok'; }
+        else { btn.classList.add('wrong'); fb.textContent='✗ לא מדויק'+(item.note?(' — '+item.note):''); fb.className='fb fb-no';
+          [...wrap.children].forEach((c,k)=>{ if(opts[k].correct)c.classList.add('correct'); }); }
+        next.style.display='inline-block';
+      });
+      wrap.appendChild(btn);
+    });
+    next.addEventListener('click',()=>{ idx++; locked=false; render(); });
+  }
+  function result(){
+    const pct=Math.round(score/data.length*100);
+    const msg=pct>=80?'מצוין! אתה שולט בחומר 🎉':pct>=60?'יפה! עוד קצת חזרה ותהיה מצוין.':'כדאי לחזור על החומר ולנסות שוב.';
+    const box=document.createElement('div'); box.className='q-result';
+    box.innerHTML=`<div class="score-big">${score} / ${data.length}</div><p>${msg}</p><button class="next-btn">התחל מחדש 🔁</button>`;
+    root.appendChild(box);
+    box.querySelector('.next-btn').addEventListener('click',start);
+  }
+  start();
+}
+
+const J=s=>`<span class="jp">${s}</span>`;
+
+makeQuiz('quiz-vocab-preview',[
+  {q:'מה הפירוש של '+J('の')+'?',options:['חלקיק שייכות/סוג ("של")','שלילה','שאלה','גם'],answer:0},
+  {q:'מה הפירוש של '+J('いくら')+'?',options:['כמה עולה','כמה זמן','כמה אנשים','כמה ימים'],answer:0},
+  {q:'מה הפירוש של '+J('円')+'?',options:['ין (מטבע)','כסף','מחיר','בנק'],answer:0},
+  {q:'מה הפירוש של '+J('お金')+'?',options:['כסף','מחיר','ין','חנות'],answer:0},
+  {q:'מה הפירוש של '+J('高い')+'?',options:['יקר / גבוה','זול','גדול','קטן'],answer:0},
+  {q:'מה הפירוש של '+J('安い')+'?',options:['זול','יקר','חדש','ישן'],answer:0},
+  {q:'מה הפירוש של '+J('百')+'?',options:['מאה','אלף','עשר','רבבה'],answer:0},
+  {q:'מה הפירוש של '+J('千')+'?',options:['אלף','מאה','עשרת אלפים','עשר'],answer:0},
+  {q:'מה הפירוש של '+J('万')+'?',options:['עשרת אלפים','אלף','מיליון','מאה'],answer:0},
+  {q:'מה הפירוש של '+J('本')+'?',options:['ספר','ספרייה','עיפרון','שולחן'],answer:0},
+  {q:'מה הפירוש של '+J('猫')+'?',options:['חתול','כלב','ציפור','דג'],answer:0},
+  {q:'מה הפירוש של '+J('車')+'?',options:['מכונית','אוטובוס','אופניים','רכבת'],answer:0},
+  {q:'מה הפירוש של '+J('日本語')+'?',options:['יפנית (שפה)','יפן (מדינה)','יפני (אדם)','אנגלית'],answer:0},
+  {q:'מה הפירוש של '+J('学校')+'?',options:['בית ספר','ספרייה','משרד','חנות'],answer:0},
+  {q:'מה הפירוש של '+J('先生')+'?',options:['מורה','סטודנט','חבר','אבא'],answer:0},
+  {q:'מה הפירוש של '+J('私')+'?',options:['אני','אתה','הוא','זה'],answer:0},
+  {q:'מה הפירוש של '+J('カメラ')+'?',options:['מצלמה','טלפון','שעון','מחשב'],answer:0}
+]);
+
+/* vocab quiz */
+makeQuiz('quiz-vocab',[
+  {q:'מה הפירוש של '+J('いくら')+'?',options:['כמה עולה','כמה זמן','כמה אנשים','כמה ימים'],answer:0},
+  {q:'מה הפירוש של '+J('お金')+'?',options:['כסף','מחיר','ין','חנות'],answer:0},
+  {q:'מה הפירוש של '+J('高い')+'?',options:['יקר / גבוה','זול','גדול','קטן'],answer:0},
+  {q:'מה הפירוש של '+J('安い')+'?',options:['זול','יקר','חדש','ישן'],answer:0},
+  {q:'מה הפירוש של '+J('本')+'?',options:['ספר','ספרייה','עיפרון','שולחן'],answer:0},
+  {q:'מה הפירוש של '+J('猫')+'?',options:['חתול','כלב','ציפור','דג'],answer:0},
+  {q:'מה הפירוש של '+J('車')+'?',options:['מכונית','אוטובוס','אופניים','רכבת'],answer:0},
+  {q:'מה הפירוש של '+J('円')+'?',options:['ין (מטבע)','כסף','מחיר','בנק'],answer:0},
+  {q:'מה הפירוש של '+J('百')+'?',options:['מאה','אלף','עשר','רבבה'],answer:0},
+  {q:'מה הפירוש של '+J('千')+'?',options:['אלף','מאה','עשרת אלפים','עשר'],answer:0},
+  {q:'מה הפירוש של '+J('万')+'?',options:['עשרת אלפים','אלף','מיליון','מאה'],answer:0}
+]);
+
+/* kanji quiz */
+makeQuiz('quiz-kanji',[
+  {q:'איזה מספר הוא '+J('<span class="big">八</span>')+'?',options:['8','6','9','7'],answer:0},
+  {q:'איזה מספר הוא '+J('<span class="big">九</span>')+'?',options:['9','7','6','8'],answer:0},
+  {q:'איזה מספר הוא '+J('<span class="big">十</span>')+'?',options:['10','100','20','11'],answer:0},
+  {q:'איזה קאנג\'י הוא 100?',options:[J('百'),J('千'),J('万'),J('十')],answer:0},
+  {q:'איזה קאנג\'י הוא 1,000?',options:[J('千'),J('百'),J('万'),J('十')],answer:0},
+  {q:'איזה קאנג\'י הוא 10,000?',options:[J('万'),J('千'),J('百'),J('十')],answer:0},
+  {q:'מה קוראים ל-'+J('<span class="big">円</span>')+'?',options:[J('えん'),J('いち'),J('まん'),J('ひゃく')],answer:0},
+  {q:'מה המספר '+J('三百')+'?',options:['300','30','3,000','3'],answer:0},
+  {q:'מה המספר '+J('五千')+'?',options:['5,000','500','50,000','50'],answer:0}
+]);
+
+/* final quiz */
+makeQuiz('quiz-final',[
+  {q:'מה הפירוש של '+J('田中さんの本')+'?',options:['הספר של טנקה','טנקה שהוא ספר','ספר יפני','המורה של טנקה'],answer:0,note:'A の B = B של A.'},
+  {q:'איך אומרים "כמה עולה הספר הזה?"',options:[J('この本はいくらですか。'),J('この本はなんですか。'),J('いくらの本ですか。'),J('本はいくらか。')],answer:0,note:'[חפץ] は いくらですか。'},
+  {q:'מה המספר '+J('二千五百')+'?',options:['2,500','2,050','250','25,000'],answer:0,note:'に (2) + せん (1000) + ご (5) + ひゃく (100).'},
+  {q:'איך אומרים "עולה 800 ין"?',options:[J('八百円です。'),J('八百はいくらですか。'),J('八百円はです。'),J('円は八百です。')],answer:0,note:'מחיר + 円です.'},
+  {q:'מה הפירוש של '+J('日本語の本')+'?',options:['ספר ביפנית','ספר של יפן','יפנית של הספר','ספר גדול'],answer:0,note:'の מציין כאן סוג/נושא.'},
+  {q:'מה הפירוש של '+J('高い')+'?',options:['יקר / גבוה','זול','גדול','רחוק'],answer:0},
+  {q:'איזה קאנג\'י הוא 1,000?',options:[J('千'),J('百'),J('万'),J('十')],answer:0},
+  {q:'מה הפירוש של '+J('安い')+'?',options:['זול','יקר','קטן','חדש'],answer:0},
+  {q:'מה המספר '+J('六百')+'?',options:['600','60','6,000','6'],answer:0,note:'ろく (6) + ひゃく (100) = 600.'},
+  {q:'איך שואלים "כמה עולה המכונית של טנקה?"',options:[J('田中さんの車はいくらですか。'),J('田中さんはいくらの車ですか。'),J('車の田中さんはいくらですか。'),J('田中さんの車はなんですか。')],answer:0,note:'של + שאלת מחיר.'}
+]);
+
+// ── BONUS DRILL ──
+makeQuiz('quiz-bonus',[
+  // הבנת משפט
+  {q:'מה הפירוש של '+J('これは田中さんの車です。')+'?',
+   options:['זאת המכונית של טנקה','זאת המכונית היקרה','טנקה הוא מכונית','כמה עולה המכונית?'],answer:0,
+   note:'田中さんの車 = המכונית של טנקה.'},
+  {q:'מה הפירוש של '+J('あの本はいくらですか。')+'?',
+   options:['כמה עולה הספר ההוא (הרחוק)?','מה הספר ההוא?','האם הספר יקר?','הספר ההוא זול'],answer:0,
+   note:'あの = ההוא (רחוק); いくら = כמה עולה.'},
+  // השלמת משפט
+  {q:'השלם: "הספר של טנקה יקר." '+J('田中さん___本は高いです。'),
+   options:[J('の'),J('が'),J('は'),J('を')],answer:0,
+   note:'שייכות = の: 田中さんの本.'},
+  {q:'השלם: "כמה עולה זה?" '+J('これは___ですか。'),
+   options:[J('いくら'),J('なに'),J('どこ'),J('だれ')],answer:0,
+   note:'שאלת מחיר = いくら.'},
+  {q:'השלם: "עולה 500 ין." '+J('五百___です。'),
+   options:[J('円'),J('万'),J('千'),J('百')],answer:0,
+   note:'מחיר + 円 (ין).'},
+  // מספרים
+  {q:'מה הקריאה של 3,800?',
+   options:[J('さんぜんはっぴゃく'),J('さんびゃくはっせん'),J('さんぜんろっぴゃく'),J('さんびゃくはっぴゃく')],answer:0,
+   note:'3,000 = さんぜん (שינוי הגייה), 800 = はっぴゃく.'},
+  {q:'מה המספר '+J('一万二千三百')+'?',
+   options:['12,300','1,230','123,000','10,230'],answer:0,
+   note:'いちまん + にせん + さんびゃく = 10,000+2,000+300.'},
+  {q:'מה הקריאה של 600?',
+   options:[J('ろっぴゃく'),J('ろくひゃく'),J('ろくびゃく'),J('ろっびゃく')],answer:0,
+   note:'600 = ろっぴゃく — שינוי הגייה חריג!'},
+  // の — זיהוי סוג קשר
+  {q:'ב-'+J('日本語の先生')+' — ה-の מציין:',
+   options:['סוג / תחום (מורה ליפנית)','שייכות (המורה של יפן)','מיקום','כמות'],answer:0,
+   note:'の יכול לציין סוג/תחום, לא רק שייכות.'},
+  {q:'מה ההבדל בין '+J('私の本')+' ל-'+J('日本語の本')+'?',
+   options:['הראשון = שייכות; השני = סוג/נושא','שניהם שייכות','שניהם סוג','הראשון = סוג; השני = שייכות'],answer:0,
+   note:'私の = של אני (שייכות); 日本語の = ביפנית (סוג).'},
+  // קאנג'י מתוך הקשר
+  {q:'מה החסר? '+J('八、九、___、百'),
+   options:[J('十'),J('七'),J('万'),J('千')],answer:0,
+   note:'8, 9, 10 (十), 100 — הרצף עולה פי 10.'},
+  {q:'איזה מספר גדול יותר: '+J('千')+'  או  '+J('百')+'?',
+   options:[J('千')+' (1,000)',J('百')+' (100)','שווים','תלוי בהקשר'],answer:0,
+   note:'千 = 1,000 > 百 = 100.'},
+  // תרגום חופשי
+  {q:'איך אומרים "הספר הזה של בית-הספר"? (בית-ספר = '+J('学校')+')',
+   options:[J('この学校の本'),J('学校はこの本'),J('この本の学校'),J('学校がこの本')],answer:0,
+   note:'この + שם + の + שם: この学校の本.'},
+]);
+</script>
+</body>
+</html>

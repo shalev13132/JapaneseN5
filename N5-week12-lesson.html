@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שבוע 12 — רשות ואיסור | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+    --blue:#4b6a8f; --blue-soft:#e3eaf3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre",Georgia,serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px,rgba(120,100,70,.06) 1px,transparent 0);
+    background-size:22px 22px;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 90px;}
+  .jp{font-family:"Noto Sans JP",system-ui,sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+  .big{font-size:1.35em; line-height:1;}
+
+  header.masthead{text-align:center; padding:56px 20px 34px; border-bottom:3px double var(--line); margin-bottom:6px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(28px,5.5vw,40px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:17px;}
+  .nav-links{display:flex; justify-content:space-between; margin:14px 0 0; font-size:14px;}
+  .nav-links span{color:var(--muted); font-family:"Heebo",sans-serif; font-weight:700;}
+
+  .lead{background:var(--card); border:1px solid var(--line); border-right:5px solid var(--accent); border-radius:12px; padding:18px 22px; margin:26px 0;}
+  .lead h2{font-family:"Heebo",sans-serif; font-size:18px; margin:0 0 6px;}
+  .lead ol{margin:6px 0 0; padding-inline-start:1.3em;}
+  .lead li{margin:3px 0;}
+
+  .topic{margin:46px 0;}
+  .topic-tag{display:inline-block; background:var(--accent); color:#fff; font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; padding:5px 14px; border-radius:999px; box-shadow:0 3px 8px rgba(150,60,30,.22);}
+  .topic h2{font-family:"Heebo",sans-serif; font-weight:800; font-size:25px; margin:12px 0 8px;}
+  .topic p{margin:.6em 0;}
+  .topic strong{color:#7e2a13;}
+
+  .formula{text-align:center; font-size:19px; background:#fff3ec; border:1px solid #e8c9b8; border-radius:10px; padding:12px 20px; margin:14px 0;}
+
+  h3.sub-head{font-family:"Heebo",sans-serif; font-weight:700; font-size:19px; color:var(--accent); margin:22px 0 8px; border-right:4px solid var(--accent); padding-right:10px;}
+
+  .ex{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:6px 16px; margin:16px 0;}
+  .ex-row{padding:10px 0; border-bottom:1px dashed var(--line);}
+  .ex-row:last-child{border-bottom:none;}
+  .ex-jp{direction:ltr; unicode-bidi:isolate; text-align:right; font-family:"Noto Sans JP",sans-serif; font-size:19px; font-weight:500;}
+  .ex-jp .r{color:var(--muted); font-size:15px; font-weight:400;}
+  .ex-he{color:var(--ink); font-size:16px;}
+
+  /* permission/prohibition contrast cards */
+  .pp-cards{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:16px 0;}
+  @media(max-width:500px){.pp-cards{grid-template-columns:1fr;}}
+  .pp-card{border-radius:12px; padding:14px 18px; border:1.5px solid;}
+  .pp-card.allow{background:#e3f0eb; border-color:#b0d5c5;}
+  .pp-card.forbid{background:#f6e1da; border-color:#e8b8aa;}
+  .pp-card .pp-label{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; margin-bottom:8px;}
+  .pp-card.allow .pp-label{color:var(--ok);}
+  .pp-card.forbid .pp-label{color:var(--no);}
+  .pp-card .pp-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:18px; font-weight:700;}
+  .pp-card .pp-he{font-size:14px; margin-top:6px; color:var(--ink);}
+
+  .dialogue{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .dialogue-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--gold); margin-bottom:12px;}
+  .d-row{display:flex; gap:10px; align-items:flex-start; margin:10px 0;}
+  .d-who{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--muted); min-width:40px; padding-top:4px;}
+  .d-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px; font-weight:500; flex:1;}
+  .d-he{font-size:15px; color:var(--muted);}
+
+  .compare{background:var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden; margin:16px 0;}
+  .compare-head{display:grid; grid-template-columns:1fr 1fr; background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px;}
+  .compare-head div,.compare-row div{padding:9px 14px;}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--line); font-size:16px;}
+  .compare-row div.jp-cell{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px;}
+
+  .note{background:#faf5ea; border:1px dashed var(--line); border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .note b{color:var(--accent);}
+  .warn{background:#fff5f3; border:1px dashed #e8b8aa; border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .warn b{color:var(--no);}
+
+  /* deepen / study-deeper section */
+  .deepen{background:linear-gradient(160deg,#f3eee0,#ece3cf); border:1.5px solid #d8c89a; border-radius:14px; padding:20px 24px; margin:24px 0;}
+  .deepen-head{display:flex; align-items:center; gap:8px; font-family:"Heebo",sans-serif; font-weight:800; font-size:14px; color:#7d6324; margin-bottom:12px;}
+  .deepen-head::before{content:"🔎"; font-size:16px;}
+  .deepen h4{font-family:"Heebo",sans-serif; font-weight:700; font-size:16px; color:#7d6324; margin:16px 0 6px;}
+  .deepen h4:first-of-type{margin-top:0;}
+  .deepen p{margin:.5em 0; font-size:16px;}
+  .deepen .ex{background:#fffdf8;}
+
+  .qbox{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:16px 0; box-shadow:0 2px 8px rgba(80,60,30,.04);}
+  .qbox .htag{font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; color:var(--ok); margin-bottom:8px; display:flex; align-items:center; gap:7px;}
+  .qbox .htag::before{content:"✎"; font-size:15px;}
+  .q-text{font-size:18px; margin:0 0 12px; font-weight:500;}
+  .q-options{display:flex; flex-direction:column; gap:9px;}
+  .opt{font-family:inherit; font-size:17px; text-align:right; background:#fff; border:1.5px solid var(--line); border-radius:9px; padding:11px 16px; cursor:pointer; transition:.15s; color:var(--ink);}
+  .opt:hover:not(:disabled){border-color:var(--accent); background:#fffaf3;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:var(--ok-soft); border-color:var(--ok); color:#1f4d43; font-weight:700;}
+  .opt.wrong{background:var(--no-soft); border-color:var(--no); color:#7e2a13;}
+  .fb{margin:11px 0 0; font-size:16px; font-weight:600; min-height:1px;}
+  .fb-ok{color:var(--ok);} .fb-no{color:var(--no);}
+
+  .reveal{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .reveal-btn,.next-btn{font-family:"Heebo",sans-serif; font-weight:700; font-size:15px; background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 18px; cursor:pointer; transition:.15s;}
+  .reveal-btn:hover,.next-btn:hover{background:#8e2f17;}
+  .reveal-ans{display:none; margin-top:12px; padding:12px 16px; background:var(--ok-soft); border-radius:8px; font-size:17px;}
+
+  .quiz-widget{background:linear-gradient(160deg,#fffdf8,#fbf4e8); border:1.5px solid var(--line); border-radius:14px; padding:22px; margin:18px 0; box-shadow:0 4px 14px rgba(80,60,30,.07);}
+  .q-progress{font-family:"Heebo",sans-serif; font-size:13px; color:var(--muted); margin-bottom:10px; display:flex; justify-content:space-between;}
+  .q-bar{height:6px; background:#eadfc9; border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  .q-bar span{display:block; height:100%; background:var(--accent); transition:width .3s;}
+  .q-result{text-align:center; padding:14px 0;}
+  .score-big{font-family:"Heebo",sans-serif; font-weight:800; font-size:46px; color:var(--accent); line-height:1;}
+  .q-result p{font-size:18px; margin:10px 0 16px;}
+
+  h2.section{font-family:"Heebo",sans-serif; font-weight:800; font-size:26px; margin:54px 0 8px; padding:12px 20px; color:#fff; background:linear-gradient(100deg,var(--gold),#7d6324); border-radius:10px;}
+  h2.section.k{background:linear-gradient(100deg,var(--accent),#8e2f17);}
+
+  table{width:100%; border-collapse:collapse; margin:.4em 0 18px; font-size:16px; background:#fff; border-radius:10px; overflow:hidden; border:1px solid var(--line);}
+  thead th{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px; padding:9px 12px; text-align:right;}
+  td{padding:9px 12px; border-top:1px solid var(--line);}
+  tbody tr:nth-child(even){background:#fbf7ee;}
+  td.jp{text-align:right;} td.jp.big{text-align:center; color:var(--accent); font-size:1.5em;}
+
+  .done-banner{text-align:center; margin:50px 0 0; padding:26px; background:var(--ok-soft); border:1px solid #bcd9d0; border-radius:14px;}
+  .done-banner h2{font-family:"Heebo",sans-serif; color:#1f4d43; margin:0 0 6px;}
+  .footer-note{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">שבוע 12 מתוך 20 · <span class="jp" dir="ltr">JLPT N5</span> · חלק ג'</div>
+  <h1>רשות ואיסור</h1>
+  <p class="sub"><span class="jp">てもいいです</span> — מותר, <span class="jp">てはいけません</span> — אסור</p>
+  <div class="nav-links">
+    <span>← שבוע 11: צורת て</span>
+    <span>שבוע 13: רצונות ←</span>
+  </div>
+</header>
+
+<div class="lead">
+  <h2>מה נלמד השבוע</h2>
+  <ol>
+    <li><span class="jp">てもいいです</span> — לבקש/לתת רשות ("מותר ל...?").</li>
+    <li><span class="jp">てはいけません</span> — לבטא איסור ("אסור ל...").</li>
+    <li>הבדלי גוון בין דרכי איסור שונות, ושאלות רשות נימוסיות.</li>
+  </ol>
+  <p style="margin:10px 0 0;font-size:15px;color:var(--muted)">השבוע נשתמש בצורת <span class="jp">て</span> שלמדנו בשבוע שעבר לבניית שני מבנים חשובים נוספים — רשות ואיסור, שתפגוש המון בשלטים, בכיתה, ובבית מישהו.</p>
+</div>
+
+<!-- ===== PREVIEW VOCAB TABLE (NEW) ===== -->
+<h2 class="section" style="margin-top:30px">📋 כל אוצר המילים של השבוע — מבט מקדים</h2>
+<p style="margin-top:-2px;color:var(--muted)">טבלה זו אוספת את כל המילים החדשות שתפגוש השבוע — גם אלה שבטבלת הסיכום בהמשך, וגם אלה שמופיעות רק בתוך ההסברים והדוגמאות. עברית ואנגלית.</p>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th><th>English</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">使う</td><td class="jp">つかう</td><td>להשתמש</td><td>to use</td></tr>
+    <tr><td class="jp">座る</td><td class="jp">すわる</td><td>לשבת</td><td>to sit</td></tr>
+    <tr><td class="jp">吸う</td><td class="jp">すう</td><td>לעשן / לשאוף</td><td>to smoke / inhale</td></tr>
+    <tr><td class="jp">止める</td><td class="jp">とめる</td><td>לחנות / להפסיק</td><td>to park / to stop</td></tr>
+    <tr><td class="jp">開ける</td><td class="jp">あける</td><td>לפתוח</td><td>to open</td></tr>
+    <tr><td class="jp">閉める</td><td class="jp">しめる</td><td>לסגור</td><td>to close</td></tr>
+    <tr><td class="jp">手伝う</td><td class="jp">てつだう</td><td>לעזור</td><td>to help</td></tr>
+    <tr><td class="jp">教室</td><td class="jp">きょうしつ</td><td>כיתה</td><td>classroom</td></tr>
+    <tr><td class="jp">授業</td><td class="jp">じゅぎょう</td><td>שיעור</td><td>class / lesson</td></tr>
+    <tr><td class="jp">休み時間</td><td class="jp">やすみじかん</td><td>הפסקה</td><td>break time</td></tr>
+    <tr><td class="jp">携帯</td><td class="jp">けいたい</td><td>נייד (טלפון)</td><td>mobile phone</td></tr>
+    <tr><td class="jp">タバコ</td><td class="jp">たばこ</td><td>סיגריה</td><td>cigarette</td></tr>
+    <tr><td class="jp">窓</td><td class="jp">まど</td><td>חלון</td><td>window</td></tr>
+    <tr><td class="jp">どうぞ</td><td class="jp">どうぞ</td><td>בבקשה (הענקת רשות)</td><td>please / go ahead</td></tr>
+    <tr><td class="jp">静かに</td><td class="jp">しずかに</td><td>בשקט</td><td>quietly</td></tr>
+    <tr><td class="jp">ペン</td><td class="jp">ぺん</td><td>עט</td><td>pen</td></tr>
+    <tr><td class="jp">自転車</td><td class="jp">じてんしゃ</td><td>אופניים</td><td>bicycle</td></tr>
+    <tr><td class="jp">いける</td><td class="jp">いける</td><td>יכול לעבור/להגיע</td><td>can pass / go through</td></tr>
+    <tr><td class="jp">禁止</td><td class="jp">きんし</td><td>אסור / איסור (שלט)</td><td>prohibited (sign)</td></tr>
+    <tr><td class="jp">駐車する</td><td class="jp">ちゅうしゃする</td><td>לחנות (רכב)</td><td>to park (a vehicle)</td></tr>
+    <tr><td class="jp">わかりました</td><td class="jp">わかりました</td><td>הבנתי</td><td>understood / got it</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab-preview">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 מבחן מקדים — כל אוצר המילים של השבוע</div>
+</div>
+
+<!-- ========== TOPIC 1: てもいいです ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 1</span>
+  <h2><span class="jp">てもいいです</span> — רשות</h2>
+
+  <p><span class="jp">てもいいです</span> מבטא רשות — "מותר ל...", "זה בסדר אם...". המבנה מילולית הוא "גם אם [פעולה], זה טוב" — <span class="jp">も</span> כאן פירושו "גם", ו-<span class="jp">いい</span> הוא "טוב" שלמדנו בשבוע 3.</p>
+
+  <div class="formula"><strong>[צורת て] <span class="jp">もいいです</span></strong> = "מותר ל[פעולה]"</div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">ここに座<b>ってもいいです</b>。</span> <span class="r">（ここにすわってもいいです）</span></div>
+      <div class="ex-he">מותר לשבת כאן.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">この本を読<b>んでもいいです</b>か。</span> <span class="r">（このほんをよんでもいいですか）</span></div>
+      <div class="ex-he">מותר לקרוא את הספר הזה?</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">はい、いいですよ。</span> <span class="r">（はい、いいですよ）</span></div>
+      <div class="ex-he">כן, בסדר. (תשובה חיובית לבקשת רשות)</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">トイレを使<b>ってもいいですか</b>。</span> <span class="r">（といれをつかってもいいですか）</span></div>
+      <div class="ex-he">מותר להשתמש בשירותים?</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">שלילת רשות — "אינו חייב"</h3>
+  <p>אם רוצים לומר "לא חייבים ל..." (שונה מ"אסור!"), משתמשים ב-<span class="jp">なくてもいいです</span> — מבנה שלילי של <span class="jp">てもいいです</span>:</p>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">今日は来<b>なくてもいいです</b>。</span> <span class="r">（きょうはこなくてもいいです）</span></div>
+      <div class="ex-he">לא חייב לבוא היום.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">宿題をし<b>なくてもいいです</b>。</span> <span class="r">（しゅくだいをしなくてもいいです）</span></div>
+      <div class="ex-he">לא חייב לעשות שיעורי בית.</div>
+    </div>
+  </div>
+
+  <div class="note"><b>שים לב להבדל:</b> <span class="jp">なくてもいいです</span> ("לא חייב, רשות") שונה מ-<span class="jp">てはいけません</span> ("אסור, איסור") — נלמד את ההבדל בנושא הבא.</div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — てもいいです</div>
+
+    <h4>מבנה ה"גם אם" — איך הלוגיקה הדקדוקית עובדת</h4>
+    <p>המבנה המילולי <span class="jp">ても</span> ("גם אם...") + <span class="jp">いいです</span> ("זה טוב") יוצר משמעות של רשות באמצעות לוגיקה עקיפה: "גם אם תעשה X, זה [עדיין] טוב" = "מותר לך לעשות X". זו דרך עקיפה ונחמדה ביפנית לבטא הסכמה — במקום לומר ישירות "כן, אתה יכול", אומרים בעצם "גם המקרה הזה מקובל עליי". זהו עוד דוגמה לאהבת היפנית לניסוח עקיף ולא-תוקפני.</p>
+
+    <h4>もいい מול だけでいい — הבדל גוון חשוב</h4>
+    <p>שווה לדעת שקיים מבנה קרוב <span class="jp">だけでいい</span> ("מספיק רק...") שלא חלק מ-N5 אך שכיח: <span class="jp">少しだけでいいです</span> ("מספיק קצת"). זה שונה מ-<span class="jp">てもいいです</span> — האחד מבטא רשות לפעולה, השני מבטא "מספיק/הסתפקות" בכמות. אל תבלבל בין השניים אם תפגוש אותם בקריאה חופשית.</p>
+
+    <h4>תשובות שונות לבקשת רשות — דרגות הסכמה</h4>
+    <p>כשעונים לבקשת רשות, יש כמה אפשרויות בדרגות שונות: <span class="jp">はい、いいですよ</span> (כן, בסדר — ידידותי), <span class="jp">どうぞ</span> (בבקשה — מזמין במפורש), <span class="jp">ええ、もちろん</span> (כן, בוודאי — נלהב יותר). שלילה מנומסת: <span class="jp">すみません、ちょっと…</span> ("סליחה, זה קצת..." — דחייה עקיפה ומנומסת, נפוצה ביותר ביפנית כשרוצים לסרב בלי לומר "לא" ישירות).</p>
+
+    <h4>הקשר ל-なくてもいい — שלילת חיוב, לא שלילת רשות</h4>
+    <p>חשוב להבין מבנית מה <span class="jp">なくてもいいです</span> עושה: זה לא "אסור" אלא "אין חיוב". המבנה מורכב משלילת ない (שבוע 9) + צורת て שלה (<span class="jp">なくて</span>, שבוע 11) + <span class="jp">もいいです</span>. כל שכבה כבר מוכרת לך — זה רק שילוב חדש של מבנים ישנים.</p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="צורת て + もいいですか = שאלת רשות. 座る → 座って (って).">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך שואלים "מותר לשבת כאן?"</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">ここに座ってもいいですか。</span></button>
+      <button class="opt"><span class="jp">ここに座りますか。</span></button>
+      <button class="opt"><span class="jp">ここに座ってはいけませんか。</span></button>
+      <button class="opt"><span class="jp">ここに座らないでください。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="'לא חייב' = なくてもいいです, לא てもいいです. 来る → 来なくて + もいいです.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "לא חייב לבוא היום"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">今日は来てもいいです。</span></button>
+      <button class="opt"><span class="jp">今日は来てはいけません。</span></button>
+      <button class="opt"><span class="jp">今日は来なくてもいいです。</span></button>
+      <button class="opt"><span class="jp">今日は来ません。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"מותר להשתמש בעט הזה?" — "כן, בבקשה."</strong><br>
+    <span style="font-size:14px;color:var(--muted)">(עט = <span class="jp">ペン</span>; להשתמש = <span class="jp">使う / つかう</span>)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">このペンを使ってもいいですか。 — はい、どうぞ。</span><br>
+      <span style="color:var(--muted);font-size:14px">（このぺんをつかってもいいですか。 — はい、どうぞ）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 2: てはいけません ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 2</span>
+  <h2><span class="jp">てはいけません</span> — איסור</h2>
+
+  <p><span class="jp">てはいけません</span> מבטא איסור חזק — "אסור ל...". מילולית: "אם [פעולה], זה לא יכול/לא טוב" — <span class="jp">いけない</span> פירושו "לא ניתן/לא טוב".</p>
+
+  <div class="formula"><strong>[צורת て] <span class="jp">はいけません</span></strong> = "אסור ל[פעולה]"</div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">ここでタバコを吸<b>ってはいけません</b>。</span> <span class="r">（ここでたばこをすってはいけません）</span></div>
+      <div class="ex-he">אסור לעשן כאן.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">教室で食べ<b>てはいけません</b>。</span> <span class="r">（きょうしつでたべてはいけません）</span></div>
+      <div class="ex-he">אסור לאכול בכיתה.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">ここに車を止め<b>てはいけません</b>。</span> <span class="r">（ここにくるまをとめてはいけません）</span></div>
+      <div class="ex-he">אסור לחנות מכונית כאן.</div>
+    </div>
+  </div>
+
+  <div class="pp-cards">
+    <div class="pp-card allow">
+      <div class="pp-label">✓ מותר — てもいいです</div>
+      <div class="pp-jp">写真を撮ってもいいです。</div>
+      <div class="pp-he">מותר לצלם תמונות.</div>
+    </div>
+    <div class="pp-card forbid">
+      <div class="pp-label">✗ אסור — てはいけません</div>
+      <div class="pp-jp">写真を撮ってはいけません。</div>
+      <div class="pp-he">אסור לצלם תמונות.</div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dialogue-title">💬 בכיתה</div>
+    <div class="d-row"><div class="d-who">תלמיד:</div><div><div class="d-jp">先生、教室で携帯を使ってもいいですか。</div><div class="d-he">מורה, מותר להשתמש בנייד בכיתה?</div></div></div>
+    <div class="d-row"><div class="d-who">מורה:</div><div><div class="d-jp">いいえ、使ってはいけません。授業中ですから。</div><div class="d-he">לא, אסור. בגלל שזה בזמן שיעור.</div></div></div>
+    <div class="d-row"><div class="d-who">תלמיד:</div><div><div class="d-jp">わかりました。休み時間はいいですか。</div><div class="d-he">הבנתי. בהפסקה זה בסדר?</div></div></div>
+    <div class="d-row"><div class="d-who">מורה:</div><div><div class="d-jp">はい、休み時間は使ってもいいです。</div><div class="d-he">כן, בהפסקה מותר להשתמש.</div></div></div>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — てはいけません</div>
+
+    <h4>いけない — פועל-תואר ייחודי שמשמעותו "לא ניתן לעבור"</h4>
+    <p><span class="jp">いけない</span> מקורו הוא שלילה של <span class="jp">いける</span> ("ניתן לעבור/להגיע" — צורת-יכולת של <span class="jp">行く</span>). כך ש-<span class="jp">てはいけません</span> מילולית הוא "אם [פעולה], אי אפשר להמשיך/לעבור" — מעין חיסום של דרך. זו הסיבה שהאיסור הזה נשמע "סופי" וחזק יותר מ"לא מומלץ" — הוא מבטא חיסום מוחלט, לא רק העדפה.</p>
+
+    <h4>דרגת התוקפנות — מתי てはいけません מתאים ומתי לא</h4>
+    <p><span class="jp">てはいけません</span> הוא איסור <strong>חזק וישיר</strong> — מתאים לכללים רשמיים, שלטים, או הוראות ממורה/הורה לילד. בין מבוגרים שווי-מעמד, השימוש בו יכול להישמע תוקפני או מתנשא. בהקשרים חברתיים רכים יותר, יפנים נוטים להשתמש בניסוחים עקיפים יותר כמו <span class="jp">〜ない方がいいです</span> ("מומלץ שלא ל-..." — לא בתוכן N5 אך שכיח).</p>
+
+    <h4>שלטים ציבוריים — איפה תפגוש את המבנה הזה בפועל</h4>
+    <p>ביפן, שלטים רבים משתמשים ב-<span class="jp">てはいけません</span> או בגרסה הכתובה הרשמית יותר <span class="jp">禁止（きんし）</span> ("אסור/איסור", מילה בודדת על שלט). למשל: <span class="jp">ここに駐車してはいけません</span> ("אסור לחנות כאן") עשוי להופיע גם כ-<span class="jp">駐車禁止</span> (קצר יותר, רשמי יותר). שני הניסוחים אומרים את אותו הדבר — ה-N5 מתמקד בגרסה המלאה והמדוברת.</p>
+
+    <h4>שילוב עם שאלת רשות — דיאלוג טבעי שלם</h4>
+    <p>הדיאלוג בכיתה מדגים תבנית טבעית: שואלים רשות (<span class="jp">てもいいですか</span>) ← מקבלים סירוב מנומס עם הסבר (<span class="jp">てはいけません。〜ですから</span>) ← מבררים תנאי חלופי ← מקבלים אישור. שים לב למילה <span class="jp">から</span> בתשובת המורה — סיבה (שבוע 8) שמסבירה את האיסור, לא רק "אסור" יבש.</p>
+  </div>
+
+  <div class="qbox check" data-answer="3" data-explain="אסור = てはいけません. 吸う → 吸って (って) + はいけません.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "אסור לעשן כאן"? (<span class="jp">タバコを吸う</span> = לעשן)</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">ここでタバコを吸ってもいいです。</span></button>
+      <button class="opt"><span class="jp">ここでタバコを吸いません。</span></button>
+      <button class="opt"><span class="jp">ここでタバコを吸わないでください。</span></button>
+      <button class="opt"><span class="jp">ここでタバコを吸ってはいけません。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="てもいいです = מותר; てはいけません = אסור. הבדל הפוך, לא דרגה.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה ההבדל בין <span class="jp">てもいいです</span> ל-<span class="jp">てはいけません</span>?</p>
+    <div class="q-options">
+      <button class="opt">אין הבדל, אפשר להחליף</button>
+      <button class="opt">הראשון = מותר; השני = אסור</button>
+      <button class="opt">הראשון = אסור; השני = מותר</button>
+      <button class="opt">הראשון מנומס; השני לא-מנומס</button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"אסור לחנות מכונית כאן, אבל מותר לחנות אופניים."</strong><br>
+    <span style="font-size:14px;color:var(--muted)">(לחנות = <span class="jp">止める / とめる</span>; אופניים = <span class="jp">自転車</span>)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">ここに車を止めてはいけませんが、自転車は止めてもいいです。</span><br>
+      <span style="color:var(--muted);font-size:14px">（ここにくるまをとめてはいけませんが、じてんしゃはとめてもいいです）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 3: ましょうか + REVIEW ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 3</span>
+  <h2>שילוב: רשות, איסור, והצעה <span class="jp">ましょうか</span></h2>
+
+  <p>נסקור את <span class="jp">ましょうか</span> (משבוע 6) בהקשר חדש — הצעת עזרה, ונראה איך כל מבני צורת て עד כה משתלבים יחד.</p>
+
+  <h3 class="sub-head">ましょうか כהצעת עזרה</h3>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">手伝いましょうか。</span> <span class="r">（てつだいましょうか）</span></div>
+      <div class="ex-he">שאעזור? (מציע עזרה)</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">窓を開けましょうか。</span> <span class="r">（まどをあけましょうか）</span></div>
+      <div class="ex-he">שאפתח את החלון?</div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <div class="compare-head"><div>מבנה</div><div>משמעות</div></div>
+    <div class="compare-row"><div class="jp-cell">〜ませんか</div><div>הזמנה (שבוע 6) — "שלא נ...?"</div></div>
+    <div class="compare-row"><div class="jp-cell">〜ましょう</div><div>הצעה/החלטה (שבוע 6) — "בוא נ..."</div></div>
+    <div class="compare-row"><div class="jp-cell">〜ましょうか</div><div>הצעת עזרה (כאן) — "שא...?"</div></div>
+    <div class="compare-row"><div class="jp-cell">〜てもいいですか</div><div>שאלת רשות (כאן) — "מותר ל...?"</div></div>
+    <div class="compare-row"><div class="jp-cell">〜てはいけません</div><div>איסור (כאן) — "אסור ל..."</div></div>
+  </div>
+
+  <h3 class="sub-head">סיכום שבוע — שלט בית-ספר מלא</h3>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">教室で食べてはいけません。</span></div>
+      <div class="ex-he">אסור לאכול בכיתה.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">図書館で話してもいいですが、静かに話してください。</span></div>
+      <div class="ex-he">מותר לדבר בספרייה, אבל אנא דבר בשקט.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">休み時間は外で遊んでもいいです。</span></div>
+      <div class="ex-he">בהפסקה מותר לשחק בחוץ.</div>
+    </div>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — שילוב מבני צורת て</div>
+
+    <h4>ましょうか עם משמעות "עזרה" — איך זה נגזר מאותו מבנה</h4>
+    <p>שים לב שזו אותה צורה דקדוקית בדיוק שלמדת בשבוע 6 (<span class="jp">ましょう</span> + か), רק עם פרשנות הקשרית שונה: כשהפועל הוא דבר שאתה יכול לעשות <em>בשביל מישהו אחר</em> (לעזור, לפתוח, לסגור), <span class="jp">ましょうか</span> נשמע כהצעת עזרה. כשהפועל הוא דבר שעושים <em>ביחד</em> (ללכת, לאכול), זה נשמע כהזמנה. ההבדל הוא פרגמטי (תלוי-הקשר), לא דקדוקי.</p>
+
+    <h4>טבלת המבנים — לוח-בקרה מלא לתקשורת חברתית</h4>
+    <p>חמשת המבנים בטבלה שלמעלה (ませんか, ましょう, ましょうか, てもいいですか, てはいけません) יוצרים יחד "לוח-בקרה" מלא לניהול אינטראקציות חברתיות ביפנית: הזמנה, הצעה, הצעת עזרה, בקשת רשות, וקביעת איסור. ביחד עם てください (בקשה, שבוע 11) ו-ないでください (בקשה שלילית), יש לך כעת כל הכלים לניווט מצבים חברתיים בסיסיים ביפנית.</p>
+
+    <h4>が כמחבר רך — "מותר אבל בתנאי"</h4>
+    <p>במשפט <span class="jp">話してもいいですが、静かに話してください</span> ("מותר לדבר, אבל בשקט"), <span class="jp">が</span> (שבוע 5, "אבל") מחבר רשות עם תנאי/הגבלה. זה דפוס נפוץ ביפנית רשמית — רשות עם תנאי, ולא רשות מוחלטת. תפגוש מבנה דומה הרבה בהוראות ושלטים: "מותר X, אבל Y".</p>
+
+    <h4>ה"שכבות" שנבנו במשך הקורס — מבט לאחור</h4>
+    <p>אם תסתכל על המשפט <span class="jp">休み時間は外で遊んでもいいです</span>, תוכל לזהות שכבות מכל הקורס: <span class="jp">休み時間は</span> (נושא, שבוע 5), <span class="jp">外で</span> (מקום פעולה, שבוע 7), <span class="jp">遊んで</span> (צורת て, שבוע 11), <span class="jp">もいいです</span> (רשות, שבוע זה). זו דוגמה מצוינת לכך שיפנית "נבנית" משכבות שמצטרפות בהדרגה — בדיוק כמו שהקורס הזה בנוי.</p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="הצעת עזרה = ましょうか. 手伝う (לעזור) → 手伝います → 手伝いましょうか.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך מציעים עזרה: "שאעזור?"</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">手伝いますか。</span></button>
+      <button class="opt"><span class="jp">手伝ってもいいですか。</span></button>
+      <button class="opt"><span class="jp">手伝いましょうか。</span></button>
+      <button class="opt"><span class="jp">手伝ってください。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"מותר לפתוח את החלון? — כן, שאפתח?"</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">窓を開けてもいいですか。 — はい、開けましょうか。</span><br>
+      <span style="color:var(--muted);font-size:14px">（まどをあけてもいいですか。 — はい、あけましょうか）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== VOCAB TABLE ===== -->
+<h2 class="section">אוצר מילים — שבוע 12</h2>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">使う</td><td class="jp">つかう</td><td>להשתמש</td></tr>
+    <tr><td class="jp">座る</td><td class="jp">すわる</td><td>לשבת</td></tr>
+    <tr><td class="jp">吸う</td><td class="jp">すう</td><td>לעשן / לשאוף</td></tr>
+    <tr><td class="jp">止める</td><td class="jp">とめる</td><td>לחנות / להפסיק</td></tr>
+    <tr><td class="jp">開ける</td><td class="jp">あける</td><td>לפתוח</td></tr>
+    <tr><td class="jp">閉める</td><td class="jp">しめる</td><td>לסגור</td></tr>
+    <tr><td class="jp">手伝う</td><td class="jp">てつだう</td><td>לעזור</td></tr>
+    <tr><td class="jp">教室</td><td class="jp">きょうしつ</td><td>כיתה</td></tr>
+    <tr><td class="jp">授業</td><td class="jp">じゅぎょう</td><td>שיעור</td></tr>
+    <tr><td class="jp">休み時間</td><td class="jp">やすみじかん</td><td>הפסקה</td></tr>
+    <tr><td class="jp">携帯</td><td class="jp">けいたい</td><td>נייד (טלפון)</td></tr>
+    <tr><td class="jp">タバコ</td><td class="jp">たばこ</td><td>סיגריה</td></tr>
+    <tr><td class="jp">窓</td><td class="jp">まど</td><td>חלון</td></tr>
+    <tr><td class="jp">どうぞ</td><td class="jp">どうぞ</td><td>בבקשה (הענקת רשות)</td></tr>
+    <tr><td class="jp">静かに</td><td class="jp">しずかに</td><td>בשקט</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 תיבת בחינה — אוצר מילים</div>
+</div>
+
+<!-- ===== KANJI TABLE ===== -->
+<h2 class="section k">קאנג'י — שבוע 12 (חזרה ושילוב)</h2>
+<table>
+  <thead><tr><th>קאנג'י</th><th>קריאה</th><th>משמעות</th><th>דוגמה</th></tr></thead>
+  <tbody>
+    <tr><td class="jp big">使</td><td class="jp">つか / し</td><td>שימוש</td><td class="jp">使う（つかう）= להשתמש</td></tr>
+    <tr><td class="jp big">休</td><td class="jp">やす / きゅう</td><td>מנוחה / חופש</td><td class="jp">休み（やすみ）= חופש</td></tr>
+    <tr><td class="jp big">教</td><td class="jp">きょう / おし</td><td>הוראה / לימוד</td><td class="jp">教室（きょうしつ）= כיתה</td></tr>
+    <tr><td class="jp big">室</td><td class="jp">しつ / むろ</td><td>חדר</td><td class="jp">教室（きょうしつ）/ 図書室（としょしつ）</td></tr>
+    <tr><td class="jp big">開</td><td class="jp">あ / かい</td><td>לפתוח</td><td class="jp">開ける（あける）</td></tr>
+    <tr><td class="jp big">閉</td><td class="jp">し / へい</td><td>לסגור</td><td class="jp">閉める（しめる）</td></tr>
+    <tr><td class="jp big">業</td><td class="jp">ぎょう / ごう</td><td>עיסוק / שיעור</td><td class="jp">授業（じゅぎょう）= שיעור</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-kanji">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🔢 תיבת בחינה — קאנג'י</div>
+</div>
+
+<!-- ===== FINAL QUIZ ===== -->
+<h2 class="section">מבחן סיכום — שבוע 12</h2>
+<p style="margin-top:-2px;color:var(--muted)">שאלות מעורבות: דקדוק, אוצר מילים, קאנג'י + חזרה.</p>
+<div class="quiz-widget" id="quiz-final">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🎓 מבחן סיכום</div>
+</div>
+
+<!-- ===== BONUS DRILL ===== -->
+<h2 class="section" style="background:linear-gradient(100deg,#4b6a8f,#2e4d6b)">🧩 תרגול מעמיק — שבוע 12</h2>
+<p style="margin-top:-2px;color:var(--muted)">13 שאלות: רשות, איסור, שילוב חלקיקים והבנת משפט.</p>
+<div class="quiz-widget" id="quiz-bonus">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:#4b6a8f;margin-bottom:8px">🧩 תרגול מעמיק</div>
+</div>
+
+<div class="done-banner">
+  <h2>סיימת את שבוע 12! <span class="jp">よくできました</span> 🎉</h2>
+  <p>
+    יש לך עכשיו דרכים מלאות לבקש רשות, לקבוע איסור, ולהציע עזרה.<br><br>
+    שבוע 13: רצונות — <span class="jp">〜たい</span> ("רוצה ל...") ו-<span class="jp">〜がほしい</span> ("רוצה [דבר]").
+  </p>
+</div>
+
+<p class="footer-note"><span class="jp" dir="ltr">日本語 N5</span> · שבוע 12 מתוך 20 · <span class="jp" dir="ltr">頑張って！</span></p>
+</div>
+
+<script>
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+document.querySelectorAll('.check').forEach(q=>{
+  const ans=+q.dataset.answer,fb=q.querySelector('.fb'),opts=q.querySelectorAll('.opt');
+  opts.forEach((btn,i)=>{
+    btn.addEventListener('click',()=>{
+      if(q.classList.contains('done'))return; q.classList.add('done');
+      opts.forEach((b,j)=>{b.disabled=true;if(j===ans)b.classList.add('correct');else if(j===i)b.classList.add('wrong');});
+      const ok=i===ans;
+      fb.textContent=(ok?'✓ נכון! ':'✗ לא מדויק. ')+(q.dataset.explain||'');
+      fb.className='fb '+(ok?'fb-ok':'fb-no');
+    });
+  });
+});
+document.querySelectorAll('.reveal-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const a=b.nextElementSibling,show=a.style.display!=='block';
+    a.style.display=show?'block':'none';b.textContent=show?'הסתר תשובה':'הצג תשובה';
+  });
+});
+function makeQuiz(rootId,data){
+  const root=document.getElementById(rootId);
+  const head=root.querySelector('.htag');
+  let order,idx,score,locked;
+  function start(){order=shuffle([...data.keys()]);idx=0;score=0;locked=false;render();}
+  function render(){
+    [...root.children].forEach(c=>{if(c!==head)c.remove();});
+    if(idx>=order.length)return result();
+    const item=data[order[idx]];
+    const opts=shuffle(item.options.map((t,i)=>({t,correct:i===item.answer})));
+    const box=document.createElement('div');
+    box.innerHTML=`
+      <div class="q-progress"><span>שאלה ${idx+1} מתוך ${order.length}</span><span>ניקוד: ${score}</span></div>
+      <div class="q-bar"><span style="width:${idx/order.length*100}%"></span></div>
+      <p class="q-text">${item.q}</p>
+      <div class="q-options"></div>
+      <p class="fb"></p>
+      <button class="next-btn" style="display:none;margin-top:12px">הבא ←</button>`;
+    root.appendChild(box);
+    const wrap=box.querySelector('.q-options'),fb=box.querySelector('.fb'),next=box.querySelector('.next-btn');
+    opts.forEach(o=>{
+      const btn=document.createElement('button');btn.className='opt';btn.innerHTML=o.t;
+      btn.addEventListener('click',()=>{
+        if(locked)return;locked=true;
+        wrap.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        if(o.correct){btn.classList.add('correct');score++;fb.textContent='✓ נכון!';fb.className='fb fb-ok';}
+        else{btn.classList.add('wrong');fb.textContent='✗ לא מדויק'+(item.note?(' — '+item.note):'');fb.className='fb fb-no';
+          [...wrap.children].forEach((c,k)=>{if(opts[k].correct)c.classList.add('correct');});}
+        next.style.display='inline-block';
+      });
+      wrap.appendChild(btn);
+    });
+    next.addEventListener('click',()=>{idx++;locked=false;render();});
+  }
+  function result(){
+    const pct=Math.round(score/data.length*100);
+    const msg=pct>=80?'מצוין! אתה שולט בחומר 🎉':pct>=60?'יפה! עוד קצת חזרה ותהיה מצוין.':'כדאי לחזור על החומר ולנסות שוב.';
+    const box=document.createElement('div');box.className='q-result';
+    box.innerHTML=`<div class="score-big">${score} / ${data.length}</div><p>${msg}</p><button class="next-btn">התחל מחדש 🔁</button>`;
+    root.appendChild(box);
+    box.querySelector('.next-btn').addEventListener('click',start);
+  }
+  start();
+}
+const J=s=>`<span class="jp">${s}</span>`;
+
+makeQuiz('quiz-vocab-preview',[
+  {q:'מה הפירוש של '+J('使う')+'?',options:['להשתמש','לקנות','למכור','לעבוד'],answer:0},
+  {q:'מה הפירוש של '+J('座る')+'?',options:['לשבת','לעמוד','לשכב','ללכת'],answer:0},
+  {q:'מה הפירוש של '+J('吸う')+'?',options:['לעשן / לשאוף','לאכול','לשתות','לנשום'],answer:0},
+  {q:'מה הפירוש של '+J('開ける')+'?',options:['לפתוח','לסגור','לשבור','לתקן'],answer:0},
+  {q:'מה הפירוש של '+J('閉める')+'?',options:['לסגור','לפתוח','לנעול','להוציא'],answer:0},
+  {q:'מה הפירוש של '+J('手伝う')+'?',options:['לעזור','לעבוד','לבקש','לתת'],answer:0},
+  {q:'מה הפירוש של '+J('教室')+'?',options:['כיתה','בית-ספר','משרד','חדר שינה'],answer:0},
+  {q:'מה הפירוש של '+J('授業')+'?',options:['שיעור','הפסקה','מבחן','שיעורי בית'],answer:0},
+  {q:'מה הפירוש של '+J('休み時間')+'?',options:['הפסקה','שיעור','חופש','עבודה'],answer:0},
+  {q:'מה הפירוש של '+J('どうぞ')+'?',options:['בבקשה (רשות)','תודה','סליחה','בשמחה'],answer:0},
+  {q:'מה הפירוש של '+J('自転車')+'?',options:['אופניים','קטנוע','מכונית','רכבת'],answer:0},
+  {q:'מה הפירוש של '+J('禁止')+'?',options:['אסור / איסור','מותר','חוק','כלל'],answer:0},
+  {q:'מה הפירוש של '+J('わかりました')+'?',options:['הבנתי','לא הבנתי','שאלה','תשובה'],answer:0}
+]);
+
+makeQuiz('quiz-vocab',[
+  {q:'מה הפירוש של '+J('使う')+'?',options:['להשתמש','לקנות','למכור','לעבוד'],answer:0},
+  {q:'מה הפירוש של '+J('座る')+'?',options:['לשבת','לעמוד','לשכב','ללכת'],answer:0},
+  {q:'מה הפירוש של '+J('吸う')+'?',options:['לעשן / לשאוף','לאכול','לשתות','לנשום'],answer:0},
+  {q:'מה הפירוש של '+J('開ける')+'?',options:['לפתוח','לסגור','לשבור','לתקן'],answer:0},
+  {q:'מה הפירוש של '+J('閉める')+'?',options:['לסגור','לפתוח','לנעול','להוציא'],answer:0},
+  {q:'מה הפירוש של '+J('手伝う')+'?',options:['לעזור','לעבוד','לבקש','לתת'],answer:0},
+  {q:'מה הפירוש של '+J('教室')+'?',options:['כיתה','בית-ספר','משרד','חדר שינה'],answer:0},
+  {q:'מה הפירוש של '+J('授業')+'?',options:['שיעור','הפסקה','מבחן','שיעורי בית'],answer:0},
+  {q:'מה הפירוש של '+J('休み時間')+'?',options:['הפסקה','שיעור','חופש','עבודה'],answer:0},
+  {q:'מה הפירוש של '+J('どうぞ')+'?',options:['בבקשה (רשות)','תודה','סליחה','בשמחה'],answer:0}
+]);
+
+makeQuiz('quiz-kanji',[
+  {q:'מה הפירוש של '+J('<span class="big">使</span>')+'?',options:['שימוש','עזרה','עבודה','לימוד'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">休</span>')+'?',options:['מנוחה / חופש','עבודה','לימוד','שיעור'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">教</span>')+'?',options:['הוראה / לימוד','מנוחה','עבודה','בית'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">室</span>')+'?',options:['חדר','בית','בניין','משרד'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">開</span>')+'?',options:['לפתוח','לסגור','לנעול','לשבור'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">閉</span>')+'?',options:['לסגור','לפתוח','להרוס','לבנות'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">業</span>')+'?',options:['עיסוק / שיעור','חדר','בית','מורה'],answer:0},
+  {q:'מה הקריאה של '+J('教室')+'?',options:[J('きょうしつ'),J('おしつ'),J('きょうむろ'),J('おしむろ')],answer:0,note:'教室 = きょうしつ = כיתה.'},
+  {q:'מה הקריאה של '+J('授業')+'?',options:[J('じゅぎょう'),J('じゅごう'),J('しゅぎょう'),J('じゅうぎょう')],answer:0,note:'授業 = じゅぎょう = שיעור.'}
+]);
+
+makeQuiz('quiz-final',[
+  {q:'איך שואלים "מותר לשבת כאן?"',options:[J('ここに座ってもいいですか。'),J('ここに座りますか。'),J('ここに座ってはいけませんか。'),J('ここに座らないでください。')],answer:0},
+  {q:'איך אומרים "אסור לעשן כאן"?',options:[J('ここでタバコを吸ってはいけません。'),J('ここでタバコを吸ってもいいです。'),J('ここでタバコを吸いません。'),J('ここでタバコを吸わないでください。')],answer:0},
+  {q:'איך אומרים "לא חייב לבוא היום"?',options:[J('今日は来なくてもいいです。'),J('今日は来てはいけません。'),J('今日は来てもいいです。'),J('今日は来ません。')],answer:0,note:'לא חייב = なくてもいいです.'},
+  {q:'מה ההבדל בין '+J('てもいいです')+' ל-'+J('てはいけません')+'?',options:['הראשון = מותר; השני = אסור','הראשון = אסור; השני = מותר','אין הבדל','שניהם שלילה'],answer:0},
+  {q:'איך מציעים עזרה: "שאעזור?"',options:[J('手伝いましょうか。'),J('手伝いますか。'),J('手伝ってもいいですか。'),J('手伝ってください。')],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">開</span>')+'?',options:['לפתוח','לסגור','חדר','עזרה'],answer:0},
+  {q:'מה הפירוש של '+J('携帯を使ってはいけません')+'?',options:['אסור להשתמש בנייד','מותר להשתמש בנייד','חייב להשתמש בנייד','לא חייב להשתמש בנייד'],answer:0},
+  {q:'איך אומרים "מותר לדבר, אבל בשקט"?',options:[J('話してもいいですが、静かに話してください。'),J('話してはいけませんが、静かです。'),J('話さなくてもいいですが、静かです。'),J('話してもいいですから、静かにしません。')],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">室</span>')+'?',options:['חדר','דלת','קיר','שולחן'],answer:0},
+  {q:'איך אומרים "שאפתח את החלון?"',options:[J('窓を開けましょうか。'),J('窓を開けてもいいですか。'),J('窓を開けてはいけません。'),J('窓を開けません。')],answer:0,note:'הצעת עזרה = ましょうか.'}
+]);
+
+makeQuiz('quiz-bonus',[
+  // הבנת משפט
+  {q:'מה הפירוש של '+J('図書館で話してもいいですが、静かに話してください。')+'?',
+   options:['מותר לדבר בספרייה, אבל אנא בשקט','אסור לדבר בספרייה בכלל','חייבים לדבר בשקט בספרייה','בספרייה אסור להיכנס'],answer:0,
+   note:'てもいいですが = מותר אבל...; 静かに話してください = אנא דבר בשקט.'},
+  {q:'מה הפירוש של '+J('休み時間は携帯を使ってもいいですが、授業中はいけません。')+'?',
+   options:['בהפסקה מותר נייד, אבל בשיעור אסור','בשיעור מותר נייד, בהפסקה אסור','אסור נייד בכלל','מותר נייד תמיד'],answer:0,
+   note:'休み時間は…もいいですが = בהפסקה מותר, אבל; 授業中はいけません = בשיעור אסור.'},
+  // השלמה
+  {q:'השלם: "מותר לקרוא את הספר הזה?" '+J('この本を読___か。'),
+   options:[J('んでもいいです'),J('まなくてもいいです'),J('んではいけません'),J('みません')],answer:0,
+   note:'読む → 読んで (って) + もいいですか.'},
+  {q:'השלם: "אסור לחנות מכונית כאן." '+J('ここに車を止___。'),
+   options:[J('めてはいけません'),J('めてもいいです'),J('めなくてもいいです'),J('めません')],answer:0,
+   note:'止める → 止めて (て) + はいけません.'},
+  {q:'השלם: "לא חייב לעשות שיעורי בית היום." '+J('今日は宿題を___。'),
+   options:[J('しなくてもいいです'),J('してはいけません'),J('してもいいです'),J('しません')],answer:0,
+   note:'する → しなくて (ない+て) + もいいです.'},
+  // זיהוי שגיאה
+  {q:'מי הנכון — "מותר להשתמש בעט?"',
+   options:[J('ペンを使ってもいいですか。'),J('ペンを使ってはいけませんか。'),J('ペンを使いますか。'),J('ペンを使わないでください。')],answer:0,
+   note:'שאלת רשות = てもいいですか.'},
+  {q:'מי הנכון — "אסור לאכול בכיתה"',
+   options:[J('教室で食べてはいけません。'),J('教室で食べてもいいです。'),J('教室で食べなくてもいいです。'),J('教室で食べます。')],answer:0},
+  // הבחנה בין מבנים
+  {q:'מה ההבדל בין '+J('行かなくてもいいです')+' ל-'+J('行ってはいけません')+'?',
+   options:['הראשון = לא חייב ללכת (אבל אפשר); השני = אסור ללכת בכלל','שניהם אומרים אסור ללכת','הראשון = אסור; השני = מותר','אין הבדל'],answer:0,
+   note:'なくてもいい = רשות-שלילית (אין חיוב); てはいけません = איסור מוחלט.'},
+  {q:'מה ההבדל בין '+J('ましょうか')+' ל-'+J('ませんか')+' (תזכורת משבוע 6)?',
+   options:['הראשון = הצעת עזרה/פעולה; השני = הזמנה','שניהם הזמנה','הראשון = איסור; השני = רשות','אין הבדל'],answer:0},
+  // שילוב מלא
+  {q:'תרגם: "מורה, מותר לפתוח את החלון? — כן, בבקשה, אבל אל תשכח לסגור אותו אחר כך."<br><span style="font-size:13px;color:var(--muted)">(לשכוח = '+J('忘れる/わすれる')+')</span>',
+   options:[
+     J('先生、窓を開けてもいいですか。 — はい、どうぞ。でも、あとで閉めるのを忘れないでください。'),
+     J('先生、窓を開けてはいけませんか。 — はい、どうぞ。でも、あとで閉めてください。'),
+     J('先生、窓を開けましょうか。 — はい、お願いします。でも、閉めてもいいです。'),
+     J('先生、窓を開けなくてもいいですか。 — はい、どうぞ。閉めてはいけません。')
+   ],answer:0,
+   note:'שאלת רשות (てもいいですか) + תשובה חיובית (どうぞ) + בקשה שלילית (忘れないでください).'},
+  // קאנג'י בהקשר
+  {q:'מה הפירוש של '+J('教室の窓を閉めてもいいですか。')+'?',
+   options:['מותר לסגור את חלון הכיתה?','אסור לסגור את חלון הכיתה','החלון בכיתה סגור','איפה החלון בכיתה?'],answer:0,
+   note:'教室の窓 = חלון הכיתה; 閉めてもいいですか = מותר לסגור?'},
+  {q:'מה הפירוש של '+J('授業中に教室を出てはいけません。')+'?',
+   options:['אסור לצאת מהכיתה בזמן השיעור','מותר לצאת מהכיתה בשיעור','חייבים לצאת מהכיתה','השיעור נגמר']
+   ,answer:0,
+   note:'授業中に = בזמן השיעור; 教室を出る = לצאת מהכיתה (לא, להבדיל: 教室で = בכיתה; 教室を出る = לצאת ממנה); てはいけません = אסור.'},
+  {q:'מה הפירוש של '+J('休み時間は外で遊んでもいいですが、教室の中では走ってはいけません。')+'?',
+   options:['בהפסקה מותר לשחק בחוץ, אבל בתוך הכיתה אסור לרוץ','בכיתה מותר לרוץ','בהפסקה אסור לשחק','בחוץ אסור לשחק כלל'],answer:0,
+   note:'休み時間は…もいいですが = בהפסקה מותר, אבל; 教室の中では…はいけません = בתוך הכיתה אסור.'}
+]);
+</script>
+</body>
+</html>

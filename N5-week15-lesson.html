@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שבוע 15 — השוואות ומנייה | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+    --blue:#4b6a8f; --blue-soft:#e3eaf3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre",Georgia,serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px,rgba(120,100,70,.06) 1px,transparent 0);
+    background-size:22px 22px;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 90px;}
+  .jp{font-family:"Noto Sans JP",system-ui,sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+  .big{font-size:1.35em; line-height:1;}
+
+  header.masthead{text-align:center; padding:56px 20px 34px; border-bottom:3px double var(--line); margin-bottom:6px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(28px,5.5vw,40px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:17px;}
+  .nav-links{display:flex; justify-content:space-between; margin:14px 0 0; font-size:14px;}
+  .nav-links span{color:var(--muted); font-family:"Heebo",sans-serif; font-weight:700;}
+
+  .lead{background:var(--card); border:1px solid var(--line); border-right:5px solid var(--accent); border-radius:12px; padding:18px 22px; margin:26px 0;}
+  .lead h2{font-family:"Heebo",sans-serif; font-size:18px; margin:0 0 6px;}
+  .lead ol{margin:6px 0 0; padding-inline-start:1.3em;}
+  .lead li{margin:3px 0;}
+
+  .topic{margin:46px 0;}
+  .topic-tag{display:inline-block; background:var(--accent); color:#fff; font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; padding:5px 14px; border-radius:999px; box-shadow:0 3px 8px rgba(150,60,30,.22);}
+  .topic h2{font-family:"Heebo",sans-serif; font-weight:800; font-size:25px; margin:12px 0 8px;}
+  .topic p{margin:.6em 0;}
+  .topic strong{color:#7e2a13;}
+
+  .formula{text-align:center; font-size:19px; background:#fff3ec; border:1px solid #e8c9b8; border-radius:10px; padding:12px 20px; margin:14px 0;}
+
+  h3.sub-head{font-family:"Heebo",sans-serif; font-weight:700; font-size:19px; color:var(--accent); margin:22px 0 8px; border-right:4px solid var(--accent); padding-right:10px;}
+
+  .ex{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:6px 16px; margin:16px 0;}
+  .ex-row{padding:10px 0; border-bottom:1px dashed var(--line);}
+  .ex-row:last-child{border-bottom:none;}
+  .ex-jp{direction:ltr; unicode-bidi:isolate; text-align:right; font-family:"Noto Sans JP",sans-serif; font-size:19px; font-weight:500;}
+  .ex-jp .r{color:var(--muted); font-size:15px; font-weight:400;}
+  .ex-he{color:var(--ink); font-size:16px;}
+
+  /* counter table */
+  .counter-table{background:var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden; margin:16px 0;}
+  .counter-table table{margin:0; border-radius:0; font-size:15px;}
+  .counter-table thead th{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; padding:8px 10px; text-align:center;}
+  .counter-table td{padding:8px 10px; border-top:1px solid var(--line); text-align:center;}
+  .counter-table tbody tr:nth-child(even){background:#fbf7ee;}
+  .counter-table td.jp-cell{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:16px;}
+  .counter-table td.cat{text-align:right; font-family:"Heebo",sans-serif; font-weight:700; font-size:13px;}
+
+  .compare{background:var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden; margin:16px 0;}
+  .compare-head{display:grid; grid-template-columns:1fr 1fr; background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px;}
+  .compare-head div,.compare-row div{padding:9px 14px;}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--line); font-size:16px;}
+  .compare-row div.jp-cell{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px;}
+
+  .qword-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin:16px 0;}
+  @media(max-width:540px){.qword-grid{grid-template-columns:1fr 1fr;}}
+  .qw-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:10px 12px; text-align:center;}
+  .qw-card .qw-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:18px; font-weight:700; color:var(--accent);}
+  .qw-card .qw-he{font-size:13px; margin-top:3px;}
+
+  .dialogue{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .dialogue-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--gold); margin-bottom:12px;}
+  .d-row{display:flex; gap:10px; align-items:flex-start; margin:10px 0;}
+  .d-who{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--muted); min-width:40px; padding-top:4px;}
+  .d-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px; font-weight:500; flex:1;}
+  .d-he{font-size:15px; color:var(--muted);}
+
+  .note{background:#faf5ea; border:1px dashed var(--line); border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .note b{color:var(--accent);}
+  .warn{background:#fff5f3; border:1px dashed #e8b8aa; border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .warn b{color:var(--no);}
+
+  /* deepen / study-deeper section */
+  .deepen{background:linear-gradient(160deg,#f3eee0,#ece3cf); border:1.5px solid #d8c89a; border-radius:14px; padding:20px 24px; margin:24px 0;}
+  .deepen-head{display:flex; align-items:center; gap:8px; font-family:"Heebo",sans-serif; font-weight:800; font-size:14px; color:#7d6324; margin-bottom:12px;}
+  .deepen-head::before{content:"🔎"; font-size:16px;}
+  .deepen h4{font-family:"Heebo",sans-serif; font-weight:700; font-size:16px; color:#7d6324; margin:16px 0 6px;}
+  .deepen h4:first-of-type{margin-top:0;}
+  .deepen p{margin:.5em 0; font-size:16px;}
+  .deepen .ex{background:#fffdf8;}
+
+  .qbox{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:16px 0; box-shadow:0 2px 8px rgba(80,60,30,.04);}
+  .qbox .htag{font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; color:var(--ok); margin-bottom:8px; display:flex; align-items:center; gap:7px;}
+  .qbox .htag::before{content:"✎"; font-size:15px;}
+  .q-text{font-size:18px; margin:0 0 12px; font-weight:500;}
+  .q-options{display:flex; flex-direction:column; gap:9px;}
+  .opt{font-family:inherit; font-size:17px; text-align:right; background:#fff; border:1.5px solid var(--line); border-radius:9px; padding:11px 16px; cursor:pointer; transition:.15s; color:var(--ink);}
+  .opt:hover:not(:disabled){border-color:var(--accent); background:#fffaf3;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:var(--ok-soft); border-color:var(--ok); color:#1f4d43; font-weight:700;}
+  .opt.wrong{background:var(--no-soft); border-color:var(--no); color:#7e2a13;}
+  .fb{margin:11px 0 0; font-size:16px; font-weight:600; min-height:1px;}
+  .fb-ok{color:var(--ok);} .fb-no{color:var(--no);}
+
+  .reveal{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .reveal-btn,.next-btn{font-family:"Heebo",sans-serif; font-weight:700; font-size:15px; background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 18px; cursor:pointer; transition:.15s;}
+  .reveal-btn:hover,.next-btn:hover{background:#8e2f17;}
+  .reveal-ans{display:none; margin-top:12px; padding:12px 16px; background:var(--ok-soft); border-radius:8px; font-size:17px;}
+
+  .quiz-widget{background:linear-gradient(160deg,#fffdf8,#fbf4e8); border:1.5px solid var(--line); border-radius:14px; padding:22px; margin:18px 0; box-shadow:0 4px 14px rgba(80,60,30,.07);}
+  .q-progress{font-family:"Heebo",sans-serif; font-size:13px; color:var(--muted); margin-bottom:10px; display:flex; justify-content:space-between;}
+  .q-bar{height:6px; background:#eadfc9; border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  .q-bar span{display:block; height:100%; background:var(--accent); transition:width .3s;}
+  .q-result{text-align:center; padding:14px 0;}
+  .score-big{font-family:"Heebo",sans-serif; font-weight:800; font-size:46px; color:var(--accent); line-height:1;}
+  .q-result p{font-size:18px; margin:10px 0 16px;}
+
+  h2.section{font-family:"Heebo",sans-serif; font-weight:800; font-size:26px; margin:54px 0 8px; padding:12px 20px; color:#fff; background:linear-gradient(100deg,var(--gold),#7d6324); border-radius:10px;}
+  h2.section.k{background:linear-gradient(100deg,var(--accent),#8e2f17);}
+
+  table{width:100%; border-collapse:collapse; margin:.4em 0 18px; font-size:16px; background:#fff; border-radius:10px; overflow:hidden; border:1px solid var(--line);}
+  thead th{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px; padding:9px 12px; text-align:right;}
+  td{padding:9px 12px; border-top:1px solid var(--line);}
+  tbody tr:nth-child(even){background:#fbf7ee;}
+  td.jp{text-align:right;} td.jp.big{text-align:center; color:var(--accent); font-size:1.5em;}
+
+  .done-banner{text-align:center; margin:50px 0 0; padding:26px; background:var(--ok-soft); border:1px solid #bcd9d0; border-radius:14px;}
+  .done-banner h2{font-family:"Heebo",sans-serif; color:#1f4d43; margin:0 0 6px;}
+  .footer-note{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">שבוע 15 מתוך 20 · <span class="jp" dir="ltr">JLPT N5</span> · חלק ד'</div>
+  <h1>השוואות ומנייה</h1>
+  <p class="sub"><span class="jp">より</span> / <span class="jp">のほうが</span>, מילות מנייה, וחזרה על מילות שאלה</p>
+  <div class="nav-links">
+    <span>← שבוע 14: חיבור רעיונות</span>
+    <span>שבוע 16: חיבור וסיוג ←</span>
+  </div>
+</header>
+
+<div class="lead">
+  <h2>מה נלמד השבוע</h2>
+  <ol>
+    <li>השוואה בין שני דברים — <span class="jp">より</span> ו-<span class="jp">のほうが</span>.</li>
+    <li>מילות מנייה (counters) — איך סופרים דברים, אנשים, וזמן.</li>
+    <li>חזרה מקובצת על כל מילות השאלה שלמדנו בקורס.</li>
+  </ol>
+  <p style="margin:10px 0 0;font-size:15px;color:var(--muted)">שבוע זה מוסיף שתי יכולות מעשיות מאוד: להשוות בין דברים, ולספור כל דבר ביפנית — שני נושאים שמופיעים כל הזמן בחיים האמיתיים.</p>
+</div>
+
+<!-- ===== PREVIEW VOCAB TABLE (NEW) ===== -->
+<h2 class="section" style="margin-top:30px">📋 כל אוצר המילים של השבוע — מבט מקדים</h2>
+<p style="margin-top:-2px;color:var(--muted)">טבלה זו אוספת את כל המילים החדשות שתפגוש השבוע — גם אלה שבטבלת הסיכום בהמשך, וגם אלה שמופיעות רק בתוך ההסברים והדוגמאות. עברית ואנגלית.</p>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th><th>English</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">より</td><td class="jp">より</td><td>מ- (בהשוואה)</td><td>than (comparison)</td></tr>
+    <tr><td class="jp">ほう</td><td class="jp">ほう</td><td>צד / כיוון</td><td>side / direction</td></tr>
+    <tr><td class="jp">どちら</td><td class="jp">どちら</td><td>איזה (משני)</td><td>which (of two)</td></tr>
+    <tr><td class="jp">いつ</td><td class="jp">いつ</td><td>מתי</td><td>when</td></tr>
+    <tr><td class="jp">人</td><td class="jp">にん／り</td><td>מונה אנשים</td><td>counter for people</td></tr>
+    <tr><td class="jp">枚</td><td class="jp">まい</td><td>מונה דק/שטוח</td><td>counter for flat/thin objects</td></tr>
+    <tr><td class="jp">本</td><td class="jp">ほん</td><td>מונה ארוך/דק</td><td>counter for long/thin objects</td></tr>
+    <tr><td class="jp">冊</td><td class="jp">さつ</td><td>מונה ספרים</td><td>counter for books</td></tr>
+    <tr><td class="jp">匹</td><td class="jp">ひき</td><td>מונה בעלי-חיים קטנים</td><td>counter for small animals</td></tr>
+    <tr><td class="jp">つ</td><td class="jp">つ</td><td>מונה כללי</td><td>general counter</td></tr>
+    <tr><td class="jp">お茶</td><td class="jp">おちゃ</td><td>תה</td><td>tea</td></tr>
+    <tr><td class="jp">飛ぶ</td><td class="jp">とぶ</td><td>לעוף / לטוס</td><td>to fly</td></tr>
+    <tr><td class="jp">どれ</td><td class="jp">どれ</td><td>איזה (משלושה+)</td><td>which (of three or more)</td></tr>
+    <tr><td class="jp">何時</td><td class="jp">なんじ</td><td>איזו שעה</td><td>what time</td></tr>
+    <tr><td class="jp">何曜日</td><td class="jp">なんようび</td><td>איזה יום</td><td>what day of the week</td></tr>
+    <tr><td class="jp">いくら</td><td class="jp">いくら</td><td>כמה עולה</td><td>how much (price)</td></tr>
+    <tr><td class="jp">どう</td><td class="jp">どう</td><td>איך</td><td>how</td></tr>
+    <tr><td class="jp">どうして</td><td class="jp">どうして</td><td>מדוע</td><td>why</td></tr>
+    <tr><td class="jp">いくつ</td><td class="jp">いくつ</td><td>כמה (כמות)</td><td>how many</td></tr>
+    <tr><td class="jp">何人</td><td class="jp">なんにん</td><td>כמה אנשים</td><td>how many people</td></tr>
+    <tr><td class="jp">紙</td><td class="jp">かみ</td><td>נייר</td><td>paper</td></tr>
+    <tr><td class="jp">動物</td><td class="jp">どうぶつ</td><td>חיה</td><td>animal</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab-preview">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 מבחן מקדים — כל אוצר המילים של השבוע</div>
+</div>
+
+<!-- ========== TOPIC 1: より / のほうが ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 1</span>
+  <h2>השוואה: <span class="jp">より</span> ו-<span class="jp">のほうが</span></h2>
+
+  <p>להשוואה בין שני דברים ("X יותר Y מ-Z"), יפנית משתמשת בשני חלקיקים שעובדים ביחד: <span class="jp">より</span> מסמן את <strong>הדבר שמשווים אליו</strong>, ו-<span class="jp">のほうが</span> מסמן את <strong>הדבר העדיף</strong>.</p>
+
+  <div class="formula"><strong>[B] <span class="jp">より</span> [A] <span class="jp">のほうが</span> [תואר]です。</strong> = "A יותר [תואר] מ-B"</div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">電車<b>より</b>バス<b>のほうが</b>安いです。</span> <span class="r">（でんしゃよりバスのほうがやすいです）</span></div>
+      <div class="ex-he">אוטובוס זול יותר מרכבת.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">猫<b>より</b>犬<b>のほうが</b>好きです。</span> <span class="r">（ねこよりいぬのほうがすきです）</span></div>
+      <div class="ex-he">אוהב כלבים יותר מחתולים.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">日本語<b>のほうが</b>英語<b>より</b>難しいです。</span></div>
+      <div class="ex-he">יפנית קשה יותר מאנגלית. (סדר הפוך — גם תקין!)</div>
+    </div>
+  </div>
+
+  <div class="note"><b>סדר גמיש:</b> <span class="jp">より</span> ו-<span class="jp">のほうが</span> יכולים להופיע בכל סדר במשפט — מה שחשוב הוא <strong>איזה מילה מקבלת איזה חלקיק</strong>, לא הסדר עצמו. שני המשפטים בדוגמה האחרונה אומרים את אותו דבר.</p></div>
+
+  <h3 class="sub-head">שאלת השוואה: どちら</h3>
+  <div class="formula"><strong>[A] <span class="jp">と</span> [B] <span class="jp">と</span>、どちらが[תואר]ですか。</strong> = "מי יותר [תואר], A או B?"</div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">猫と犬と、どちらが好きですか。</span> <span class="r">（ねこといぬと、どちらがすきですか）</span></div>
+      <div class="ex-he">מי אתה אוהב יותר, חתולים או כלבים?</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">犬のほうが好きです。</span> <span class="r">（いぬのほうがすきです）</span></div>
+      <div class="ex-he">אני אוהב כלבים יותר.</div>
+    </div>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="B より A のほうが [תואר]です. אוטובוס > רכבת (זול) ← בס より = רכבת, アバス のほうが.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "אוטובוס זול יותר מרכבת"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">電車よりバスのほうが安いです。</span></button>
+      <button class="opt"><span class="jp">バスより電車のほうが安いです。</span></button>
+      <button class="opt"><span class="jp">電車とバスが安いです。</span></button>
+      <button class="opt"><span class="jp">バスは電車が安いです。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="שאלת השוואה בין שני דברים = AとBと、どちらが〜.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך שואלים "מי אתה אוהב יותר, קפה או תה?" (<span class="jp">お茶 / おちゃ</span> = תה)</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">コーヒーとお茶が好きですか。</span></button>
+      <button class="opt"><span class="jp">コーヒーよりお茶が好きですか。</span></button>
+      <button class="opt"><span class="jp">コーヒーとお茶と、どちらが好きですか。</span></button>
+      <button class="opt"><span class="jp">コーヒーのほうがお茶ですか。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — השוואות より/のほうが</div>
+
+    <h4>למה אין "צורת השוואה" כמו ב-er/-est אנגלי</h4>
+    <p>בניגוד לאנגלית (bigger, biggest) או עברית ("יותר גדול"), ביפנית התואר עצמו <strong>לא משתנה</strong> בהשוואה — <span class="jp">安い</span> נשאר <span class="jp">安い</span> בכל ההקשרים. כל "עבודת ההשוואה" מתבצעת על ידי החלקיקים <span class="jp">より</span> ו-<span class="jp">のほうが</span>, לא על ידי שינוי בתואר עצמו. זה שונה מהותית מהגישה האירופית להשוואה, ושווה לזכור: לעולם אל תנסה "להטות" תואר יפני להשוואה.</p>
+
+    <h4>ほう — "צד/כיוון" כעיקרון מאחורי המבנה</h4>
+    <p><span class="jp">ほう</span> (כתוב גם <span class="jp">方</span>) פירושו "צד" או "כיוון" — <span class="jp">のほうが</span> פירושו המילולי "הצד של..." (הצד העדיף/הנבחר). זה מסביר את ההיגיון: כשמשווים שני דברים, אתה בעצם "בוחר צד" — <span class="jp">犬のほうが好きです</span> = "הצד של הכלבים הוא מה שאני אוהב [יותר]".</p>
+
+    <h4>יותר... / פחות... — איך לבטא את שני הכיוונים</h4>
+    <p>המבנה שלמדת מבטא "X יותר מ-Y". כדי לומר את ההפך ("X פחות מ-Y"), אפשר להפוך את הסדר: אם <span class="jp">電車よりバスのほうが安い</span> = "אוטובוס זול יותר מרכבת", אז זה אוטומטית גם אומר "רכבת זולה פחות מאוטובוס" — אותה השוואה, רק זווית הפוכה. ביפנית, בניגוד לעברית, לרוב לא צריך מילה נפרדת ל"פחות" — פשוט הופכים את הסדר במשפט.</p>
+
+    <h4>どちら מול どれ — שתי "מי/איזה" לפי כמות אפשרויות</h4>
+    <p>שים לב ש-<span class="jp">どちら</span> משמש <strong>רק לבחירה בין שני דברים</strong> (כמו "איזה משני אלה"). כששואלים בין שלושה דברים ומעלה, משתמשים ב-<span class="jp">どれ</span> ("איזה, מתוך כמה אפשרויות") שלמדת בשבוע 1. זה הבדל מספרי שכדאי לזכור: 2 אפשרויות = どちら; 3+ אפשרויות = どれ.</p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"רוצה לטוס יותר מללכת ברגל." (טס = יקר/מהיר יותר)</strong><br>
+    <span style="font-size:14px;color:var(--muted)">(לטוס = <span class="jp">飛ぶ / とぶ</span>; ברגל = <span class="jp">歩く</span>)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">歩くより飛ぶほうがいいです。</span><br>
+      <span style="color:var(--muted);font-size:14px">（あるくよりとぶほうがいいです）</span><br>
+      <span style="font-size:14px">שים לב: לפני פועל, ほうが בלי の.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 2: COUNTERS ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 2</span>
+  <h2>מילות מנייה (Counters)</h2>
+
+  <p>ביפנית, סופרים דברים שונים עם <strong>מילות מנייה</strong> שונות — תלוי בצורה/קטגוריה של הדבר. זה שונה מעברית, שם רק המספר משתנה.</p>
+
+  <div class="counter-table">
+    <table>
+      <thead><tr><th>קטגוריה</th><th>1</th><th>2</th><th>3</th><th>שאלה</th></tr></thead>
+      <tbody>
+        <tr><td class="cat">אנשים — 人</td><td class="jp-cell">一人（ひとり）</td><td class="jp-cell">二人（ふたり）</td><td class="jp-cell">三人（さんにん）</td><td class="jp-cell">何人（なんにん）</td></tr>
+        <tr><td class="cat">חפצים דקים/שטוחים — 枚</td><td class="jp-cell">一枚（いちまい）</td><td class="jp-cell">二枚（にまい）</td><td class="jp-cell">三枚（さんまい）</td><td class="jp-cell">何枚（なんまい）</td></tr>
+        <tr><td class="cat">חפצים ארוכים/דקים — 本</td><td class="jp-cell">一本（いっぽん）</td><td class="jp-cell">二本（にほん）</td><td class="jp-cell">三本（さんぼん）</td><td class="jp-cell">何本（なんぼん）</td></tr>
+        <tr><td class="cat">ספרים/כרכים — 冊</td><td class="jp-cell">一冊（いっさつ）</td><td class="jp-cell">二冊（にさつ）</td><td class="jp-cell">三冊（さんさつ）</td><td class="jp-cell">何冊（なんさつ）</td></tr>
+        <tr><td class="cat">חפצים כלליים — つ</td><td class="jp-cell">一つ（ひとつ）</td><td class="jp-cell">二つ（ふたつ）</td><td class="jp-cell">三つ（みっつ）</td><td class="jp-cell">いくつ</td></tr>
+        <tr><td class="cat">בעלי חיים קטנים — 匹</td><td class="jp-cell">一匹（いっぴき）</td><td class="jp-cell">二匹（にひき）</td><td class="jp-cell">三匹（さんびき）</td><td class="jp-cell">何匹（なんびき）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">家族は<b>三人</b>です。</span> <span class="r">（かぞくはさんにんです）</span></div>
+      <div class="ex-he">המשפחה שלי 3 אנשים.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">本を<b>二冊</b>買いました。</span> <span class="r">（ほんをにさつかいました）</span></div>
+      <div class="ex-he">קניתי 2 ספרים.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">猫が<b>三匹</b>います。</span> <span class="r">（ねこがさんびきいます）</span></div>
+      <div class="ex-he">יש 3 חתולים.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">これを<b>一つ</b>ください。</span> <span class="r">（これをひとつください）</span></div>
+      <div class="ex-he">תן לי אחד מזה, בבקשה.</div>
+    </div>
+  </div>
+
+  <div class="warn"><b>שינויי הגייה במונה!</b> בדיוק כמו מספרים רגילים (שבוע 2), גם מילות מנייה משנות הגייה: <span class="jp">一本（いっぽん）</span> לא <span class="jp">いちほん</span>! <span class="jp">三本（さんぼん）</span> לא <span class="jp">さんほん</span>! המנה つ הופך ל-みっつ (לא さんつ) ב-3.</div>
+
+  <div class="qbox check" data-answer="0" data-explain="ספרים נספרים עם 冊. שני ספרים = 二冊（にさつ）.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "קניתי 2 ספרים"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">本を二冊買いました。</span></button>
+      <button class="opt"><span class="jp">本を二人買いました。</span></button>
+      <button class="opt"><span class="jp">本を二枚買いました。</span></button>
+      <button class="opt"><span class="jp">本を二つ買いました。</span> (גם נכון לרוב)</button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="אנשים נספרים עם 人. שאלה = 何人（なんにん）.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך שואלים "כמה אנשים במשפחה שלך?"</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">家族は何枚ですか。</span></button>
+      <button class="opt"><span class="jp">家族は何匹ですか。</span></button>
+      <button class="opt"><span class="jp">家族は何人ですか。</span></button>
+      <button class="opt"><span class="jp">家族は何冊ですか。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — מילות מנייה</div>
+
+    <h4>למה ביפנית יש כל כך הרבה מילות מנייה</h4>
+    <p>תופעת מילות-המנייה (counters/classifiers) קיימת בשפות רבות במזרח אסיה (יפנית, סינית, קוריאנית) — היא מבחינה בין סוגי "חצרות" שונים של חפצים. ביפנית יש <strong>מאות</strong> מילות מנייה, אבל ב-N5 לומדים רק את הבסיסיות והנפוצות ביותר. כל מילת-מנייה מסמנת לרוב צורה פיזית (ארוך/דק, שטוח, עגול) או קטגוריה (אנשים, ספרים, בעלי חיים).</p>
+
+    <h4>つ — המונה "ברירת המחדל" שעובד על הכל (כמעט)</h4>
+    <p><span class="jp">つ</span> הוא המונה ה"כלל-עולמי" שניתן להשתמש בו לרוב חפצים כלליים שאין להם מונה ספציפי, או כשלא בטוחים איזה מונה מתאים. ברמת N5, אם אתה לא זוכר את המונה הספציפי — <span class="jp">つ</span> הוא לרוב בחירה בטוחה ומובנת, אם כי לא תמיד "הנכונה ביותר" טכנית (לדוגמה, אנשים תמיד נספרים ב-人, לא ב-つ).</p>
+
+    <h4>本 — מונה שמדגים את ההיגיון מאחורי הקטגוריות</h4>
+    <p>מונה ה-<span class="jp">本</span> (לחפצים ארוכים ודקים) מדגים יפה את ההיגיון: הוא משמש לבקבוקים, עפרונות, עצים, אצבעות, אפילו דרכים/מסילות — כל דבר שצורתו "ארוכה ודקה". שים לב שהוא נכתב <span class="jp">本</span> כמו "ספר" (本/ほん) אך נהגה אחרת בהקשר זה ומשמש לקטגוריה שונה לחלוטין — אל תתבלבל בין שני השימושים.</p>
+
+    <h4>שינויי הגייה במונים — אותו עיקרון משבוע 2, קטגוריה חדשה</h4>
+    <p>שינויי ההגייה במונים (<span class="jp">いっぽん・さんぼん・いっぴき</span> וכו') הם בדיוק אותו תהליך פונטי שראית במספרים בשבוע 2 (300=さんびゃく וכו') — עיצורים מתמזגים לנעימות. אין צורך לשנן "כלל נפרד למונים" — זה אותו עיקרון פונטי-יפני כללי שחוזר על עצמו במספרים, במונים, ובעוד הקשרים.</p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"יש לך כמה חתולים? — יש לי 2 חתולים ו-1 כלב."</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">猫が何匹いますか。 — 猫が二匹と犬が一匹います。</span><br>
+      <span style="color:var(--muted);font-size:14px">（ねこがなんびきいますか。 — ねこがにひきといぬがいっぴきいます）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 3: QUESTION WORDS REVIEW ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 3</span>
+  <h2>חזרה: כל מילות השאלה</h2>
+
+  <p>נסכם את כל מילות השאלה שלמדנו עד כה בקורס — נקודת ציון נהדרת לפני שממשיכים.</p>
+
+  <div class="qword-grid">
+    <div class="qw-card"><div class="qw-jp">何</div><div class="qw-he">מה (שבוע 1)</div></div>
+    <div class="qw-card"><div class="qw-jp">誰</div><div class="qw-he">מי (שבוע 4)</div></div>
+    <div class="qw-card"><div class="qw-jp">どこ</div><div class="qw-he">איפה (שבוע 4)</div></div>
+    <div class="qw-card"><div class="qw-jp">いつ</div><div class="qw-he">מתי</div></div>
+    <div class="qw-card"><div class="qw-jp">どう</div><div class="qw-he">איך (שבוע 6)</div></div>
+    <div class="qw-card"><div class="qw-jp">どうして</div><div class="qw-he">מדוע (שבוע 8)</div></div>
+    <div class="qw-card"><div class="qw-jp">いくら</div><div class="qw-he">כמה עולה (שבוע 2)</div></div>
+    <div class="qw-card"><div class="qw-jp">何時</div><div class="qw-he">איזו שעה (שבוע 4)</div></div>
+    <div class="qw-card"><div class="qw-jp">何曜日</div><div class="qw-he">איזה יום (שבוע 3)</div></div>
+    <div class="qw-card"><div class="qw-jp">どちら</div><div class="qw-he">איזה (מ-2, השוואה)</div></div>
+    <div class="qw-card"><div class="qw-jp">どれ</div><div class="qw-he">איזה (מ-3+, שבוע 1)</div></div>
+    <div class="qw-card"><div class="qw-jp">いくつ／何人</div><div class="qw-he">כמה (כמות/אנשים)</div></div>
+  </div>
+
+  <h3 class="sub-head">いつ — "מתי" (השלמה לרשימה)</h3>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">誕生日はいつですか。</span> <span class="r">（たんじょうびはいつですか）</span></div>
+      <div class="ex-he">מתי יום ההולדת שלך?</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">日本へいつ行きますか。</span> <span class="r">（にほんへいついきますか）</span></div>
+      <div class="ex-he">מתי אתה הולך ליפן?</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">どう — "איך" (תזכורת)</h3>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">この映画はどうでしたか。</span> <span class="r">（このえいがはどうでしたか）</span></div>
+      <div class="ex-he">איך היה הסרט הזה?</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">お元気ですか。</span> <span class="r">（おげんきですか）</span></div>
+      <div class="ex-he">איך אתה? (ביטוי קבוע)</div>
+    </div>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="שאלת זמן כלל ('מתי') = いつ. בלי に, בניגוד לזמן ספציפי.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך שואלים "מתי יום ההולדת שלך?"</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">誕生日は何時ですか。</span></button>
+      <button class="opt"><span class="jp">誕生日はいつですか。</span></button>
+      <button class="opt"><span class="jp">誕生日はどこですか。</span></button>
+      <button class="opt"><span class="jp">誕生日はどうですか。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — מילות שאלה</div>
+
+    <h4>いつ — לא דורש に, בניגוד למילות-זמן אחרות</h4>
+    <p>שים לב ש-<span class="jp">いつ</span> ("מתי") אינו מקבל <span class="jp">に</span> אחריו — <span class="jp">いつ行きますか</span>, לא <span class="jp">いつに行きますか</span>. זה שונה מ-<span class="jp">何時に</span> ("באיזו שעה", שלמדת בשבוע 7), שכן מקבל <span class="jp">に</span>. ההסבר: <span class="jp">いつ</span> כבר מתפקד כתואר-זמן כללי (כמו <span class="jp">今日・明日</span>), בעוד <span class="jp">何時</span> הוא שם-עצם-זמן ספציפי (שעה מדויקת) שדורש את חלקיק הזמן.</p>
+
+    <h4>סיכום מבני — חלוקת מילות השאלה לקטגוריות</h4>
+    <p>שווה לראות את כל מילות השאלה כמחולקות לפי תפקיד: <strong>זהות</strong> (何/誰/どれ/どちら), <strong>מקום</strong> (どこ), <strong>זמן</strong> (いつ/何時/何曜日), <strong>אופן/דרך</strong> (どう/どうして), <strong>כמות</strong> (いくつ/何人/いくら). חלוקה זו עוזרת לזכור איזו מילת-שאלה מתאימה לאיזה הקשר — במקום לשנן 12 מילים בנפרד, משננים 5 קטגוריות עם דוגמאות.</p>
+
+    <h4>חזרה לכלל היסוד — מילות שאלה תמיד עם が (שבוע 5)</h4>
+    <p>תזכורת חשובה מהקורס: כשמילת שאלה היא הנושא של המשפט (לא מתייחסת לזמן/מקום/אופן בלבד, אלא ל"מי/מה עושה"), היא דורשת <span class="jp">が</span>, לא <span class="jp">は</span> — תזכורת מהשבוע ה-5. <span class="jp">誰が来ますか</span> ("מי יבוא?"), <span class="jp">何が好きですか</span> ("מה אתה אוהב?"). זה כלל-יסוד שחוזר ומופיע בכל הקורס.</p>
+
+    <h4>נקודת ציון — סיכום החצי השני של הקורס</h4>
+    <p>אנחנו בשבוע 15 מתוך 20 — שלושה רבעים מהדרך! שווה לקחת רגע ולהביט אחורה: התחלנו ממשפטי שם בסיסיים (שבוע 1), עברנו לחלקיקי-מקום-וזמן (שבועות 4, 7), בנינו את כל מערכת הפעלים (שבועות 6-11), ועכשיו אנחנו מוסיפים שכבות עידון — רשות, רצון, השוואה, מנייה. חמשת השבועות הנותרים יתמקדו בעוד כמה מבנים אחרונים ואז בחזרה והכנה למבחן.</p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"איך הוא הספר הזה? — מעניין, אבל קצת קשה."</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">この本はどうですか。 — おもしろいですが、少し難しいです。</span><br>
+      <span style="color:var(--muted);font-size:14px">（このほんはどうですか。 — おもしろいですが、すこしむずかしいです）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== VOCAB TABLE ===== -->
+<h2 class="section">אוצר מילים — שבוע 15</h2>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">より</td><td class="jp">より</td><td>מ- (בהשוואה)</td></tr>
+    <tr><td class="jp">ほう</td><td class="jp">ほう</td><td>צד / כיוון</td></tr>
+    <tr><td class="jp">どちら</td><td class="jp">どちら</td><td>איזה (משני)</td></tr>
+    <tr><td class="jp">いつ</td><td class="jp">いつ</td><td>מתי</td></tr>
+    <tr><td class="jp">人</td><td class="jp">にん／り</td><td>מונה אנשים</td></tr>
+    <tr><td class="jp">枚</td><td class="jp">まい</td><td>מונה דק/שטוח</td></tr>
+    <tr><td class="jp">本</td><td class="jp">ほん</td><td>מונה ארוך/דק</td></tr>
+    <tr><td class="jp">冊</td><td class="jp">さつ</td><td>מונה ספרים</td></tr>
+    <tr><td class="jp">匹</td><td class="jp">ひき</td><td>מונה בעלי-חיים קטנים</td></tr>
+    <tr><td class="jp">お茶</td><td class="jp">おちゃ</td><td>תה</td></tr>
+    <tr><td class="jp">飛ぶ</td><td class="jp">とぶ</td><td>לעוף / לטוס</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 תיבת בחינה — אוצר מילים</div>
+</div>
+
+<!-- ===== KANJI TABLE ===== -->
+<h2 class="section k">קאנג'י — שבוע 15 (מנייה)</h2>
+<table>
+  <thead><tr><th>קאנג'י</th><th>קריאה</th><th>משמעות</th><th>דוגמה</th></tr></thead>
+  <tbody>
+    <tr><td class="jp big">枚</td><td class="jp">まい</td><td>מונה דק/שטוח</td><td class="jp">紙一枚（かみいちまい）= דף נייר אחד</td></tr>
+    <tr><td class="jp big">本</td><td class="jp">ほん</td><td>מונה ארוך/דק; ספר</td><td class="jp">三本（さんぼん）= 3 (אובייקטים ארוכים)</td></tr>
+    <tr><td class="jp big">冊</td><td class="jp">さつ</td><td>מונה ספרים</td><td class="jp">二冊（にさつ）= 2 ספרים</td></tr>
+    <tr><td class="jp big">匹</td><td class="jp">ひき</td><td>מונה בעלי-חיים</td><td class="jp">一匹（いっぴき）= חיה אחת</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-kanji">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🔢 תיבת בחינה — קאנג'י</div>
+</div>
+
+<!-- ===== FINAL QUIZ ===== -->
+<h2 class="section">מבחן סיכום — שבוע 15</h2>
+<p style="margin-top:-2px;color:var(--muted)">שאלות מעורבות: דקדוק, אוצר מילים, קאנג'י + חזרה.</p>
+<div class="quiz-widget" id="quiz-final">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🎓 מבחן סיכום</div>
+</div>
+
+<!-- ===== BONUS DRILL ===== -->
+<h2 class="section" style="background:linear-gradient(100deg,#4b6a8f,#2e4d6b)">🧩 תרגול מעמיק — שבוע 15</h2>
+<p style="margin-top:-2px;color:var(--muted)">13 שאלות: השוואות, מילות מנייה, ושילוב עם שבועות קודמים.</p>
+<div class="quiz-widget" id="quiz-bonus">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:#4b6a8f;margin-bottom:8px">🧩 תרגול מעמיק</div>
+</div>
+
+<div class="done-banner">
+  <h2>סיימת את שבוע 15! <span class="jp">よくできました</span> 🎉</h2>
+  <p>
+    יש לך עכשיו כלים להשוואה, מנייה, ומפת מילות-שאלה מלאה.<br><br>
+    שבוע 16: חיבור וסיוג — <span class="jp">ね／よ</span>, <span class="jp">だけ</span>, <span class="jp">とき</span>, וחזרה כוללת.
+  </p>
+</div>
+
+<p class="footer-note"><span class="jp" dir="ltr">日本語 N5</span> · שבוע 15 מתוך 20 · <span class="jp" dir="ltr">頑張って！</span></p>
+</div>
+
+<script>
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+document.querySelectorAll('.check').forEach(q=>{
+  const ans=+q.dataset.answer,fb=q.querySelector('.fb'),opts=q.querySelectorAll('.opt');
+  opts.forEach((btn,i)=>{
+    btn.addEventListener('click',()=>{
+      if(q.classList.contains('done'))return; q.classList.add('done');
+      opts.forEach((b,j)=>{b.disabled=true;if(j===ans)b.classList.add('correct');else if(j===i)b.classList.add('wrong');});
+      const ok=i===ans;
+      fb.textContent=(ok?'✓ נכון! ':'✗ לא מדויק. ')+(q.dataset.explain||'');
+      fb.className='fb '+(ok?'fb-ok':'fb-no');
+    });
+  });
+});
+document.querySelectorAll('.reveal-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const a=b.nextElementSibling,show=a.style.display!=='block';
+    a.style.display=show?'block':'none';b.textContent=show?'הסתר תשובה':'הצג תשובה';
+  });
+});
+function makeQuiz(rootId,data){
+  const root=document.getElementById(rootId);
+  const head=root.querySelector('.htag');
+  let order,idx,score,locked;
+  function start(){order=shuffle([...data.keys()]);idx=0;score=0;locked=false;render();}
+  function render(){
+    [...root.children].forEach(c=>{if(c!==head)c.remove();});
+    if(idx>=order.length)return result();
+    const item=data[order[idx]];
+    const opts=shuffle(item.options.map((t,i)=>({t,correct:i===item.answer})));
+    const box=document.createElement('div');
+    box.innerHTML=`
+      <div class="q-progress"><span>שאלה ${idx+1} מתוך ${order.length}</span><span>ניקוד: ${score}</span></div>
+      <div class="q-bar"><span style="width:${idx/order.length*100}%"></span></div>
+      <p class="q-text">${item.q}</p>
+      <div class="q-options"></div>
+      <p class="fb"></p>
+      <button class="next-btn" style="display:none;margin-top:12px">הבא ←</button>`;
+    root.appendChild(box);
+    const wrap=box.querySelector('.q-options'),fb=box.querySelector('.fb'),next=box.querySelector('.next-btn');
+    opts.forEach(o=>{
+      const btn=document.createElement('button');btn.className='opt';btn.innerHTML=o.t;
+      btn.addEventListener('click',()=>{
+        if(locked)return;locked=true;
+        wrap.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        if(o.correct){btn.classList.add('correct');score++;fb.textContent='✓ נכון!';fb.className='fb fb-ok';}
+        else{btn.classList.add('wrong');fb.textContent='✗ לא מדויק'+(item.note?(' — '+item.note):'');fb.className='fb fb-no';
+          [...wrap.children].forEach((c,k)=>{if(opts[k].correct)c.classList.add('correct');});}
+        next.style.display='inline-block';
+      });
+      wrap.appendChild(btn);
+    });
+    next.addEventListener('click',()=>{idx++;locked=false;render();});
+  }
+  function result(){
+    const pct=Math.round(score/data.length*100);
+    const msg=pct>=80?'מצוין! אתה שולט בחומר 🎉':pct>=60?'יפה! עוד קצת חזרה ותהיה מצוין.':'כדאי לחזור על החומר ולנסות שוב.';
+    const box=document.createElement('div');box.className='q-result';
+    box.innerHTML=`<div class="score-big">${score} / ${data.length}</div><p>${msg}</p><button class="next-btn">התחל מחדש 🔁</button>`;
+    root.appendChild(box);
+    box.querySelector('.next-btn').addEventListener('click',start);
+  }
+  start();
+}
+const J=s=>`<span class="jp">${s}</span>`;
+
+makeQuiz('quiz-vocab',[
+  {q:'מה הפירוש של '+J('より')+'?',options:['מ- (בהשוואה)','עם','אל','מתוך'],answer:0},
+  {q:'מה הפירוש של '+J('ほう')+'?',options:['צד / כיוון','דבר','חפץ','אדם'],answer:0},
+  {q:'מה הפירוש של '+J('どちら')+'?',options:['איזה (משני)','איזה (משלושה+)','מי','מה'],answer:0},
+  {q:'מה הפירוש של '+J('いつ')+'?',options:['מתי','איפה','מי','איך'],answer:0},
+  {q:'מה הפירוש של '+J('お茶')+'?',options:['תה','קפה','מים','חלב'],answer:0},
+  {q:'מה הפירוש של '+J('飛ぶ')+'?',options:['לעוף / לטוס','ללכת','לרוץ','לשחות'],answer:0},
+  {q:'מה הפירוש של '+J('枚')+' (מונה)?',options:['חפצים דקים/שטוחים','אנשים','בעלי חיים','ספרים'],answer:0},
+  {q:'מה הפירוש של '+J('匹')+' (מונה)?',options:['בעלי חיים קטנים','אנשים','ספרים','חפצים שטוחים'],answer:0}
+]);
+
+makeQuiz('quiz-kanji',[
+  {q:'מה הפירוש של '+J('<span class="big">枚</span>')+' (מונה)?',options:['חפצים דקים/שטוחים','ספרים','בעלי חיים','אנשים'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">本</span>')+' (מונה)?',options:['חפצים ארוכים/דקים','אנשים','בעלי חיים','חפצים שטוחים'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">冊</span>')+' (מונה)?',options:['ספרים','אנשים','חיות','חפצים ארוכים'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">匹</span>')+' (מונה)?',options:['בעלי חיים','אנשים','ספרים','דברים'],answer:0},
+  {q:'מה הקריאה של '+J('一本')+'?',options:[J('いっぽん'),J('いちほん'),J('いちぼん'),J('いっほん')],answer:0,note:'一本 = いっぽん (שינוי הגייה).'},
+  {q:'מה הקריאה של '+J('三匹')+'?',options:[J('さんびき'),J('さんひき'),J('さんぴき'),J('みひき')],answer:0,note:'三匹 = さんびき (שינוי הגייה).'}
+]);
+
+makeQuiz('quiz-final',[
+  {q:'איך אומרים "אוטובוס זול יותר מרכבת"?',options:[J('電車よりバスのほうが安いです。'),J('バスより電車のほうが安いです。'),J('電車とバスが安いです。'),J('バスは電車が安いです。')],answer:0},
+  {q:'איך שואלים "מי אתה אוהב יותר, חתולים או כלבים?"',options:[J('猫と犬と、どちらが好きですか。'),J('猫より犬が好きですか。'),J('猫と犬が好きですか。'),J('猫のほうが犬ですか。')],answer:0},
+  {q:'איך אומרים "קניתי 2 ספרים"?',options:[J('本を二冊買いました。'),J('本を二人買いました。'),J('本を二枚買いました。'),J('本を二匹買いました。')],answer:0,note:'ספרים = 冊.'},
+  {q:'איך שואלים "כמה אנשים במשפחה שלך?"',options:[J('家族は何人ですか。'),J('家族は何枚ですか。'),J('家族は何匹ですか。'),J('家族は何冊ですか。')],answer:0,note:'אנשים = 人.'},
+  {q:'איך שואלים "מתי יום ההולדת שלך?"',options:[J('誕生日はいつですか。'),J('誕生日は何時ですか。'),J('誕生日はどこですか。'),J('誕生日はどうですか。')],answer:0,note:'いつ = מתי (כללי), לא 何時 (שעה).'},
+  {q:'מה ההבדל בין '+J('どちら')+' ל-'+J('どれ')+'?',options:['どちら לשני אפשרויות; どれ לשלוש+','שניהם זהים','どちら לשלוש+; どれ לשני','אין הבדל'],answer:0},
+  {q:'מה הפירוש של '+J('猫が三匹います')+'?',options:['יש 3 חתולים','יש 3 אנשים','יש 3 ספרים','קניתי 3 דברים'],answer:0},
+  {q:'מה הקריאה של '+J('一本')+'?',options:[J('いっぽん'),J('いちほん'),J('いっぼん'),J('いちぼん')],answer:0},
+  {q:'איך אומרים "תה זה? — כן."',options:[J('お茶ですか。 — はい。'),J('お茶ですか。 — どちら。'),J('お茶のほうが。 — はい。'),J('お茶より。 — はい。')],answer:0},
+  {q:'מה הפירוש של '+J('飛ぶほうがいいです')+'?',options:['לטוס יותר טוב','ללכת ברגל יותר טוב','לא לטוס','לעוף לאט'],answer:0}
+]);
+
+makeQuiz('quiz-bonus',[
+  // הבנת משפט
+  {q:'מה הפירוש של '+J('日本語より英語のほうが簡単だと思います。')+'?',
+   options:['אני חושב שאנגלית קלה יותר מיפנית','אני חושב שיפנית קלה יותר מאנגלית','שניהם קשים באותה מידה','לא לומד אף אחת מהן'],answer:0,
+   note:'日本語より英語のほうが = אנגלית [יותר] מיפנית; 簡単だと思います = אני חושב שקל.'},
+  {q:'מה הפירוש של '+J('猫と犬と、どちらが好きですか。 — どちらも好きです。')+'?',
+   options:['מי אתה אוהב יותר? — אוהב את שניהם','מי אתה אוהב יותר? — לא אוהב אף אחד','איזה חתול אתה אוהב? — את כולם','יש לך חתול או כלב? — יש לי שניהם'],answer:0,
+   note:'どちらも = שניהם/גם זה וגם זה (מבנה נוסף שלא בתוכן הרשמי, אך מובן מ-どちら+も).'},
+  // השלמה
+  {q:'השלם: "אוהב כלבים יותר מחתולים." '+J('猫___犬のほうが好きです。'),
+   options:[J('より'),J('から'),J('まで'),J('で')],answer:0,
+   note:'B より A のほうが = A יותר מ-B.'},
+  {q:'השלם: "יש לי 3 חברים." '+J('友達が三___います。'),
+   options:[J('人'),J('枚'),J('本'),J('匹')],answer:0,
+   note:'אנשים = 人.'},
+  {q:'השלם: "מתי תלך ליפן?" '+J('日本へ___行きますか。'),
+   options:[J('いつ'),J('何時に'),J('どこ'),J('どう')],answer:0,
+   note:'מתי (כללי) = いつ, בלי に.'},
+  // זיהוי שגיאה
+  {q:'מי הנכון — "יש לי 2 כלבים"',
+   options:[J('犬が二匹います。'),J('犬が二人います。'),J('犬が二枚います。'),J('犬が二冊います。')],answer:0,
+   note:'בעלי חיים = 匹.'},
+  {q:'מי הנכון — "תה זול יותר מקפה"',
+   options:[J('コーヒーよりお茶のほうが安いです。'),J('お茶よりコーヒーのほうが安いです。'),J('コーヒーとお茶が安いです。'),J('お茶はコーヒーが安いです。')],answer:0,
+   note:'B より A のほうが安い = A זול יותר מ-B. כאן A=お茶, B=コーヒー.'},
+  // שילוב מבני
+  {q:'מה הפירוש של '+J('お金より時間のほうがほしいです。')+'? (תזכורת שבוע 13)',
+   options:['רוצה זמן יותר מכסף','רוצה כסף יותר מזמן','לא רוצה כסף ולא זמן','רוצה גם כסף וגם זמן'],answer:0,
+   note:'お金より時間のほうが = זמן [יותר] מכסף; ほしい = רוצה (חפץ/דבר).'},
+  {q:'מה ההבדל בין '+J('何人')+' ל-'+J('いくつ')+'?',
+   options:['何人 לאנשים; いくつ לחפצים כלליים/גיל','שניהם לאנשים','何人 לחפצים; いくつ לאנשים','אין הבדל'],answer:0},
+  // שילוב מלא
+  {q:'תרגם: "כי המסעדה הזאת זולה יותר מאותה אחת, ויש בה 3 סוגי ראמן, רוצה ללכת לשם."',
+   options:[
+     J('このレストランはあの店より安くて、ラーメンが三種類あるので、行きたいです。'),
+     J('このレストランはあの店より高くて、ラーメンが三人いるので、行きません。'),
+     J('このレストランのほうが高いですが、ラーメンが三枚あります。'),
+     J('あの店よりこのレストランが安いラーメンを三冊食べたいです。')
+   ],answer:0,
+   note:'より = השוואה; 安くて (שרשור) + 三種類 (3 סוגים, לא בתוכן N5 הרשמי אך הגיוני) + ので + 行きたい.'},
+  // קאנג'י בהקשר
+  {q:'מה הפירוש של '+J('紙を二枚と本を三冊買いました。')+'?',
+   options:['קניתי 2 דפי נייר ו-3 ספרים','קניתי 2 ספרים ו-3 דפים','קניתי 5 דברים','קניתי נייר וספר אחד'],answer:0,
+   note:'紙を二枚 = 2 דפי נייר (寛 שטוח); 本を三冊 = 3 ספרים.'},
+  {q:'מה הפירוש של '+J('猫より犬のほうが大きい動物が多いと思います。')+'?',
+   options:['אני חושב שיש יותר כלבים גדולים מחתולים גדולים','אני חושב שחתולים גדולים יותר','כל הכלבים גדולים','אין הבדל בגודל'],answer:0,
+   note:'猫より犬のほうが = כלבים [יותר] מחתולים; 大きい動物が多い = יש יותר חיות גדולות.'}
+]);
+</script>
+</body>
+</html>

@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שבוע 9 — צורת מילון וצורת ない | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+    --blue:#4b6a8f; --blue-soft:#e3eaf3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre",Georgia,serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px,rgba(120,100,70,.06) 1px,transparent 0);
+    background-size:22px 22px;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 90px;}
+  .jp{font-family:"Noto Sans JP",system-ui,sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+  .big{font-size:1.35em; line-height:1;}
+
+  header.masthead{text-align:center; padding:56px 20px 34px; border-bottom:3px double var(--line); margin-bottom:6px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(28px,5.5vw,40px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:17px;}
+  .nav-links{display:flex; justify-content:space-between; margin:14px 0 0; font-size:14px;}
+  .nav-links span{color:var(--muted); font-family:"Heebo",sans-serif; font-weight:700;}
+
+  .lead{background:var(--card); border:1px solid var(--line); border-right:5px solid var(--accent); border-radius:12px; padding:18px 22px; margin:26px 0;}
+  .lead h2{font-family:"Heebo",sans-serif; font-size:18px; margin:0 0 6px;}
+  .lead ol{margin:6px 0 0; padding-inline-start:1.3em;}
+  .lead li{margin:3px 0;}
+
+  .topic{margin:46px 0;}
+  .topic-tag{display:inline-block; background:var(--accent); color:#fff; font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; padding:5px 14px; border-radius:999px; box-shadow:0 3px 8px rgba(150,60,30,.22);}
+  .topic h2{font-family:"Heebo",sans-serif; font-weight:800; font-size:25px; margin:12px 0 8px;}
+  .topic p{margin:.6em 0;}
+  .topic strong{color:#7e2a13;}
+
+  .formula{text-align:center; font-size:19px; background:#fff3ec; border:1px solid #e8c9b8; border-radius:10px; padding:12px 20px; margin:14px 0;}
+
+  h3.sub-head{font-family:"Heebo",sans-serif; font-weight:700; font-size:19px; color:var(--accent); margin:22px 0 8px; border-right:4px solid var(--accent); padding-right:10px;}
+
+  .ex{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:6px 16px; margin:16px 0;}
+  .ex-row{padding:10px 0; border-bottom:1px dashed var(--line);}
+  .ex-row:last-child{border-bottom:none;}
+  .ex-jp{direction:ltr; unicode-bidi:isolate; text-align:right; font-family:"Noto Sans JP",sans-serif; font-size:19px; font-weight:500;}
+  .ex-jp .r{color:var(--muted); font-size:15px; font-weight:400;}
+  .ex-he{color:var(--ink); font-size:16px;}
+
+  /* big conjugation table */
+  .big-conj{background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; margin:16px 0;}
+  .big-conj table{margin:0; border-radius:0; font-size:15px;}
+  .big-conj thead th{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; padding:8px 10px; text-align:right;}
+  .big-conj td{padding:8px 10px; border-top:1px solid var(--line);}
+  .big-conj tbody tr:nth-child(even){background:#fbf7ee;}
+  .big-conj td.jp-cell{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:16px;}
+  .big-conj td.acc{color:var(--accent); font-weight:700;}
+  .big-conj td.grp{font-family:"Heebo",sans-serif; font-weight:700; font-size:12px; color:var(--muted);}
+
+  /* group cards */
+  .g-cards{display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin:16px 0;}
+  @media(max-width:560px){.g-cards{grid-template-columns:1fr;}}
+  .g-card{border-radius:10px; padding:12px 14px; border:1.5px solid;}
+  .g-card.g1{background:#fff8f5; border-color:#e8c9b8;}
+  .g-card.g2{background:#eef3fa; border-color:#c5d5e8;}
+  .g-card.g3{background:#e3f0eb; border-color:#b0d5c5;}
+  .g-card .gc-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:12px; margin-bottom:8px;}
+  .g-card.g1 .gc-title{color:var(--accent);}
+  .g-card.g2 .gc-title{color:var(--blue);}
+  .g-card.g3 .gc-title{color:var(--ok);}
+  .g-card .gc-rule{font-size:14px; margin-bottom:6px; line-height:1.4;}
+  .g-card .gc-ex{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:14px; color:var(--ink);}
+
+  /* plain vs polite comparison */
+  .pvp{display:grid; grid-template-columns:1fr 1fr; gap:0; background:var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden; margin:16px 0;}
+  .pvp-head{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; padding:8px 14px; text-align:center;}
+  .pvp-row{display:contents;}
+  .pvp-row > div{padding:9px 14px; border-top:1px solid var(--line); font-size:16px;}
+  .pvp-row > div.jp-cell{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px; text-align:center;}
+  .pvp-left{border-right:1px solid var(--line);}
+
+  .note{background:#faf5ea; border:1px dashed var(--line); border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .note b{color:var(--accent);}
+  .warn{background:#fff5f3; border:1px dashed #e8b8aa; border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .warn b{color:var(--no);}
+
+  /* deepen / study-deeper section */
+  .deepen{background:linear-gradient(160deg,#f3eee0,#ece3cf); border:1.5px solid #d8c89a; border-radius:14px; padding:20px 24px; margin:24px 0;}
+  .deepen-head{display:flex; align-items:center; gap:8px; font-family:"Heebo",sans-serif; font-weight:800; font-size:14px; color:#7d6324; margin-bottom:12px;}
+  .deepen-head::before{content:"🔎"; font-size:16px;}
+  .deepen h4{font-family:"Heebo",sans-serif; font-weight:700; font-size:16px; color:#7d6324; margin:16px 0 6px;}
+  .deepen h4:first-of-type{margin-top:0;}
+  .deepen p{margin:.5em 0; font-size:16px;}
+  .deepen .ex{background:#fffdf8;}
+
+  .qbox{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:16px 0; box-shadow:0 2px 8px rgba(80,60,30,.04);}
+  .qbox .htag{font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; color:var(--ok); margin-bottom:8px; display:flex; align-items:center; gap:7px;}
+  .qbox .htag::before{content:"✎"; font-size:15px;}
+  .q-text{font-size:18px; margin:0 0 12px; font-weight:500;}
+  .q-options{display:flex; flex-direction:column; gap:9px;}
+  .opt{font-family:inherit; font-size:17px; text-align:right; background:#fff; border:1.5px solid var(--line); border-radius:9px; padding:11px 16px; cursor:pointer; transition:.15s; color:var(--ink);}
+  .opt:hover:not(:disabled){border-color:var(--accent); background:#fffaf3;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:var(--ok-soft); border-color:var(--ok); color:#1f4d43; font-weight:700;}
+  .opt.wrong{background:var(--no-soft); border-color:var(--no); color:#7e2a13;}
+  .fb{margin:11px 0 0; font-size:16px; font-weight:600; min-height:1px;}
+  .fb-ok{color:var(--ok);} .fb-no{color:var(--no);}
+
+  .reveal{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .reveal-btn,.next-btn{font-family:"Heebo",sans-serif; font-weight:700; font-size:15px; background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 18px; cursor:pointer; transition:.15s;}
+  .reveal-btn:hover,.next-btn:hover{background:#8e2f17;}
+  .reveal-ans{display:none; margin-top:12px; padding:12px 16px; background:var(--ok-soft); border-radius:8px; font-size:17px;}
+
+  .quiz-widget{background:linear-gradient(160deg,#fffdf8,#fbf4e8); border:1.5px solid var(--line); border-radius:14px; padding:22px; margin:18px 0; box-shadow:0 4px 14px rgba(80,60,30,.07);}
+  .q-progress{font-family:"Heebo",sans-serif; font-size:13px; color:var(--muted); margin-bottom:10px; display:flex; justify-content:space-between;}
+  .q-bar{height:6px; background:#eadfc9; border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  .q-bar span{display:block; height:100%; background:var(--accent); transition:width .3s;}
+  .q-result{text-align:center; padding:14px 0;}
+  .score-big{font-family:"Heebo",sans-serif; font-weight:800; font-size:46px; color:var(--accent); line-height:1;}
+  .q-result p{font-size:18px; margin:10px 0 16px;}
+
+  h2.section{font-family:"Heebo",sans-serif; font-weight:800; font-size:26px; margin:54px 0 8px; padding:12px 20px; color:#fff; background:linear-gradient(100deg,var(--gold),#7d6324); border-radius:10px;}
+  h2.section.k{background:linear-gradient(100deg,var(--accent),#8e2f17);}
+
+  table{width:100%; border-collapse:collapse; margin:.4em 0 18px; font-size:16px; background:#fff; border-radius:10px; overflow:hidden; border:1px solid var(--line);}
+  thead th{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px; padding:9px 12px; text-align:right;}
+  td{padding:9px 12px; border-top:1px solid var(--line);}
+  tbody tr:nth-child(even){background:#fbf7ee;}
+  td.jp{text-align:right;} td.jp.big{text-align:center; color:var(--accent); font-size:1.5em;}
+
+  .done-banner{text-align:center; margin:50px 0 0; padding:26px; background:var(--ok-soft); border:1px solid #bcd9d0; border-radius:14px;}
+  .done-banner h2{font-family:"Heebo",sans-serif; color:#1f4d43; margin:0 0 6px;}
+  .footer-note{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">שבוע 9 מתוך 20 · <span class="jp" dir="ltr">JLPT N5</span> · חלק ג' — מתחיל!</div>
+  <h1>צורת מילון וצורת <span class="jp">ない</span></h1>
+  <p class="sub">הצורה הרגילה של הפועל — בסיס כל השימושים המתקדמים</p>
+  <div class="nav-links">
+    <span>← שבוע 8: אמצעי וסיבה</span>
+    <span>שבוע 10: עבר רגיל (た) ←</span>
+  </div>
+</header>
+
+<div class="lead">
+  <h2>מה נלמד השבוע</h2>
+  <ol>
+    <li><strong>צורת מילון</strong> (הצורה הרגילה החיובית) — לפי קבוצות.</li>
+    <li><strong>צורת ない</strong> (שלילה רגילה) — לפי קבוצות.</li>
+    <li>מתי משתמשים בצורה רגילה מול מנומסת.</li>
+    <li>שימושים ראשונים של הצורה הרגילה במשפטים.</li>
+  </ol>
+  <p style="margin:10px 0 0;font-size:15px;color:var(--muted)">
+    עד עכשיו למדנו את הצורה <strong>המנומסת</strong> (<span class="jp">ます</span>). בחלק ג' נלמד את הצורה <strong>הרגילה</strong> (נקראת גם "צורת מילון" או "פשוטה") — שהיא הבסיס לרוב השימושים המתקדמים, ולדיבור יומיומי עם חברים.
+  </p>
+</div>
+
+<!-- ===== PREVIEW VOCAB TABLE (NEW) ===== -->
+<h2 class="section" style="margin-top:30px">📋 כל אוצר המילים של השבוע — מבט מקדים</h2>
+<p style="margin-top:-2px;color:var(--muted)">טבלה זו אוספת את כל המילים החדשות שתפגוש השבוע — גם אלה שבטבלת הסיכום בהמשך, וגם אלה שמופיעות רק בתוך ההסברים והדוגמאות. עברית ואנגלית.</p>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th><th>English</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">言う</td><td class="jp">いう</td><td>לומר</td><td>to say</td></tr>
+    <tr><td class="jp">聞く</td><td class="jp">きく</td><td>לשמוע / לשאול</td><td>to hear / ask</td></tr>
+    <tr><td class="jp">走る</td><td class="jp">はしる</td><td>לרוץ (מלכודת!)</td><td>to run (trap verb!)</td></tr>
+    <tr><td class="jp">切る</td><td class="jp">きる</td><td>לחתוך (מלכודת!)</td><td>to cut (trap verb!)</td></tr>
+    <tr><td class="jp">出かける</td><td class="jp">でかける</td><td>לצאת מהבית</td><td>to go out</td></tr>
+    <tr><td class="jp">降る</td><td class="jp">ふる</td><td>לרדת (גשם/שלג)</td><td>to fall (rain/snow)</td></tr>
+    <tr><td class="jp">洗う</td><td class="jp">あらう</td><td>לשטוף</td><td>to wash</td></tr>
+    <tr><td class="jp">磨く</td><td class="jp">みがく</td><td>לצחצח</td><td>to brush / polish</td></tr>
+    <tr><td class="jp">と思う</td><td class="jp">とおもう</td><td>חושב ש...</td><td>to think that...</td></tr>
+    <tr><td class="jp">まえに</td><td class="jp">まえに</td><td>לפני ש...</td><td>before (doing)</td></tr>
+    <tr><td class="jp">歯</td><td class="jp">は</td><td>שן / שיניים</td><td>tooth / teeth</td></tr>
+    <tr><td class="jp">手</td><td class="jp">て</td><td>יד</td><td>hand</td></tr>
+    <tr><td class="jp">雪</td><td class="jp">ゆき</td><td>שלג</td><td>snow</td></tr>
+    <tr><td class="jp">野菜</td><td class="jp">やさい</td><td>ירקות</td><td>vegetables</td></tr>
+    <tr><td class="jp">肉</td><td class="jp">にく</td><td>בשר</td><td>meat</td></tr>
+    <tr><td class="jp">魚</td><td class="jp">さかな</td><td>דג</td><td>fish</td></tr>
+    <tr><td class="jp">果物</td><td class="jp">くだもの</td><td>פרי</td><td>fruit</td></tr>
+    <tr><td class="jp">買う</td><td class="jp">かう</td><td>לקנות</td><td>to buy</td></tr>
+    <tr><td class="jp">帰る</td><td class="jp">かえる</td><td>לחזור (מלכודת!)</td><td>to return (trap verb!)</td></tr>
+    <tr><td class="jp">天気</td><td class="jp">てんき</td><td>מזג אוויר</td><td>weather</td></tr>
+    <tr><td class="jp">チェックする</td><td class="jp">ちぇっくする</td><td>לבדוק</td><td>to check</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab-preview">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 מבחן מקדים — כל אוצר המילים של השבוע</div>
+</div>
+
+<!-- ========== TOPIC 1: DICTIONARY FORM ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 1</span>
+  <h2>צורת מילון — הצורה הרגילה החיובית</h2>
+
+  <p>צורת המילון היא הצורה שבה פעלים מופיעים במילונים. היא גם הצורה הרגילה (לא-מנומסת) של ההווה/עתיד החיובי. <strong>יצירת צורת המילון</strong> תלויה בקבוצת הפועל:</p>
+
+  <div class="g-cards">
+    <div class="g-card g1">
+      <div class="gc-title">קבוצה 1 — う-פעלים</div>
+      <div class="gc-rule">הסיומת היא כבר ב-う-column. <strong>אין שינוי מ-ます</strong> — רק מחזירים את הצורה המקורית.</div>
+      <div class="gc-ex">飲みます → 飲む<br>書きます → 書く<br>話します → 話す<br>買います → 買う</div>
+    </div>
+    <div class="g-card g2">
+      <div class="gc-title">קבוצה 2 — る-פעלים</div>
+      <div class="gc-rule">הסר <span class="jp">ます</span> → הוסף <span class="jp">る</span>.</div>
+      <div class="gc-ex">食べます → 食べる<br>見ます → 見る<br>起きます → 起きる<br>寝ます → 寝る</div>
+    </div>
+    <div class="g-card g3">
+      <div class="gc-title">קבוצה 3 — חריגים</div>
+      <div class="gc-rule">שנן בנפרד.</div>
+      <div class="gc-ex">します → する<br>きます → 来る（くる）</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">טבלת המרה מלאה — ます → מילון</h3>
+  <div class="big-conj">
+    <table>
+      <thead><tr><th>קבוצה</th><th>צורת ます</th><th>צורת מילון</th><th>עברית</th></tr></thead>
+      <tbody>
+        <tr><td class="grp">1</td><td class="jp-cell">飲みます</td><td class="jp-cell acc">飲む</td><td>לשתות</td></tr>
+        <tr><td class="grp">1</td><td class="jp-cell">書きます</td><td class="jp-cell acc">書く</td><td>לכתוב</td></tr>
+        <tr><td class="grp">1</td><td class="jp-cell">話します</td><td class="jp-cell acc">話す</td><td>לדבר</td></tr>
+        <tr><td class="grp">1</td><td class="jp-cell">読みます</td><td class="jp-cell acc">読む</td><td>לקרוא</td></tr>
+        <tr><td class="grp">1</td><td class="jp-cell">行きます</td><td class="jp-cell acc">行く</td><td>ללכת</td></tr>
+        <tr><td class="grp">1</td><td class="jp-cell">帰ります</td><td class="jp-cell acc">帰る ⚠</td><td>לחזור (מלכודת — קבוצה 1!)</td></tr>
+        <tr><td class="grp">2</td><td class="jp-cell">食べます</td><td class="jp-cell acc">食べる</td><td>לאכול</td></tr>
+        <tr><td class="grp">2</td><td class="jp-cell">見ます</td><td class="jp-cell acc">見る</td><td>לראות</td></tr>
+        <tr><td class="grp">2</td><td class="jp-cell">起きます</td><td class="jp-cell acc">起きる</td><td>לקום</td></tr>
+        <tr><td class="grp">2</td><td class="jp-cell">寝ます</td><td class="jp-cell acc">寝る</td><td>לישון</td></tr>
+        <tr><td class="grp">3</td><td class="jp-cell">します</td><td class="jp-cell acc">する</td><td>לעשות</td></tr>
+        <tr><td class="grp">3</td><td class="jp-cell">きます</td><td class="jp-cell acc">来る（くる）</td><td>לבוא</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — צורת מילון</div>
+
+    <h4>למה צורת המילון נחשבת "הצורה הבסיסית" ולא ます</h4>
+    <p>בלשנים ומורי יפנית מתייחסים לצורת המילון כ"<span class="jp" dir="ltr">base form</span>" — הצורה שממנה כל ההטיות האחרות נגזרות. <span class="jp">ます</span>, כפי שלמדת בשבוע 6, הוא בעצם תוסף-נימוס שנוסף <em>על</em> צורת המילון, ולא להפך. זו הסיבה שמילונים יפניים-יפניים (ומילוני יפנית-לועזית רציניים) תמיד מציגים פעלים בצורת המילון, לא בצורת ます — בדיוק כמו שמילון עברי מציג פעלים בצורת המקור ("לכתוב") ולא בהטיה ספציפית.</p>
+
+    <h4>הקשר בין צורת המילון לצורות נוספות שתפגוש בעתיד</h4>
+    <p>צורת המילון היא הבסיס למספר עצום של מבנים דקדוקיים מתקדמים: יכולת (<span class="jp">飲める</span> — "יכול לשתות"), הסתברות (<span class="jp">飲むだろう</span> — "כנראה ישתה"), ועוד. ה"השקעה" שאתה עושה השבוע בלימוד צורת המילון תשתלם רבות כשתתקדם מעבר ל-N5 — כל מבנה חדש שתלמד יתבסס על הבנה טובה של הצורה הזו.</p>
+
+    <h4>קבוצה 1 — "אין שינוי" הוא בעצם שינוי מינימלי</h4>
+    <p>שים לב שלמרות שאמרנו "אין שינוי" בקבוצה 1, בעצם <em>יש</em> שינוי דקדוקי — רק שהוא "מוסתר" כי אנחנו בדרך כלל לומדים פעלים תחילה בצורת ます ולא בצורת המילון. בפועל, צורת המילון היא הצורה ה"מקורית" וההיסטורית, ו-<span class="jp">ます</span> הוא מה שמתווסף — הדרך שבה לימדנו אותך (ます ראשון, מילון אחר כך) היא היפוך פדגוגי של ההיגיון הדקדוקי האמיתי.</p>
+
+    <h4>帰る — דוגמה מצוינת לחשיבות שינון הקבוצה הנכונה</h4>
+    <p>החריג <span class="jp">帰る</span> מדגים מצוין מדוע "שינון לפי קבוצה" (כמו שהומלץ בשבוע 6) חיוני: אם תזכור רק שהפועל "מסתיים ב-る" בלי לדעת לאיזה קבוצה הוא משתייך, תיצור צורות שגויות בכל ההטיות הבאות — ない-form, た-form, て-form, וצורת תנאי. ברגע שמושרש בזיכרון "帰る = קבוצה 1", כל ההטיות הבאות הופכות אוטומטיות ונכונות.</p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="קבוצה 2: הסר ます → הוסף る. 食べます → 食べ + る = 食べる.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה צורת המילון של <span class="jp">食べます</span>?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">食べ</span></button>
+      <button class="opt"><span class="jp">食べむ</span></button>
+      <button class="opt"><span class="jp">食べる</span></button>
+      <button class="opt"><span class="jp">食べう</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="קבוצה 1: み-column → む. 飲みます → 飲む.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה צורת המילון של <span class="jp">飲みます</span>?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">飲む</span></button>
+      <button class="opt"><span class="jp">飲る</span></button>
+      <button class="opt"><span class="jp">飲う</span></button>
+      <button class="opt"><span class="jp">飲める</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">המר לצורת מילון: <strong><span class="jp">話します・読みます・見ます・します・きます</span></strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">話す・読む・見る・する・来る（くる）</span><br>
+      <span style="color:var(--muted);font-size:14px">話す = ק' 1 (し→す); 読む = ק' 1 (み→む); 見る = ק' 2 (+る); する/来る = ק' 3 (חריג).</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 2: ない FORM ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 2</span>
+  <h2>צורת <span class="jp">ない</span> — שלילה רגילה</h2>
+
+  <p>צורת <span class="jp">ない</span> היא השלילה של הצורה הרגילה (הווה/עתיד). הכלל שונה לכל קבוצה:</p>
+
+  <div class="g-cards">
+    <div class="g-card g1">
+      <div class="gc-title">קבוצה 1 — う-פעלים</div>
+      <div class="gc-rule">הפוך הסיומת ל-<strong>あ-column</strong> + <span class="jp">ない</span>.<br>חריג: פעלים ב-う (כמו 買う) → わ + ない.</div>
+      <div class="gc-ex">飲む → 飲ま<b>ない</b><br>書く → 書か<b>ない</b><br>話す → 話さ<b>ない</b><br>買う → 買わ<b>ない</b> ← חריג!</div>
+    </div>
+    <div class="g-card g2">
+      <div class="gc-title">קבוצה 2 — る-פעלים</div>
+      <div class="gc-rule">הסר <span class="jp">る</span> + <span class="jp">ない</span>.</div>
+      <div class="gc-ex">食べる → 食べ<b>ない</b><br>見る → 見<b>ない</b><br>起きる → 起き<b>ない</b><br>寝る → 寝<b>ない</b></div>
+    </div>
+    <div class="g-card g3">
+      <div class="gc-title">קבוצה 3 — חריגים</div>
+      <div class="gc-rule">שנן!</div>
+      <div class="gc-ex">する → し<b>ない</b><br>来る → こ<b>ない</b></div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">טבלת המרה לצורת ない</h3>
+  <div class="big-conj">
+    <table>
+      <thead><tr><th>קבוצה</th><th>מילון</th><th>ない (שלילה רגילה)</th><th>עברית</th></tr></thead>
+      <tbody>
+        <tr><td class="grp">1</td><td class="jp-cell">飲む</td><td class="jp-cell acc">飲まない</td><td>לא שותה</td></tr>
+        <tr><td class="grp">1</td><td class="jp-cell">書く</td><td class="jp-cell acc">書かない</td><td>לא כותב</td></tr>
+        <tr><td class="grp">1</td><td class="jp-cell">話す</td><td class="jp-cell acc">話さない</td><td>לא מדבר</td></tr>
+        <tr><td class="grp">1</td><td class="jp-cell">行く</td><td class="jp-cell acc">行かない</td><td>לא הולך</td></tr>
+        <tr><td class="grp">1</td><td class="jp-cell">買う ⚠</td><td class="jp-cell acc">買わない</td><td>לא קונה (aw! לא aa)</td></tr>
+        <tr><td class="grp">2</td><td class="jp-cell">食べる</td><td class="jp-cell acc">食べない</td><td>לא אוכל</td></tr>
+        <tr><td class="grp">2</td><td class="jp-cell">見る</td><td class="jp-cell acc">見ない</td><td>לא רואה</td></tr>
+        <tr><td class="grp">3</td><td class="jp-cell">する</td><td class="jp-cell acc">しない</td><td>לא עושה</td></tr>
+        <tr><td class="grp">3</td><td class="jp-cell">来る（くる）</td><td class="jp-cell acc">こない</td><td>לא בא</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warn"><b>החריג של 買う:</b> פעלים שמסתיימים ב-う (לא ב-く, ס' וכו') — ה-う הופך ל-わ לפני ない: 買う→買<b>わ</b>ない, 言う→言<b>わ</b>ない. לא 買あない!</div>
+
+  <div class="note"><b>ない הוא שם תואר ב-い!</b> לכן הוא גם מוטה: שלילה = なくない (לא "לא X"), עבר = なかった (לא היה X). נלמד בשבוע הבא.</div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — צורת ない</div>
+
+    <h4>מקור ない כמילה עצמאית — "אין" / "לא קיים"</h4>
+    <p><span class="jp">ない</span> אינו רק סיומת — היסטורית, הוא פועל/תואר עצמאי שפירושו "אינו קיים" (השלילה של <span class="jp">ある</span>, שכבר פגשת בשבוע 4 כ-あります!). זה ההסבר לכך ש-<span class="jp">ない</span> מתנהג כשם תואר ב-<span class="jp">い</span> בכל ההיבטים — כי הוא <em>הוא</em> שם תואר, רק שמשמש כסיומת שלילה לפעלים. הקשר בין あります ↔ ない הוא הד ישיר לקשר בין "יש" ↔ "אין" בעברית.</p>
+
+    <h4>חמשת חוקי הא-column — דפוס אחד נוסף ב-N5</h4>
+    <p>שים לב לדפוס: כל פעלי קבוצה 1 הופכים את הסיומת ל<strong>שורת あ</strong> (あ-column) לפני <span class="jp">ない</span>: む→ま, く→か, す→さ, つ→た (לא נדרש כאן אבל ההיגיון זהה), ぐ→が, ぶ→ば, ぬ→な. כל אחת מהאותיות האלה היא "שורת あ" של אותו עיצור — בדיוק כמו ש-む היא שורת う, ま היא שורת あ של אותו עיצור (m). זה אותו עיקרון פונטי שראית עם と思います ואחר — יפנית עקבית בדפוסי שינוי הצליל שלה.</p>
+
+    <h4>החריג う→わ — לא "חריג אמיתי" אלא צורך פונטי</h4>
+    <p>השינוי <span class="jp">う→わ</span> (לא <span class="jp">あ</span> כמצופה) נראה כחריג אבל יש לו הסבר פונטי: ביפנית עתיקה, הצליל "あ" אחרי תנועת "う" יצר רצף קשה להגייה, אז התפתח עיצור-מעבר <span class="jp">わ</span> (w) שמקל על המעבר. דפוס דומה (אם כי לא זהה) קיים בשפות רבות — צלילי מעבר בין תנועות. זה לא "תקלה" בדקדוק, אלא תוצר טבעי של שינוי פונטי היסטורי.</p>
+
+    <h4>הקשר לשבוע הבא — なかった כתואר בעבר</h4>
+    <p>כמו שכתוב ב<span class="jp">note</span> שלמעלה, בשבוע 10 תלמד ש-<span class="jp">ない</span> מוטה כל-שם תואר-<span class="jp">い</span>: עבר = <span class="jp">なかった</span> (לא <span class="jp">ないだった</span>!). זו עוד הוכחה לכך ש-<span class="jp">ない</span> "מתנהג" כתואר עצמאי, לא כסיומת דקדוקית קפואה — כל ההיגיון של הטיית-תואר שלמדת בשבוע 3 חל עליו במלואו.</p>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="קבוצה 1: む → ま + ない. 読む → 読まない.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה צורת ない של <span class="jp">読む</span> (לקרוא)?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">読みない</span></button>
+      <button class="opt"><span class="jp">読まない</span></button>
+      <button class="opt"><span class="jp">読んない</span></button>
+      <button class="opt"><span class="jp">読まない</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="3" data-explain="קבוצה 1: う → わ (חריג!) + ない. 買う → 買わない.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה צורת ない של <span class="jp">買う</span> (לקנות)?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">買うない</span></button>
+      <button class="opt"><span class="jp">買あない</span></button>
+      <button class="opt"><span class="jp">買えない</span></button>
+      <button class="opt"><span class="jp">買わない</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="来る = קבוצה 3 חריג: 来る → こない (לא くない!).">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה צורת ない של <span class="jp">来る</span> (לבוא)?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">くない</span></button>
+      <button class="opt"><span class="jp">くるない</span></button>
+      <button class="opt"><span class="jp">こない</span></button>
+      <button class="opt"><span class="jp">きない</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">המר לצורת ない: <strong><span class="jp">食べる・話す・する・行く・言う</span></strong><br>
+    <span style="font-size:14px;color:var(--muted)">(言う = לומר)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">食べない・話さない・しない・行かない・言わない</span><br>
+      <span style="color:var(--muted);font-size:14px">
+        食べる = ק'2: הסר る+ない; 話す = ק'1: す→さ+ない;<br>
+        する = ק'3 חריג; 行く = ק'1: く→か+ない; 言う = ק'1 חריג: う→わ+ない.
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 3: PLAIN vs POLITE ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 3</span>
+  <h2>מתי משתמשים בצורה רגילה מול מנומסת?</h2>
+
+  <p>ביפנית, בחירת הצורה קובעת את <strong>מערכת היחסים</strong> בין הדוברים. ההחלטה היא חברתית, לא דקדוקית.</p>
+
+  <div class="pvp">
+    <div class="pvp-head pvp-left" style="background:#fff3ec;">צורה מנומסת (<span class="jp" style="font-size:1em">ます／です</span>)</div>
+    <div class="pvp-head" style="background:#eef3fa;">צורה רגילה (מילון / <span class="jp" style="font-size:1em">ない</span>)</div>
+    <div class="pvp-row">
+      <div class="pvp-left" style="font-size:15px">עם זרים, מבוגרים, לקוחות, עמיתים חדשים</div>
+      <div style="font-size:15px">עם חברים קרובים, משפחה, יומן אישי</div>
+    </div>
+    <div class="pvp-row">
+      <div class="pvp-left jp-cell">食べます</div>
+      <div class="jp-cell">食べる</div>
+    </div>
+    <div class="pvp-row">
+      <div class="pvp-left jp-cell">食べません</div>
+      <div class="jp-cell">食べない</div>
+    </div>
+    <div class="pvp-row">
+      <div class="pvp-left jp-cell">食べましたか</div>
+      <div class="jp-cell">食べた？</div>
+    </div>
+    <div class="pvp-row">
+      <div class="pvp-left jp-cell">行きません</div>
+      <div class="jp-cell">行かない</div>
+    </div>
+  </div>
+
+  <div class="note"><b>חלק ג' של הקורס:</b> עכשיו שיש לך שתי מערכות, תוכל להבין גם דיבור יומיומי וגם מבחן N5 — ששניהם מופיעים בו. <strong>המבחן</strong> בודק את שתיהן!</div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">今日、学校に行かない。</span> <span class="r">（きょう、がっこうにいかない）</span></div>
+      <div class="ex-he">היום אני לא הולך לבית-ספר. ← רגיל (לחבר)</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">今日、学校に行きません。</span> <span class="r">（きょう、がっこうにいきません）</span></div>
+      <div class="ex-he">היום אני לא הולך לבית-ספר. ← מנומס (למורה)</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">何食べる？</span> <span class="r">（なにたべる？）</span></div>
+      <div class="ex-he">מה אתה אוכל? ← רגיל, שאלה בין חברים</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">何を食べますか。</span></div>
+      <div class="ex-he">מה אתה אוכל? ← מנומס</div>
+    </div>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — רגיל מול מנומס</div>
+
+    <h4>לא "שתי שפות" — מערכת נימוס אחת עם מספר מדרגות</h4>
+    <p>חשוב להבין שה"רגיל" וה"מנומס" אינם שתי שפות נפרדות, אלא <strong>שתי נקודות על סקאלת נימוס אחת</strong> שביפנית נקראת <span class="jp">敬語（けいご）</span> — "שפת כבוד". ברמת N5 פוגשים רק שני קצוות בסיסיים (רגיל ↔ ます/です), אבל ביפנית הסקאלה ממשיכה עוד הרבה — שפת כבוד מכבדת (敬語 מכבד), שפת ענווה (謙譲語), ועוד דרגות שתפגוש ברמות מתקדמות יותר.</p>
+
+    <h4>איך יודעים איזו צורה "נכונה" במצב מסוים — כללי-אצבע</h4>
+    <p>הכלל הבסיסי: דרג קרבה ↓ נימוס ↑. עם זרים מוחלטים, לקוחות, מבוגרים בגיל, או בסיטואציה עסקית — מנומס. עם חברים קרובים בני אותו גיל/מעמד, משפחה קרובה, או ביומן אישי — רגיל. <strong>הטעות הנפוצה ביותר</strong> בקרב לומדים זרים היא לדבר רגיל עם יפנים שאינם מכרים קרובים — זה יכול להישמע לא-מנומס או חצוף, גם אם הכוונה לא הייתה כזו.</p>
+
+    <h4>המבחן בודק את שתיהן — לא רק את ה"מנומס"</h4>
+    <p>שים לב שמבחן ה-N5 (החלק הכתוב, אבל ביחוד החלק השמיעה) כולל לעיתים דיאלוגים בצורה רגילה — שיחות בין חברים, משפחה, וכן הלאה. אם תכיר רק את הצורה המנומסת, תתקשה להבין חלק מהשאלות. זו הסיבה שבחלק ג' של הקורס (משבוע 9 והלאה) משקיעים זמן רב בצורה הרגילה — היא לא "אופציונלית", היא חלק אינטגרלי מהשפה והמבחן.</p>
+
+    <h4>למה אנימה ודיאלוגים ביפנית "אמיתית" משתמשים ברגיל</h4>
+    <p>אם אתה צופה באנימה, דרמות, או סרטים יפניים — תשמע בעיקר את הצורה הרגילה, כי רוב הדיאלוגים מתרחשים בין דמויות שמכירות זו את זו (חברים, משפחה, קרובים). הצורה המנומסת מופיעה בעיקר בסיטואציות פורמליות (פגישות עבודה, שירות לקוחות) — שגם הן מופיעות, אבל בתדירות נמוכה יותר בסיפורי בידור. ככל שתשלוט בשתי הצורות, תוכל להבין יותר תוכן אמיתי.</p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="הצורה הרגילה = לחברים/משפחה. לא מנומסת. 食べない = לא אוכל (רגיל).">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה ההבדל בין <span class="jp">食べない</span> ל-<span class="jp">食べません</span>?</p>
+    <div class="q-options">
+      <button class="opt">שניהם "לא אוכל" — הראשון רגיל (חברים), השני מנומס</button>
+      <button class="opt">הראשון עבר, השני הווה</button>
+      <button class="opt">הראשון חיובי, השני שלילי</button>
+      <button class="opt">הראשון שאלה, השני הצהרה</button>
+    </div>
+    <p class="fb"></p>
+  </div>
+</div>
+
+<!-- ========== TOPIC 4: USES OF PLAIN FORM ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 4</span>
+  <h2>שימושים ראשונים של הצורה הרגילה</h2>
+
+  <p>הצורה הרגילה לא רק לדיבור לא-פורמלי — היא גם הבסיס לכל המבנים המורכבים שנלמד בשבועות הבאים. הנה כמה שימושים ראשונים שכבר יכול לנצל:</p>
+
+  <h3 class="sub-head">1. לפני から (כי) ו-が (אבל)</h3>
+  <p>בדיבור רגיל, הפסוקית לפני <span class="jp">から</span> ו-<span class="jp">が</span> בדרך כלל בצורה רגילה:</p>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">眠い<b>から</b>、コーヒーを飲む。</span> <span class="r">（ねむいから、こーひーをのむ）</span></div>
+      <div class="ex-he">כי אני ישנוני, שותה קפה. ← רגיל</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">日本語が好き<b>だから</b>、勉強する。</span></div>
+      <div class="ex-he">כי אני אוהב יפנית, אני לומד.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">2. לפני と思う / と思います — "אני חושב ש..."</h3>
+  <p>מבנה שימושי מאוד — "אני חושב ש-X": הצורה הרגילה + <span class="jp">と思う</span>. ה-<span class="jp">と</span> כאן הוא "ציטוט", לא "עם".</p>
+  <div class="formula"><strong>[צורה רגילה] <span class="jp">と思います</span></strong> = "אני חושב ש..."</div>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">田中さんは来ない<b>と思います</b>。</span></div>
+      <div class="ex-he">אני חושב שטנקה לא יבוא.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">この映画はおもしろい<span class="r"></span><b>と思います</b>。</span></div>
+      <div class="ex-he">אני חושב שהסרט הזה מעניין.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">明日は雨が降る<b>と思います</b>。</span> <span class="r">（あしたはあめがふると思います）</span></div>
+      <div class="ex-he">אני חושב שמחר ירד גשם.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">3. לפני まえに — "לפני ש..."</h3>
+  <div class="formula"><strong>[צורת מילון] <span class="jp">まえに</span></strong> = "לפני ש..."</div>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">寝る<b>まえに</b>、歯を磨きます。</span> <span class="r">（ねるまえに、はをみがきます）</span></div>
+      <div class="ex-he">לפני השינה, מצחצח שיניים.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">食べる<b>まえに</b>、手を洗います。</span> <span class="r">（たべるまえに、てをあらいます）</span></div>
+      <div class="ex-he">לפני האכילה, שוטף ידיים.</div>
+    </div>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — שימושי הצורה הרגילה</div>
+
+    <h4>と思います — ה-と הוא "ציטוט", לא "עם" ולא רשימה</h4>
+    <p>שים לב שזהו <strong>שימוש שלישי</strong> של החלקיק <span class="jp">と</span> (אחרי רשימה ו"עם" ששלמדת בשבועות 4 ו-8): כאן <span class="jp">と</span> מסמן <strong>תוכן מחשבה/דיבור מצוטט</strong>. המבנה המלא הוא [משפט שלם בצורה רגילה] + と + 思う/言う/聞く וכו'. בבלשנות זה נקרא "ציטוט עקיף" (indirect quotation) — בדיוק כמו שבעברית אומרים "אני חושב ש-X", ה-X כולו (משפט שלם!) הוא מה שנמצא לפני と.</p>
+
+    <h4>הדרגתיות הביטחון — と思います לעומת אמירה ישירה</h4>
+    <p>שימוש ב-<span class="jp">と思います</span> הוא דרך נימוסית מקובלת ביפנית להחליש קביעות חד-משמעית: גם אם אתה בטוח ב-100% ש"הסרט מעניין", אומרים <span class="jp">おもしろいと思います</span> ולא רק <span class="jp">おもしろいです</span> — זה נשמע פחות תוקפני וכוללני. זו תופעה תרבותית-לשונית רחבה ביפנית, שמעדיפה ניסוח עדין ולא-ישיר בהרבה הקשרים.</p>
+
+    <h4>まえに — קשר למבנה あとで (אחרי ש...) שתפגוש בעתיד</h4>
+    <p><span class="jp">まえに</span> ("לפני ש...") יש לו "אח" מקביל — <span class="jp">あとで</span> ("אחרי ש...") שלא בתוכן N5 הרשמי אך שכיח מאוד: <span class="jp">食べたあとで</span> ("אחרי האכילה"). שים לב להבדל המבני: <span class="jp">まえに</span> לוקח צורת מילון (כי הפעולה <em>עוד לא קרתה</em> בזמן הפעולה הראשית), בעוד <span class="jp">あとで</span> לוקח צורת た (כי הפעולה <em>כבר הסתיימה</em>) — הבדל לוגי ועקבי.</p>
+
+    <h4>למה כל שלושת השימושים דורשים צורה רגילה — לא מקרי</h4>
+    <p>שים לב לדפוס: <span class="jp">から</span> (סיבה), <span class="jp">と思います</span>, ו-<span class="jp">まえに</span> — כולם דורשים את הפסוקית שלפניהם בצורה רגילה, גם כשהמשפט הראשי מנומס. זו תכונה כללית ביפנית: <strong>פסוקיות "תוך-משפטיות" (לא הפסוקית הראשית/הסופית) נוטות לצורה רגילה</strong>, גם במשלב מנומס. הצורה המנומסת (ます/です) "שמורה" בעיקר לסוף המשפט, לפסוקית הראשית. זה כלל-אצבע ששווה לזכור כשתפגוש מבנים חדשים בעתיד.</p>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="לפני と思います משתמשים בצורה רגילה. 来る = צורת מילון. 来ない = ない-form.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "אני חושב שטנקה לא יבוא"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">田中さんは来ますと思います。</span></button>
+      <button class="opt"><span class="jp">田中さんは来ないと思います。</span></button>
+      <button class="opt"><span class="jp">田中さんは来ませんと思います。</span></button>
+      <button class="opt"><span class="jp">田中さんは来なくと思います。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="לפני まえに משתמשים בצורת המילון (חיובי). 食べる = צורת מילון. לא食べない.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">השלם: "לפני האכילה שוטף ידיים." <span class="jp">___まえに、手を洗います。</span></p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">食べる</span></button>
+      <button class="opt"><span class="jp">食べない</span></button>
+      <button class="opt"><span class="jp">食べます</span></button>
+      <button class="opt"><span class="jp">食べました</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"אני חושב שמחר יהיה יום טוב. לפני היציאה אני קורא את מזג האוויר."</strong><br>
+    <span style="font-size:14px;color:var(--muted)">(יציאה = <span class="jp">出かける / でかける</span>; קורא = <span class="jp">見る</span> / <span class="jp">チェックする</span>)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">明日はいい天気だと思います。出かけるまえに、天気をチェックします。</span><br>
+      <span style="color:var(--muted);font-size:14px">（あしたはいいてんきだとおもいます。でかけるまえに、てんきをちぇっくします）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== VOCAB TABLE ===== -->
+<h2 class="section">אוצר מילים — שבוע 9</h2>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th><th>קבוצה</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">言う</td><td class="jp">いう</td><td>לומר</td><td>1 (ない: 言わない)</td></tr>
+    <tr><td class="jp">聞く</td><td class="jp">きく</td><td>לשמוע / לשאול</td><td>1</td></tr>
+    <tr><td class="jp">走る</td><td class="jp">はしる</td><td>לרוץ</td><td>1 (מלכודת!)</td></tr>
+    <tr><td class="jp">切る</td><td class="jp">きる</td><td>לחתוך</td><td>1 (מלכודת!)</td></tr>
+    <tr><td class="jp">出かける</td><td class="jp">でかける</td><td>לצאת מהבית</td><td>2</td></tr>
+    <tr><td class="jp">起きる</td><td class="jp">おきる</td><td>לקום</td><td>2</td></tr>
+    <tr><td class="jp">降る</td><td class="jp">ふる</td><td>לרדת (גשם/שלג)</td><td>1</td></tr>
+    <tr><td class="jp">洗う</td><td class="jp">あらう</td><td>לשטוף</td><td>1 (ない: 洗わない)</td></tr>
+    <tr><td class="jp">磨く</td><td class="jp">みがく</td><td>לצחצח / לצחצח שיניים</td><td>1</td></tr>
+    <tr><td class="jp">と思う</td><td class="jp">とおもう</td><td>חושב ש...</td><td>—</td></tr>
+    <tr><td class="jp">まえに</td><td class="jp">まえに</td><td>לפני ש...</td><td>—</td></tr>
+    <tr><td class="jp">歯</td><td class="jp">は</td><td>שן / שיניים</td><td>—</td></tr>
+    <tr><td class="jp">手</td><td class="jp">て</td><td>יד</td><td>—</td></tr>
+    <tr><td class="jp">雪</td><td class="jp">ゆき</td><td>שלג</td><td>—</td></tr>
+    <tr><td class="jp">野菜</td><td class="jp">やさい</td><td>ירקות</td><td>—</td></tr>
+    <tr><td class="jp">肉</td><td class="jp">にく</td><td>בשר</td><td>—</td></tr>
+    <tr><td class="jp">魚</td><td class="jp">さかな</td><td>דג</td><td>—</td></tr>
+    <tr><td class="jp">果物</td><td class="jp">くだもの</td><td>פרי</td><td>—</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 תיבת בחינה — אוצר מילים</div>
+</div>
+
+<!-- ===== KANJI TABLE ===== -->
+<h2 class="section k">קאנג'י — שבוע 9 (כיוונים ומיקום)</h2>
+<table>
+  <thead><tr><th>קאנג'י</th><th>קריאה</th><th>משמעות</th><th>דוגמה</th></tr></thead>
+  <tbody>
+    <tr><td class="jp big">少</td><td class="jp">すこ / しょう</td><td>מעט</td><td class="jp">少し（すこし）/ 少ない（すくない）</td></tr>
+    <tr><td class="jp big">長</td><td class="jp">なが / ちょう</td><td>ארוך</td><td class="jp">長い（ながい）</td></tr>
+    <tr><td class="jp big">白</td><td class="jp">しろ / はく</td><td>לבן</td><td class="jp">白い（しろい）</td></tr>
+    <tr><td class="jp big">上</td><td class="jp">うえ / じょう</td><td>מעלה / על</td><td class="jp">上手（じょうず）/ 机の上（つくえのうえ）</td></tr>
+    <tr><td class="jp big">下</td><td class="jp">した / か</td><td>מטה / מתחת</td><td class="jp">下手（へた）/ 机の下（つくえのした）</td></tr>
+    <tr><td class="jp big">左</td><td class="jp">ひだり</td><td>שמאל</td><td class="jp">左（ひだり）</td></tr>
+    <tr><td class="jp big">右</td><td class="jp">みぎ</td><td>ימין</td><td class="jp">右（みぎ）</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-kanji">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🔢 תיבת בחינה — קאנג'י</div>
+</div>
+
+<!-- ===== FINAL QUIZ ===== -->
+<h2 class="section">מבחן סיכום — שבוע 9</h2>
+<p style="margin-top:-2px;color:var(--muted)">שאלות מעורבות: דקדוק, אוצר מילים, קאנג'י + חזרה.</p>
+<div class="quiz-widget" id="quiz-final">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🎓 מבחן סיכום</div>
+</div>
+
+<!-- ===== BONUS DRILL ===== -->
+<h2 class="section" style="background:linear-gradient(100deg,#4b6a8f,#2e4d6b)">🧩 תרגול מעמיק — שבוע 9</h2>
+<p style="margin-top:-2px;color:var(--muted)">13 שאלות: המרות, מלכודות, הבנת משפט ושילוב.</p>
+<div class="quiz-widget" id="quiz-bonus">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:#4b6a8f;margin-bottom:8px">🧩 תרגול מעמיק</div>
+</div>
+
+<div class="done-banner">
+  <h2>סיימת את שבוע 9! <span class="jp">よくできました</span> 🎉</h2>
+  <p>
+    יש לך עכשיו את <strong>הצורה הרגילה</strong> — הבסיס לכל מה שבא אחר כך.<br>
+    שבוע 10: עבר רגיל (<span class="jp">た</span>), שלילת עבר (<span class="jp">なかった</span>), ודיבור יומיומי לא-פורמלי.
+  </p>
+</div>
+
+<p class="footer-note"><span class="jp" dir="ltr">日本語 N5</span> · שבוע 9 מתוך 20 · <span class="jp" dir="ltr">頑張って！</span></p>
+</div>
+
+<script>
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+document.querySelectorAll('.check').forEach(q=>{
+  const ans=+q.dataset.answer,fb=q.querySelector('.fb'),opts=q.querySelectorAll('.opt');
+  opts.forEach((btn,i)=>{
+    btn.addEventListener('click',()=>{
+      if(q.classList.contains('done'))return; q.classList.add('done');
+      opts.forEach((b,j)=>{b.disabled=true;if(j===ans)b.classList.add('correct');else if(j===i)b.classList.add('wrong');});
+      const ok=i===ans;
+      fb.textContent=(ok?'✓ נכון! ':'✗ לא מדויק. ')+(q.dataset.explain||'');
+      fb.className='fb '+(ok?'fb-ok':'fb-no');
+    });
+  });
+});
+document.querySelectorAll('.reveal-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const a=b.nextElementSibling,show=a.style.display!=='block';
+    a.style.display=show?'block':'none';b.textContent=show?'הסתר תשובה':'הצג תשובה';
+  });
+});
+function makeQuiz(rootId,data){
+  const root=document.getElementById(rootId);
+  const head=root.querySelector('.htag');
+  let order,idx,score,locked;
+  function start(){order=shuffle([...data.keys()]);idx=0;score=0;locked=false;render();}
+  function render(){
+    [...root.children].forEach(c=>{if(c!==head)c.remove();});
+    if(idx>=order.length)return result();
+    const item=data[order[idx]];
+    const opts=shuffle(item.options.map((t,i)=>({t,correct:i===item.answer})));
+    const box=document.createElement('div');
+    box.innerHTML=`
+      <div class="q-progress"><span>שאלה ${idx+1} מתוך ${order.length}</span><span>ניקוד: ${score}</span></div>
+      <div class="q-bar"><span style="width:${idx/order.length*100}%"></span></div>
+      <p class="q-text">${item.q}</p>
+      <div class="q-options"></div>
+      <p class="fb"></p>
+      <button class="next-btn" style="display:none;margin-top:12px">הבא ←</button>`;
+    root.appendChild(box);
+    const wrap=box.querySelector('.q-options'),fb=box.querySelector('.fb'),next=box.querySelector('.next-btn');
+    opts.forEach(o=>{
+      const btn=document.createElement('button');btn.className='opt';btn.innerHTML=o.t;
+      btn.addEventListener('click',()=>{
+        if(locked)return;locked=true;
+        wrap.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        if(o.correct){btn.classList.add('correct');score++;fb.textContent='✓ נכון!';fb.className='fb fb-ok';}
+        else{btn.classList.add('wrong');fb.textContent='✗ לא מדויק'+(item.note?(' — '+item.note):'');fb.className='fb fb-no';
+          [...wrap.children].forEach((c,k)=>{if(opts[k].correct)c.classList.add('correct');});}
+        next.style.display='inline-block';
+      });
+      wrap.appendChild(btn);
+    });
+    next.addEventListener('click',()=>{idx++;locked=false;render();});
+  }
+  function result(){
+    const pct=Math.round(score/data.length*100);
+    const msg=pct>=80?'מצוין! אתה שולט בחומר 🎉':pct>=60?'יפה! עוד קצת חזרה ותהיה מצוין.':'כדאי לחזור על החומר ולנסות שוב.';
+    const box=document.createElement('div');box.className='q-result';
+    box.innerHTML=`<div class="score-big">${score} / ${data.length}</div><p>${msg}</p><button class="next-btn">התחל מחדש 🔁</button>`;
+    root.appendChild(box);
+    box.querySelector('.next-btn').addEventListener('click',start);
+  }
+  start();
+}
+const J=s=>`<span class="jp">${s}</span>`;
+
+makeQuiz('quiz-vocab-preview',[
+  {q:'מה הפירוש של '+J('言う')+'?',options:['לומר','לשמוע','לכתוב','לקרוא'],answer:0},
+  {q:'מה הפירוש של '+J('走る')+'?',options:['לרוץ','ללכת','לשחות','לקפוץ'],answer:0},
+  {q:'מה הפירוש של '+J('切る')+'?',options:['לחתוך','לכתוב','לקרוא','לבשל'],answer:0},
+  {q:'מה הפירוש של '+J('出かける')+'?',options:['לצאת מהבית','להיכנס','לחזור','ללכת'],answer:0},
+  {q:'מה הפירוש של '+J('降る')+'?',options:['לרדת (גשם/שלג)','לעלות','להגיע','לנפול'],answer:0},
+  {q:'מה הפירוש של '+J('洗う')+'?',options:['לשטוף','לנגב','לנקות','לכבס'],answer:0},
+  {q:'מה הפירוש של '+J('磨く')+'?',options:['לצחצח','לשטוף','לחתוך','לשבור'],answer:0},
+  {q:'מה הפירוש של '+J('歯')+'?',options:['שן / שיניים','שפה','לשון','לסת'],answer:0},
+  {q:'מה הפירוש של '+J('手')+'?',options:['יד','רגל','ראש','בטן'],answer:0},
+  {q:'מה הפירוש של '+J('雪')+'?',options:['שלג','גשם','רוח','ברד'],answer:0},
+  {q:'מה הפירוש של '+J('野菜')+'?',options:['ירקות','פרי','אוכל','ממתק'],answer:0},
+  {q:'מה הפירוש של '+J('肉')+'?',options:['בשר','דג','ירקות','אורז'],answer:0},
+  {q:'מה הפירוש של '+J('魚')+'?',options:['דג','בשר','עוף','ירקות'],answer:0},
+  {q:'מה הפירוש של '+J('果物')+'?',options:['פרי','ירקות','אוכל','ממתק'],answer:0},
+  {q:'מה הפירוש של '+J('天気')+'?',options:['מזג אוויר','שמיים','ענן','גשם'],answer:0},
+  {q:'מה המשמעות של '+J('〜と思います')+'?',options:['אני חושב ש...','אני רוצה ש...','אני יודע ש...','אני שומע ש...'],answer:0},
+  {q:'מה המשמעות של '+J('〜まえに')+'?',options:['לפני ש...','אחרי ש...','בזמן ש...','כאשר...'],answer:0}
+]);
+
+makeQuiz('quiz-vocab',[
+  {q:'מה הפירוש של '+J('言う')+'?',options:['לומר','לשמוע','לכתוב','לקרוא'],answer:0},
+  {q:'מה הפירוש של '+J('走る')+'?',options:['לרוץ','ללכת','לשחות','לקפוץ'],answer:0},
+  {q:'מה הפירוש של '+J('出かける')+'?',options:['לצאת מהבית','להיכנס','לחזור','ללכת'],answer:0},
+  {q:'מה הפירוש של '+J('降る')+'?',options:['לרדת (גשם/שלג)','לעלות','להגיע','לנפול'],answer:0},
+  {q:'מה הפירוש של '+J('洗う')+'?',options:['לשטוף','לנגב','לנקות','לכבס'],answer:0},
+  {q:'מה הפירוש של '+J('歯')+'?',options:['שן / שיניים','שפה','לשון','לסת'],answer:0},
+  {q:'מה הפירוש של '+J('野菜')+'?',options:['ירקות','פרי','בשר','דג'],answer:0},
+  {q:'מה הפירוש של '+J('果物')+'?',options:['פרי','ירקות','אוכל','ממתק'],answer:0},
+  {q:'מה הפירוש של '+J('雪')+'?',options:['שלג','גשם','רוח','ברד'],answer:0},
+  {q:'מה המשמעות של '+J('〜と思います')+'?',options:['אני חושב ש...','אני רוצה ש...','אני יודע ש...','אני שומע ש...'],answer:0},
+  {q:'מה המשמעות של '+J('〜まえに')+'?',options:['לפני ש...','אחרי ש...','בזמן ש...','כאשר...'],answer:0}
+]);
+
+makeQuiz('quiz-kanji',[
+  {q:'מה הפירוש של '+J('<span class="big">少</span>')+'?',options:['מעט','הרבה','כולם','אף אחד'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">長</span>')+'?',options:['ארוך','קצר','גבוה','נמוך'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">白</span>')+'?',options:['לבן','שחור','אדום','צהוב'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">上</span>')+'?',options:['מעלה / על','מטה / מתחת','שמאל','ימין'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">下</span>')+'?',options:['מטה / מתחת','מעלה / על','מול','מאחורי'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">左</span>')+'?',options:['שמאל','ימין','מעלה','מטה'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">右</span>')+'?',options:['ימין','שמאל','קדימה','אחורה'],answer:0},
+  {q:'מה הקריאה של '+J('上手')+'?',options:[J('じょうず'),J('うえて'),J('かみて'),J('じょうて')],answer:0,note:'上手 = じょうず = מיומן.'},
+  {q:'מה הקריאה של '+J('少し')+'?',options:[J('すこし'),J('しょうし'),J('すくし'),J('ちょっと')],answer:0,note:'少し = すこし = קצת.'}
+]);
+
+makeQuiz('quiz-final',[
+  {q:'מה צורת המילון של '+J('食べます')+'?',options:[J('食べる'),J('食べ'),J('食べう'),J('食べむ')],answer:0,note:'קבוצה 2: הסר ます + る.'},
+  {q:'מה צורת ない של '+J('行く')+'?',options:[J('行かない'),J('行きない'),J('行くない'),J('行えない')],answer:0,note:'קבוצה 1: く→か+ない.'},
+  {q:'מה צורת ない של '+J('買う')+'?',options:[J('買わない'),J('買あない'),J('買えない'),J('買うない')],answer:0,note:'חריג: う→わ+ない.'},
+  {q:'מה צורת ない של '+J('来る')+'?',options:[J('こない'),J('くない'),J('くるない'),J('きない')],answer:0,note:'קבוצה 3 חריג: 来る→こない.'},
+  {q:'איך אומרים "אני חושב שמחר ירד גשם"?',options:[J('明日は雨が降ると思います。'),J('明日は雨が降ますと思います。'),J('明日は雨が降りと思います。'),J('明日は雨が降ないと思います。')],answer:0,note:'צורת מילון + と思います.'},
+  {q:'השלם: "לפני השינה..." '+J('___まえに'),options:[J('寝る'),J('寝ない'),J('寝ます'),J('寝た')],answer:0,note:'לפני ש... = צורת מילון + まえに.'},
+  {q:'מה ההבדל בין '+J('食べない')+' ל-'+J('食べません')+'?',options:['שניהם "לא אוכל" — הראשון רגיל, השני מנומס','הראשון עבר, השני הווה','אין הבדל','הראשון שלילי, השני חיובי'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">少</span>')+'?',options:['מעט','הרבה','אחד','אף'],answer:0},
+  {q:'מה צורת המילון של '+J('します')+'?',options:[J('する'),J('し'),J('すう'),J('しる')],answer:0,note:'קבוצה 3: します→する.'},
+  {q:'מה צורת ない של '+J('話す')+'?',options:[J('話さない'),J('話しない'),J('話すない'),J('話えない')],answer:0,note:'קבוצה 1: す→さ+ない.'},
+  {q:'מה הפירוש של '+J('野菜をあまり食べないと思います')+'?',options:['אני חושב שלא אוכל הרבה ירקות','אני חושב שאוכל הרבה ירקות','ירקות לא טעימים לי','לא אוכל ירקות אף פעם'],answer:0,note:'あまり + שלילה = לא ממש; と思います = אני חושב.'}
+]);
+
+makeQuiz('quiz-bonus',[
+  // המרות
+  {q:'מה צורת ない של '+J('飲む')+'?',options:[J('飲まない'),J('飲みない'),J('飲むない'),J('飲わない')],answer:0,note:'קבוצה 1: む→ま+ない.'},
+  {q:'מה צורת ない של '+J('見る')+'?',options:[J('見ない'),J('見まない'),J('見るない'),J('見えない')],answer:0,note:'קבוצה 2: הסר る+ない = 見ない.'},
+  {q:'מה צורת המילון של '+J('帰ります')+'?',options:[J('帰る'),J('帰え'),J('帰い'),J('帰む')],answer:0,note:'帰る = קבוצה 1 (מלכודת!) — צורת מילון = 帰る (לא משתנה מ-ります).'},
+  {q:'מה צורת ない של '+J('帰る')+'?',options:[J('帰らない'),J('帰りない'),J('帰るない'),J('帰わない')],answer:0,note:'帰る = קבוצה 1! る→ら+ない = 帰らない.'},
+  // מלכודות קבוצה
+  {q:J('走る')+'（לרוץ）ו-'+J('切る')+'（לחתוך）שייכים לאיזו קבוצה?',
+   options:['קבוצה 1 (מלכודת — למרות שמסתיים ב-る)','קבוצה 2','קבוצה 3','קבוצה 2 לפי צליל'],answer:0,
+   note:'走る/切る = קבוצה 1 למרות ה-る — חריגים שצריך לשנן!'},
+  // הבנת משפט
+  {q:'מה הפירוש של '+J('寝るまえに歯を磨かない人は多いと思います。')+'?',
+   options:['אני חושב שיש הרבה אנשים שלא מצחצחים שיניים לפני השינה','כולם מצחצחים שיניים לפני השינה','יש מעט אנשים שמצחצחים שיניים','אני לא מצחצח שיניים'],answer:0,
+   note:'寝るまえに = לפני השינה; 磨かない = לא מצחצחים; 多い = הרבה; と思います = אני חושב.'},
+  {q:'מה הפירוש של '+J('田中さんは魚を食べないと思います。')+'?',
+   options:['אני חושב שטנקה לא אוכלת דגים','טנקה אוהבת דגים','טנקה אוכלת רק דגים','אני לא אוכל דגים'],answer:0},
+  // שימוש נכון
+  {q:'מי הנכון — "לפני הרצה שותה מים"?',
+   options:[J('走るまえに、水を飲みます。'),J('走らないまえに、水を飲みます。'),J('走りますまえに、水を飲みます。'),J('走ったまえに、水を飲みます。')],answer:0,
+   note:'לפני ש... = צורת מילון + まえに. 走る = מילון, לא 走らない.'},
+  // השוואה רגיל/מנומס
+  {q:'מי הנכון בהקשר לא-פורמלי (עם חבר)?',
+   options:[J('今日、行かない。'),J('今日、行きません。'),J('今日、行きませんでした。'),J('今日、行かなかった。')],answer:0,
+   note:'לחבר = צורה רגילה הווה שלילי: 行かない.'},
+  // שילוב מלא
+  {q:'תרגם: "אני חושב שמחר ירד שלג, לכן לא אצא מהבית."',
+   options:[
+     J('明日は雪が降ると思うから、出かけない。'),
+     J('明日は雪が降りますと思うから、出かけません。'),
+     J('明日は雪が降らないと思うから、出かける。'),
+     J('明日は雪が降ると思いますから、出かけます。')
+   ],answer:0,
+   note:'הצורה הרגילה לאורך כל המשפט (דיבור לא-פורמלי): 降ると思うから、出かけない.'},
+  // קאנג'י בהקשר
+  {q:'מה הפירוש של '+J('右と左を見てから、道を渡ります。')+'?',
+   options:['מסתכל ימין ושמאל ואז חוצה את הכביש','פונה ימינה ואז שמאלה','עוצר ימינה','הולך ישר'],answer:0,
+   note:'右と左を見て = מסתכל ימין ושמאל; から = ואז/לאחר מכן; 道を渡る = לחצות כביש.'},
+  {q:'מה הפירוש של '+J('少し日本語が話せると思います。')+'?',
+   options:['אני חושב שיכול לדבר קצת יפנית','לא יכול לדבר יפנית בכלל','מדבר יפנית שוטפת','לומד קצת יפנית'],answer:0,
+   note:'少し = קצת; 話せる = יכול לדבר; と思います = אני חושב.'}
+]);
+</script>
+</body>
+</html>

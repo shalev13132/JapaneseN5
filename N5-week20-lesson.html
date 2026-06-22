@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שבוע 20 — סימולציה 2 וסיום הקורס | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+    --blue:#4b6a8f; --blue-soft:#e3eaf3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre",Georgia,serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px,rgba(120,100,70,.06) 1px,transparent 0);
+    background-size:22px 22px;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 90px;}
+  .jp{font-family:"Noto Sans JP",system-ui,sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+  .big{font-size:1.35em; line-height:1;}
+
+  header.masthead{text-align:center; padding:56px 20px 34px; border-bottom:3px double var(--line); margin-bottom:6px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(28px,5.5vw,40px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:17px;}
+  .nav-links{display:flex; justify-content:space-between; margin:14px 0 0; font-size:14px;}
+  .nav-links span{color:var(--muted); font-family:"Heebo",sans-serif; font-weight:700;}
+
+  .exam-info{background:linear-gradient(135deg,#fff3ec,#fbe8db); border:2px solid var(--accent); border-radius:14px; padding:20px 24px; margin:24px 0; text-align:center;}
+  .exam-info h3{font-family:"Heebo",sans-serif; font-weight:800; font-size:18px; color:var(--accent); margin-bottom:10px;}
+  .exam-info .ei-row{display:flex; justify-content:space-around; flex-wrap:wrap; gap:14px; margin-top:14px;}
+  .exam-info .ei-stat{text-align:center;}
+  .exam-info .ei-num{font-family:"Heebo",sans-serif; font-weight:800; font-size:26px; color:var(--gold);}
+  .exam-info .ei-label{font-size:13px; color:var(--muted);}
+
+  .lead{background:var(--card); border:1px solid var(--line); border-right:5px solid var(--accent); border-radius:12px; padding:18px 22px; margin:26px 0;}
+  .lead h2{font-family:"Heebo",sans-serif; font-size:18px; margin:0 0 6px;}
+  .lead ol{margin:6px 0 0; padding-inline-start:1.3em;}
+  .lead li{margin:3px 0;}
+
+  .passage{background:var(--card); border:2px solid var(--line); border-radius:14px; padding:20px 24px; margin:18px 0;}
+  .passage-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--gold); margin-bottom:12px; display:flex; align-items:center; gap:8px;}
+  .passage-title::before{content:"📄";}
+  .passage-text{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:18px; line-height:2; background:#faf5ea; border-radius:8px; padding:16px 20px;}
+
+  .dialogue{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .dialogue-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--gold); margin-bottom:12px; display:flex; align-items:center; gap:6px;}
+  .dialogue-title::before{content:"🎧";}
+  .d-row{display:flex; gap:10px; align-items:flex-start; margin:10px 0;}
+  .d-who{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--muted); min-width:40px; padding-top:4px;}
+  .d-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px; font-weight:500; flex:1;}
+
+  .note{background:#faf5ea; border:1px dashed var(--line); border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .note b{color:var(--accent);}
+
+  /* roadmap cards for "what's next" */
+  .roadmap-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0;}
+  @media(max-width:540px){.roadmap-grid{grid-template-columns:1fr;}}
+  .roadmap-card{background:var(--card); border:1.5px solid var(--line); border-radius:12px; padding:16px 18px;}
+  .roadmap-card .rm-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:14px; color:var(--accent); margin-bottom:8px;}
+  .roadmap-card .rm-content{font-size:15px; line-height:1.6;}
+  .roadmap-card a{color:var(--accent); font-weight:700; text-decoration:none;}
+  .roadmap-card a:hover{text-decoration:underline;}
+
+  .deepen{background:linear-gradient(160deg,#f3eee0,#ece3cf); border:1.5px solid #d8c89a; border-radius:14px; padding:20px 24px; margin:24px 0;}
+  .deepen-head{display:flex; align-items:center; gap:8px; font-family:"Heebo",sans-serif; font-weight:800; font-size:14px; color:#7d6324; margin-bottom:12px;}
+  .deepen-head::before{content:"🔎"; font-size:16px;}
+  .deepen h4{font-family:"Heebo",sans-serif; font-weight:700; font-size:16px; color:#7d6324; margin:16px 0 6px;}
+  .deepen h4:first-of-type{margin-top:0;}
+  .deepen p{margin:.5em 0; font-size:16px;}
+
+  .quiz-widget{background:linear-gradient(160deg,#fffdf8,#fbf4e8); border:1.5px solid var(--line); border-radius:14px; padding:22px; margin:18px 0; box-shadow:0 4px 14px rgba(80,60,30,.07);}
+  .q-progress{font-family:"Heebo",sans-serif; font-size:13px; color:var(--muted); margin-bottom:10px; display:flex; justify-content:space-between;}
+  .q-bar{height:6px; background:#eadfc9; border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  .q-bar span{display:block; height:100%; background:var(--accent); transition:width .3s;}
+  .q-text{font-size:18px; margin:0 0 12px; font-weight:500;}
+  .q-options{display:flex; flex-direction:column; gap:9px;}
+  .opt{font-family:inherit; font-size:17px; text-align:right; background:#fff; border:1.5px solid var(--line); border-radius:9px; padding:11px 16px; cursor:pointer; transition:.15s; color:var(--ink);}
+  .opt:hover:not(:disabled){border-color:var(--accent); background:#fffaf3;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:var(--ok-soft); border-color:var(--ok); color:#1f4d43; font-weight:700;}
+  .opt.wrong{background:var(--no-soft); border-color:var(--no); color:#7e2a13;}
+  .fb{margin:11px 0 0; font-size:16px; font-weight:600; min-height:1px;}
+  .fb-ok{color:var(--ok);} .fb-no{color:var(--no);}
+  .q-result{text-align:center; padding:14px 0;}
+  .score-big{font-family:"Heebo",sans-serif; font-weight:800; font-size:46px; color:var(--accent); line-height:1;}
+  .q-result p{font-size:18px; margin:10px 0 16px;}
+  .next-btn{font-family:"Heebo",sans-serif; font-weight:700; font-size:15px; background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 18px; cursor:pointer; transition:.15s;}
+  .next-btn:hover{background:#8e2f17;}
+
+  h2.section{font-family:"Heebo",sans-serif; font-weight:800; font-size:26px; margin:54px 0 8px; padding:12px 20px; color:#fff; background:linear-gradient(100deg,var(--gold),#7d6324); border-radius:10px;}
+  h2.section.k{background:linear-gradient(100deg,var(--accent),#8e2f17);}
+  h2.section.blue{background:linear-gradient(100deg,var(--blue),#2e4d6b);}
+  h2.section.final{background:linear-gradient(100deg,var(--ok),#1f4d43);}
+
+  .done-banner{text-align:center; margin:50px 0 0; padding:36px 26px; background:linear-gradient(160deg,#e3f0eb,#d4e8de); border:2px solid var(--ok); border-radius:18px;}
+  .done-banner h2{font-family:"Heebo",sans-serif; color:#1f4d43; margin:0 0 10px; font-size:28px;}
+  .done-banner p{font-size:17px;}
+  .footer-note{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">שבוע 20 מתוך 20 · <span class="jp" dir="ltr">JLPT N5</span> · השבוע האחרון!</div>
+  <h1>סימולציה 2 וסיום הקורס</h1>
+  <p class="sub">מבחן N5 שני, חזרה מסכמת, וצעדים להמשך</p>
+  <div class="nav-links">
+    <span>← שבוע 19: סימולציה 1</span>
+    <span>סוף הקורס 🎉</span>
+  </div>
+</header>
+
+<div class="exam-info">
+  <h3>📋 הנחיות לסימולציה השנייה</h3>
+  <p>בדיוק כמו בשבוע שעבר — טיימר ל-35 דקות, בלי הפרעות. השאלות כאן <strong>שונות</strong> משבוע 19, אבל מכוסות אותם נושאים. השווה את הניקוד שלך לסימולציה הקודמת — שיפור הוא הסימן הטוב ביותר שהחזרה עזרה.</p>
+  <div class="ei-row">
+    <div class="ei-stat"><div class="ei-num">3</div><div class="ei-label">חלקים</div></div>
+    <div class="ei-stat"><div class="ei-num">30</div><div class="ei-label">שאלות</div></div>
+    <div class="ei-stat"><div class="ei-num">35</div><div class="ei-label">דקות מומלצות</div></div>
+    <div class="ei-stat"><div class="ei-num">20</div><div class="ei-label">שבועות שלמדת!</div></div>
+  </div>
+</div>
+
+<div class="lead">
+  <h2>מבנה השבוע האחרון</h2>
+  <ol>
+    <li><strong>סימולציית מבחן 2</strong> — שלושה חלקים, שאלות חדשות.</li>
+    <li><strong>חזרה מסכמת</strong> — מבחן אחד שמכסה דוגמיות מכל 20 השבועות.</li>
+    <li><strong>סיכום הקורס וצעדים להמשך</strong> — לאן ממשיכים מכאן.</li>
+  </ol>
+</div>
+
+<!-- ===== PART 1: VOCAB/KANJI ===== -->
+<h2 class="section">חלק 1 — אוצר מילים וקאנג'י</h2>
+<div class="quiz-widget" id="exam2-part1">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 חלק 1: אוצר מילים וקאנג'י</div>
+</div>
+
+<!-- ===== PART 2: GRAMMAR/READING ===== -->
+<h2 class="section k">חלק 2 — דקדוק וקריאה</h2>
+
+<div class="passage">
+  <div class="passage-title">קטע קריאה</div>
+  <div class="passage-text">
+    鈴木さんは会社員です。毎朝7時に起きて、電車で会社へ行きます。会社は8時半から5時半までです。鈴木さんは英語が上手で、たまにアメリカ人のお客さんと話します。週末は犬と公園を散歩したり、本を読んだりします。来月、家族と沖縄に旅行に行く予定で、とても楽しみにしています。
+  </div>
+</div>
+
+<div class="quiz-widget" id="exam2-part2">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">📚 חלק 2: דקדוק וקריאה</div>
+</div>
+
+<!-- ===== PART 3: LISTENING-STYLE ===== -->
+<h2 class="section blue">חלק 3 — הבנה (בסגנון האזנה)</h2>
+
+<div class="dialogue">
+  <div class="dialogue-title">דיאלוג 1</div>
+  <div class="d-row"><div class="d-who">A:</div><div><div class="d-jp">すみません、駅までどうやって行きますか。</div></div></div>
+  <div class="d-row"><div class="d-who">B:</div><div><div class="d-jp">この道を右に行って、二つ目の信号を左に行ってください。</div></div></div>
+  <div class="d-row"><div class="d-who">A:</div><div><div class="d-jp">ありがとうございます。歩いてどのぐらいですか。</div></div></div>
+  <div class="d-row"><div class="d-who">B:</div><div><div class="d-jp">10分くらいだと思います。</div></div></div>
+</div>
+
+<div class="dialogue">
+  <div class="dialogue-title">דיאלוג 2</div>
+  <div class="d-row"><div class="d-who">A:</div><div><div class="d-jp">夏休みはどこか行きましたか。</div></div></div>
+  <div class="d-row"><div class="d-who">B:</div><div><div class="d-jp">海に行きたかったんですが、忙しくて行けませんでした。</div></div></div>
+  <div class="d-row"><div class="d-who">A:</div><div><div class="d-jp">そうですか。残念ですね。</div></div></div>
+  <div class="d-row"><div class="d-who">B:</div><div><div class="d-jp">でも、来年は絶対に行きたいです。</div></div></div>
+</div>
+
+<div class="quiz-widget" id="exam2-part3">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--blue);margin-bottom:8px">🎧 חלק 3: הבנה</div>
+</div>
+
+<!-- ===== COMPREHENSIVE FINAL REVIEW ===== -->
+<h2 class="section final">🏆 מבחן חזרה מסכם — מ-20 השבועות</h2>
+<p style="margin-top:-2px;color:var(--muted)">שאלות נבחרות שמכסות נושאים מכל חלקי הקורס. זה השיא — תרגול אחרון לפני שאתה ניגש למבחן N5 האמיתי!</p>
+<div class="quiz-widget" id="final-comprehensive">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--ok);margin-bottom:8px">🏆 חזרה מסכמת</div>
+</div>
+
+<div class="deepen">
+  <div class="deepen-head">העמקה — סיכום הקורס וצעדים להמשך</div>
+
+  <h4>מה כיסה הקורס — מבט אחרון על המסע</h4>
+  <p>במשך 20 שבועות בנית מערכת דקדוקית מלאה: ממשפטי שם בסיסיים (שבוע 1) ועד שרשור תארים ו-とき (שבוע 16), עברת בדרך את כל החלקיקים המרכזיים, את כל הטיות הפועל (מילון/ます/ない/た/て ונגזרותיהם), ואת אוצר המילים והקאנג'י הבסיסי. זה <strong>רוב</strong> מה שמכוסה במבחן N5 הרשמי — אתה במצב טוב.</p>
+
+  <h4>מה לעשות בשבוע/ים שלפני המבחן בפועל</h4>
+  <p>אם יש לך מבחן N5 מתוכנן, מומלץ בשבוע האחרון לפני המבחן: (1) לעבור שוב על טבלות-האב משבוע 17, (2) לתרגל עוד כמה סימולציות מקוונות (JLPT Sensei ואתרים דומים), (3) לוודא שאתה יודע את כל ~100 הקאנג'י שנלמדו בקורס בעל-פה, (4) לישון טוב ולהגיע רגוע — חרדת-מבחן פוגעת בביצועים יותר מחוסר-ידע.</p>
+
+  <h4>אחרי N5 — מה הלאה ברצף הלמידה</h4>
+  <p>השלב הטבעי הבא הוא N4, שמרחיב את כל מה שלמדת: עוד צורות פועל (יכולת, סביל, ציווי, תנאי), עוד אוצר מילים (כ-1,500 מילים, כפול מ-N5), ועוד כ-300 קאנג'י נוספים. הבסיס שבנית כאן — הבנת מערכת ההטיות וההיגיון מאחורי החלקיקים — יהפוך את הלמידה הבאה למהירה משמעותית, כי אתה לא מתחיל מאפס.</p>
+
+  <h4>שמירה על הרמה — איך לא "לאבד" את מה שלמדת</h4>
+  <p>גם אם לא ניגשים למבחן רשמי, השמירה על הרמה דורשת תרגול קבוע. הצעות: קריאת NHK Easy News מדי שבוע, צפייה בתוכן יפני (אנימה/דרמה) עם כתוביות יפניות (לא מתורגמות), שימוש ב-Anki לחזרה מרווחת על אוצר המילים והקאנג'י, ושיחה (גם בכתב) עם דוברי יפנית ברשתות חברתיות ללימוד שפות (HelloTalk, Tandem). היפנית היא שפה שדורשת חשיפה מתמשכת — אבל הבסיס שיש לך כבר מספיק חזק כדי להתחיל ליהנות מתכנים אמיתיים.</p>
+</div>
+
+<div class="roadmap-grid">
+  <div class="roadmap-card">
+    <div class="rm-title">📖 קריאה</div>
+    <div class="rm-content">
+      <a href="https://www.nhk.or.jp/news/easy/" target="_blank">NHK News Web Easy</a><br>
+      <a href="https://tadoku.org/japanese/free-books/" target="_blank">Tadoku — ספרונים בחינם</a>
+    </div>
+  </div>
+  <div class="roadmap-card">
+    <div class="rm-title">📝 תרגול מבחן N4</div>
+    <div class="rm-content">
+      <a href="https://jlptsensei.com/jlpt-n4-grammar-list/" target="_blank">JLPT Sensei N4</a><br>
+      <a href="https://www.japanesetest4you.com" target="_blank">Japanese Test 4 You</a>
+    </div>
+  </div>
+  <div class="roadmap-card">
+    <div class="rm-title">🗣️ שיחה</div>
+    <div class="rm-content">
+      HelloTalk / Tandem — אפליקציות לתרגום שפה עם דוברי-אם<br>
+      קבוצות וואטסאפ/דיסקורד ללומדי יפנית
+    </div>
+  </div>
+  <div class="roadmap-card">
+    <div class="rm-title">🎴 חזרה מרווחת</div>
+    <div class="rm-content">
+      חבילת Anki "JLPT N4" — להמשך אוצר המילים<br>
+      חזרה על קאנג'י N5 פעם בשבוע
+    </div>
+  </div>
+</div>
+
+<div class="done-banner">
+  <h2>סיימת את הקורס המלא! <span class="jp">おめでとうございます！</span> 🎉🎊</h2>
+  <p>
+    עברת 20 שבועות, מאות מילים, כ-100 קאנג'י, ועשרות מבני דקדוק — מהמשפט הראשון
+    "<span class="jp">私は学生です</span>" ועד שרשורי-תארים ומבני-זמן מורכבים.<br><br>
+    <strong>זה הישג אמיתי.</strong> בהצלחה במבחן N5, ובהמשך הדרך שלך עם היפנית —
+    <span class="jp">頑張ってください！</span>
+  </p>
+</div>
+
+<p class="footer-note"><span class="jp" dir="ltr">日本語 N5</span> · שבוע 20 מתוך 20 · <span class="jp" dir="ltr">これで終わりです。お疲れ様でした！</span></p>
+</div>
+
+<script>
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function makeQuiz(rootId,data){
+  const root=document.getElementById(rootId);
+  const head=root.querySelector('.htag');
+  let order,idx,score,locked;
+  function start(){order=shuffle([...data.keys()]);idx=0;score=0;locked=false;render();}
+  function render(){
+    [...root.children].forEach(c=>{if(c!==head)c.remove();});
+    if(idx>=order.length)return result();
+    const item=data[order[idx]];
+    const opts=shuffle(item.options.map((t,i)=>({t,correct:i===item.answer})));
+    const box=document.createElement('div');
+    box.innerHTML=`
+      <div class="q-progress"><span>שאלה ${idx+1} מתוך ${order.length}</span><span>ניקוד: ${score}</span></div>
+      <div class="q-bar"><span style="width:${idx/order.length*100}%"></span></div>
+      <p class="q-text">${item.q}</p>
+      <div class="q-options"></div>
+      <p class="fb"></p>
+      <button class="next-btn" style="display:none;margin-top:12px">הבא ←</button>`;
+    root.appendChild(box);
+    const wrap=box.querySelector('.q-options'),fb=box.querySelector('.fb'),next=box.querySelector('.next-btn');
+    opts.forEach(o=>{
+      const btn=document.createElement('button');btn.className='opt';btn.innerHTML=o.t;
+      btn.addEventListener('click',()=>{
+        if(locked)return;locked=true;
+        wrap.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        if(o.correct){btn.classList.add('correct');score++;fb.textContent='✓ נכון!';fb.className='fb fb-ok';}
+        else{btn.classList.add('wrong');fb.textContent='✗ לא מדויק'+(item.note?(' — '+item.note):'');fb.className='fb fb-no';
+          [...wrap.children].forEach((c,k)=>{if(opts[k].correct)c.classList.add('correct');});}
+        next.style.display='inline-block';
+      });
+      wrap.appendChild(btn);
+    });
+    next.addEventListener('click',()=>{idx++;locked=false;render();});
+  }
+  function result(){
+    const pct=Math.round(score/data.length*100);
+    const msg=pct>=80?'מצוין! אתה מוכן למבחן 🎉':pct>=60?'תקין — חזור על הנושאים שטעית בהם.':'כדאי לחזור על חומר נוסף.';
+    const box=document.createElement('div');box.className='q-result';
+    box.innerHTML=`<div class="score-big">${score} / ${data.length}</div><p>${msg}</p><button class="next-btn">התחל מחדש 🔁</button>`;
+    root.appendChild(box);
+    box.querySelector('.next-btn').addEventListener('click',start);
+  }
+  start();
+}
+const J=s=>`<span class="jp">${s}</span>`;
+
+// EXAM 2 - PART 1: Vocab/Kanji
+makeQuiz('exam2-part1',[
+  {q:'מה הקריאה של '+J('会社員')+'?',options:[J('かいしゃいん'),J('あいしゃいん'),J('かいしゃめん'),J('えしゃいん')],answer:0},
+  {q:'מה הפירוש של '+J('散歩する')+'?',options:['לטייל','לרוץ','לנסוע','לעבוד'],answer:0},
+  {q:'איזה קאנג\'י הוא "אדם"?',options:[J('人'),J('子'),J('女'),J('男')],answer:0},
+  {q:'מה הקריאה של '+J('楽しみにしています')+'?',options:[J('たのしみにしています'),J('らくしみにしています'),J('がくしみにしています'),J('たのしいにしています')],answer:0},
+  {q:'מה הפירוש של '+J('残念')+'?',options:['מצער / חבל','שמח','כועס','מפתיע'],answer:0},
+  {q:'איזה קאנג\'י הוא "להגיע"?',options:[J('着く'),J('行く'),J('来る'),J('帰る')],answer:0},
+  {q:'מה הקריאה של '+J('信号')+'?',options:[J('しんごう'),J('しんこう'),J('せんごう'),J('しごう')],answer:0},
+  {q:'מה הפירוש של '+J('絶対に')+'?',options:['בהחלט / בודאות','אולי','אף פעם','כמעט'],answer:0},
+  {q:'מה הפירוש של '+J('お客さん')+'?',options:['לקוח / אורח','עובד','חבר','שכן'],answer:0},
+  {q:'מה הקריאה של '+J('沖縄')+'?',options:[J('おきなわ'),J('おきわな'),J('ちゅうなわ'),J('おきのわ')],answer:0}
+]);
+
+// EXAM 2 - PART 2: Grammar/Reading
+makeQuiz('exam2-part2',[
+  {q:'בקטע על 鈴木さん — מה המקצוע שלו?',options:['עובד חברה','רופא','מורה','שף'],answer:0,note:'鈴木さんは会社員です.'},
+  {q:'בקטע — מה 鈴木さん עושה עם לקוחות אמריקאים?',options:['מדבר איתם באנגלית','לא מדבר איתם','שולח להם מייל','פוגש אותם בשבת'],answer:0,note:'英語が上手で、たまにアメリカ人のお客さんと話します.'},
+  {q:'בקטע — מה התכנון לחודש הבא?',options:['נסיעה לאוקינאווה עם המשפחה','נסיעה לבד','להישאר בבית','לעבוד יותר'],answer:0,note:'来月、家族と沖縄に旅行に行く予定.'},
+  {q:'מה הפירוש של '+J('犬と公園を散歩したり、本を読んだりします')+'?',options:['מטייל עם הכלב בפארק וקורא ספרים (בין השאר)','קורא לכלב בפארק','לא מטייל בכלל','קורא ספרים על כלבים'],answer:0,note:'～たり～たりする = רשימת פעולות אופייניות (לא בתוכן N5 הרשמי, אך מובן מההקשר).'},
+  {q:'מי הנכון — "המקום זול וטעים"',options:[J('この店は安くておいしいです。'),J('この店は安いおいしいです。'),J('この店は安いでおいしいです。'),J('この店は安くておいしいでした。')],answer:0},
+  {q:'מי הנכון — "אסור לעשן כאן"',options:[J('ここでタバコを吸ってはいけません。'),J('ここでタバコを吸ってもいいです。'),J('ここでタバコを吸いません。'),J('ここでタバコを吸わないでください。')],answer:0},
+  {q:'מה צורת て של '+J('待つ')+'?',options:[J('待って'),J('待んで'),J('待いて'),J('待した')],answer:0},
+  {q:'מי הנכון — "מתי יום ההולדת שלך?"',options:[J('誕生日はいつですか。'),J('誕生日は何時ですか。'),J('誕生日はどこですか。'),J('誕生日はどうですか。')],answer:0},
+  {q:'מה הפירוש של '+J('忙しくて行けませんでした')+'?',options:['היה עסוק מכדי לנסוע, אז לא נסע','נסע כי לא היה עסוק','רוצה לנסוע','כבר נסע'],answer:0},
+  {q:'מי הנכון — "כשהייתי קטן, אהבתי לקרוא"',options:[J('小さかった時、本を読むのが好きでした。'),J('小さい時、本を読むのが好きです。'),J('小さくなかった時、本が好きでした。'),J('小さい時、本を読みたくないです。')],answer:0},
+  {q:'מי הנכון — "רק חמש דקות יש לי"',options:[J('五分だけあります。'),J('五分があります。'),J('五分のほうがあります。'),J('五分を あります。')],answer:0}
+]);
+
+// EXAM 2 - PART 3: Listening-style
+makeQuiz('exam2-part3',[
+  {q:'בדיאלוג 1 — איך מגיעים לתחנה?',options:['ימינה, ואז ברמזור השני שמאלה','שמאלה, ואז ימינה','ישר עד הסוף','אין תשובה ברורה'],answer:0,note:'この道を右に行って、二つ目の信号を左に行ってください.'},
+  {q:'בדיאלוג 1 — כמה זמן לוקח ברגל?',options:['כ-10 דקות','כ-20 דקות','כ-5 דקות','כשעה'],answer:0,note:'10分くらいだと思います.'},
+  {q:'בדיאלוג 2 — מה קרה בחופש הקיץ?',options:['רצה לנסוע לים אבל לא הצליח כי היה עסוק','נסע לים','לא רצה לנסוע בכלל','נסע להרים'],answer:0,note:'海に行きたかったんですが、忙しくて行けませんでした.'},
+  {q:'בדיאלוג 2 — מה התכנון לשנה הבאה?',options:['בהחלט לנסוע לים','לא לנסוע שוב','לנסוע להרים','לעבוד יותר'],answer:0,note:'来年は絶対に行きたいです.'},
+  {q:'מה הפירוש הכללי של דיאלוג 1?',options:['מבקשים ונותנים הוראות הגעה','מדברים על מזג אוויר','קונים כרטיס רכבת','מתכננים פגישה'],answer:0},
+  {q:'מה הפירוש הכללי של דיאלוג 2?',options:['משתפים על חופשה שלא התממשה','מתכננים נסיעה משותפת','מדברים על עבודה','קונים בגדים לחוף'],answer:0}
+]);
+
+// COMPREHENSIVE FINAL REVIEW - drawing from across all 20 weeks
+makeQuiz('final-comprehensive',[
+  {q:'(שבוע 1) איך אומרים "זה לא ספר"?',options:[J('これは本ではありません。'),J('これは本です。'),J('これは本ですか。'),J('これも本です。')],answer:0},
+  {q:'(שבוע 2) מה הקריאה הנכונה של 600?',options:[J('ろっぴゃく'),J('ろくひゃく'),J('ろくびゃく'),J('ろっひゃく')],answer:0},
+  {q:'(שבוע 3) מה השלילה של '+J('いい')+' (חריג)?',options:[J('よくない'),J('いいくない'),J('いくない'),J('いいではない')],answer:0},
+  {q:'(שבוע 4) איזה פועל עם '+J('猫')+'?',options:[J('います'),J('あります'),'שניהם','אף אחד'],answer:0},
+  {q:'(שבוע 5) מאיזה חלקיק משתמשים ב"מי המורה?"',options:[J('誰が先生ですか。'),J('誰は先生ですか。'),J('先生が誰ですか。'),J('先生は誰がですか。')],answer:0},
+  {q:'(שבוע 6) מה צורת ます של '+J('飲む')+'?',options:[J('飲みます'),J('飲ます'),J('飲むます'),J('飲えます')],answer:0},
+  {q:'(שבוע 7) איזה חלקיק עם "ב-8" (שעה)?',options:[J('に'),J('で'),J('へ'),J('を')],answer:0},
+  {q:'(שבוע 8) מי הנכון — "הגעתי ברכבת"',options:[J('電車で来ました。'),J('電車に来ました。'),J('電車へ来ました。'),J('電車を来ました。')],answer:0},
+  {q:'(שבוע 9) מה צורת המילון של '+J('食べます')+'?',options:[J('食べる'),J('食べ'),J('食べう'),J('食べむ')],answer:0},
+  {q:'(שבוע 10) מה צורת た של '+J('行く')+'? (חריג)',options:[J('行った'),J('行いた'),J('行んだ'),J('行した')],answer:0},
+  {q:'(שבוע 11) מה הפירוש של '+J('結婚しています')+'?',options:['נשוי (מצב)','מתחתן כרגע','התחתן אתמול','רוצה להתחתן'],answer:0},
+  {q:'(שבוע 12) מה ההבדל בין '+J('てもいいです')+' ל-'+J('てはいけません')+'?',options:['הראשון=מותר; השני=אסור','הראשון=אסור; השני=מותר','אין הבדל','שניהם שלילה'],answer:0},
+  {q:'(שבוע 13) מה ההבדל בין '+J('食べたい')+' ל-'+J('食べ物がほしい')+'?',options:['הראשון=רוצה לאכול (פעולה); השני=רוצה אוכל (חפץ)','שניהם זהים','הראשון=חפץ; השני=פעולה','אין הבדל'],answer:0},
+  {q:'(שבוע 14) איך אומרים "המקום זול וטעים"?',options:[J('この店は安くておいしいです。'),J('この店は安いおいしいです。'),J('この店は安いでおいしいです。'),J('この店は安くておいしいでした。')],answer:0},
+  {q:'(שבוע 15) איך אומרים "אוטובוס זול יותר מרכבת"?',options:[J('電車よりバスのほうが安いです。'),J('バスより電車のほうが安いです。'),J('電車とバスが安いです。'),J('バスは電車が安いです。')],answer:0},
+  {q:'(שבוע 16) מתי משתמשים ב-'+J('よ')+'?',options:['כשמודיעים מידע חדש','כשמחפשים הסכמה','כשמבקשים רשות','כשמתארים איסור'],answer:0},
+  {q:'(שבוע 17) איזה חלקיק נכון: "図書館___本があります。"',options:[J('に'),J('で'),J('を'),J('へ')],answer:0,note:'קיום = に.'},
+  {q:'(שבוע 9-16, שילוב) מי הנכון — "כי לא הלכתי לבית-ספר, לא ראיתי את המורה"',options:[J('学校に行かなかったから、先生に会わなかった。'),J('学校に行きましたから、先生に会いました。'),J('学校に行かないので、先生に会います。'),J('学校に行ったから、先生に会いませんでした。')],answer:0},
+  {q:'איזה קאנג\'י מייצג "צפון"?',options:[J('北'),J('南'),J('東'),J('西')],answer:0},
+  {q:'שאלת סיכום: כמה שבועות יש בקורס שסיימת?',options:['20','15','10','25'],answer:0}
+]);
+</script>
+</body>
+</html>
