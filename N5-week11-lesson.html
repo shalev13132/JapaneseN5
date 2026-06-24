@@ -1,0 +1,751 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שבוע 11 — צורת て | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+    --blue:#4b6a8f; --blue-soft:#e3eaf3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre",Georgia,serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px,rgba(120,100,70,.06) 1px,transparent 0);
+    background-size:22px 22px;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 90px;}
+  .jp{font-family:"Noto Sans JP",system-ui,sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+  .big{font-size:1.35em; line-height:1;}
+
+  header.masthead{text-align:center; padding:56px 20px 34px; border-bottom:3px double var(--line); margin-bottom:6px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(28px,5.5vw,40px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:17px;}
+  .nav-links{display:flex; justify-content:space-between; margin:14px 0 0; font-size:14px;}
+  .nav-links span{color:var(--muted); font-family:"Heebo",sans-serif; font-weight:700;}
+
+  .lead{background:var(--card); border:1px solid var(--line); border-right:5px solid var(--accent); border-radius:12px; padding:18px 22px; margin:26px 0;}
+  .lead h2{font-family:"Heebo",sans-serif; font-size:18px; margin:0 0 6px;}
+  .lead ol{margin:6px 0 0; padding-inline-start:1.3em;}
+  .lead li{margin:3px 0;}
+
+  .topic{margin:46px 0;}
+  .topic-tag{display:inline-block; background:var(--accent); color:#fff; font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; padding:5px 14px; border-radius:999px; box-shadow:0 3px 8px rgba(150,60,30,.22);}
+  .topic h2{font-family:"Heebo",sans-serif; font-weight:800; font-size:25px; margin:12px 0 8px;}
+  .topic p{margin:.6em 0;}
+  .topic strong{color:#7e2a13;}
+
+  .formula{text-align:center; font-size:19px; background:#fff3ec; border:1px solid #e8c9b8; border-radius:10px; padding:12px 20px; margin:14px 0;}
+
+  h3.sub-head{font-family:"Heebo",sans-serif; font-weight:700; font-size:19px; color:var(--accent); margin:22px 0 8px; border-right:4px solid var(--accent); padding-right:10px;}
+
+  .ex{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:6px 16px; margin:16px 0;}
+  .ex-row{padding:10px 0; border-bottom:1px dashed var(--line);}
+  .ex-row:last-child{border-bottom:none;}
+  .ex-jp{direction:ltr; unicode-bidi:isolate; text-align:right; font-family:"Noto Sans JP",sans-serif; font-size:19px; font-weight:500;}
+  .ex-jp .r{color:var(--muted); font-size:15px; font-weight:400;}
+  .ex-he{color:var(--ink); font-size:16px;}
+
+  .sound-groups{display:grid; grid-template-columns:1fr; gap:10px; margin:16px 0;}
+  .sg-card{background:var(--card); border:1.5px solid var(--line); border-radius:10px; padding:12px 18px; display:grid; grid-template-columns:140px 1fr; gap:14px; align-items:center;}
+  @media(max-width:540px){.sg-card{grid-template-columns:1fr;}}
+  .sg-card .sg-rule{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--accent);}
+  .sg-card .sg-ex{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:15px;}
+  .sg-card .sg-ex b{color:var(--accent);}
+
+  .big-conj{background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; margin:16px 0;}
+  .big-conj table{margin:0; border-radius:0; font-size:15px;}
+  .big-conj thead th{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; padding:8px 10px; text-align:right;}
+  .big-conj td{padding:8px 10px; border-top:1px solid var(--line);}
+  .big-conj tbody tr:nth-child(even){background:#fbf7ee;}
+  .big-conj td.jp-cell{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:16px;}
+  .big-conj td.acc{color:var(--accent); font-weight:700;}
+  .big-conj td.grp{font-family:"Heebo",sans-serif; font-weight:700; font-size:12px; color:var(--muted);}
+
+  .note{background:#faf5ea; border:1px dashed var(--line); border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .note b{color:var(--accent);}
+  .warn{background:#fff5f3; border:1px dashed #e8b8aa; border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .warn b{color:var(--no);}
+
+  /* て-uses cards */
+  .te-uses{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:16px 0;}
+  @media(max-width:500px){.te-uses{grid-template-columns:1fr;}}
+  .te-card{background:var(--card); border:1.5px solid var(--line); border-radius:12px; padding:14px 18px;}
+  .te-card .tc-label{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--accent); margin-bottom:6px;}
+  .te-card .tc-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px; margin-bottom:4px;}
+  .te-card .tc-he{font-size:14px; color:var(--muted);}
+
+  .dialogue{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .dialogue-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--gold); margin-bottom:12px;}
+  .d-row{display:flex; gap:10px; align-items:flex-start; margin:10px 0;}
+  .d-who{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--muted); min-width:40px; padding-top:4px;}
+  .d-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px; font-weight:500; flex:1;}
+  .d-he{font-size:15px; color:var(--muted);}
+
+  .qbox{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:16px 0; box-shadow:0 2px 8px rgba(80,60,30,.04);}
+  .qbox .htag{font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; color:var(--ok); margin-bottom:8px; display:flex; align-items:center; gap:7px;}
+  .qbox .htag::before{content:"✎"; font-size:15px;}
+  .q-text{font-size:18px; margin:0 0 12px; font-weight:500;}
+  .q-options{display:flex; flex-direction:column; gap:9px;}
+  .opt{font-family:inherit; font-size:17px; text-align:right; background:#fff; border:1.5px solid var(--line); border-radius:9px; padding:11px 16px; cursor:pointer; transition:.15s; color:var(--ink);}
+  .opt:hover:not(:disabled){border-color:var(--accent); background:#fffaf3;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:var(--ok-soft); border-color:var(--ok); color:#1f4d43; font-weight:700;}
+  .opt.wrong{background:var(--no-soft); border-color:var(--no); color:#7e2a13;}
+  .fb{margin:11px 0 0; font-size:16px; font-weight:600; min-height:1px;}
+  .fb-ok{color:var(--ok);} .fb-no{color:var(--no);}
+
+  .reveal{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .reveal-btn,.next-btn{font-family:"Heebo",sans-serif; font-weight:700; font-size:15px; background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 18px; cursor:pointer; transition:.15s;}
+  .reveal-btn:hover,.next-btn:hover{background:#8e2f17;}
+  .reveal-ans{display:none; margin-top:12px; padding:12px 16px; background:var(--ok-soft); border-radius:8px; font-size:17px;}
+
+  .quiz-widget{background:linear-gradient(160deg,#fffdf8,#fbf4e8); border:1.5px solid var(--line); border-radius:14px; padding:22px; margin:18px 0; box-shadow:0 4px 14px rgba(80,60,30,.07);}
+  .q-progress{font-family:"Heebo",sans-serif; font-size:13px; color:var(--muted); margin-bottom:10px; display:flex; justify-content:space-between;}
+  .q-bar{height:6px; background:#eadfc9; border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  .q-bar span{display:block; height:100%; background:var(--accent); transition:width .3s;}
+  .q-result{text-align:center; padding:14px 0;}
+  .score-big{font-family:"Heebo",sans-serif; font-weight:800; font-size:46px; color:var(--accent); line-height:1;}
+  .q-result p{font-size:18px; margin:10px 0 16px;}
+
+  h2.section{font-family:"Heebo",sans-serif; font-weight:800; font-size:26px; margin:54px 0 8px; padding:12px 20px; color:#fff; background:linear-gradient(100deg,var(--gold),#7d6324); border-radius:10px;}
+  h2.section.k{background:linear-gradient(100deg,var(--accent),#8e2f17);}
+
+  table{width:100%; border-collapse:collapse; margin:.4em 0 18px; font-size:16px; background:#fff; border-radius:10px; overflow:hidden; border:1px solid var(--line);}
+  thead th{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px; padding:9px 12px; text-align:right;}
+  td{padding:9px 12px; border-top:1px solid var(--line);}
+  tbody tr:nth-child(even){background:#fbf7ee;}
+  td.jp{text-align:right;} td.jp.big{text-align:center; color:var(--accent); font-size:1.5em;}
+
+  .done-banner{text-align:center; margin:50px 0 0; padding:26px; background:var(--ok-soft); border:1px solid #bcd9d0; border-radius:14px;}
+  .done-banner h2{font-family:"Heebo",sans-serif; color:#1f4d43; margin:0 0 6px;}
+  .footer-note{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;}}
+
+  /* ── bottom navigation bar ── */
+  .week-nav{
+    display:inline-flex; align-items:center; gap:6px;
+    position:fixed; bottom:14px; left:50%; transform:translateX(-50%); z-index:999;
+    padding:5px 10px;
+    background:rgba(255,253,248,.96); border:1px solid var(--line);
+    border-radius:999px; box-shadow:0 4px 16px rgba(80,60,30,.15); backdrop-filter:blur(8px);
+  }
+  .week-nav a,.week-nav button{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:12px;
+    padding:5px 11px; border-radius:999px; border:none; cursor:pointer;
+    text-decoration:none; transition:.15s; display:inline-flex; align-items:center; gap:3px;
+    white-space:nowrap;
+  }
+  .nav-prev,.nav-next{background:var(--accent); color:#fff;}
+  .nav-prev:hover,.nav-next:hover{background:#8e2f17;}
+  .nav-prev.disabled,.nav-next.disabled{background:#d9ccb8; color:#a09070; cursor:default; pointer-events:none;}
+  .nav-home{background:var(--ok-soft); color:#1f4d43; border:1px solid #bcd9d0;}
+  .nav-home:hover{background:#c8e8e0;}
+  .nav-top{background:var(--accent-soft); color:var(--accent); border:1px solid #e0c0b0; font-size:14px; padding:4px 9px;}
+  .nav-top:hover{background:#e8c8bc;}
+  /* ── kanji hover tooltip ── */
+  .ktip{
+    position:relative; cursor:help;
+    border-bottom:1px dotted var(--accent);
+  }
+  .ktip::after{
+    content:attr(data-h);
+    position:absolute; bottom:calc(100% + 4px); left:50%; transform:translateX(-50%);
+    background:var(--ink); color:#fff;
+    font-family:"Noto Sans JP",sans-serif; font-size:11px; font-weight:400;
+    padding:2px 7px; border-radius:5px; white-space:nowrap;
+    pointer-events:none; opacity:0; transition:opacity .15s; z-index:200;
+  }
+  .ktip:hover::after{ opacity:1; }</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">שבוע 11 מתוך 20 · <span class="jp" dir="ltr">JLPT N5</span> · חלק ג'</div>
+  <h1>צורת <span class="jp">て</span></h1>
+  <p class="sub">יצירת צורת て, בקשות עם <span class="jp">てください</span>, ופעולה מתמשכת עם <span class="jp">ています</span></p>
+  <div class="nav-links">
+    <span>← שבוע 10: עבר רגיל (た)</span>
+    <span>שבוע 12: רשות ואיסור ←</span>
+  </div>
+</header>
+
+<div class="lead">
+  <h2>מה נלמד השבוע</h2>
+  <ol>
+    <li>יצירת <strong>צורת て</strong> — בדיוק כמו צורת た, רק עם て במקום た!</li>
+    <li><span class="jp">てください</span> — "אנא עשה..." (בקשה מנומסת).</li>
+    <li><span class="jp">ています</span> — פעולה מתמשכת ("עושה כרגע") או מצב ("גר", "יודע").</li>
+  </ol>
+  <p style="margin:10px 0 0;font-size:15px;color:var(--muted)">צורת て היא אחת הצורות השימושיות ביותר ביפנית — היא הבסיס לבקשות, להמשכיות, לחיבור פעולות, ולעוד עשרות מבנים שנפגוש בהמשך הקורס.</p>
+</div>
+
+<!-- ========== TOPIC 1: TE FORM FORMATION ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 1</span>
+  <h2>יצירת צורת <span class="jp">て</span></h2>
+
+  <p>חידוש נהדר: צורת <span class="jp">て</span> נוצרת <strong>באותם כללים בדיוק</strong> כמו צורת <span class="jp">た</span> שלמדנו בשבוע שעבר — רק מחליפים <span class="jp">た→て</span> ו-<span class="jp">だ→で</span>!</p>
+
+  <div class="formula"><strong>אם אתה יודע צורת た, אתה יודע צורת て:</strong> <span class="jp">た→て / だ→で</span></div>
+
+  <h3 class="sub-head">קבוצה 2 ו-3 — קלות</h3>
+  <div class="ex">
+    <div class="ex-row"><div class="ex-jp"><span class="jp">食べる → 食べた → 食べ<b>て</b></span></div><div class="ex-he">אכל / (ו)אוכל</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">見る → 見た → 見<b>て</b></span></div><div class="ex-he">ראה / (ו)רואה</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">する → した → し<b>て</b></span></div><div class="ex-he">עשה (חריג)</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">来る → 来た → 来<b>て</b></span></div><div class="ex-he">בא (חריג)</div></div>
+  </div>
+
+  <h3 class="sub-head">קבוצה 1 — אותם 5 קבוצות שינוי צליל, רק て/で</h3>
+  <div class="sound-groups">
+    <div class="sg-card">
+      <div class="sg-rule">う・つ・る → って</div>
+      <div class="sg-ex">買う→買<b>って</b> · 待つ→待<b>って</b> · 帰る→帰<b>って</b></div>
+    </div>
+    <div class="sg-card">
+      <div class="sg-rule">む・ぬ・ぶ → んで</div>
+      <div class="sg-ex">飲む→飲<b>んで</b> · 死ぬ→死<b>んで</b> · 遊ぶ→遊<b>んで</b></div>
+    </div>
+    <div class="sg-card">
+      <div class="sg-rule">く → いて</div>
+      <div class="sg-ex">書く→書<b>いて</b> · 聞く→聞<b>いて</b></div>
+    </div>
+    <div class="sg-card">
+      <div class="sg-rule">ぐ → いで</div>
+      <div class="sg-ex">泳ぐ→泳<b>いで</b></div>
+    </div>
+    <div class="sg-card">
+      <div class="sg-rule">す → して</div>
+      <div class="sg-ex">話す→話<b>して</b></div>
+    </div>
+  </div>
+
+  <div class="warn"><b>אותו חריג כמו た:</b> <span class="jp">行く</span> שובר את הכלל — לא <span class="jp">行いて</span> אלא <strong><span class="jp">行って</span></strong> (כמו う/つ/る)!</div>
+
+  <h3 class="sub-head">טבלה מסכמת — השוואה ל-た</h3>
+  <div class="big-conj">
+    <table>
+      <thead><tr><th>קבוצה</th><th>מילון</th><th>た (עבר)</th><th>て (צורת て)</th></tr></thead>
+      <tbody>
+        <tr><td class="grp">1 (う)</td><td class="jp-cell">買う</td><td class="jp-cell">買った</td><td class="jp-cell acc">買って</td></tr>
+        <tr><td class="grp">1 (む)</td><td class="jp-cell">飲む</td><td class="jp-cell">飲んだ</td><td class="jp-cell acc">飲んで</td></tr>
+        <tr><td class="grp">1 (く)</td><td class="jp-cell">書く</td><td class="jp-cell">書いた</td><td class="jp-cell acc">書いて</td></tr>
+        <tr><td class="grp">1 (く חריג)</td><td class="jp-cell">行く</td><td class="jp-cell">行った</td><td class="jp-cell acc">行って</td></tr>
+        <tr><td class="grp">1 (す)</td><td class="jp-cell">話す</td><td class="jp-cell">話した</td><td class="jp-cell acc">話して</td></tr>
+        <tr><td class="grp">2</td><td class="jp-cell">食べる</td><td class="jp-cell">食べた</td><td class="jp-cell acc">食べて</td></tr>
+        <tr><td class="grp">3</td><td class="jp-cell">する</td><td class="jp-cell">した</td><td class="jp-cell acc">して</td></tr>
+        <tr><td class="grp">3</td><td class="jp-cell">来る</td><td class="jp-cell">来た</td><td class="jp-cell acc">来て</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="むの した = んだ; אז て-form = んで. 飲む → 飲んで.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה צורת て של <span class="jp">飲む</span>?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">飲いて</span></button>
+      <button class="opt"><span class="jp">飲んで</span></button>
+      <button class="opt"><span class="jp">飲って</span></button>
+      <button class="opt"><span class="jp">飲して</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="行く חריג גם בצורת て: 行って, לא 行いて.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה צורת て של <span class="jp">行く</span> (החריג)?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">行って</span></button>
+      <button class="opt"><span class="jp">行いて</span></button>
+      <button class="opt"><span class="jp">行んで</span></button>
+      <button class="opt"><span class="jp">行して</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">המר לצורת て: <strong><span class="jp">待つ・遊ぶ・泳ぐ・話す・帰る・食べる・する</span></strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">待って・遊んで・泳いで・話して・帰って・食べて・して</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 2: てください ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 2</span>
+  <h2><span class="jp">てください</span> — בקשה מנומסת</h2>
+
+  <p>צורת <span class="jp">て</span> + <span class="jp">ください</span> יוצרת בקשה מנומסת — "אנא עשה...". זו אחת הצורות הראשונות שתשתמש בהן בפועל ביפן.</p>
+
+  <div class="formula"><strong>[צורת て] <span class="jp">ください</span></strong> = "אנא [פעולה]"</div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">ここに名前を書い<b>てください</b>。</span> <span class="r">（ここになまえをかいてください）</span></div>
+      <div class="ex-he">אנא כתוב את השם כאן.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">少し待っ<b>てください</b>。</span> <span class="r">（すこしまってください）</span></div>
+      <div class="ex-he">אנא חכה קצת.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">ゆっくり話し<b>てください</b>。</span> <span class="r">（ゆっくりはなしてください）</span></div>
+      <div class="ex-he">אנא דבר לאט.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">もう一度言っ<b>てください</b>。</span> <span class="r">（もういちどいってください）</span></div>
+      <div class="ex-he">אנא חזור על זה. ("עוד פעם אחת אמור")</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">ここに来<b>てください</b>。</span> <span class="r">（ここにきてください）</span></div>
+      <div class="ex-he">אנא בוא לכאן.</div>
+    </div>
+  </div>
+
+  <div class="note"><b>שלילה: 〜ないでください.</b> כדי לבקש <em>שלא</em> יעשו משהו, משתמשים בצורת ない + でください (לא てください): <span class="jp">写真を撮らないでください</span> = "אנא לא צלם תמונות."</div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">ここで写真を撮ら<b>ないでください</b>。</span> <span class="r">（ここでしゃしんをとらないでください）</span></div>
+      <div class="ex-he">אנא לא תצלם תמונות כאן.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">心配し<b>ないでください</b>。</span> <span class="r">（しんぱいしないでください）</span></div>
+      <div class="ex-he">אנא לא תדאג.</div>
+    </div>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="待つ → 待って (って). בקשה = + ください.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "אנא חכה"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">待ちてください。</span></button>
+      <button class="opt"><span class="jp">待つください。</span></button>
+      <button class="opt"><span class="jp">待ってください。</span></button>
+      <button class="opt"><span class="jp">待んでください。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="בקשה שלילית = ない-form + でください, לא てください.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "אנא לא תדאג"? (<span class="jp">心配する / しんぱいする</span> = לדאוג)</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">心配しないでください。</span></button>
+      <button class="opt"><span class="jp">心配してください。</span></button>
+      <button class="opt"><span class="jp">心配しないてください。</span></button>
+      <button class="opt"><span class="jp">心配しませんください。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"אנא דברו ביפנית כאן."</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">ここで日本語で話してください。</span><br>
+      <span style="color:var(--muted);font-size:14px">（ここでにほんごではなしてください）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 3: ています ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 3</span>
+  <h2><span class="jp">ています</span> — פעולה מתמשכת ומצב</h2>
+
+  <p><span class="jp">ています</span> (צורת て + います) משמש לשני דברים שונים — חשוב להבין מתי איזה:</p>
+
+  <div class="te-uses">
+    <div class="te-card">
+      <div class="tc-label">1. פעולה מתמשכת — "עושה כרגע"</div>
+      <div class="tc-jp">今、勉強しています。</div>
+      <div class="tc-he">כרגע אני לומד. (פעולה בתהליך)</div>
+    </div>
+    <div class="te-card">
+      <div class="tc-label">2. מצב קבוע — "גר, יודע, נשוי"</div>
+      <div class="tc-jp">東京に住んでいます。</div>
+      <div class="tc-he">אני גר בטוקיו. (מצב, לא פעולה רגעית)</div>
+    </div>
+  </div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">今、テレビを見<b>ています</b>。</span> <span class="r">（いま、てれびをみています）</span></div>
+      <div class="ex-he">כרגע צופה בטלוויזיה.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">田中さんは今、走っ<b>ています</b>。</span> <span class="r">（たなかさんはいま、はしっています）</span></div>
+      <div class="ex-he">טנקה רץ כרגע.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">私は日本語を知っ<b>ています</b>。</span> <span class="r">（わたしはにほんごをしっています）</span></div>
+      <div class="ex-he">אני יודע יפנית. ← מצב (知る = לדעת)</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">結婚し<b>ています</b>。</span> <span class="r">（けっこんしています）</span></div>
+      <div class="ex-he">נשוי. ← מצב, לא פעולה רגעית!</div>
+    </div>
+  </div>
+
+  <div class="warn"><b>הבדל חשוב מעברית:</b> ביפנית <span class="jp">結婚しています</span> ("נשוי") הוא מצב מתמשך, לא "מתחתן כרגע". זה כי הנישואין נחשבים תוצאה ממושכת של פעולה חד-פעמית (להתחתן). דומה: <span class="jp">死んでいます</span> = "מת" (לא "מתחתן כרגע אבל" — תוצאה ממושכת).</div>
+
+  <h3 class="sub-head">שאלה ותשובה</h3>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">何をしていますか。</span> <span class="r">（なにをしていますか）</span></div>
+      <div class="ex-he">מה אתה עושה (כרגע)?</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">本を読んでいます。</span> <span class="r">（ほんをよんでいます）</span></div>
+      <div class="ex-he">קורא ספר.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">どこに住んでいますか。</span> <span class="r">（どこにすんでいますか）</span></div>
+      <div class="ex-he">איפה אתה גר?</div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dialogue-title">💬 שיחת טלפון</div>
+    <div class="d-row"><div class="d-who">A:</div><div><div class="d-jp">今、何をしていますか。</div><div class="d-he">מה אתה עושה כרגע?</div></div></div>
+    <div class="d-row"><div class="d-who">B:</div><div><div class="d-jp">家でテレビを見ています。田中さんは？</div><div class="d-he">צופה בטלוויזיה בבית. ואתה, טנקה?</div></div></div>
+    <div class="d-row"><div class="d-who">A:</div><div><div class="d-jp">公園で走っています。</div><div class="d-he">רץ בפארק.</div></div></div>
+    <div class="d-row"><div class="d-who">B:</div><div><div class="d-jp">そうですか。今、どこに住んでいますか。</div><div class="d-he">אה כן? איפה אתה גר עכשיו?</div></div></div>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="פעולה כרגע = て-form + います. 食べる→食べて+います.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "כרגע אוכל"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">今、食べています。</span></button>
+      <button class="opt"><span class="jp">今、食べます。</span></button>
+      <button class="opt"><span class="jp">今、食べた。</span></button>
+      <button class="opt"><span class="jp">今、食べてください。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="גר = מצב, לא פעולה רגעית — עדיין ています! 住む→住んでいます.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "אני גר בטוקיו"? (<span class="jp">住む / すむ</span> = לגור)</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">東京に住みます。</span></button>
+      <button class="opt"><span class="jp">東京に住んだ。</span></button>
+      <button class="opt"><span class="jp">東京に住んでいます。</span></button>
+      <button class="opt"><span class="jp">東京で住んでください。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"מה אתה עושה? — לומד יפנית בספרייה."</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">何をしていますか。 — 図書館で日本語を勉強しています。</span><br>
+      <span style="color:var(--muted);font-size:14px">（なにをしていますか。 — としょかんでにほんごをべんきょうしています）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== VOCAB TABLE ===== -->
+<h2 class="section">אוצר מילים — שבוע 11</h2>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">住む</td><td class="jp">すむ</td><td>לגור</td></tr>
+    <tr><td class="jp">知る</td><td class="jp">しる</td><td>לדעת</td></tr>
+    <tr><td class="jp">結婚する</td><td class="jp">けっこんする</td><td>להתחתן</td></tr>
+    <tr><td class="jp">走る</td><td class="jp">はしる</td><td>לרוץ</td></tr>
+    <tr><td class="jp">撮る</td><td class="jp">とる</td><td>לצלם</td></tr>
+    <tr><td class="jp">写真</td><td class="jp">しゃしん</td><td>תמונה</td></tr>
+    <tr><td class="jp">心配する</td><td class="jp">しんぱいする</td><td>לדאוג</td></tr>
+    <tr><td class="jp">少し</td><td class="jp">すこし</td><td>קצת</td></tr>
+    <tr><td class="jp">ゆっくり</td><td class="jp">ゆっくり</td><td>לאט</td></tr>
+    <tr><td class="jp">もう一度</td><td class="jp">もういちど</td><td>עוד פעם / שוב</td></tr>
+    <tr><td class="jp">名前</td><td class="jp">なまえ</td><td>שם</td></tr>
+    <tr><td class="jp">電話する</td><td class="jp">でんわする</td><td>להתקשר</td></tr>
+    <tr><td class="jp">死ぬ</td><td class="jp">しぬ</td><td>למות</td></tr>
+    <tr><td class="jp">座る</td><td class="jp">すわる</td><td>לשבת</td></tr>
+    <tr><td class="jp">立つ</td><td class="jp">たつ</td><td>לעמוד</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 תיבת בחינה — אוצר מילים</div>
+</div>
+
+<!-- ===== KANJI TABLE ===== -->
+<h2 class="section k">קאנג'י — שבוע 11 (מדינות ומקום)</h2>
+<table>
+  <thead><tr><th>קאנג'י</th><th>קריאה</th><th>משמעות</th><th>דוגמה</th></tr></thead>
+  <tbody>
+    <tr><td class="jp big">北</td><td class="jp">きた / ほく</td><td>צפון</td><td class="jp">北（きた）</td></tr>
+    <tr><td class="jp big">国</td><td class="jp">くに / こく</td><td>מדינה</td><td class="jp">外国（がいこく）= חוץ-לארץ</td></tr>
+    <tr><td class="jp big">駅</td><td class="jp">えき</td><td>תחנה</td><td class="jp">駅（えき）</td></tr>
+    <tr><td class="jp big">店</td><td class="jp">みせ / てん</td><td>חנות</td><td class="jp">店（みせ）</td></tr>
+    <tr><td class="jp big">道</td><td class="jp">みち / どう</td><td>דרך</td><td class="jp">道（みち）</td></tr>
+    <tr><td class="jp big">町</td><td class="jp">まち / ちょう</td><td>עיירה</td><td class="jp">町（まち）</td></tr>
+    <tr><td class="jp big">社</td><td class="jp">しゃ</td><td>חברה</td><td class="jp">会社（かいしゃ）= חברה (עבודה)</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-kanji">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🔢 תיבת בחינה — קאנג'י</div>
+</div>
+
+<!-- ===== FINAL QUIZ ===== -->
+<h2 class="section">מבחן סיכום — שבוע 11</h2>
+<p style="margin-top:-2px;color:var(--muted)">שאלות מעורבות: דקדוק, אוצר מילים, קאנג'י + חזרה.</p>
+<div class="quiz-widget" id="quiz-final">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🎓 מבחן סיכום</div>
+</div>
+
+<!-- ===== BONUS DRILL ===== -->
+<h2 class="section" style="background:linear-gradient(100deg,#4b6a8f,#2e4d6b)">🧩 תרגול מעמיק — שבוע 11</h2>
+<p style="margin-top:-2px;color:var(--muted)">13 שאלות: יצירת て, בקשות, פעולה מתמשכת מול מצב, ושילוב שבועות.</p>
+<div class="quiz-widget" id="quiz-bonus">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:#4b6a8f;margin-bottom:8px">🧩 תרגול מעמיק</div>
+</div>
+
+<div class="done-banner">
+  <h2>סיימת את שבוע 11! <span class="jp">よくできました</span> 🎉</h2>
+  <p>
+    צורת <span class="jp">て</span> נכנסה לארסנל שלך — בקשות, פעולה מתמשכת, ומצב.<br><br>
+    שבוע 12: רשות (<span class="jp">てもいいです</span>) ואיסור (<span class="jp">てはいけません</span>) — עוד שימושים חשובים של צורת て.
+  </p>
+</div>
+
+<p class="footer-note"><span class="jp" dir="ltr">日本語 N5</span> · שבוע 11 מתוך 20 · <span class="jp" dir="ltr">頑張って！</span></p>
+</div>
+
+<script>
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+document.querySelectorAll('.check').forEach(q=>{
+  const ans=+q.dataset.answer,fb=q.querySelector('.fb'),opts=q.querySelectorAll('.opt');
+  opts.forEach((btn,i)=>{
+    btn.addEventListener('click',()=>{
+      if(q.classList.contains('done'))return; q.classList.add('done');
+      opts.forEach((b,j)=>{b.disabled=true;if(j===ans)b.classList.add('correct');else if(j===i)b.classList.add('wrong');});
+      const ok=i===ans;
+      fb.textContent=(ok?'✓ נכון! ':'✗ לא מדויק. ')+(q.dataset.explain||'');
+      fb.className='fb '+(ok?'fb-ok':'fb-no');
+    });
+  });
+});
+document.querySelectorAll('.reveal-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const a=b.nextElementSibling,show=a.style.display!=='block';
+    a.style.display=show?'block':'none';b.textContent=show?'הסתר תשובה':'הצג תשובה';
+  });
+});
+
+/* ── kanji reading tooltips ── */
+const KR={
+  '日':'にち','月':'つき','火':'ひ','水':'みず','木':'き','金':'きん','土':'ど',
+  '山':'やま','川':'かわ','田':'た','人':'ひと','口':'くち','手':'て','目':'め',
+  '耳':'みみ','足':'あし','車':'くるま','花':'はな','雨':'あめ','空':'そら',
+  '学':'がく','校':'こう','先':'せん','生':'せい','男':'おとこ','女':'おんな',
+  '子':'こ','小':'しょう','大':'だい','中':'ちゅう','上':'うえ','下':'した',
+  '右':'みぎ','左':'ひだり','本':'ほん','母':'はは','父':'ちち','年':'ねん',
+  '今':'いま','何':'なに','時':'じ','分':'ふん','半':'はん','前':'まえ',
+  '後':'ご','間':'あいだ','外':'そと','内':'うち','東':'ひがし','西':'にし',
+  '南':'みなみ','北':'きた','国':'くに','語':'ご','英':'えい',
+  '私':'わたし','友':'とも','名':'な','気':'き','天':'てん',
+  '電':'でん','話':'はなし','見':'み','来':'き','行':'い','食':'た','飲':'の',
+  '読':'よ','書':'か','聞':'き','言':'い','買':'か','帰':'かえ','起':'お',
+  '寝':'ね','着':'き','出':'で','入':'い','開':'あ','閉':'し','乗':'の',
+  '降':'お','使':'つか','教':'おし','習':'なら','始':'はじ','終':'お',
+  '会':'あ','待':'ま','持':'も','作':'つく','思':'おも','知':'し',
+  '住':'す','働':'はたら','遊':'あそ','泳':'およ','走':'はし','歩':'ある',
+  '立':'た','座':'すわ','休':'やす','止':'と',
+  '病':'びょう','院':'いん','店':'みせ','駅':'えき','道':'みち',
+  '公':'こう','園':'えん','図':'と','館':'かん',
+  '百':'ひゃく','千':'せん','万':'まん','円':'えん',
+  '一':'いち','二':'に','三':'さん','四':'し','五':'ご',
+  '六':'ろく','七':'なな','八':'はち','九':'きゅう','十':'じゅう',
+  '高':'たか','安':'やす','新':'あたら','古':'ふる','長':'なが',
+  '短':'みじか','広':'ひろ','多':'おお','少':'すく',
+  '早':'はや','速':'はや','遅':'おそ','強':'つよ','弱':'よわ',
+  '好':'す','楽':'たの','難':'むずか',
+  '暑':'あつ','寒':'さむ','暖':'あたた','涼':'すず',
+  '白':'しろ','黒':'くろ','赤':'あか','青':'あお',
+  '魚':'さかな','肉':'にく','野':'や','菜':'さい',
+  '卵':'たまご','牛':'ぎゅう','豚':'ぶた','猫':'ねこ','犬':'いぬ','鳥':'とり',
+  '家':'いえ','部':'へ','屋':'や','門':'もん','窓':'まど','机':'つくえ',
+  '春':'はる','夏':'なつ','秋':'あき','冬':'ふゆ',
+  '朝':'あさ','昼':'ひる','夜':'よる','週':'しゅう','曜':'よう',
+  '近':'ちか','遠':'とお','太':'ふと','細':'ほそ',
+  '明':'あか','暗':'くら','静':'しず','重':'おも','軽':'かる',
+  '辛':'から','甘':'あま','苦':'にが',
+  '町':'まち','村':'むら','市':'し','県':'けん',
+  '海':'うみ','池':'いけ','島':'しま','森':'もり',
+  '毎':'まい','午':'ご','自':'じ','転':'てん',
+  '映':'えい','画':'が','音':'おん','料':'りょう','理':'り',
+  '洗':'あら','顔':'かお','宿':'やど','題':'だい',
+  '北':'きた','駅':'えき','橋':'はし','港':'こう',
+};
+function tipify(el){
+  el.querySelectorAll('.jp').forEach(function(span){
+    if(span.querySelector('.ktip'))return;
+    span.innerHTML=span.innerHTML.replace(/[一-鿿]/g,function(ch){
+      return KR[ch]?('<span class="ktip" data-h="'+KR[ch]+'">'+ch+'</span>'):ch;
+    });
+  });
+}
+function tipifyAll(){
+  document.querySelectorAll('.jp').forEach(function(span){
+    if(span.querySelector('.ktip'))return;
+    span.innerHTML=span.innerHTML.replace(/[一-鿿]/g,function(ch){
+      return KR[ch]?('<span class="ktip" data-h="'+KR[ch]+'">'+ch+'</span>'):ch;
+    });
+  });
+}function makeQuiz(rootId,data){
+  const root=document.getElementById(rootId);
+  const head=root.querySelector('.htag');
+  let order,idx,score,locked;
+  function start(){order=shuffle([...data.keys()]);idx=0;score=0;locked=false;render();}
+  function render(){
+    [...root.children].forEach(c=>{if(c!==head)c.remove();});
+    if(idx>=order.length)return result();
+    const item=data[order[idx]];
+    const opts=shuffle(item.options.map((t,i)=>({t,correct:i===item.answer})));
+    const box=document.createElement('div');
+    box.innerHTML=`
+      <div class="q-progress"><span>שאלה ${idx+1} מתוך ${order.length}</span><span>ניקוד: ${score}</span></div>
+      <div class="q-bar"><span style="width:${idx/order.length*100}%"></span></div>
+      <p class="q-text">${item.q}</p>
+      <div class="q-options"></div>
+      <p class="fb"></p>
+      <button class="next-btn" style="display:none;margin-top:12px">הבא ←</button>`;
+    root.appendChild(box);
+    const wrap=box.querySelector('.q-options'),fb=box.querySelector('.fb'),next=box.querySelector('.next-btn');
+    opts.forEach(o=>{
+      const btn=document.createElement('button');btn.className='opt';btn.innerHTML=o.t;tipify(btn);
+      btn.addEventListener('click',()=>{
+        if(locked)return;locked=true;
+        wrap.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        if(o.correct){btn.classList.add('correct');score++;fb.textContent='✓ נכון!';fb.className='fb fb-ok';}
+        else{btn.classList.add('wrong');fb.textContent='✗ לא מדויק'+(item.note?(' — '+item.note):'');fb.className='fb fb-no';
+          [...wrap.children].forEach((c,k)=>{if(opts[k].correct)c.classList.add('correct');});}
+        next.style.display='inline-block';
+      });
+      wrap.appendChild(btn);
+    });
+    next.addEventListener('click',()=>{idx++;locked=false;render();});
+  }
+  function result(){
+    const pct=Math.round(score/data.length*100);
+    const msg=pct>=80?'מצוין! אתה שולט בחומר 🎉':pct>=60?'יפה! עוד קצת חזרה ותהיה מצוין.':'כדאי לחזור על החומר ולנסות שוב.';
+    const box=document.createElement('div');box.className='q-result';
+    box.innerHTML=`<div class="score-big">${score} / ${data.length}</div><p>${msg}</p><button class="next-btn">התחל מחדש 🔁</button>`;
+    root.appendChild(box);
+    box.querySelector('.next-btn').addEventListener('click',start);
+  }
+  start();
+}
+const J=s=>`<span class="jp">${s}</span>`;
+
+makeQuiz('quiz-vocab',[
+  {q:'מה הפירוש של '+J('住む')+'?',options:['לגור','לעבוד','לבקר','לעבור'],answer:0},
+  {q:'מה הפירוש של '+J('知る')+'?',options:['לדעת','לשאול','להבין','לזכור'],answer:0},
+  {q:'מה הפירוש של '+J('結婚する')+'?',options:['להתחתן','להתגרש','להיפגש','לצאת'],answer:0},
+  {q:'מה הפירוש של '+J('撮る')+'?',options:['לצלם','לראות','לכתוב','לשלוח'],answer:0},
+  {q:'מה הפירוש של '+J('心配する')+'?',options:['לדאוג','לשמוח','לפחד','לכעוס'],answer:0},
+  {q:'מה הפירוש של '+J('ゆっくり')+'?',options:['לאט','מהר','חזק','קצת'],answer:0},
+  {q:'מה הפירוש של '+J('もう一度')+'?',options:['עוד פעם / שוב','כבר','בקרוב','לעולם'],answer:0},
+  {q:'מה הפירוש של '+J('座る')+'?',options:['לשבת','לעמוד','לרוץ','לקפוץ'],answer:0},
+  {q:'מה הפירוש של '+J('立つ')+'?',options:['לעמוד','לשבת','לשכב','ללכת'],answer:0},
+  {q:'מה הפירוש של '+J('写真')+'?',options:['תמונה','ספר','מצלמה','עט'],answer:0}
+]);
+
+makeQuiz('quiz-kanji',[
+  {q:'מה הפירוש של '+J('<span class="big">北</span>')+'?',options:['צפון','דרום','מזרח','מערב'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">国</span>')+'?',options:['מדינה','עיר','כפר','אזור'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">駅</span>')+'?',options:['תחנה','נמל תעופה','חוף','כיכר'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">店</span>')+'?',options:['חנות','מסעדה','בית-חולים','משרד'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">道</span>')+'?',options:['דרך','בית','כביש מהיר','שדה'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">町</span>')+'?',options:['עיירה','כפר','עיר גדולה','מדינה'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">社</span>')+'?',options:['חברה','בית-ספר','מקדש','משרד'],answer:0},
+  {q:'מה הקריאה של '+J('外国')+'?',options:[J('がいこく'),J('そとくに'),J('がいくに'),J('そとこく')],answer:0,note:'外国 = がいこく = חוץ-לארץ.'},
+  {q:'מה הקריאה של '+J('会社')+'?',options:[J('かいしゃ'),J('あいしゃ'),J('かいじゃ'),J('えしゃ')],answer:0,note:'会社 = かいしゃ = חברה (עבודה).'}
+]);
+
+makeQuiz('quiz-final',[
+  {q:'מה צורת て של '+J('飲む')+'?',options:[J('飲んで'),J('飲いて'),J('飲って'),J('飲して')],answer:0,note:'む→んで.'},
+  {q:'מה צורת て של '+J('行く')+'? (חריג)',options:[J('行って'),J('行いて'),J('行んで'),J('行して')],answer:0,note:'行く חריג: 行って.'},
+  {q:'איך אומרים "אנא חכה"?',options:[J('待ってください。'),J('待ちてください。'),J('待つください。'),J('待んでください。')],answer:0,note:'待つ→待って+ください.'},
+  {q:'איך אומרים "אנא לא תצלם"?',options:[J('撮らないでください。'),J('撮ってください。'),J('撮らないてください。'),J('撮りませんください。')],answer:0,note:'שלילה: ない-form + でください.'},
+  {q:'איך אומרים "כרגע לומד"?',options:[J('今、勉強しています。'),J('今、勉強します。'),J('今、勉強した。'),J('今、勉強してください。')],answer:0,note:'פעולה כרגע = て+います.'},
+  {q:'מה הפירוש של '+J('結婚しています')+'?',options:['נשוי (מצב)','מתחתן כרגע','התחתן אתמול','רוצה להתחתן'],answer:0,note:'מצב מתמשך, לא פעולה רגעית.'},
+  {q:'מה הפירוש של '+J('<span class="big">駅</span>')+'?',options:['תחנה','חנות','דרך','עיר'],answer:0},
+  {q:'איך אומרים "איפה אתה גר?"',options:[J('どこに住んでいますか。'),J('どこに住みましたか。'),J('どこに住むですか。'),J('どこで住んでいますか。')],answer:0,note:'מצב = ています; מיקום = に.'},
+  {q:'מה צורת て של '+J('話す')+'?',options:[J('話して'),J('話いて'),J('話んで'),J('話った')],answer:0,note:'す→して.'},
+  {q:'מה הפירוש של '+J('日本語を知っています')+'?',options:['יודע יפנית','לומד יפנית כרגע','לא יודע יפנית','אוהב יפנית'],answer:0,note:'知る = לדעת, מצב מתמשך.'}
+]);
+
+makeQuiz('quiz-bonus',[
+  // המרות
+  {q:'מה צורת て של '+J('泳ぐ')+'?',options:[J('泳いで'),J('泳いて'),J('泳んで'),J('泳した')],answer:0,note:'ぐ→いで.'},
+  {q:'מה צורת て של '+J('死ぬ')+'?',options:[J('死んで'),J('死いて'),J('死った'),J('死して')],answer:0,note:'ぬ→んで.'},
+  {q:'מה צורת て של '+J('帰る')+'?',options:[J('帰って'),J('帰りて'),J('帰んで'),J('帰した')],answer:0,note:'帰る = קבוצה 1: る→って.'},
+  // בקשות
+  {q:'איך אומרים "אנא דברו לאט"?',options:[J('ゆっくり話してください。'),J('ゆっくり話します。'),J('ゆっくり話さないでください。'),J('ゆっくり話した。')],answer:0,note:'話す→話して+ください.'},
+  {q:'איך אומרים "אנא לא תדאג"?',options:[J('心配しないでください。'),J('心配してください。'),J('心配しますでください。'),J('心配しないください。')],answer:0,note:'心配する→しない+でください.'},
+  // ています הבחנה
+  {q:'מה הפירוש של '+J('田中さんは今、本を読んでいます。')+'?',
+   options:['טנקה קורא ספר כרגע','טנקה קרא ספר אתמול','טנקה יודע לקרוא','טנקה לא אוהב לקרוא'],answer:0,
+   note:'今 + ています = פעולה מתמשכת ברגע זה.'},
+  {q:'מה הפירוש של '+J('東京に住んでいます。')+'?',
+   options:['גר בטוקיו (מצב)','עובר לטוקיו כרגע','ביקר בטוקיו','נולד בטוקיו'],answer:0,
+   note:'住む + ています = מצב קבוע, לא פעולה רגעית.'},
+  {q:'מה ההבדל בין '+J('結婚します')+' ל-'+J('結婚しています')+'?',
+   options:['הראשון = יתחתן (עתיד); השני = נשוי (מצב)','שניהם אומרים נשוי','הראשון = נשוי; השני = יתחתן','אין הבדל'],answer:0},
+  // הבנת משפט מורכב
+  {q:'מה הפירוש של '+J('すみません、ここで写真を撮らないでください。')+'?',
+   options:['סליחה, אנא לא תצלם תמונות כאן','סליחה, אנא תצלם תמונות כאן','סליחה, איפה אפשר לצלם?','סליחה, אסור להיכנס כאן'],answer:0,
+   note:'撮らないでください = אנא לא תצלם.'},
+  {q:'מה הפירוש של '+J('もう一度、ゆっくり話してください。')+'?',
+   options:['אנא דבר שוב, לאט','אנא דבר מהר יותר','כבר דיברתי לאט','אל תדבר עוד'],answer:0,
+   note:'もう一度 = עוד פעם; ゆっくり = לאט; 話してください = אנא דבר.'},
+  // שילוב מלא
+  {q:'תרגם: "כרגע אני לומד יפנית בספרייה. אנא לא תפריע לי."<br><span style="font-size:13px;color:var(--muted)">(להפריע = '+J('邪魔する / じゃまする')+')</span>',
+   options:[
+     J('今、図書館で日本語を勉強しています。邪魔しないでください。'),
+     J('今、図書館で日本語を勉強します。邪魔してください。'),
+     J('図書館で日本語を勉強しましたから、邪魔しないでください。'),
+     J('今、図書館に日本語を勉強しています。邪魔しますでください。')
+   ],answer:0,
+   note:'今+ています = כרגע לומד; 邪魔しないでください = אנא לא תפריע.'},
+  // קאנג'י בהקשר
+  {q:'מה הפירוש של '+J('駅の前にある店で働いています。')+'?',
+   options:['עובד בחנות שלפני התחנה','עובד בתחנה','גר לפני התחנה','מצלם תמונה של התחנה'],answer:0,
+   note:'駅の前にある店 = החנות שלפני התחנה; で働いています = עובד ב- (מצב).'},
+  {q:'מה הפירוש של '+J('北の国に住んでいる友達に電話しています。')+'?',
+   options:['מתקשר כרגע לחבר שגר במדינה צפונית','חבר שלי גר במדינה צפונית','מתקשר לחבר מצפון','החבר שלי התקשר אליי מצפון'],answer:0,
+   note:'北の国に住んでいる友達 = חבר שגר במדינה צפונית; に電話しています = מתקשר אליו (כרגע).'}
+]);
+tipifyAll();
+tipifyAll();
+</script>
+<div class="week-nav">
+  <a href="N5-week10-lesson.html" class="nav-prev ">&#8594; שבוע 10</a>
+  <button class="nav-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8679;</button>
+  <a href="index.html" class="nav-home">&#127968; דף הבית</a>
+  <a href="N5-week12-lesson.html" class="nav-next ">שבוע 12 &#8592;</a>
+</div>
+
+</body>
+</html>

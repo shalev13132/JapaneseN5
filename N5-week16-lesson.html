@@ -1,0 +1,758 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שבוע 16 — חיבור וסיוג | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+    --blue:#4b6a8f; --blue-soft:#e3eaf3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre",Georgia,serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px,rgba(120,100,70,.06) 1px,transparent 0);
+    background-size:22px 22px;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 90px;}
+  .jp{font-family:"Noto Sans JP",system-ui,sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+  .big{font-size:1.35em; line-height:1;}
+
+  header.masthead{text-align:center; padding:56px 20px 34px; border-bottom:3px double var(--line); margin-bottom:6px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(28px,5.5vw,40px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:17px;}
+  .nav-links{display:flex; justify-content:space-between; margin:14px 0 0; font-size:14px;}
+  .nav-links span{color:var(--muted); font-family:"Heebo",sans-serif; font-weight:700;}
+
+  .lead{background:var(--card); border:1px solid var(--line); border-right:5px solid var(--accent); border-radius:12px; padding:18px 22px; margin:26px 0;}
+  .lead h2{font-family:"Heebo",sans-serif; font-size:18px; margin:0 0 6px;}
+  .lead ol{margin:6px 0 0; padding-inline-start:1.3em;}
+  .lead li{margin:3px 0;}
+
+  .topic{margin:46px 0;}
+  .topic-tag{display:inline-block; background:var(--accent); color:#fff; font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; padding:5px 14px; border-radius:999px; box-shadow:0 3px 8px rgba(150,60,30,.22);}
+  .topic h2{font-family:"Heebo",sans-serif; font-weight:800; font-size:25px; margin:12px 0 8px;}
+  .topic p{margin:.6em 0;}
+  .topic strong{color:#7e2a13;}
+
+  .formula{text-align:center; font-size:19px; background:#fff3ec; border:1px solid #e8c9b8; border-radius:10px; padding:12px 20px; margin:14px 0;}
+
+  h3.sub-head{font-family:"Heebo",sans-serif; font-weight:700; font-size:19px; color:var(--accent); margin:22px 0 8px; border-right:4px solid var(--accent); padding-right:10px;}
+
+  .ex{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:6px 16px; margin:16px 0;}
+  .ex-row{padding:10px 0; border-bottom:1px dashed var(--line);}
+  .ex-row:last-child{border-bottom:none;}
+  .ex-jp{direction:ltr; unicode-bidi:isolate; text-align:right; font-family:"Noto Sans JP",sans-serif; font-size:19px; font-weight:500;}
+  .ex-jp .r{color:var(--muted); font-size:15px; font-weight:400;}
+  .ex-he{color:var(--ink); font-size:16px;}
+
+  /* ne/yo contrast cards */
+  .ny-cards{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:16px 0;}
+  @media(max-width:500px){.ny-cards{grid-template-columns:1fr;}}
+  .ny-card{border-radius:12px; padding:14px 18px; border:1.5px solid;}
+  .ny-card.ne{background:#e3f0eb; border-color:#b0d5c5;}
+  .ny-card.yo{background:#eef3fa; border-color:#c5d5e8;}
+  .ny-card .ny-label{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; margin-bottom:8px;}
+  .ny-card.ne .ny-label{color:var(--ok);}
+  .ny-card.yo .ny-label{color:var(--blue);}
+  .ny-card .ny-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px; font-weight:700;}
+  .ny-card .ny-he{font-size:14px; margin-top:6px; color:var(--ink);}
+
+  .dialogue{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .dialogue-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--gold); margin-bottom:12px;}
+  .d-row{display:flex; gap:10px; align-items:flex-start; margin:10px 0;}
+  .d-who{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--muted); min-width:40px; padding-top:4px;}
+  .d-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px; font-weight:500; flex:1;}
+  .d-he{font-size:15px; color:var(--muted);}
+
+  /* review grid for full course summary */
+  .review-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:16px 0;}
+  @media(max-width:560px){.review-grid{grid-template-columns:1fr;}}
+  .review-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 16px;}
+  .review-card .rc-week{font-family:"Heebo",sans-serif; font-weight:800; font-size:12px; color:var(--gold); margin-bottom:4px;}
+  .review-card .rc-content{font-size:14px; line-height:1.5;}
+  .review-card .rc-content .jp{font-size:15px;}
+
+  .note{background:#faf5ea; border:1px dashed var(--line); border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .note b{color:var(--accent);}
+  .warn{background:#fff5f3; border:1px dashed #e8b8aa; border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .warn b{color:var(--no);}
+
+  /* deepen / study-deeper section */
+  .deepen{background:linear-gradient(160deg,#f3eee0,#ece3cf); border:1.5px solid #d8c89a; border-radius:14px; padding:20px 24px; margin:24px 0;}
+  .deepen-head{display:flex; align-items:center; gap:8px; font-family:"Heebo",sans-serif; font-weight:800; font-size:14px; color:#7d6324; margin-bottom:12px;}
+  .deepen-head::before{content:"🔎"; font-size:16px;}
+  .deepen h4{font-family:"Heebo",sans-serif; font-weight:700; font-size:16px; color:#7d6324; margin:16px 0 6px;}
+  .deepen h4:first-of-type{margin-top:0;}
+  .deepen p{margin:.5em 0; font-size:16px;}
+  .deepen .ex{background:#fffdf8;}
+
+  .qbox{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:16px 0; box-shadow:0 2px 8px rgba(80,60,30,.04);}
+  .qbox .htag{font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; color:var(--ok); margin-bottom:8px; display:flex; align-items:center; gap:7px;}
+  .qbox .htag::before{content:"✎"; font-size:15px;}
+  .q-text{font-size:18px; margin:0 0 12px; font-weight:500;}
+  .q-options{display:flex; flex-direction:column; gap:9px;}
+  .opt{font-family:inherit; font-size:17px; text-align:right; background:#fff; border:1.5px solid var(--line); border-radius:9px; padding:11px 16px; cursor:pointer; transition:.15s; color:var(--ink);}
+  .opt:hover:not(:disabled){border-color:var(--accent); background:#fffaf3;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:var(--ok-soft); border-color:var(--ok); color:#1f4d43; font-weight:700;}
+  .opt.wrong{background:var(--no-soft); border-color:var(--no); color:#7e2a13;}
+  .fb{margin:11px 0 0; font-size:16px; font-weight:600; min-height:1px;}
+  .fb-ok{color:var(--ok);} .fb-no{color:var(--no);}
+
+  .reveal{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .reveal-btn,.next-btn{font-family:"Heebo",sans-serif; font-weight:700; font-size:15px; background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 18px; cursor:pointer; transition:.15s;}
+  .reveal-btn:hover,.next-btn:hover{background:#8e2f17;}
+  .reveal-ans{display:none; margin-top:12px; padding:12px 16px; background:var(--ok-soft); border-radius:8px; font-size:17px;}
+
+  .quiz-widget{background:linear-gradient(160deg,#fffdf8,#fbf4e8); border:1.5px solid var(--line); border-radius:14px; padding:22px; margin:18px 0; box-shadow:0 4px 14px rgba(80,60,30,.07);}
+  .q-progress{font-family:"Heebo",sans-serif; font-size:13px; color:var(--muted); margin-bottom:10px; display:flex; justify-content:space-between;}
+  .q-bar{height:6px; background:#eadfc9; border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  .q-bar span{display:block; height:100%; background:var(--accent); transition:width .3s;}
+  .q-result{text-align:center; padding:14px 0;}
+  .score-big{font-family:"Heebo",sans-serif; font-weight:800; font-size:46px; color:var(--accent); line-height:1;}
+  .q-result p{font-size:18px; margin:10px 0 16px;}
+
+  h2.section{font-family:"Heebo",sans-serif; font-weight:800; font-size:26px; margin:54px 0 8px; padding:12px 20px; color:#fff; background:linear-gradient(100deg,var(--gold),#7d6324); border-radius:10px;}
+  h2.section.k{background:linear-gradient(100deg,var(--accent),#8e2f17);}
+
+  table{width:100%; border-collapse:collapse; margin:.4em 0 18px; font-size:16px; background:#fff; border-radius:10px; overflow:hidden; border:1px solid var(--line);}
+  thead th{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px; padding:9px 12px; text-align:right;}
+  td{padding:9px 12px; border-top:1px solid var(--line);}
+  tbody tr:nth-child(even){background:#fbf7ee;}
+  td.jp{text-align:right;} td.jp.big{text-align:center; color:var(--accent); font-size:1.5em;}
+
+  .done-banner{text-align:center; margin:50px 0 0; padding:26px; background:var(--ok-soft); border:1px solid #bcd9d0; border-radius:14px;}
+  .done-banner h2{font-family:"Heebo",sans-serif; color:#1f4d43; margin:0 0 6px;}
+  .footer-note{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;}}
+
+  /* ── bottom navigation bar ── */
+  .week-nav{
+    display:inline-flex; align-items:center; gap:6px;
+    position:fixed; bottom:14px; left:50%; transform:translateX(-50%); z-index:999;
+    padding:5px 10px;
+    background:rgba(255,253,248,.96); border:1px solid var(--line);
+    border-radius:999px; box-shadow:0 4px 16px rgba(80,60,30,.15); backdrop-filter:blur(8px);
+  }
+  .week-nav a,.week-nav button{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:12px;
+    padding:5px 11px; border-radius:999px; border:none; cursor:pointer;
+    text-decoration:none; transition:.15s; display:inline-flex; align-items:center; gap:3px;
+    white-space:nowrap;
+  }
+  .nav-prev,.nav-next{background:var(--accent); color:#fff;}
+  .nav-prev:hover,.nav-next:hover{background:#8e2f17;}
+  .nav-prev.disabled,.nav-next.disabled{background:#d9ccb8; color:#a09070; cursor:default; pointer-events:none;}
+  .nav-home{background:var(--ok-soft); color:#1f4d43; border:1px solid #bcd9d0;}
+  .nav-home:hover{background:#c8e8e0;}
+  .nav-top{background:var(--accent-soft); color:var(--accent); border:1px solid #e0c0b0; font-size:14px; padding:4px 9px;}
+  .nav-top:hover{background:#e8c8bc;}
+  /* ── kanji hover tooltip ── */
+  .ktip{
+    position:relative; cursor:help;
+    border-bottom:1px dotted var(--accent);
+  }
+  .ktip::after{
+    content:attr(data-h);
+    position:absolute; bottom:calc(100% + 4px); left:50%; transform:translateX(-50%);
+    background:var(--ink); color:#fff;
+    font-family:"Noto Sans JP",sans-serif; font-size:11px; font-weight:400;
+    padding:2px 7px; border-radius:5px; white-space:nowrap;
+    pointer-events:none; opacity:0; transition:opacity .15s; z-index:200;
+  }
+  .ktip:hover::after{ opacity:1; }</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">שבוע 16 מתוך 20 · <span class="jp" dir="ltr">JLPT N5</span> · חלק ד' — מסכם</div>
+  <h1>חיבור וסיוג</h1>
+  <p class="sub"><span class="jp">ね／よ</span>, <span class="jp">だけ</span>, <span class="jp">とき</span>, וחזרה כוללת</p>
+  <div class="nav-links">
+    <span>← שבוע 15: השוואות ומנייה</span>
+    <span>שבוע 17: חזרה על דקדוק ←</span>
+  </div>
+</header>
+
+<div class="lead">
+  <h2>מה נלמד השבוע</h2>
+  <ol>
+    <li><span class="jp">ね</span> ו-<span class="jp">よ</span> — חלקיקי-סוף-משפט לבדיקה והדגשה.</li>
+    <li><span class="jp">だけ</span> — "רק" / "בלבד".</li>
+    <li><span class="jp">とき</span> — "כש..." (זמן/הקשר).</li>
+    <li>חזרה כוללת על דקדוק N5 שלמדנו — חלק ד' מסתיים!</li>
+  </ol>
+  <p style="margin:10px 0 0;font-size:15px;color:var(--muted)">השבוע הזה הוא הסיום של חלק ד' — נלמד שלושה מבני-סיום שימושיים, ואז נעשה חזרה גדולה על כל מה שכבר יודעים.</p>
+</div>
+
+<!-- ========== TOPIC 1: ね and よ ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 1</span>
+  <h2><span class="jp">ね</span> ו-<span class="jp">よ</span> — חלקיקי סוף-משפט</h2>
+
+  <p>שני חלקיקים קטנים שמשנים את ה<strong>גוון</strong> של משפט מבלי לשנות את משמעותו הבסיסית — שניהם מתווספים בסוף משפט.</p>
+
+  <div class="ny-cards">
+    <div class="ny-card ne">
+      <div class="ny-label">ね — "נכון? / אתה מסכים?"</div>
+      <div class="ny-jp">いい天気ですね。</div>
+      <div class="ny-he">מזג אוויר נחמד, נכון? (מחפש הסכמה/אישור)</div>
+    </div>
+    <div class="ny-card yo">
+      <div class="ny-label">よ — "תדע! / תשים לב!"</div>
+      <div class="ny-jp">この本はおもしろいですよ。</div>
+      <div class="ny-he">הספר הזה מעניין! (נותן מידע חדש לשומע)</div>
+    </div>
+  </div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">この映画、おもしろかった<b>ね</b>。</span> <span class="r">（このえいが、おもしろかったね）</span></div>
+      <div class="ex-he">הסרט הזה היה מעניין, נכון? (שני אנשים שראו ביחד)</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">明日は雨です<b>よ</b>。</span> <span class="r">（あしたはあめですよ）</span></div>
+      <div class="ex-he">מחר יורד גשם, תדע! (מודיע משהו שהשומע לא ידע)</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">これ、おいしいです<b>よね</b>。</span> <span class="r">（これ、おいしいですよね）</span></div>
+      <div class="ex-he">זה טעים, נכון? (שילוב — מציע דעה ומחפש אישור)</div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dialogue-title">💬 שיחה — שימוש טבעי</div>
+    <div class="d-row"><div class="d-who">A:</div><div><div class="d-jp">今日は寒いですね。</div><div class="d-he">קר היום, נכון?</div></div></div>
+    <div class="d-row"><div class="d-who">B:</div><div><div class="d-jp">そうですね。明日はもっと寒くなりますよ。</div><div class="d-he">נכון. מחר יהיה עוד יותר קר, תדע!</div></div></div>
+    <div class="d-row"><div class="d-who">A:</div><div><div class="d-jp">本当ですか。コートを持ってきますね。</div><div class="d-he">באמת? אביא מעיל, בסדר? (ね גם לבקש אישור/הכרזה רכה)</div></div></div>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="חיפוש אישור/הסכמה = ね. הודעת מידע חדש = よ.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מתי משתמשים ב-<span class="jp">ね</span>?</p>
+    <div class="q-options">
+      <button class="opt">כשמודיעים מידע חדש לשומע</button>
+      <button class="opt">כשמחפשים הסכמה/אישור מהשומע</button>
+      <button class="opt">כשרוצים לשאול שאלה</button>
+      <button class="opt">כשרוצים לשלול</button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — ね ו-よ</div>
+
+    <h4>חלקיקי "מודאליות" — מעבר למשמעות, אל היחס</h4>
+    <p>בבלשנות, חלקיקים כמו <span class="jp">ね</span> ו-<span class="jp">よ</span> מסווגים כ"חלקיקי מודאליות" (modal particles) — הם לא משנים את <em>תוכן</em> המשפט (העובדות שמדווחות), אלא את <strong>היחס של הדובר לתוכן ולשומע</strong>. <span class="jp">ね</span> מבטא רצון לשיתוף/הסכמה חברתית; <span class="jp">よ</span> מבטא ביטחון בידע ורצון להעביר אותו. זו שכבה תקשורתית-חברתית שמתווספת על גבי המשמעות הבסיסית.</p>
+
+    <h4>ね כתרגול חברתי-תרבותי — קישוריות יפנית</h4>
+    <p>יפנית משתמשת ב-<span class="jp">ね</span> בתדירות הרבה גבוהה יותר מהמקבילות בעברית/אנגלית — זה משקף ערך תרבותי של "הרמוניה חברתית" (<span class="jp">和 / わ</span>) שמודגש ביפן: גם בהצהרות פשוטות, מוסיפים <span class="jp">ね</span> כדי "לכלול" את השומע ולא להישמע תקיף/מנותק. תרגום מילולי לעברית לרוב יישמע מוזר ("נכון?" אחרי כל משפט) — חשוב להבין את התפקיד החברתי, לא רק לתרגם מילה-במילה.</p>
+
+    <h4>よね — שילוב שדורש את שניהם</h4>
+    <p>הצירוף <span class="jp">よね</span> משלב את שני התפקידים: <span class="jp">よ</span> (אני בטוח/יש לי דעה) + <span class="jp">ね</span> (אבל רוצה לבדוק שאתה מסכים). זה ביטוי נפוץ מאוד בדיבור יומיומי — "זה כך, נכון?" עם ביטחון מתון. ברמת N5 לא נדרש להפיק אותו באופן פעיל, אבל שווה להכיר אותו בהאזנה.</p>
+
+    <h4>למה אסור "להגזים" עם よ — אזהרת נימוס</h4>
+    <p><span class="jp">よ</span> יכול להישמע תקיף/מתנשא אם משתמשים בו לא נכון — לדוגמה, לתקן מישהו במידע ש"כולם יודעים" יכול להישמע כמרצה. ביפנית, שימוש מתון ומדויק ב-<span class="jp">よ</span> (רק כשבאמת יש מידע חדש/חשוב) נחשב טבעי, בעוד שימוש-יתר נחשב לא-מנומס. <span class="jp">ね</span>, לעומת זאת, נחשב כמעט תמיד בטוח ומסביר פנים.</p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"הסרט הזה היה מעניין, נכון? — נכון! ויש סרט נוסף שלו, תדע."</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">この映画はおもしろかったですね。 — そうですね！もう一つありますよ。</span><br>
+      <span style="color:var(--muted);font-size:14px">（このえいがはおもしろかったですね。 — そうですね！もうひとつありますよ）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 2: だけ ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 2</span>
+  <h2><span class="jp">だけ</span> — "רק / בלבד"</h2>
+
+  <p><span class="jp">だけ</span> מבטא הגבלה — "רק X", "X בלבד". מתחבר ישירות לשם עצם, ולעיתים מחליף חלקיק אחר (כמו <span class="jp">を/が</span>) או מתחבר אחריו.</p>
+
+  <div class="formula"><strong>[שם עצם] <span class="jp">だけ</span></strong> = "רק [שם עצם]"</div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">水<b>だけ</b>飲みます。</span> <span class="r">（みずだけのみます）</span></div>
+      <div class="ex-he">שותה רק מים.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">少し<b>だけ</b>食べました。</span> <span class="r">（すこしだけたべました）</span></div>
+      <div class="ex-he">אכלתי רק קצת.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">これ<b>だけ</b>でいいです。</span> <span class="r">（これだけでいいです）</span></div>
+      <div class="ex-he">רק זה מספיק. (תזכורת מ-שבוע 12: もいいです)</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">田中さん<b>だけ</b>来ました。</span> <span class="r">（たなかさんだけきました）</span></div>
+      <div class="ex-he">רק טנקה הגיע.</div>
+    </div>
+  </div>
+
+  <div class="note"><b>だけ מול しか〜ない:</b> יש מבנה נוסף "רק" — <span class="jp">しか</span> + פועל שלילי. <span class="jp">水しか飲みません</span> = "שותה רק מים" (אותה משמעות בערך, אבל מבנה שלילי). ברמת N5, <span class="jp">だけ</span> מספיק ופשוט יותר.</p></div>
+
+  <div class="qbox check" data-answer="0" data-explain="רק X = X + だけ. 水だけ飲みます.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "שותה רק מים"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">水だけ飲みます。</span></button>
+      <button class="opt"><span class="jp">水が飲みます。</span></button>
+      <button class="opt"><span class="jp">水のほうが飲みます。</span></button>
+      <button class="opt"><span class="jp">水を飲みたいです。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — だけ</div>
+
+    <h4>だけ כ"חלקיק-מסכם" — לא מחליף אלא מתווסף</h4>
+    <p>שווה לדעת ש-<span class="jp">だけ</span> לפעמים <em>מחליף</em> חלקיקים אחרים (<span class="jp">を/が</span> בדרך כלל נופלים כשמשתמשים ב-だけ) ולפעמים <em>מתווסף עליהם</em> (כמו <span class="jp">に</span>: <span class="jp">ここにだけあります</span> — "יש רק כאן"). הכלל: חלקיקי-מקרה בסיסיים (を/が) נשמטים, אבל חלקיקי-מיקום/זמן/אמצעי (に/で/へ) נשארים לפני <span class="jp">だけ</span>.</p>
+
+    <h4>少しだけ — שילוב "כמות מצומצמת" + "הגבלה"</h4>
+    <p>הביטוי <span class="jp">少しだけ</span> ("רק קצת") הוא שילוב נפוץ: <span class="jp">少し</span> (תזכורת משבוע 9: "קצת") + <span class="jp">だけ</span> (הגבלה) — שתי המילים מחזקות זו את זו ויוצרות "רק קצת מאוד" מבחינה רגשית, אף שלוגית זה רק "קצת בלבד".</p>
+
+    <h4>これだけでいい — קשר ל-てもいいです (שבוע 12)</h4>
+    <p>במשפט <span class="jp">これだけでいいです</span> ("רק זה מספיק"), <span class="jp">で</span> כאן הוא צורת-て מקוצרת של <span class="jp">です</span> (בדומה למה שראית בשבוע 12 עם <span class="jp">てもいいです</span>) — המבנה המלא הוא בעצם "רק זה, וזה [גם] טוב/מספיק". זה מסביר את הקשר הלוגי ל-もいいです שלמדת, גם אם המבנה המדויק שונה במעט.</p>
+
+    <h4>しか〜ない — מבט קדימה למבנה השלילי המקביל</h4>
+    <p>אם תפגוש <span class="jp">しか</span> בקריאה חופשית, זכור שהוא דורש <strong>שלילה בהמשך המשפט</strong> — <span class="jp">しか</span> בלי שלילה הוא שגיאה. הוא נחשב מעט "חזק/מפתיע" יותר מ-<span class="jp">だけ</span> — מבטא לעיתים תחושת "רק זה?? לא יותר??" (קוצר, חסך). ב-N5 אפשר להסתפק ב-だけ הפשוט והבטוח.</p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"רק חמש דקות יש לי, אבל רוצה לדבר."</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">五分だけありますが、話したいです。</span><br>
+      <span style="color:var(--muted);font-size:14px">（ごふんだけありますが、はなしたいです）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 3: とき ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 3</span>
+  <h2><span class="jp">とき</span> — "כש..."</h2>
+
+  <p><span class="jp">とき</span> (כתוב גם <span class="jp">時</span>) מחבר שתי פעולות/מצבים — "כש-X, Y". מתחבר אחרי צורת מילון, צורת た, או תואר.</p>
+
+  <div class="formula"><strong>[פסוקית] <span class="jp">とき</span>、[משפט ראשי]。</strong> = "כש-[פסוקית], [משפט ראשי]"</div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">日本へ行く<b>とき</b>、パスポートが必要です。</span> <span class="r">（にほんへいくとき、ぱすぽーとがひつようです）</span></div>
+      <div class="ex-he">כשנוסעים ליפן, צריך דרכון.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">忙しい<b>とき</b>、料理しません。</span> <span class="r">（いそがしいとき、りょうりしません）</span></div>
+      <div class="ex-he">כשאני עסוק, אני לא מבשל.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">学生だった<b>とき</b>、よく勉強しました。</span> <span class="r">（がくせいだったとき、よくべんきょうしました）</span></div>
+      <div class="ex-he">כשהייתי סטודנט, למדתי הרבה.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">日本に行った<b>とき</b>、寿司を食べました。</span> <span class="r">（にほんにいったとき、すしをたべました）</span></div>
+      <div class="ex-he">כשנסעתי ליפן, אכלתי סושי.</div>
+    </div>
+  </div>
+
+  <div class="warn"><b>זמן הפסוקית קובע מילון מול た:</b> אם הפעולה ב-<span class="jp">とき</span> קורית <em>לפני/בזמן</em> המשפט הראשי — צורת מילון (<span class="jp">行く時</span> = "כשהולכים/בעודי הולך"). אם היא קרתה <em>לפני</em> (וכבר הסתיימה) — צורת た (<span class="jp">行った時</span> = "כשהלכתי/אחרי שהלכתי"). זו אבחנה דקה אבל חשובה!</div>
+
+  <div class="qbox check" data-answer="0" data-explain="כש-X = [פסוקית]+とき. 行く (מילון, פעולה מתמשכת/לפני) + とき.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "כשנוסעים ליפן, צריך דרכון"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">日本へ行くとき、パスポートが必要です。</span></button>
+      <button class="opt"><span class="jp">日本へ行きますとき、パスポートが必要です。</span></button>
+      <button class="opt"><span class="jp">日本へ行ったとき、パスポートが必要でした。</span></button>
+      <button class="opt"><span class="jp">日本へ行くから、パスポートが必要です。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — とき</div>
+
+    <h4>とき כשם עצם — מקור הקשר ל-時 (זמן)</h4>
+    <p><span class="jp">とき</span> כתוב גם <span class="jp">時</span> ("זמן/רגע") — קאנג'י שכבר הכרת בשבוע 4 (<span class="jp">何時 / なんじ</span>). היסטורית, <span class="jp">とき</span> הוא בעצם שם עצם ("הרגע ש...") שמחובר לפסוקית קודמת באמצעות <span class="jp">の</span> סמוי. <span class="jp">行く時</span> מילולית הוא "הזמן/הרגע של ללכת" — הבנה זו מסבירה למה הפסוקית לפניו מתנהגת כמתאר (כמו פסוקית-יחס) ולא כמשפט שלם.</p>
+
+    <h4>מילון מול た — ההיגיון העומק מאחורי הבחירה</h4>
+    <p>ההבחנה בין צורת מילון לצורת た לפני <span class="jp">とき</span> תלויה ב<strong>סדר הזמנים היחסי</strong> בין שתי הפעולות: אם פעולת ה-とき עדיין "פעילה"/לא-הושלמה כשהמשפט הראשי קורה (כמו "בעודי הולך"), משתמשים במילון. אם היא הושלמה לפני המשפט הראשי, משתמשים בた. <span class="jp">日本へ行く時、お土産を買います</span> ("כשאני [בדרכי] ליפן [או שם], קונה מתנות") מול <span class="jp">日本へ行った時、お土産を買いました</span> ("אחרי שהגעתי ליפן, קניתי מתנות") — ניואנס דק אך אמיתי.</p>
+
+    <h4>שילוב עם תארי-な ו-だった (תזכורת לעבר)</h4>
+    <p>במשפט <span class="jp">学生だった時</span> ("כשהייתי סטודנט"), <span class="jp">だった</span> הוא העבר הרגיל של です/だ (תזכורת לא-מוצהרת מהקורס — נלמד ברמז בשבוע 3 ושוב כאן). שים לב שלפני <span class="jp">とき</span>, גם שמות עצם ותארי-な דורשים את הצורה הרגילה המתאימה (<span class="jp">学生の時</span> אפשרי גם, ללא だった, תלוי בניואנס).</p>
+
+    <h4>מבט-קדימה — לפני המעבר לחזרה כוללת</h4>
+    <p>השבוע הזה (16) משלים את חלק ד' של הקורס — חלק שעסק בהעמקת הביטוי: רשות/איסור, רצונות, שרשור, השוואה, מנייה, וכלי-קישור כמו <span class="jp">とき</span>. משבוע 17 נכנסים לחלק ה', המוקדש לחזרה כוללת והכנה למבחן. שווה להרגיש סיפוק על ההיקף שכבר נלמד — זה רוב התוכן הדקדוקי של N5!</p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"כשהייתי קטן, אהבתי לקרוא ספרים."</strong> (קטן = <span class="jp">小さい</span>)</p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">小さかった時、本を読むのが好きでした。</span><br>
+      <span style="color:var(--muted);font-size:14px">（ちいさかったとき、ほんをよむのがすきでした）</span><br>
+      <span style="font-size:14px">小さかった = עבר של תואר-い + 時.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 4: COMPREHENSIVE REVIEW ========== -->
+<div class="topic">
+  <span class="topic-tag">חזרה כוללת</span>
+  <h2>סיכום חלק ד' — כל מה שלמדנו (שבועות 1–16)</h2>
+
+  <p>נקודת עצירה גדולה! נסכם בקצרה את כל מה שלמדנו בקורס עד כה, מקובץ לפי חלקים.</p>
+
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="rc-week">חלק א' (1–4)</div>
+      <div class="rc-content">משפטי שם, <span class="jp">は・が・の・を・に・へ・で</span> בסיסיים, מספרים, שמות תואר, ימי שבוע, קיום (あります/います).</div>
+    </div>
+    <div class="review-card">
+      <div class="rc-week">חלק ב' (5–8)</div>
+      <div class="rc-content">は מול が, פעלי <span class="jp">ます</span>, עבר מנומס, <span class="jp">で</span> כאמצעי, <span class="jp">と</span> עם אדם, <span class="jp">から〜まで</span>, סיבה.</div>
+    </div>
+    <div class="review-card">
+      <div class="rc-week">חלק ג' (9–11)</div>
+      <div class="rc-content">צורת מילון, <span class="jp">ない</span>, רגיל מול מנומס, עבר רגיל <span class="jp">た</span>, צורת <span class="jp">て</span>, בקשות, פעולה מתמשכת.</div>
+    </div>
+    <div class="review-card">
+      <div class="rc-week">חלק ד' (12–16)</div>
+      <div class="rc-content">רשות/איסור, רצונות <span class="jp">たい／ほしい</span>, שרשור תארים, השוואה, מנייה, <span class="jp">ね／よ／だけ／とき</span>.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">משפט-על שמשלב הכל</h3>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">日本へ行ったとき、安くておいしいレストランで寿司を食べたいと思っていましたが、時間がなかったので、コンビニのおにぎりだけ食べました。</span></div>
+      <div class="ex-he">כשנסעתי ליפן, חשבתי שארצה לאכול סושי במסעדה זולה וטעימה, אבל כי לא היה לי זמן, אכלתי רק אונגירי מחנות נוחות.</div>
+    </div>
+  </div>
+
+  <div class="note"><b>פירוק המשפט:</b> <span class="jp">行ったとき</span> (כש... עבר) · <span class="jp">安くておいしい</span> (שרשור תארים) · <span class="jp">食べたい</span> (רצון) · <span class="jp">と思っていました</span> (חושב, ב-て-form מתמשך) · <span class="jp">なかったので</span> (סיבה, עבר שלילי) · <span class="jp">だけ</span> (רק). כל אלמנט שלמדנו בקורס נמצא במשפט אחד!</div>
+
+  <div class="qbox check" data-answer="0" data-explain="זהו סיכום — בדוק שאתה מזהה: とき (כש), くて (שרשור), たい (רצון), ので (סיבה), だけ (רק).">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">במשפט-העל למעלה, כמה מבני-דקדוק שונים שלמדנו בקורס אפשר לזהות?</p>
+    <div class="q-options">
+      <button class="opt">לפחות 5 מבנים שונים (とき/くて/たい/ので/だけ)</button>
+      <button class="opt">רק מבנה אחד</button>
+      <button class="opt">2 מבנים בלבד</button>
+      <button class="opt">אין מבנים מוכרים</button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">בנה משפט שלך (תרגול חופשי): השתמש ב<strong>שלושה</strong> מבנים מהקורס בבת אחת — נסה!</p>
+    <button class="reveal-btn">ראה דוגמה אפשרית</button>
+    <div class="reveal-ans">
+      <span class="jp">忙しい時、コーヒーだけ飲んで、早く寝たいです。</span><br>
+      <span style="color:var(--muted);font-size:14px">（いそがしいとき、こーひーだけのんで、はやくねたいです）</span><br>
+      <span style="font-size:14px">"כשאני עסוק, שותה רק קפה ורוצה לישון מהר." (とき + だけ + たい + て-form לחיבור)</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== VOCAB TABLE ===== -->
+<h2 class="section">אוצר מילים — שבוע 16</h2>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">だけ</td><td class="jp">だけ</td><td>רק / בלבד</td></tr>
+    <tr><td class="jp">とき／時</td><td class="jp">とき</td><td>כש... / זמן</td></tr>
+    <tr><td class="jp">必要</td><td class="jp">ひつよう</td><td>נחוץ / הכרחי</td></tr>
+    <tr><td class="jp">パスポート</td><td class="jp">ぱすぽーと</td><td>דרכון</td></tr>
+    <tr><td class="jp">お土産</td><td class="jp">おみやげ</td><td>מתנת-מסע / מזכרת</td></tr>
+    <tr><td class="jp">本当</td><td class="jp">ほんとう</td><td>אמת / באמת</td></tr>
+    <tr><td class="jp">コート</td><td class="jp">こーと</td><td>מעיל</td></tr>
+    <tr><td class="jp">寒い</td><td class="jp">さむい</td><td>קר</td></tr>
+    <tr><td class="jp">おにぎり</td><td class="jp">おにぎり</td><td>אונגירי (כדור אורז)</td></tr>
+    <tr><td class="jp">コンビニ</td><td class="jp">こんびに</td><td>חנות נוחות</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 תיבת בחינה — אוצר מילים</div>
+</div>
+
+<!-- ===== KANJI TABLE ===== -->
+<h2 class="section k">קאנג'י — שבוע 16 (סיכום + חזרה)</h2>
+<table>
+  <thead><tr><th>קאנג'י</th><th>קריאה</th><th>משמעות</th><th>דוגמה</th></tr></thead>
+  <tbody>
+    <tr><td class="jp big">必</td><td class="jp">ひつ</td><td>הכרחי</td><td class="jp">必要（ひつよう）= נחוץ</td></tr>
+    <tr><td class="jp big">要</td><td class="jp">よう / いる</td><td>חשוב / צורך</td><td class="jp">必要（ひつよう）= נחוץ</td></tr>
+    <tr><td class="jp big">寒</td><td class="jp">さむ / かん</td><td>קר</td><td class="jp">寒い（さむい）= קר</td></tr>
+    <tr><td class="jp big">時</td><td class="jp">とき / じ</td><td>זמן / שעה</td><td class="jp">時（とき）= כש; 何時（なんじ）= איזו שעה</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-kanji">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🔢 תיבת בחינה — קאנג'י</div>
+</div>
+
+<!-- ===== FINAL QUIZ ===== -->
+<h2 class="section">מבחן סיכום — שבוע 16</h2>
+<p style="margin-top:-2px;color:var(--muted)">שאלות מעורבות: דקדוק, אוצר מילים, קאנג'י + חזרה כוללת.</p>
+<div class="quiz-widget" id="quiz-final">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🎓 מבחן סיכום</div>
+</div>
+
+<!-- ===== BONUS DRILL ===== -->
+<h2 class="section" style="background:linear-gradient(100deg,#4b6a8f,#2e4d6b)">🧩 תרגול מעמיק — שבוע 16</h2>
+<p style="margin-top:-2px;color:var(--muted)">13 שאלות: ね/よ, だけ, とき, ושילוב מלא של כל חלק ד'.</p>
+<div class="quiz-widget" id="quiz-bonus">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:#4b6a8f;margin-bottom:8px">🧩 תרגול מעמיק</div>
+</div>
+
+<div class="done-banner">
+  <h2>סיימת את שבוע 16 — וסיימת את חלק ד'! <span class="jp">すごい！</span> 🎉</h2>
+  <p>
+    כל הדקדוק העיקרי של N5 כבר נמצא ברשותך. מכאן והלאה — חיזוק, תרגול, וסימולציות.<br><br>
+    שבועות 17-20: חזרה שיטתית על כל החומר, תרגול קריאה והאזנה אינטנסיבי, ושני מבחני סימולציה מלאים.
+  </p>
+</div>
+
+<p class="footer-note"><span class="jp" dir="ltr">日本語 N5</span> · שבוע 16 מתוך 20 · <span class="jp" dir="ltr">頑張って！</span></p>
+</div>
+
+<script>
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+document.querySelectorAll('.check').forEach(q=>{
+  const ans=+q.dataset.answer,fb=q.querySelector('.fb'),opts=q.querySelectorAll('.opt');
+  opts.forEach((btn,i)=>{
+    btn.addEventListener('click',()=>{
+      if(q.classList.contains('done'))return; q.classList.add('done');
+      opts.forEach((b,j)=>{b.disabled=true;if(j===ans)b.classList.add('correct');else if(j===i)b.classList.add('wrong');});
+      const ok=i===ans;
+      fb.textContent=(ok?'✓ נכון! ':'✗ לא מדויק. ')+(q.dataset.explain||'');
+      fb.className='fb '+(ok?'fb-ok':'fb-no');
+    });
+  });
+});
+document.querySelectorAll('.reveal-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const a=b.nextElementSibling,show=a.style.display!=='block';
+    a.style.display=show?'block':'none';b.textContent=show?'הסתר תשובה':'הצג תשובה';
+  });
+});
+
+/* ── kanji reading tooltips ── */
+const KR={
+  '日':'にち','月':'つき','火':'ひ','水':'みず','木':'き','金':'きん','土':'ど',
+  '山':'やま','川':'かわ','田':'た','人':'ひと','口':'くち','手':'て','目':'め',
+  '耳':'みみ','足':'あし','車':'くるま','花':'はな','雨':'あめ','空':'そら',
+  '学':'がく','校':'こう','先':'せん','生':'せい','男':'おとこ','女':'おんな',
+  '子':'こ','小':'しょう','大':'だい','中':'ちゅう','上':'うえ','下':'した',
+  '右':'みぎ','左':'ひだり','本':'ほん','母':'はは','父':'ちち','年':'ねん',
+  '今':'いま','何':'なに','時':'じ','分':'ふん','半':'はん','前':'まえ',
+  '後':'ご','間':'あいだ','外':'そと','内':'うち','東':'ひがし','西':'にし',
+  '南':'みなみ','北':'きた','国':'くに','語':'ご','英':'えい',
+  '私':'わたし','友':'とも','名':'な','気':'き','天':'てん',
+  '電':'でん','話':'はなし','見':'み','来':'き','行':'い','食':'た','飲':'の',
+  '読':'よ','書':'か','聞':'き','言':'い','買':'か','帰':'かえ','起':'お',
+  '寝':'ね','着':'き','出':'で','入':'い','開':'あ','閉':'し','乗':'の',
+  '降':'お','使':'つか','教':'おし','習':'なら','始':'はじ','終':'お',
+  '会':'あ','待':'ま','持':'も','作':'つく','思':'おも','知':'し',
+  '住':'す','働':'はたら','遊':'あそ','泳':'およ','走':'はし','歩':'ある',
+  '立':'た','座':'すわ','休':'やす','止':'と',
+  '病':'びょう','院':'いん','店':'みせ','駅':'えき','道':'みち',
+  '公':'こう','園':'えん','図':'と','館':'かん',
+  '百':'ひゃく','千':'せん','万':'まん','円':'えん',
+  '一':'いち','二':'に','三':'さん','四':'し','五':'ご',
+  '六':'ろく','七':'なな','八':'はち','九':'きゅう','十':'じゅう',
+  '高':'たか','安':'やす','新':'あたら','古':'ふる','長':'なが',
+  '短':'みじか','広':'ひろ','多':'おお','少':'すく',
+  '早':'はや','速':'はや','遅':'おそ','強':'つよ','弱':'よわ',
+  '好':'す','楽':'たの','難':'むずか',
+  '暑':'あつ','寒':'さむ','暖':'あたた','涼':'すず',
+  '白':'しろ','黒':'くろ','赤':'あか','青':'あお',
+  '魚':'さかな','肉':'にく','野':'や','菜':'さい',
+  '卵':'たまご','牛':'ぎゅう','豚':'ぶた','猫':'ねこ','犬':'いぬ','鳥':'とり',
+  '家':'いえ','部':'へ','屋':'や','門':'もん','窓':'まど','机':'つくえ',
+  '春':'はる','夏':'なつ','秋':'あき','冬':'ふゆ',
+  '朝':'あさ','昼':'ひる','夜':'よる','週':'しゅう','曜':'よう',
+  '近':'ちか','遠':'とお','太':'ふと','細':'ほそ',
+  '明':'あか','暗':'くら','静':'しず','重':'おも','軽':'かる',
+  '辛':'から','甘':'あま','苦':'にが',
+  '町':'まち','村':'むら','市':'し','県':'けん',
+  '海':'うみ','池':'いけ','島':'しま','森':'もり',
+  '毎':'まい','午':'ご','自':'じ','転':'てん',
+  '映':'えい','画':'が','音':'おん','料':'りょう','理':'り',
+  '洗':'あら','顔':'かお','宿':'やど','題':'だい',
+  '北':'きた','駅':'えき','橋':'はし','港':'こう',
+};
+function tipify(el){
+  el.querySelectorAll('.jp').forEach(function(span){
+    if(span.querySelector('.ktip'))return;
+    span.innerHTML=span.innerHTML.replace(/[一-鿿]/g,function(ch){
+      return KR[ch]?('<span class="ktip" data-h="'+KR[ch]+'">'+ch+'</span>'):ch;
+    });
+  });
+}
+function tipifyAll(){
+  document.querySelectorAll('.jp').forEach(function(span){
+    if(span.querySelector('.ktip'))return;
+    span.innerHTML=span.innerHTML.replace(/[一-鿿]/g,function(ch){
+      return KR[ch]?('<span class="ktip" data-h="'+KR[ch]+'">'+ch+'</span>'):ch;
+    });
+  });
+}function makeQuiz(rootId,data){
+  const root=document.getElementById(rootId);
+  const head=root.querySelector('.htag');
+  let order,idx,score,locked;
+  function start(){order=shuffle([...data.keys()]);idx=0;score=0;locked=false;render();}
+  function render(){
+    [...root.children].forEach(c=>{if(c!==head)c.remove();});
+    if(idx>=order.length)return result();
+    const item=data[order[idx]];
+    const opts=shuffle(item.options.map((t,i)=>({t,correct:i===item.answer})));
+    const box=document.createElement('div');
+    box.innerHTML=`
+      <div class="q-progress"><span>שאלה ${idx+1} מתוך ${order.length}</span><span>ניקוד: ${score}</span></div>
+      <div class="q-bar"><span style="width:${idx/order.length*100}%"></span></div>
+      <p class="q-text">${item.q}</p>
+      <div class="q-options"></div>
+      <p class="fb"></p>
+      <button class="next-btn" style="display:none;margin-top:12px">הבא ←</button>`;
+    root.appendChild(box);
+    const wrap=box.querySelector('.q-options'),fb=box.querySelector('.fb'),next=box.querySelector('.next-btn');
+    opts.forEach(o=>{
+      const btn=document.createElement('button');btn.className='opt';btn.innerHTML=o.t;tipify(btn);
+      btn.addEventListener('click',()=>{
+        if(locked)return;locked=true;
+        wrap.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        if(o.correct){btn.classList.add('correct');score++;fb.textContent='✓ נכון!';fb.className='fb fb-ok';}
+        else{btn.classList.add('wrong');fb.textContent='✗ לא מדויק'+(item.note?(' — '+item.note):'');fb.className='fb fb-no';
+          [...wrap.children].forEach((c,k)=>{if(opts[k].correct)c.classList.add('correct');});}
+        next.style.display='inline-block';
+      });
+      wrap.appendChild(btn);
+    });
+    next.addEventListener('click',()=>{idx++;locked=false;render();});
+  }
+  function result(){
+    const pct=Math.round(score/data.length*100);
+    const msg=pct>=80?'מצוין! אתה שולט בחומר 🎉':pct>=60?'יפה! עוד קצת חזרה ותהיה מצוין.':'כדאי לחזור על החומר ולנסות שוב.';
+    const box=document.createElement('div');box.className='q-result';
+    box.innerHTML=`<div class="score-big">${score} / ${data.length}</div><p>${msg}</p><button class="next-btn">התחל מחדש 🔁</button>`;
+    root.appendChild(box);
+    box.querySelector('.next-btn').addEventListener('click',start);
+  }
+  start();
+}
+const J=s=>`<span class="jp">${s}</span>`;
+
+makeQuiz('quiz-vocab',[
+  {q:'מה הפירוש של '+J('だけ')+'?',options:['רק / בלבד','הכל','אף אחד','גם'],answer:0},
+  {q:'מה הפירוש של '+J('とき')+'?',options:['כש... / זמן','איפה','איך','מי'],answer:0},
+  {q:'מה הפירוש של '+J('必要')+'?',options:['נחוץ / הכרחי','אפשרי','קשה','קל'],answer:0},
+  {q:'מה הפירוש של '+J('パスポート')+'?',options:['דרכון','כרטיס','תעודת זהות','ויזה'],answer:0},
+  {q:'מה הפירוש של '+J('お土産')+'?',options:['מתנת-מסע / מזכרת','מתנה רגילה','כרטיס נסיעה','מזוודה'],answer:0},
+  {q:'מה הפירוש של '+J('本当')+'?',options:['אמת / באמת','שקר','ספר','מקור'],answer:0},
+  {q:'מה הפירוש של '+J('寒い')+'?',options:['קר','חם','נעים','חמים'],answer:0},
+  {q:'מה הפירוש של '+J('コンビニ')+'?',options:['חנות נוחות','סופרמרקט','מסעדה','קפה'],answer:0}
+]);
+
+makeQuiz('quiz-kanji',[
+  {q:'מה הפירוש של '+J('<span class="big">必</span>')+'?',options:['הכרחי','אפשרי','קל','קשה'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">寒</span>')+'?',options:['קר','חם','נעים','יבש'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">時</span>')+'?',options:['זמן / שעה','מקום','אדם','דבר'],answer:0},
+  {q:'מה הקריאה של '+J('必要')+'?',options:[J('ひつよう'),J('かならよう'),J('ひつ よう'),J('かなり')],answer:0,note:'必要 = ひつよう = נחוץ.'},
+  {q:'מה הקריאה של '+J('寒い')+'?',options:[J('さむい'),J('かんい'),J('さみい'),J('かむい')],answer:0,note:'寒い = さむい = קר.'}
+]);
+
+makeQuiz('quiz-final',[
+  {q:'מתי משתמשים ב-'+J('ね')+'?',options:['כשמחפשים הסכמה/אישור','כשמודיעים מידע חדש','כשמבקשים רשות','כשמתארים איסור'],answer:0},
+  {q:'מתי משתמשים ב-'+J('よ')+'?',options:['כשמודיעים מידע חדש לשומע','כשמחפשים הסכמה','כשמתנצלים','כשמבקשים עזרה'],answer:0},
+  {q:'איך אומרים "שותה רק מים"?',options:[J('水だけ飲みます。'),J('水が飲みます。'),J('水のほうが飲みます。'),J('水を飲みたいです。')],answer:0},
+  {q:'איך אומרים "כשנוסעים ליפן, צריך דרכון"?',options:[J('日本へ行くとき、パスポートが必要です。'),J('日本へ行くから、パスポートが必要です。'),J('日本へ行った時、パスポートが必要でした。'),J('日本へ行きたいので、パスポートがほしいです。')],answer:0,note:'פעולה מתמשכת/לפני = צורת מילון + とき.'},
+  {q:'מה הפירוש של '+J('<span class="big">時</span>')+'?',options:['זמן / שעה','מקום','עניין','דבר'],answer:0},
+  {q:'מה ההבדל בין '+J('行く時')+' ל-'+J('行った時')+'?',options:['הראשון = לפני/בעודי הולך; השני = אחרי שהגעתי','שניהם זהים','הראשון = אחרי; השני = לפני','אין הבדל'],answer:0},
+  {q:'איך אומרים "רק חמש דקות יש לי"?',options:[J('五分だけあります。'),J('五分があります。'),J('五分のほうがあります。'),J('五分しかありません。')],answer:0},
+  {q:'מה הפירוש של '+J('必要')+'?',options:['נחוץ','מותר','אסור','אפשרי'],answer:0},
+  {q:'מה הפירוש של '+J('学生だった時、よく勉強しました')+'?',options:['כשהייתי סטודנט, למדתי הרבה','אני סטודנט שלומד הרבה','לא הייתי סטודנט','עתיד להיות סטודנט'],answer:0},
+  {q:'מה הפירוש של '+J('これだけでいいです')+'?',options:['רק זה מספיק','זה לא מספיק','רוצה יותר מזה','זה אסור'],answer:0}
+]);
+
+makeQuiz('quiz-bonus',[
+  // הבנת משפט מורכב
+  {q:'מה הפירוש של '+J('忙しい時はコーヒーだけ飲みますが、休みの時はゆっくり朝ごはんを食べますよ。')+'?',
+   options:['כשעסוק שותה רק קפה, אבל בחופש אוכל ארוחת בוקר לאט, תדע','כשעסוק אוכל ארוחת בוקר; בחופש שותה קפה','לא אוכל בכלל','שותה קפה רק בחופש'],answer:0,
+   note:'忙しい時 = כשעסוק; だけ = רק; が (אבל); 休みの時 = בזמן חופש; よ = הודעת מידע.'},
+  {q:'מה הפירוש של '+J('日本に行ったとき、お土産を買いましたが、時間がなかったので、少しだけ買いました。')+'?',
+   options:['כשנסעתי ליפן קניתי מתנות, אבל כי לא היה זמן, קניתי רק קצת','לא קניתי מתנות ביפן','קניתי הרבה מתנות כי היה לי זמן','עדיין לא נסעתי ליפן'],answer:0,
+   note:'行ったとき = כשנסעתי (עבר, הפעולה הסתיימה); 時間がなかったので = כי לא היה זמן; 少しだけ = רק קצת.'},
+  // השלמה
+  {q:'השלם: "מזג אוויר נחמד, נכון?" '+J('いい天気です___。'),
+   options:[J('ね'),J('よ'),J('だけ'),J('とき')],answer:0,
+   note:'חיפוש הסכמה = ね.'},
+  {q:'השלם: "תדע, מחר יורד גשם." '+J('明日は雨です___。'),
+   options:[J('よ'),J('ね'),J('だけ'),J('とき')],answer:0,
+   note:'הודעת מידע חדש = よ.'},
+  {q:'השלם: "כשהייתי קטן, אהבתי כלבים." '+J('小さかった___、犬が好きでした。'),
+   options:[J('時'),J('だけ'),J('ね'),J('より')],answer:0,
+   note:'כש- = 時/とき.'},
+  // זיהוי שגיאה
+  {q:'מי הנכון — "רק חבר אחד הגיע"',
+   options:[J('友達一人だけ来ました。'),J('友達一人が来ました。'),J('友達一人のほうが来ました。'),J('友達一人より来ました。')],answer:0,
+   note:'רק X = X + だけ.'},
+  {q:'מי הנכון — "כשאוכל, לא מדבר"',
+   options:[J('食べる時、話しません。'),J('食べた時、話しません。'),J('食べるだけ、話しません。'),J('食べるね、話しません。')],answer:0,
+   note:'פעולה מתמשכת (בעוד אוכל) = צורת מילון + 時.'},
+  // הבחנה ね/よ
+  {q:'מה ההבדל בין '+J('おいしいですね')+' ל-'+J('おいしいですよ')+'?',
+   options:['הראשון = מחפש הסכמה; השני = מודיע לשומע','שניהם זהים','הראשון = שואל; השני = שולל','אין הבדל'],answer:0},
+  // שילוב מתקדם
+  {q:'מה הפירוש של '+J('お酒は少しだけ飲みますが、たくさんは飲みません。')+'?',
+   options:['שותה אלכוהול רק קצת, אבל לא הרבה','לא שותה אלכוהול בכלל','שותה הרבה אלכוהול','אוהב אלכוהול מאוד'],answer:0,
+   note:'少しだけ = רק קצת; たくさんは飲みません = לא שותה הרבה.'},
+  {q:'מה ההבדל בין '+J('だけ')+' ל-'+J('しか〜ない')+'?',
+   options:['שתיהן אומרות "רק", שיכ דורש שלילה ולעיתים נשמע חזק יותר','שתי המילים הפכים זה לזה','だけ דורש שלילה','שתיהן שונות במשמעות לחלוטין'],answer:0},
+  // שילוב מלא
+  {q:'תרגם: "כשהייתי בבית הספר, רק יום שני ויום שלישי היו שיעורי יפנית, נכון?"',
+   options:[
+     J('学校にいた時、月曜日と火曜日だけ日本語の授業がありましたね。'),
+     J('学校にいる時、月曜日と火曜日のほうが日本語の授業がありますよ。'),
+     J('学校にいた時、月曜日と火曜日しか日本語の授業がありましたよ。'),
+     J('学校にいる時、月曜日と火曜日だけ日本語の授業がありませんね。')
+   ],answer:0,
+   note:'いた時 (עבר, הסתיים) + だけ (רק) + ね (חיפוש אישור).'},
+  // קאנג'י בהקשר
+  {q:'מה הפירוש של '+J('海外旅行をする時、パスポートが必要です。')+'?',
+   options:['כשנוסעים לחו"ל, צריך דרכון','כשנוסעים בארץ, לא צריך דרכון','דרכון לא נחוץ לטיולים','טיול לחו"ל אסור בלי ויזה'],answer:0,
+   note:'海外旅行をする時 = כשנוסעים לחו"ל; パスポートが必要です = צריך דרכון.'},
+  {q:'מה הפירוש של '+J('寒い時はコートだけで大丈夫ですか。')+'?',
+   options:['כשקר, מספיק רק מעיל?','כשחם, צריך מעיל?','המעיל לא מספיק כשקר','אין צורך במעיל אף פעם'],answer:0,
+   note:'寒い時 = כשקר; コートだけで大丈夫ですか = מספיק רק מעיל? (שאלת מצב מספק, תזכורת שבוע 12).'}
+]);
+tipifyAll();
+tipifyAll();
+</script>
+<div class="week-nav">
+  <a href="N5-week15-lesson.html" class="nav-prev ">&#8594; שבוע 15</a>
+  <button class="nav-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8679;</button>
+  <a href="index.html" class="nav-home">&#127968; דף הבית</a>
+  <a href="N5-week17-lesson.html" class="nav-next ">שבוע 17 &#8592;</a>
+</div>
+
+</body>
+</html>

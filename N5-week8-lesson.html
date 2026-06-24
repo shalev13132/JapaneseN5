@@ -1,0 +1,952 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שבוע 8 — אמצעי, "עם", מ...עד ו"כי" | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+    --blue:#4b6a8f; --blue-soft:#e3eaf3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre", Georgia, serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px, rgba(120,100,70,.06) 1px, transparent 0);
+    background-size:22px 22px;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 90px;}
+  .jp{font-family:"Noto Sans JP", system-ui, sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+  .big{font-size:1.35em; line-height:1;}
+
+  header.masthead{text-align:center; padding:56px 20px 34px; border-bottom:3px double var(--line); margin-bottom:6px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(28px,5.5vw,40px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:17px;}
+  .nav-links{display:flex; justify-content:space-between; margin:14px 0 0; font-size:14px;}
+  .nav-links span{color:var(--muted); font-family:"Heebo",sans-serif; font-weight:700;}
+
+  .lead{background:var(--card); border:1px solid var(--line); border-right:5px solid var(--accent); border-radius:12px; padding:18px 22px; margin:26px 0;}
+  .lead h2{font-family:"Heebo",sans-serif; font-size:18px; margin:0 0 6px;}
+  .lead ol{margin:6px 0 0; padding-inline-start:1.3em;}
+  .lead li{margin:3px 0;}
+
+  .topic{margin:46px 0;}
+  .topic-tag{display:inline-block; background:var(--accent); color:#fff; font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; padding:5px 14px; border-radius:999px; box-shadow:0 3px 8px rgba(150,60,30,.22);}
+  .topic h2{font-family:"Heebo",sans-serif; font-weight:800; font-size:25px; margin:12px 0 8px;}
+  .topic p{margin:.6em 0;}
+  .topic strong{color:#7e2a13;}
+
+  .formula{text-align:center; font-size:19px; background:#fff3ec; border:1px solid #e8c9b8; border-radius:10px; padding:12px 20px; margin:14px 0;}
+  .formula-blue{text-align:center; font-size:19px; background:#eef3fa; border:1px solid #c5d5e8; border-radius:10px; padding:12px 20px; margin:14px 0;}
+  .formula-green{text-align:center; font-size:19px; background:#e3f0eb; border:1px solid #b0d5c5; border-radius:10px; padding:12px 20px; margin:14px 0;}
+
+  h3.sub-head{font-family:"Heebo",sans-serif; font-weight:700; font-size:19px; color:var(--accent); margin:22px 0 8px; border-right:4px solid var(--accent); padding-right:10px;}
+
+  .ex{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:6px 16px; margin:16px 0;}
+  .ex-row{padding:10px 0; border-bottom:1px dashed var(--line);}
+  .ex-row:last-child{border-bottom:none;}
+  .ex-jp{direction:ltr; unicode-bidi:isolate; text-align:right; font-family:"Noto Sans JP",sans-serif; font-size:19px; font-weight:500;}
+  .ex-jp .r{color:var(--muted); font-size:15px; font-weight:400;}
+  .ex-he{color:var(--ink); font-size:16px;}
+
+  /* particle summary card */
+  .p-summary{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:16px 0;}
+  @media(max-width:500px){.p-summary{grid-template-columns:1fr;}}
+  .p-card{background:var(--card); border:1.5px solid var(--line); border-radius:12px; padding:14px 18px;}
+  .p-card .pc-sym{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:30px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:6px;}
+  .p-card .pc-label{font-family:"Heebo",sans-serif; font-weight:800; font-size:12px; color:var(--muted); margin-bottom:6px;}
+  .p-card .pc-rule{font-size:15px; line-height:1.5; margin-bottom:8px;}
+  .p-card .pc-ex{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:15px; background:#faf5ea; border-radius:6px; padding:5px 10px;}
+  .p-card .pc-tr{font-size:13px; color:var(--muted); margin-top:4px;}
+
+  /* で uses summary */
+  .de-uses{background:var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden; margin:16px 0;}
+  .de-uses table{margin:0; border-radius:0;}
+
+  /* dialogue */
+  .dialogue{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .dialogue-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--gold); margin-bottom:12px;}
+  .d-row{display:flex; gap:10px; align-items:flex-start; margin:10px 0;}
+  .d-who{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--muted); min-width:40px; padding-top:4px;}
+  .d-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px; font-weight:500; flex:1;}
+  .d-he{font-size:15px; color:var(--muted);}
+
+  .note{background:#faf5ea; border:1px dashed var(--line); border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .note b{color:var(--accent);}
+  .warn{background:#fff5f3; border:1px dashed #e8b8aa; border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .warn b{color:var(--no);}
+
+  /* deepen / study-deeper section */
+  .deepen{background:linear-gradient(160deg,#f3eee0,#ece3cf); border:1.5px solid #d8c89a; border-radius:14px; padding:20px 24px; margin:24px 0;}
+  .deepen-head{display:flex; align-items:center; gap:8px; font-family:"Heebo",sans-serif; font-weight:800; font-size:14px; color:#7d6324; margin-bottom:12px;}
+  .deepen-head::before{content:"🔎"; font-size:16px;}
+  .deepen h4{font-family:"Heebo",sans-serif; font-weight:700; font-size:16px; color:#7d6324; margin:16px 0 6px;}
+  .deepen h4:first-of-type{margin-top:0;}
+  .deepen p{margin:.5em 0; font-size:16px;}
+  .deepen .ex{background:#fffdf8;}
+
+  .qbox{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:16px 0; box-shadow:0 2px 8px rgba(80,60,30,.04);}
+  .qbox .htag{font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; color:var(--ok); margin-bottom:8px; display:flex; align-items:center; gap:7px;}
+  .qbox .htag::before{content:"✎"; font-size:15px;}
+  .q-text{font-size:18px; margin:0 0 12px; font-weight:500;}
+  .q-options{display:flex; flex-direction:column; gap:9px;}
+  .opt{font-family:inherit; font-size:17px; text-align:right; background:#fff; border:1.5px solid var(--line); border-radius:9px; padding:11px 16px; cursor:pointer; transition:.15s; color:var(--ink);}
+  .opt:hover:not(:disabled){border-color:var(--accent); background:#fffaf3;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:var(--ok-soft); border-color:var(--ok); color:#1f4d43; font-weight:700;}
+  .opt.wrong{background:var(--no-soft); border-color:var(--no); color:#7e2a13;}
+  .fb{margin:11px 0 0; font-size:16px; font-weight:600; min-height:1px;}
+  .fb-ok{color:var(--ok);} .fb-no{color:var(--no);}
+
+  .reveal{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .reveal-btn,.next-btn{font-family:"Heebo",sans-serif; font-weight:700; font-size:15px; background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 18px; cursor:pointer; transition:.15s;}
+  .reveal-btn:hover,.next-btn:hover{background:#8e2f17;}
+  .reveal-ans{display:none; margin-top:12px; padding:12px 16px; background:var(--ok-soft); border-radius:8px; font-size:17px;}
+
+  .quiz-widget{background:linear-gradient(160deg,#fffdf8,#fbf4e8); border:1.5px solid var(--line); border-radius:14px; padding:22px; margin:18px 0; box-shadow:0 4px 14px rgba(80,60,30,.07);}
+  .q-progress{font-family:"Heebo",sans-serif; font-size:13px; color:var(--muted); margin-bottom:10px; display:flex; justify-content:space-between;}
+  .q-bar{height:6px; background:#eadfc9; border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  .q-bar span{display:block; height:100%; background:var(--accent); transition:width .3s;}
+  .q-result{text-align:center; padding:14px 0;}
+  .score-big{font-family:"Heebo",sans-serif; font-weight:800; font-size:46px; color:var(--accent); line-height:1;}
+  .q-result p{font-size:18px; margin:10px 0 16px;}
+
+  h2.section{font-family:"Heebo",sans-serif; font-weight:800; font-size:26px; margin:54px 0 8px; padding:12px 20px; color:#fff; background:linear-gradient(100deg,var(--gold),#7d6324); border-radius:10px;}
+  h2.section.k{background:linear-gradient(100deg,var(--accent),#8e2f17);}
+
+  table{width:100%; border-collapse:collapse; margin:.4em 0 18px; font-size:16px; background:#fff; border-radius:10px; overflow:hidden; border:1px solid var(--line);}
+  thead th{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px; padding:9px 12px; text-align:right;}
+  td{padding:9px 12px; border-top:1px solid var(--line);}
+  tbody tr:nth-child(even){background:#fbf7ee;}
+  td.jp{text-align:right;} td.jp.big{text-align:center; color:var(--accent); font-size:1.5em;}
+
+  .done-banner{text-align:center; margin:50px 0 0; padding:26px; background:var(--ok-soft); border:1px solid #bcd9d0; border-radius:14px;}
+  .done-banner h2{font-family:"Heebo",sans-serif; color:#1f4d43; margin:0 0 6px;}
+  .footer-note{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;}}
+
+  /* ── bottom navigation bar ── */
+  .week-nav{
+    display:inline-flex; align-items:center; gap:6px;
+    position:fixed; bottom:14px; left:50%; transform:translateX(-50%); z-index:999;
+    padding:5px 10px;
+    background:rgba(255,253,248,.96); border:1px solid var(--line);
+    border-radius:999px; box-shadow:0 4px 16px rgba(80,60,30,.15); backdrop-filter:blur(8px);
+  }
+  .week-nav a,.week-nav button{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:12px;
+    padding:5px 11px; border-radius:999px; border:none; cursor:pointer;
+    text-decoration:none; transition:.15s; display:inline-flex; align-items:center; gap:3px;
+    white-space:nowrap;
+  }
+  .nav-prev,.nav-next{background:var(--accent); color:#fff;}
+  .nav-prev:hover,.nav-next:hover{background:#8e2f17;}
+  .nav-prev.disabled,.nav-next.disabled{background:#d9ccb8; color:#a09070; cursor:default; pointer-events:none;}
+  .nav-home{background:var(--ok-soft); color:#1f4d43; border:1px solid #bcd9d0;}
+  .nav-home:hover{background:#c8e8e0;}
+  .nav-top{background:var(--accent-soft); color:var(--accent); border:1px solid #e0c0b0; font-size:14px; padding:4px 9px;}
+  .nav-top:hover{background:#e8c8bc;}
+  /* ── kanji hover tooltip ── */
+  .ktip{
+    position:relative; cursor:help;
+    border-bottom:1px dotted var(--accent);
+  }
+  .ktip::after{
+    content:attr(data-h);
+    position:absolute; bottom:calc(100% + 4px); left:50%; transform:translateX(-50%);
+    background:var(--ink); color:#fff;
+    font-family:"Noto Sans JP",sans-serif; font-size:11px; font-weight:400;
+    padding:2px 7px; border-radius:5px; white-space:nowrap;
+    pointer-events:none; opacity:0; transition:opacity .15s; z-index:200;
+  }
+  .ktip:hover::after{ opacity:1; }</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">שבוע 8 מתוך 20 · <span class="jp" dir="ltr">JLPT N5</span> · חלק ב'</div>
+  <h1>אמצעי, "עם", מ...עד... ו"כי"</h1>
+  <p class="sub"><span class="jp">で</span> כאמצעי · <span class="jp">と</span> עם אדם · <span class="jp">から〜まで</span> · <span class="jp">から</span> כסיבה</p>
+  <div class="nav-links">
+    <span>← שבוע 7: עבר ותנועה</span>
+    <span>שבוע 9: צורת מילון וצורת ない ←</span>
+  </div>
+</header>
+
+<div class="lead">
+  <h2>מה נלמד השבוע</h2>
+  <ol>
+    <li><span class="jp">で</span> כ<strong>אמצעי</strong> — "באוטובוס", "ביפנית", "בסכין".</li>
+    <li><span class="jp">と</span> עם <strong>אדם</strong> — "עם טנקה", "עם חברים".</li>
+    <li><span class="jp">から〜まで</span> — "מ... עד..." בזמן ובמרחב.</li>
+    <li><span class="jp">から</span> כ<strong>סיבה</strong> — "כי / מכיוון ש...".</li>
+  </ol>
+  <p style="margin:10px 0 0;font-size:15px;color:var(--muted)">בסוף השבוע הזה — <strong>וסוף חלק ב'</strong> — יהיה לך את כל הכלים לתאר פעולות: מה, מתי, לאן, איפה, באיזה אמצעי, עם מי, מאין ועד לאן, ומדוע.</p>
+</div>
+
+<!-- ===== PREVIEW VOCAB TABLE (NEW) ===== -->
+<h2 class="section" style="margin-top:30px">📋 כל אוצר המילים של השבוע — מבט מקדים</h2>
+<p style="margin-top:-2px;color:var(--muted)">טבלה זו אוספת את כל המילים החדשות שתפגוש השבוע — גם אלה שבטבלת הסיכום בהמשך, וגם אלה שמופיעות רק בתוך ההסברים והדוגמאות. עברית ואנגלית.</p>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th><th>English</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">電車</td><td class="jp">でんしゃ</td><td>רכבת</td><td>train</td></tr>
+    <tr><td class="jp">バス</td><td class="jp">バス</td><td>אוטובוס</td><td>bus</td></tr>
+    <tr><td class="jp">車</td><td class="jp">くるま</td><td>מכונית</td><td>car</td></tr>
+    <tr><td class="jp">箸</td><td class="jp">はし</td><td>צ'ופסטיקס</td><td>chopsticks</td></tr>
+    <tr><td class="jp">ペン</td><td class="jp">ぺん</td><td>עט</td><td>pen</td></tr>
+    <tr><td class="jp">電話</td><td class="jp">でんわ</td><td>טלפון</td><td>phone</td></tr>
+    <tr><td class="jp">メール</td><td class="jp">めーる</td><td>מייל</td><td>email</td></tr>
+    <tr><td class="jp">何で</td><td class="jp">なんで</td><td>באיזה אמצעי (שאלה)</td><td>by what means (question)</td></tr>
+    <tr><td class="jp">一人で</td><td class="jp">ひとりで</td><td>לבד</td><td>alone</td></tr>
+    <tr><td class="jp">二人で</td><td class="jp">ふたりで</td><td>שני אנשים, ביחד</td><td>two people, together</td></tr>
+    <tr><td class="jp">みんなで</td><td class="jp">みんなで</td><td>כולם ביחד</td><td>all together</td></tr>
+    <tr><td class="jp">渋谷</td><td class="jp">しぶや</td><td>שיבויה (שכונה בטוקיו)</td><td>Shibuya (Tokyo district)</td></tr>
+    <tr><td class="jp">週末</td><td class="jp">しゅうまつ</td><td>סוף שבוע</td><td>weekend</td></tr>
+    <tr><td class="jp">から</td><td class="jp">から</td><td>מ- (זמן/מקום) / כי (סיבה)</td><td>from (time/place) / because</td></tr>
+    <tr><td class="jp">まで</td><td class="jp">まで</td><td>עד (זמן/מקום)</td><td>until / to (time/place)</td></tr>
+    <tr><td class="jp">働く</td><td class="jp">はたらく</td><td>לעבוד</td><td>to work</td></tr>
+    <tr><td class="jp">東京</td><td class="jp">とうきょう</td><td>טוקיו</td><td>Tokyo</td></tr>
+    <tr><td class="jp">大阪</td><td class="jp">おおさか</td><td>אוסקה</td><td>Osaka</td></tr>
+    <tr><td class="jp">新幹線</td><td class="jp">しんかんせん</td><td>שינקנסן (רכבת מהירה)</td><td>shinkansen (bullet train)</td></tr>
+    <tr><td class="jp">駅</td><td class="jp">えき</td><td>תחנה</td><td>station</td></tr>
+    <tr><td class="jp">歩く</td><td class="jp">あるく</td><td>ללכת ברגל</td><td>to walk</td></tr>
+    <tr><td class="jp">疲れた</td><td class="jp">つかれた</td><td>עייף (עבר)</td><td>tired (past)</td></tr>
+    <tr><td class="jp">早く</td><td class="jp">はやく</td><td>מוקדם / מהר</td><td>early / quickly</td></tr>
+    <tr><td class="jp">雨</td><td class="jp">あめ</td><td>גשם</td><td>rain</td></tr>
+    <tr><td class="jp">降る</td><td class="jp">ふる</td><td>לרדת (גשם)</td><td>to fall (rain)</td></tr>
+    <tr><td class="jp">傘</td><td class="jp">かさ</td><td>מטרייה</td><td>umbrella</td></tr>
+    <tr><td class="jp">持ってくる</td><td class="jp">もってくる</td><td>להביא</td><td>to bring</td></tr>
+    <tr><td class="jp">どうして</td><td class="jp">どうして</td><td>מדוע / למה</td><td>why</td></tr>
+    <tr><td class="jp">なぜ</td><td class="jp">なぜ</td><td>מדוע (רשמי יותר)</td><td>why (more formal)</td></tr>
+    <tr><td class="jp">病気</td><td class="jp">びょうき</td><td>מחלה / חולה</td><td>sickness / ill</td></tr>
+    <tr><td class="jp">ので</td><td class="jp">ので</td><td>כי (רך, מנומס)</td><td>because (soft, polite)</td></tr>
+    <tr><td class="jp">テスト</td><td class="jp">てすと</td><td>מבחן</td><td>test</td></tr>
+    <tr><td class="jp">眠い</td><td class="jp">ねむい</td><td>ישנוני</td><td>sleepy</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab-preview">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 מבחן מקדים — כל אוצר המילים של השבוע</div>
+</div>
+
+<!-- ========== TOPIC 1: で AS MEANS ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 1</span>
+  <h2><span class="jp">で</span> כאמצעי</h2>
+
+  <p>בשבוע 7 למדנו <span class="jp">で</span> כמקום פעולה. אותה מילה משמשת גם לציון <strong>האמצעי</strong> שבאמצעותו מתבצעת פעולה — כלי, שפה, תחבורה, חומר.</p>
+
+  <div class="p-summary">
+    <div class="p-card">
+      <div class="pc-label">שבוע 7: で = מקום פעולה</div>
+      <div class="pc-sym">で</div>
+      <div class="pc-rule">היכן הפעולה מתרחשת</div>
+      <div class="pc-ex">図書館で勉強します</div>
+      <div class="pc-tr">לומד בספרייה</div>
+    </div>
+    <div class="p-card">
+      <div class="pc-label">שבוע 8: で = אמצעי</div>
+      <div class="pc-sym">で</div>
+      <div class="pc-rule">איך / במה הפעולה נעשית</div>
+      <div class="pc-ex">バスで行きます</div>
+      <div class="pc-tr">הולך באוטובוס</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">שימושי で כאמצעי</h3>
+  <div class="de-uses">
+    <table>
+      <thead><tr><th>סוג אמצעי</th><th>יפנית</th><th>עברית</th></tr></thead>
+      <tbody>
+        <tr><td>תחבורה</td><td class="jp">バスで行く / 電車で来る / 車で帰る</td><td>ללכת באוטובוס / לבוא ברכבת / לחזור במכונית</td></tr>
+        <tr><td>שפה</td><td class="jp">日本語で話す / 英語で書く</td><td>לדבר ביפנית / לכתוב באנגלית</td></tr>
+        <tr><td>כלי</td><td class="jp">箸で食べる / ペンで書く</td><td>לאכול בצ'ופסטיקס / לכתוב בעט</td></tr>
+        <tr><td>אמצעי תקשורת</td><td class="jp">電話で話す / メールで送る</td><td>לדבר בטלפון / לשלוח במייל</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">学校まで電車<b>で</b>行きました。</span> <span class="r">（がっこうまで でんしゃで いきました）</span></div>
+      <div class="ex-he">הלכתי לבית-הספר ברכבת.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">田中さんは日本語<b>で</b>話します。</span> <span class="r">（たなかさんは にほんごで はなします）</span></div>
+      <div class="ex-he">טנקה מדבר ביפנית.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">何<b>で</b>来ましたか。</span> <span class="r">（なんで きましたか）</span></div>
+      <div class="ex-he">באיזה אמצעי הגעת? (במה באת?)</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">バス<b>で</b>来ました。</span> <span class="r">（バスで きました）</span></div>
+      <div class="ex-he">באתי באוטובוס.</div>
+    </div>
+  </div>
+
+  <div class="note"><b>איך מבחינים בין שני השימושים של で?</b> בדוק: אם אחרי で בא פועל שמתאר מה עשית, ותוכל לשאול "במה / באיזה כלי" — זה אמצעי. אם תוכל לשאול "איפה" — זה מקום. לפעמים שניהם מופיעים באותו משפט: <span class="jp">カフェで日本語で話しました</span> = "שוחחתי ביפנית בקפה."</div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — で כאמצעי</div>
+
+    <h4>העיקרון המאחד את כל שימושי で — "התווך שמאפשר"</h4>
+    <p>אם תחשוב על כל שלושת השימושים של <span class="jp">で</span> שלמדת (מקום פעולה, אמצעי, ובהמשך — חומר/גורם), תמצא עיקרון משותף: <span class="jp">で</span> מסמן את <strong>"התווך" שבאמצעותו או שבתוכו מתבצעת הפעולה</strong>. רכבת היא התווך שמוביל אותך, יפנית היא התווך שבו אתה מתבטא, וקפה הוא התווך (המקום) שבו אתה נמצא בזמן הפעולה. כל אלה הם "סביבת הביצוע" של הפועל, ולא תוצאה או מטרה שלו.</p>
+
+    <h4>多重で — מתי אפשר/לא אפשר לחזור על で באותו משפט</h4>
+    <p>הדוגמה <span class="jp">カフェで日本語で話しました</span> מראה ששני שימושים שונים של <span class="jp">で</span> יכולים להופיע באותו משפט בלי בעיה — כי כל אחד מתאר היבט שונה (מקום מול שפה). לעומת זאת, לא תוכל לחבר שני <em>אמצעי תחבורה</em> עם <span class="jp">で</span> כפול בקלות; לשם כך תצטרך <span class="jp">と</span> או <span class="jp">それから</span>: <span class="jp">バスと電車で行きました</span> ("הלכתי באוטובוס וברכבת").</p>
+
+    <h4>何で מול どうして — שתי שאלות "למה" שונות לחלוטין</h4>
+    <p>שים לב להבדל עדין וחשוב: <span class="jp">何で</span> יכול להישמע דומה ל"למה" אבל פירושו <strong>"באיזה אמצעי"</strong> (שאלת אמצעי), בעוד <span class="jp">どうして</span> ו-<span class="jp">なぜ</span> (שתלמד בנושא 4) הן שאלות <strong>סיבה</strong> ("מדוע"). בדיבור מהיר, <span class="jp">何で</span> יכולה אפילו להישמע כ"למה" בהקשרים מסוימים (כקיצור סלנגי ל-なんで=なぜ), אבל ב-N5 הפרדה ברורה: <span class="jp">何で来ましたか</span> = "באיזה אמצעי הגעת?"</p>
+
+    <h4>קישור לעולם האמיתי — תחבורה ביפן</h4>
+    <p>שווה לדעת שביפן יש מערכת תחבורה ציבורית מפותחת מאוד, ולכן ביטויי תחבורה עם で הם מהשימושים הנפוצים ביותר בשיחה יומיומית: <span class="jp">電車で・バスで・新幹線で・自転車で・歩いて</span> (ברגל — שם לב, "ברגל" הוא יוצא דופן ולא משתמש ב-で, אלא בצורת て של 歩く!). הבחנה זו — ש"ברגל" שונה מבחינה דקדוקית — שווה לזכור.</p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="תחבורה = אמצעי ← で. 電車 = רכבת. 電車で = ברכבת.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "הגעתי ברכבת"? (<span class="jp">電車 / でんしゃ</span>)</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">電車で来ました。</span></button>
+      <button class="opt"><span class="jp">電車に来ました。</span></button>
+      <button class="opt"><span class="jp">電車へ来ました。</span></button>
+      <button class="opt"><span class="jp">電車を来ました。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="שפה = אמצעי ← で. 日本語で話す = לדבר ביפנית. שאלת אמצעי = 何で.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">שואלים "באיזה אמצעי דיברתם?" — איזו שאלה נכונה?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">何を話しましたか。</span></button>
+      <button class="opt"><span class="jp">どこで話しましたか。</span></button>
+      <button class="opt"><span class="jp">何で話しましたか。</span></button>
+      <button class="opt"><span class="jp">何に話しましたか。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"שלחתי מכתב לטנקה במייל ביפנית."</strong><br>
+    <span style="font-size:14px;color:var(--muted)">(מייל = <span class="jp">メール</span>; שלח = <span class="jp">送る / おくる</span>)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">田中さんにメールで日本語で手紙を送りました。</span><br>
+      <span style="color:var(--muted);font-size:14px">（たなかさんに めーるで にほんごで てがみを おくりました）</span><br>
+      <span style="font-size:14px">שני שימושי で: מייל (אמצעי תקשורת) + יפנית (שפה).</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 2: と WITH PERSON ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 2</span>
+  <h2><span class="jp">と</span> עם אדם</h2>
+
+  <p>בשבוע 4 למדנו <span class="jp">と</span> לרשימות ("ספר ועט"). אותה מילה גם מציינת <strong>עם מי</strong> עושים פעולה. ההבדל ברור מהקשר:</p>
+
+  <div class="formula"><strong>[אדם/חבר] <span class="jp">と</span> [פועל]</strong> = "[פועל] עם [אדם]"</div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">田中さん<b>と</b>映画を見ました。</span> <span class="r">（たなかさんと えいがをみました）</span></div>
+      <div class="ex-he">צפיתי בסרט עם טנקה.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">友達<b>と</b>一緒に勉強しました。</span> <span class="r">（ともだちと いっしょに べんきょうしました）</span></div>
+      <div class="ex-he">למדתי ביחד עם חבר.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">誰<b>と</b>来ましたか。</span> <span class="r">（だれと きましたか）</span></div>
+      <div class="ex-he">עם מי באת?</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">一人で来ました。</span> <span class="r">（ひとりで きました）</span></div>
+      <div class="ex-he">באתי לבד. (<span class="jp">一人で</span> = לבד — "עם עצמי בלבד")</div>
+    </div>
+  </div>
+
+  <div class="note"><b>と לרשימות מול と עם אדם:</b><br>
+  <span class="jp">本とペン</span> — "ספר ועט" (רשימת דברים, שניהם מושאים).<br>
+  <span class="jp">田中さんと映画を見た</span> — "ראיתי סרט <em>עם</em> טנקה" (טנקה השתתף בפעולה).<br>
+  ההבדל: ברשימה שני הדברים הם מושאים; ב"עם" — האדם שותף לפעולה.</div>
+
+  <div class="dialogue">
+    <div class="dialogue-title">💬 שיחה לדוגמה — מה עשית בסוף השבוע?</div>
+    <div class="d-row"><div class="d-who">A:</div><div><div class="d-jp">週末は何をしましたか。</div><div class="d-he">מה עשית בסוף השבוע?</div></div></div>
+    <div class="d-row"><div class="d-who">B:</div><div><div class="d-jp">友達と電車で渋谷へ行きました。</div><div class="d-he">הלכתי לשיבויה ברכבת עם חברים.</div></div></div>
+    <div class="d-row"><div class="d-who">A:</div><div><div class="d-jp">いいですね！何をしましたか。</div><div class="d-he">כיף! מה עשיתם שם?</div></div></div>
+    <div class="d-row"><div class="d-who">B:</div><div><div class="d-jp">カフェで日本語で話して、映画を見ました。</div><div class="d-he">שוחחנו ביפנית בקפה ואחר כך ראינו סרט.</div></div></div>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — と עם אדם</div>
+
+    <h4>הקשר העמוק בין と-רשימה ל-と-"עם" — "חיבור סימטרי"</h4>
+    <p>שני התפקידים של <span class="jp">と</span> חולקים תכונה בלשנית עמוקה: <span class="jp">と</span> מבטא <strong>חיבור סימטרי</strong> — A ו-B נחשבים כשווי-מעמד ביחס לפעולה/לרשימה. "ספר ועט" — שני חפצים שווי-מעמד ברשימה. "ללכת עם חבר" — שני אנשים שווי-מעמד בפעולת ההליכה (שניהם הולכים, לא אחד "מוביל" את השני). זה ההבדל מ-<span class="jp">に</span> ("ניפגש <em>עם</em>" — sometimes asymmetric, כיוון חד-צדדי) ומ-<span class="jp">の</span> (שייכות, יחס א-סימטרי בעליל).</p>
+
+    <h4>一人で — מבנה ה"ל-בד" כתואר-פועל</h4>
+    <p><span class="jp">一人で</span> ("לבד") הוא מבנה מעניין: <span class="jp">一人</span> פירושו המילולי "אדם אחד", ו-<span class="jp">で</span> כאן הוא הצורה התוארית של אמצעי/מצב — "<em>באמצעות</em> אדם אחד [בלבד]" = "לבד". זה דומה למבנים אחרים שתפגוש: <span class="jp">二人で</span> ("שני אנשים, ביחד" — לא "שני אנשים לחוד"!), <span class="jp">みんなで</span> ("כולם ביחד"). שים לב שצירוף [מספר-אנשים]+で מתאר קבוצה שפועלת יחד, לא רשימה.</p>
+
+    <h4>誰と מול 誰が — שתי שאלות "מי" עם משמעות שונה</h4>
+    <p>חשוב להבחין: <span class="jp">誰が</span> (שבוע 5) שואל "מי <em>עושה</em> את הפעולה" — זהות מבצע הפעולה. <span class="jp">誰と</span> שואל "<em>עם מי</em> מבצעים" — שותף לפעולה שאינו המבצע העיקרי. במשפט <span class="jp">誰と行きましたか</span> ("עם מי הלכת?"), הדובר (אתה) כבר ידוע כמבצע — השאלה היא רק על השותף.</p>
+
+    <h4>השוואה תרבותית — מתי טבעי לציין "עם מי"</h4>
+    <p>בתרבות יפנית, ציון "עם מי" עשית פעילות הוא חלק חשוב מסיפור על האירוע — זה מסביר את הקשר החברתי ואת ההקשר. זו הסיבה ש<span class="jp">と</span> כל כך נפוץ בסיפורי-יום-יומי (כמו השיחה לדוגמה כאן). שים לב לדפוס: [פעולה] + [מקום] + [אמצעי] + [עם מי] הוא סדר אופייני לתיאור פעילות מלאה.</p>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="'עם מי' = [אדם]と. שאלה = 誰と.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך שואלים "עם מי הלכת?"</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">誰を行きましたか。</span></button>
+      <button class="opt"><span class="jp">誰と行きましたか。</span></button>
+      <button class="opt"><span class="jp">誰で行きましたか。</span></button>
+      <button class="opt"><span class="jp">誰が行きましたか。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"אתמול למדתי ביפנית לבד בספרייה."</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">昨日、図書館で一人で日本語を勉強しました。</span><br>
+      <span style="color:var(--muted);font-size:14px">（きのう、としょかんで ひとりで にほんごを べんきょうしました）</span><br>
+      <span style="font-size:14px">図書館で = מקום; 一人で = לבד (אמצעי/מצב); 日本語を = מושא.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 3: から〜まで ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 3</span>
+  <h2><span class="jp">から〜まで</span> — "מ...עד..."</h2>
+
+  <p><span class="jp">から</span> פירושו "מ-" ו-<span class="jp">まで</span> פירושו "עד". הם עובדים גם לזמן וגם למרחב, ויכולים לעמוד ביחד או בנפרד.</p>
+
+  <div class="formula"><strong>[נקודת התחלה] <span class="jp">から</span> [נקודת סיום] <span class="jp">まで</span> [פועל]</strong></div>
+
+  <h3 class="sub-head">שימוש לזמן</h3>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">9時<b>から</b>3時<b>まで</b>勉強しました。</span> <span class="r">（くじから さんじまで べんきょうしました）</span></div>
+      <div class="ex-he">למדתי מ-9 עד 3.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">月曜日<b>から</b>金曜日<b>まで</b>学校があります。</span></div>
+      <div class="ex-he">יש בית-ספר מיום שני עד שישי.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">何時<b>から</b>ですか。</span> <span class="r">（なんじからですか）</span></div>
+      <div class="ex-he">מאיזו שעה? (מ-כמה?)</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">今<b>から</b>勉強します。</span> <span class="r">（いまから べんきょうします）</span></div>
+      <div class="ex-he">אלמד מעכשיו (= עכשיו מתחיל).</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">שימוש למרחב</h3>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">東京<b>から</b>大阪<b>まで</b>新幹線で行きます。</span> <span class="r">（とうきょうから おおさかまで しんかんせんで いきます）</span></div>
+      <div class="ex-he">הולך מטוקיו לאוסקה בשינקנסן.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">家<b>から</b>学校<b>まで</b>バスで20分です。</span> <span class="r">（いえから がっこうまで バスで にじゅっぷんです）</span></div>
+      <div class="ex-he">מהבית לבית-הספר באוטובוס 20 דקות.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">ここ<b>から</b>駅<b>まで</b>歩いて行きます。</span> <span class="r">（ここから えきまで あるいていきます）</span></div>
+      <div class="ex-he">הולך ברגל מכאן לתחנה.</div>
+    </div>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — から〜まで</div>
+
+    <h4>גמישות התבנית — לא צריך תמיד את שניהם</h4>
+    <p>שים לב ש-<span class="jp">から</span> ו-<span class="jp">まで</span> לא חייבים להופיע ביחד — אפשר להשתמש בכל אחד בנפרד כשרק קצה אחד רלוונטי: <span class="jp">9時から始まります</span> ("מתחיל מ-9", בלי לציין מתי מסתיים) או <span class="jp">5時まで働きます</span> ("עובד עד 5", בלי לציין מתי התחיל). זו תכונה שימושית כשרק חלק מהמידע ידוע או רלוונטי.</p>
+
+    <h4>から במשמעות "מ-" מול から במשמעות "כי" — איך לא להתבלבל</h4>
+    <p>שווה לשים לב כבר כאן (לפני שתלמד את <span class="jp">から</span> כסיבה בנושא הבא) שזו אותה מילה בשני תפקידים נפרדים היסטורית. ההבדל ניכר מההקשר: אם <span class="jp">から</span> מחובר ל<em>נקודת זמן/מקום</em> (שם עצם) — זה "מ-". אם הוא מחובר למשפט שלם (פועל/תואר) — זה "כי". <span class="jp">9時から</span> (משם עצם) = "מ-9"; <span class="jp">忙しいから</span> (ממשפט) = "כי עסוק".</p>
+
+    <h4>歩いて — צורת て שמתפקדת כתואר-אמצעי</h4>
+    <p>במשפט <span class="jp">歩いて行きます</span> ("הולך ברגל"), <span class="jp">歩いて</span> היא צורת て (שתלמד בעומק בשבוע 11) של הפועל <span class="jp">歩く</span> ("ללכת ברגל"). זה דוגמה מוקדמת לשימוש חשוב של צורת て — לחבר שתי פעולות שמתבצעות ברצף או בכפיפה ("הולך-ברגל ו(אז)-ממשיך"). שים לב שזה שונה לחלוטין מ-<span class="jp">で</span> כאמצעי — "ברגל" הוא יוצא דופן שלא לוקח <span class="jp">で</span>.</p>
+
+    <h4>מבנה משולב — מרחק + זמן + אמצעי באותו משפט</h4>
+    <p>המשפט <span class="jp">家から学校までバスで20分です</span> מדגים שילוב יפה של שלושה אלמנטים: <span class="jp">家から学校まで</span> (מרחק — מ...עד), <span class="jp">バスで</span> (אמצעי), <span class="jp">20分</span> (משך זמן, בלי חלקיק כי זה "כמה זמן לוקח" ולא "מתי"). שים לב ש"20 דקות" אינו "ב-20 דקות" — אין כאן <span class="jp">に</span> כי זה לא נקודת זמן אלא משך.</p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="מ-... = から; עד-... = まで. מ-8 עד 5 = 8時から5時まで.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "עובד מ-8 עד 5"?<br><span style="font-size:14px;color:var(--muted)">(עובד = <span class="jp">働く / はたらく</span>)</span></p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">8時まで5時から働きます。</span></button>
+      <button class="opt"><span class="jp">8時に5時で働きます。</span></button>
+      <button class="opt"><span class="jp">8時から5時まで働きます。</span></button>
+      <button class="opt"><span class="jp">8時へ5時に働きます。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"מהבית לתחנה כמה דקות ברגל?"</strong><br>
+    <span style="font-size:14px;color:var(--muted)">(ברגל = <span class="jp">歩いて / あるいて</span>; כמה דקות = <span class="jp">何分 / なんぷん</span>)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">家から駅まで歩いて何分ですか。</span><br>
+      <span style="color:var(--muted);font-size:14px">（いえから えきまで あるいて なんぷんですか）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 4: から AS BECAUSE ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 4</span>
+  <h2><span class="jp">〜から</span> — "כי / מכיוון ש"</h2>
+
+  <p><span class="jp">から</span> ממלא תפקיד נוסף לגמרי — <strong>נותן סיבה</strong> למה שנאמר לפניו או אחריו. זה שימוש שונה מ"מ-" (מרחב/זמן), אבל הכתיב זהה.</p>
+
+  <div class="formula"><strong>[סיבה] <span class="jp">から</span>、[תוצאה]。</strong> = "כי [סיבה], [תוצאה]."</div>
+  <div class="formula-blue">או הפוך: <strong>[תוצאה]。[סיבה] <span class="jp">から</span>。</strong> = "[תוצאה]. כי [סיבה]."</div>
+
+  <p>הסיבה יכולה לבוא <strong>לפני</strong> התוצאה (המבנה הנפוץ יותר) או <strong>אחריה</strong> (מסביר בדיעבד, כמו בדיבור).</p>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">今日は疲れた<b>から</b>、早く帰ります。</span> <span class="r">（きょうは つかれたから、はやく かえります）</span></div>
+      <div class="ex-he">כי אני עייף היום, אחזור מוקדם.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">日本語が好きだ<b>から</b>、毎日勉強します。</span></div>
+      <div class="ex-he">כי אני אוהב יפנית, אני לומד כל יום.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">雨が降っている<b>から</b>、傘を持ってきました。</span> <span class="r">（あめがふっているから、かさをもってきました）</span></div>
+      <div class="ex-he">כי יורד גשם, לקחתי מטרייה.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">どうして来ませんでしたか。</span> <span class="r">（どうして きませんでしたか）</span></div>
+      <div class="ex-he">מדוע לא באת?</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">病気だった<b>から</b>です。</span> <span class="r">（びょうきだった からです）</span></div>
+      <div class="ex-he">כי הייתי חולה. (תשובה לשאלה מדוע)</div>
+    </div>
+  </div>
+
+  <div class="note"><b>מנומס יותר — <span class="jp">ので</span>:</b> מילה נרדפת רכה יותר ל-<span class="jp">から</span> היא <span class="jp">ので</span>. שתיהן נכונות ברמת N5, אבל <span class="jp">ので</span> נשמעת מנומסת יותר ופחות ישירה. לבחינה — הכר שתיהן, אבל <span class="jp">から</span> מספיק.</div>
+
+  <div class="warn"><b>שים לב:</b> אחרי <span class="jp">から</span> כסיבה, הפסוקית שלפניו מסתיימת בצורה רגילה (לא מנומסת) בדרך כלל: <span class="jp">疲れたから</span> (לא <span class="jp">疲れましたから</span>) — אם כי שני הגרסאות מופיעות.</div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — から כסיבה</div>
+
+    <h4>שני שימושים שונים היסטורית שמתלכדים בכתב</h4>
+    <p>בדיוק כמו <span class="jp">が</span> (שבוע 5) ש"אבל" ו"חלקיק נושא" התלכדו בו, גם <span class="jp">から</span> כ"מ-" (מרחב/זמן) ו-<span class="jp">から</span> כ"כי" (סיבה) הם שני תפקידים נפרדים שמשתפים צליל וכתיב. הקשר הרעיוני: שניהם מבטאים "נקודת מקור" — מקור פיזי (מ-טוקיו) או מקור לוגי (מ-עייפות נגזרת ההחלטה לשתות קפה). זה הסבר נחמד אם מעניין אותך הקשר, אבל לא חובה לזכור אותו כדי להשתמש נכון.</p>
+
+    <h4>ので מול から — מתי באמת יש הבדל</h4>
+    <p>למרות שב-N5 שתי המילים נחשבות חלופיות, יש הבדל גוון: <span class="jp">から</span> מציגה את הסיבה כ<strong>החלטה אקטיבית של הדובר</strong> ("אני בוחר X כי Y"), בעוד <span class="jp">ので</span> מציגה אותה כ<strong>נסיבה אובייקטיבית/חיצונית</strong> ("Y קורה ולכן X באופן טבעי"). זו הסיבה ש-<span class="jp">ので</span> נשמעת רכה ומנומסת יותר — היא לא "מאשימה" או "תובעת" אחריות, רק מתארת עובדות. בהתנצלויות רשמיות תמיד תראה <span class="jp">ので</span>, לא <span class="jp">から</span>.</p>
+
+    <h4>からです — תשובה נפרדת לשאלת "למה"</h4>
+    <p>המבנה <span class="jp">[סיבה]からです</span> כתשובה עצמאית (כמו <span class="jp">病気だったからです</span>) הוא דפוס שכיח מאוד בתשובות פורמליות לשאלת <span class="jp">どうして／なぜ</span>. שים לב שכאן <span class="jp">から</span> לא מחבר שני משפטים — הוא רק "סוגר" את הסיבה כתשובה עצמאית, עם <span class="jp">です</span> בתור אוגד נימוס.</p>
+
+    <h4>למה הצורה הרגילה לפני から (תזכורת מוקדמת לשבוע 9)</h4>
+    <p>שמת לב שלפעמים <span class="jp">から</span> מגיע אחרי צורה רגילה (<span class="jp">疲れた</span>) ולא מנומסת (<span class="jp">疲れました</span>), אפילו במשפט שבסופו דבר מנומס. זו תכונה כללית של פסוקיות-סיבה ביפנית — הן נוטות "להתכווץ" לצורה הבסיסית יותר, גם כשהמשפט הראשי מנומס. תפגוש את ההבחנה המלאה בין צורה רגילה למנומסת בשבוע 9, אבל שווה לשים לב כבר כאן שזה לא טעות, אלא נורמה דקדוקית.</p>
+  </div>
+
+  <div class="qbox check" data-answer="3" data-explain="סיבה + から + תוצאה. 眠い = ישנוני; から = כי; コーヒーを飲みます = שותה קפה.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה הפירוש של <span class="jp">眠いから、コーヒーを飲みます。</span>?<br>
+    <span style="font-size:14px;color:var(--muted)">(<span class="jp">眠い / ねむい</span> = ישנוני)</span></p>
+    <div class="q-options">
+      <button class="opt">כי אני שותה קפה, אני ישנוני</button>
+      <button class="opt">כי יש קפה, אני ישנוני</button>
+      <button class="opt">אני שותה קפה ולכן לא ישנוני</button>
+      <button class="opt">כי אני ישנוני, אני שותה קפה</button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="שאלת סיבה = どうして / なぜ. תשובה = [סיבה] + からです.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מישהו שואל <span class="jp">どうして日本語を勉強しますか。</span> — איך עונים "כי אני אוהב יפן"?<br>
+    <span style="font-size:14px;color:var(--muted)">(יפן = <span class="jp">日本 / にほん</span>)</span></p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">日本が好きだからです。</span></button>
+      <button class="opt"><span class="jp">日本が好きまでです。</span></button>
+      <button class="opt"><span class="jp">日本が好きでからです。</span></button>
+      <button class="opt"><span class="jp">日本が好きのからです。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"כי מחר יש מבחן, אני לומד מ-8 עד 12 בלילה."</strong><br>
+    <span style="font-size:14px;color:var(--muted)">(מבחן = <span class="jp">テスト</span>; 12 בלילה = <span class="jp">夜12時 / よるじゅうにじ</span>)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">明日テストがあるから、夜8時から12時まで勉強します。</span><br>
+      <span style="color:var(--muted);font-size:14px">（あしたてすとがあるから、よるはちじからじゅうにじまでべんきょうします）</span><br>
+      <span style="font-size:14px">שלב: から (כי) + から〜まで (מ...עד...).</span>
+    </div>
+  </div>
+
+  <h3 class="sub-head">סיכום שבוע 8 — כל החלקיקים</h3>
+  <div class="de-uses">
+    <table>
+      <thead><tr><th>חלקיק</th><th>שימוש</th><th>דוגמה</th></tr></thead>
+      <tbody>
+        <tr><td class="jp" style="font-weight:700;font-size:18px">で</td><td>אמצעי תחבורה / שפה / כלי</td><td class="jp">電車で行く / 日本語で話す</td></tr>
+        <tr><td class="jp" style="font-weight:700;font-size:18px">と</td><td>עם אדם / שותף לפעולה</td><td class="jp">友達と映画を見る</td></tr>
+        <tr><td class="jp" style="font-weight:700;font-size:18px">から</td><td>מ- (נקודת התחלה בזמן/מרחב)</td><td class="jp">9時から勉強する</td></tr>
+        <tr><td class="jp" style="font-weight:700;font-size:18px">まで</td><td>עד (נקודת סיום בזמן/מרחב)</td><td class="jp">家まで20分</td></tr>
+        <tr><td class="jp" style="font-weight:700;font-size:18px">から</td><td>כי / מכיוון ש (סיבה)</td><td class="jp">眠いから、コーヒーを飲む</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== VOCAB TABLE ===== -->
+<h2 class="section">אוצר מילים — שבוע 8</h2>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">電車</td><td class="jp">でんしゃ</td><td>רכבת</td></tr>
+    <tr><td class="jp">バス</td><td class="jp">バス</td><td>אוטובוס</td></tr>
+    <tr><td class="jp">車</td><td class="jp">くるま</td><td>מכונית</td></tr>
+    <tr><td class="jp">自転車</td><td class="jp">じてんしゃ</td><td>אופניים</td></tr>
+    <tr><td class="jp">飛行機</td><td class="jp">ひこうき</td><td>מטוס</td></tr>
+    <tr><td class="jp">駅</td><td class="jp">えき</td><td>תחנת רכבת</td></tr>
+    <tr><td class="jp">箸</td><td class="jp">はし</td><td>צ'ופסטיקס</td></tr>
+    <tr><td class="jp">傘</td><td class="jp">かさ</td><td>מטרייה</td></tr>
+    <tr><td class="jp">雨</td><td class="jp">あめ</td><td>גשם</td></tr>
+    <tr><td class="jp">疲れた</td><td class="jp">つかれた</td><td>עייף (עבר)</td></tr>
+    <tr><td class="jp">眠い</td><td class="jp">ねむい</td><td>ישנוני</td></tr>
+    <tr><td class="jp">早く</td><td class="jp">はやく</td><td>מוקדם / מהר</td></tr>
+    <tr><td class="jp">どうして</td><td class="jp">どうして</td><td>מדוע / למה</td></tr>
+    <tr><td class="jp">なぜ</td><td class="jp">なぜ</td><td>מדוע (רשמי יותר)</td></tr>
+    <tr><td class="jp">働く</td><td class="jp">はたらく</td><td>לעבוד</td></tr>
+    <tr><td class="jp">一人で</td><td class="jp">ひとりで</td><td>לבד</td></tr>
+    <tr><td class="jp">週末</td><td class="jp">しゅうまつ</td><td>סוף שבוע</td></tr>
+    <tr><td class="jp">新幹線</td><td class="jp">しんかんせん</td><td>רכבת מהירה יפנית</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 תיבת בחינה — אוצר מילים</div>
+</div>
+
+<!-- ===== KANJI TABLE ===== -->
+<h2 class="section k">קאנג'י — שבוע 8 (גדלים ותיאורים)</h2>
+<table>
+  <thead><tr><th>קאנג'י</th><th>קריאה</th><th>משמעות</th><th>דוגמה</th></tr></thead>
+  <tbody>
+    <tr><td class="jp big">大</td><td class="jp">おお / だい</td><td>גדול</td><td class="jp">大きい（おおきい）/ 大学（だいがく）</td></tr>
+    <tr><td class="jp big">小</td><td class="jp">ちい / しょう</td><td>קטן</td><td class="jp">小さい（ちいさい）</td></tr>
+    <tr><td class="jp big">高</td><td class="jp">たか / こう</td><td>גבוה / יקר</td><td class="jp">高い（たかい）</td></tr>
+    <tr><td class="jp big">安</td><td class="jp">やす / あん</td><td>זול / בטוח</td><td class="jp">安い（やすい）/ 安心（あんしん）</td></tr>
+    <tr><td class="jp big">新</td><td class="jp">あたら / しん</td><td>חדש</td><td class="jp">新しい（あたらしい）/ 新幹線（しんかんせん）</td></tr>
+    <tr><td class="jp big">古</td><td class="jp">ふる / こ</td><td>ישן</td><td class="jp">古い（ふるい）</td></tr>
+    <tr><td class="jp big">多</td><td class="jp">おお / た</td><td>הרבה</td><td class="jp">多い（おおい）</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-kanji">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🔢 תיבת בחינה — קאנג'י</div>
+</div>
+
+<!-- ===== FINAL QUIZ ===== -->
+<h2 class="section">מבחן סיכום — שבוע 8</h2>
+<p style="margin-top:-2px;color:var(--muted)">שאלות מעורבות: דקדוק, אוצר מילים, קאנג'י + חזרה על שבועות 1–7.</p>
+<div class="quiz-widget" id="quiz-final">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🎓 מבחן סיכום</div>
+</div>
+
+<!-- ===== BONUS DRILL ===== -->
+<h2 class="section" style="background:linear-gradient(100deg,#4b6a8f,#2e4d6b)">🧩 תרגול מעמיק — שבוע 8</h2>
+<p style="margin-top:-2px;color:var(--muted)">13 שאלות: הבנת משפט, השלמה, זיהוי שגיאות, שילוב כל החלקיקים.</p>
+<div class="quiz-widget" id="quiz-bonus">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:#4b6a8f;margin-bottom:8px">🧩 תרגול מעמיק</div>
+</div>
+
+<div class="done-banner">
+  <h2>סיימת את שבוע 8 — וסיימת את חלק ב'! <span class="jp">すごい！</span> 🎉</h2>
+  <p>
+    השלמת את כל פעלי ה-<span class="jp">ます</span> — הווה, עבר, שלילה, שאלה — ויש לך עכשיו
+    <strong>ארסנל מלא של חלקיקים</strong>: <span class="jp">は・が・を・に・へ・で・と・から・まで</span>.<br><br>
+    כשתהיה מוכן — חלק ג' (שבוע 9): הצורה הרגילה (צורת מילון וצורת <span class="jp">ない</span>) — הצד האחר של יפנית.
+  </p>
+</div>
+
+<p class="footer-note"><span class="jp" dir="ltr">日本語 N5</span> · שבוע 8 מתוך 20 · <span class="jp" dir="ltr">頑張って！</span></p>
+</div>
+
+<script>
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+document.querySelectorAll('.check').forEach(q=>{
+  const ans=+q.dataset.answer,fb=q.querySelector('.fb'),opts=q.querySelectorAll('.opt');
+  opts.forEach((btn,i)=>{
+    btn.addEventListener('click',()=>{
+      if(q.classList.contains('done'))return; q.classList.add('done');
+      opts.forEach((b,j)=>{b.disabled=true;if(j===ans)b.classList.add('correct');else if(j===i)b.classList.add('wrong');});
+      const ok=i===ans;
+      fb.textContent=(ok?'✓ נכון! ':'✗ לא מדויק. ')+(q.dataset.explain||'');
+      fb.className='fb '+(ok?'fb-ok':'fb-no');
+    });
+  });
+});
+document.querySelectorAll('.reveal-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const a=b.nextElementSibling,show=a.style.display!=='block';
+    a.style.display=show?'block':'none';b.textContent=show?'הסתר תשובה':'הצג תשובה';
+  });
+});
+
+/* ── kanji reading tooltips ── */
+const KR={
+  '日':'にち','月':'つき','火':'ひ','水':'みず','木':'き','金':'きん','土':'ど',
+  '山':'やま','川':'かわ','田':'た','人':'ひと','口':'くち','手':'て','目':'め',
+  '耳':'みみ','足':'あし','車':'くるま','花':'はな','雨':'あめ','空':'そら',
+  '学':'がく','校':'こう','先':'せん','生':'せい','男':'おとこ','女':'おんな',
+  '子':'こ','小':'しょう','大':'だい','中':'ちゅう','上':'うえ','下':'した',
+  '右':'みぎ','左':'ひだり','本':'ほん','母':'はは','父':'ちち','年':'ねん',
+  '今':'いま','何':'なに','時':'じ','分':'ふん','半':'はん','前':'まえ',
+  '後':'ご','間':'あいだ','外':'そと','内':'うち','東':'ひがし','西':'にし',
+  '南':'みなみ','北':'きた','国':'くに','語':'ご','英':'えい',
+  '私':'わたし','友':'とも','名':'な','気':'き','天':'てん',
+  '電':'でん','話':'はなし','見':'み','来':'き','行':'い','食':'た','飲':'の',
+  '読':'よ','書':'か','聞':'き','言':'い','買':'か','帰':'かえ','起':'お',
+  '寝':'ね','着':'き','出':'で','入':'い','開':'あ','閉':'し','乗':'の',
+  '降':'お','使':'つか','教':'おし','習':'なら','始':'はじ','終':'お',
+  '会':'あ','待':'ま','持':'も','作':'つく','思':'おも','知':'し',
+  '住':'す','働':'はたら','遊':'あそ','泳':'およ','走':'はし','歩':'ある',
+  '立':'た','座':'すわ','休':'やす','止':'と',
+  '病':'びょう','院':'いん','店':'みせ','駅':'えき','道':'みち',
+  '公':'こう','園':'えん','図':'と','館':'かん',
+  '百':'ひゃく','千':'せん','万':'まん','円':'えん',
+  '一':'いち','二':'に','三':'さん','四':'し','五':'ご',
+  '六':'ろく','七':'なな','八':'はち','九':'きゅう','十':'じゅう',
+  '高':'たか','安':'やす','新':'あたら','古':'ふる','長':'なが',
+  '短':'みじか','広':'ひろ','多':'おお','少':'すく',
+  '早':'はや','速':'はや','遅':'おそ','強':'つよ','弱':'よわ',
+  '好':'す','楽':'たの','難':'むずか',
+  '暑':'あつ','寒':'さむ','暖':'あたた','涼':'すず',
+  '白':'しろ','黒':'くろ','赤':'あか','青':'あお',
+  '魚':'さかな','肉':'にく','野':'や','菜':'さい',
+  '卵':'たまご','牛':'ぎゅう','豚':'ぶた','猫':'ねこ','犬':'いぬ','鳥':'とり',
+  '家':'いえ','部':'へ','屋':'や','門':'もん','窓':'まど','机':'つくえ',
+  '春':'はる','夏':'なつ','秋':'あき','冬':'ふゆ',
+  '朝':'あさ','昼':'ひる','夜':'よる','週':'しゅう','曜':'よう',
+  '近':'ちか','遠':'とお','太':'ふと','細':'ほそ',
+  '明':'あか','暗':'くら','静':'しず','重':'おも','軽':'かる',
+  '辛':'から','甘':'あま','苦':'にが',
+  '町':'まち','村':'むら','市':'し','県':'けん',
+  '海':'うみ','池':'いけ','島':'しま','森':'もり',
+  '毎':'まい','午':'ご','自':'じ','転':'てん',
+  '映':'えい','画':'が','音':'おん','料':'りょう','理':'り',
+  '洗':'あら','顔':'かお','宿':'やど','題':'だい',
+  '北':'きた','駅':'えき','橋':'はし','港':'こう',
+};
+function tipify(el){
+  el.querySelectorAll('.jp').forEach(function(span){
+    if(span.querySelector('.ktip'))return;
+    span.innerHTML=span.innerHTML.replace(/[一-鿿]/g,function(ch){
+      return KR[ch]?('<span class="ktip" data-h="'+KR[ch]+'">'+ch+'</span>'):ch;
+    });
+  });
+}
+function tipifyAll(){
+  document.querySelectorAll('.jp').forEach(function(span){
+    if(span.querySelector('.ktip'))return;
+    span.innerHTML=span.innerHTML.replace(/[一-鿿]/g,function(ch){
+      return KR[ch]?('<span class="ktip" data-h="'+KR[ch]+'">'+ch+'</span>'):ch;
+    });
+  });
+}function makeQuiz(rootId,data){
+  const root=document.getElementById(rootId);
+  const head=root.querySelector('.htag');
+  let order,idx,score,locked;
+  function start(){order=shuffle([...data.keys()]);idx=0;score=0;locked=false;render();}
+  function render(){
+    [...root.children].forEach(c=>{if(c!==head)c.remove();});
+    if(idx>=order.length)return result();
+    const item=data[order[idx]];
+    const opts=shuffle(item.options.map((t,i)=>({t,correct:i===item.answer})));
+    const box=document.createElement('div');
+    box.innerHTML=`
+      <div class="q-progress"><span>שאלה ${idx+1} מתוך ${order.length}</span><span>ניקוד: ${score}</span></div>
+      <div class="q-bar"><span style="width:${idx/order.length*100}%"></span></div>
+      <p class="q-text">${item.q}</p>
+      <div class="q-options"></div>
+      <p class="fb"></p>
+      <button class="next-btn" style="display:none;margin-top:12px">הבא ←</button>`;
+    root.appendChild(box);
+    const wrap=box.querySelector('.q-options'),fb=box.querySelector('.fb'),next=box.querySelector('.next-btn');
+    opts.forEach(o=>{
+      const btn=document.createElement('button');btn.className='opt';btn.innerHTML=o.t;tipify(btn);
+      btn.addEventListener('click',()=>{
+        if(locked)return;locked=true;
+        wrap.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        if(o.correct){btn.classList.add('correct');score++;fb.textContent='✓ נכון!';fb.className='fb fb-ok';}
+        else{btn.classList.add('wrong');fb.textContent='✗ לא מדויק'+(item.note?(' — '+item.note):'');fb.className='fb fb-no';
+          [...wrap.children].forEach((c,k)=>{if(opts[k].correct)c.classList.add('correct');});}
+        next.style.display='inline-block';
+      });
+      wrap.appendChild(btn);
+    });
+    next.addEventListener('click',()=>{idx++;locked=false;render();});
+  }
+  function result(){
+    const pct=Math.round(score/data.length*100);
+    const msg=pct>=80?'מצוין! אתה שולט בחומר 🎉':pct>=60?'יפה! עוד קצת חזרה ותהיה מצוין.':'כדאי לחזור על החומר ולנסות שוב.';
+    const box=document.createElement('div');box.className='q-result';
+    box.innerHTML=`<div class="score-big">${score} / ${data.length}</div><p>${msg}</p><button class="next-btn">התחל מחדש 🔁</button>`;
+    root.appendChild(box);
+    box.querySelector('.next-btn').addEventListener('click',start);
+  }
+  start();
+}
+const J=s=>`<span class="jp">${s}</span>`;
+
+makeQuiz('quiz-vocab-preview',[
+  {q:'מה הפירוש של '+J('電車')+'?',options:['רכבת','אוטובוס','מטוס','מכונית'],answer:0},
+  {q:'מה הפירוש של '+J('バス')+'?',options:['אוטובוס','רכבת','מטוס','מונית'],answer:0},
+  {q:'מה הפירוש של '+J('箸')+'?',options:["צ'ופסטיקס",'כף','מזלג','סכין'],answer:0},
+  {q:'מה הפירוש של '+J('メール')+'?',options:['מייל','מכתב','הודעה','חבילה'],answer:0},
+  {q:'מה הפירוש של '+J('何で')+'?',options:['באיזה אמצעי (שאלה)','מדוע','איפה','מתי'],answer:0},
+  {q:'מה הפירוש של '+J('一人で')+'?',options:['לבד','ביחד','עם אחד','לגמרי'],answer:0},
+  {q:'מה הפירוש של '+J('みんなで')+'?',options:['כולם ביחד','לבד','שני אנשים','אף אחד'],answer:0},
+  {q:'מה הפירוש של '+J('週末')+'?',options:['סוף שבוע','אמצע שבוע','תחילת שבוע','יום חופש'],answer:0},
+  {q:'מה הפירוש של '+J('から')+'?',options:['מ- / כי','עד','עם','אל'],answer:0},
+  {q:'מה הפירוש של '+J('まで')+'?',options:['עד','מ-','עם','אל'],answer:0},
+  {q:'מה הפירוש של '+J('働く')+'?',options:['לעבוד','ללמוד','לנוח','לשחק'],answer:0},
+  {q:'מה הפירוש של '+J('新幹線')+'?',options:['שינקנסן (רכבת מהירה)','רכבת רגילה','אוטובוס מהיר','מטוס'],answer:0},
+  {q:'מה הפירוש של '+J('駅')+'?',options:['תחנה','נמל תעופה','נמל','כביש'],answer:0},
+  {q:'מה הפירוש של '+J('歩く')+'?',options:['ללכת ברגל','לרוץ','לנסוע','לעוף'],answer:0},
+  {q:'מה הפירוש של '+J('疲れた')+'?',options:['עייף','ישנוני','חולה','עצוב'],answer:0},
+  {q:'מה הפירוש של '+J('早く')+'?',options:['מוקדם / מהר','מאוחר','לאט','אחרי'],answer:0},
+  {q:'מה הפירוש של '+J('雨')+'?',options:['גשם','שלג','רוח','שמש'],answer:0},
+  {q:'מה הפירוש של '+J('降る')+'?',options:['לרדת (גשם)','לעלות','לזרום','לנשוף'],answer:0},
+  {q:'מה הפירוש של '+J('傘')+'?',options:['מטרייה','מעיל','כובע','מגפיים'],answer:0},
+  {q:'מה הפירוש של '+J('どうして')+'?',options:['מדוע / למה','מתי','כיצד','מי'],answer:0},
+  {q:'מה הפירוש של '+J('病気')+'?',options:['מחלה / חולה','בריא','עייף','שמח'],answer:0},
+  {q:'מה הפירוש של '+J('ので')+'?',options:['כי (רך)','אבל','או','אם'],answer:0},
+  {q:'מה הפירוש של '+J('テスト')+'?',options:['מבחן','שיעור','תרגיל','חזרה'],answer:0},
+  {q:'מה הפירוש של '+J('眠い')+'?',options:['ישנוני','עייף','חולה','עצוב'],answer:0}
+]);
+
+makeQuiz('quiz-vocab',[
+  {q:'מה הפירוש של '+J('電車')+'?',options:['רכבת','אוטובוס','מטוס','מכונית'],answer:0},
+  {q:'מה הפירוש של '+J('自転車')+'?',options:['אופניים','קטנוע','מכונית','רכבת'],answer:0},
+  {q:'מה הפירוש של '+J('飛行機')+'?',options:['מטוס','ספינה','רכבת','אוטובוס'],answer:0},
+  {q:'מה הפירוש של '+J('駅')+'?',options:['תחנת רכבת','נמל תעופה','תחנת אוטובוס','עצירה'],answer:0},
+  {q:'מה הפירוש של '+J('傘')+'?',options:['מטרייה','מעיל גשם','מגפיים','כובע'],answer:0},
+  {q:'מה הפירוש של '+J('疲れた')+'?',options:['עייף','ישנוני','חולה','עצוב'],answer:0},
+  {q:'מה הפירוש של '+J('早く')+'?',options:['מוקדם / מהר','מאוחר','לאט','אחרי'],answer:0},
+  {q:'מה הפירוש של '+J('どうして')+'?',options:['מדוע / למה','מתי','כיצד','מי'],answer:0},
+  {q:'מה הפירוש של '+J('週末')+'?',options:['סוף שבוע','אמצע שבוע','תחילת שבוע','יום חופש'],answer:0},
+  {q:'מה הפירוש של '+J('一人で')+'?',options:['לבד','ביחד','עם אחד','לגמרי'],answer:0},
+  {q:'מה הפירוש של '+J('働く')+'?',options:['לעבוד','ללמוד','לרוץ','לנוח'],answer:0}
+]);
+
+makeQuiz('quiz-kanji',[
+  {q:'מה הפירוש של '+J('<span class="big">大</span>')+'?',options:['גדול','קטן','גבוה','רחוק'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">小</span>')+'?',options:['קטן','גדול','דק','קצר'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">高</span>')+'?',options:['גבוה / יקר','נמוך / זול','רחב','צר'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">安</span>')+'?',options:['זול / בטוח','יקר / סכנה','חדש','ישן'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">新</span>')+'?',options:['חדש','ישן','נקי','יפה'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">古</span>')+'?',options:['ישן','חדש','לכלוך','עתיק-בלבד'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">多</span>')+'?',options:['הרבה','מעט','כולם','אחד'],answer:0},
+  {q:'מה הקריאה של '+J('新幹線')+'?',options:[J('しんかんせん'),J('あたらしかんせん'),J('しんかんす'),J('にゅうかんせん')],answer:0,note:'新幹線 = しんかんせん = שינקנסן.'},
+  {q:'מה הקריאה של '+J('大きい')+'?',options:[J('おおきい'),J('だいきい'),J('おきい'),J('たいきい')],answer:0,note:'大きい = おおきい = גדול.'}
+]);
+
+makeQuiz('quiz-final',[
+  {q:'איך אומרים "הגעתי באוטובוס"?',options:[J('バスで来ました。'),J('バスに来ました。'),J('バスへ来ました。'),J('バスを来ました。')],answer:0,note:'אמצעי תחבורה ← で.'},
+  {q:'איך אומרים "ללכת עם חברים"?',options:[J('友達と行く'),J('友達で行く'),J('友達に行く'),J('友達を行く')],answer:0,note:'עם אדם ← と.'},
+  {q:'מה הפירוש של '+J('9時から5時まで働きます')+'?',options:['עובד מ-9 עד 5','עובד מ-5 עד 9','עובד ב-9 ו-5','עובד 9 שעות'],answer:0},
+  {q:'מה הפירוש של '+J('眠いから、コーヒーを飲みます')+'?',options:['כי אני ישנוני שותה קפה','כי שתיתי קפה אני ישנוני','שותה קפה ולכן ישנוני','ישנוני ולא שותה קפה'],answer:0,note:'から = כי (סיבה).'},
+  {q:'שאלת אמצעי: "במה הגעת?" — השלם: '+J('何___来ましたか。'),options:[J('で'),J('に'),J('へ'),J('と')],answer:0,note:'אמצעי ← で.'},
+  {q:'מה הפירוש של '+J('<span class="big">新</span>')+'?',options:['חדש','ישן','נקי','גדול'],answer:0},
+  {q:'איך שואלים "מדוע לא אכלת?"',options:[J('どうして食べませんでしたか。'),J('どこで食べませんでしたか。'),J('何時に食べませんでしたか。'),J('誰と食べませんでしたか。')],answer:0,note:'מדוע = どうして.'},
+  {q:'מה הפירוש של '+J('家から駅まで自転車で15分です')+'?',options:['מהבית לתחנה באופניים 15 דקות','מהתחנה לבית ברכבת 15 דקות','מהבית לתחנה ברגל 50 דקות','15 דקות ברכבת'],answer:0},
+  {q:'מה ההבדל בין '+J('友達と本を読む')+' ל-'+J('友達と本がある')+'?',
+   options:['הראשון = קורא ביחד עם חבר; השני = יש ספר וחבר','שניהם = קורא עם חבר','הראשון = רשימה; השני = עם אדם','אין הבדל'],answer:0,
+   note:'と + פועל פעולה = עם אדם; と ברשימה = "חבר וספר יחד".'},
+  {q:'שאלת "עם מי הלכת?" — השלם: '+J('___行きましたか。'),options:[J('誰と'),J('誰で'),J('誰に'),J('誰が')],answer:0,note:'עם מי = 誰と.'},
+  {q:'מה הפירוש של '+J('日本語が好きだから、毎日勉強します')+'?',options:['כי אני אוהב יפנית לומד כל יום','כי אני לומד יפנית כל יום אני אוהב','למד יפנית כי היא קשה','אוהב יפנית ולכן לא לומד'],answer:0}
+]);
+
+makeQuiz('quiz-bonus',[
+  // הבנת משפט מורכב
+  {q:'מה הפירוש של '+J('友達と電車で渋谷から新宿まで行きました。')+'?',
+   options:['הלכתי עם חבר ברכבת משיבויה לשינג\'וקו','הלכתי לבד ברכבת לשיבויה','הגעתי לשינג\'וקו באוטובוס עם חבר','נסעתי מהבית לתחנה'],answer:0,
+   note:'友達と = עם חבר; 電車で = ברכבת; 渋谷から = משיבויה; 新宿まで = לשינגוקו.'},
+  {q:'מה הפירוש של '+J('疲れたから、今日は早く家に帰りました。')+'?',
+   options:['כי עייפתי חזרתי הביתה מוקדם היום','כי חזרתי מוקדם אני עייף','הייתי עייף ולכן לא חזרתי הביתה','כי אני לא עייף חזרתי מוקדם'],answer:0,
+   note:'疲れたから = כי עייפתי; 早く = מוקדם; 家に帰りました = חזרתי הביתה.'},
+  // השלמת חלקיק מורכבת
+  {q:'השלם: "שוחחתי ביפנית עם טנקה בטלפון." '+J('田中さん___電話___日本語___話しました。'),
+   options:[J('と・で・で'),J('で・と・で'),J('に・で・で'),J('と・に・で')],answer:0,
+   note:'と = עם אדם; で = אמצעי (טלפון); で = אמצעי (שפה).'},
+  {q:'השלם: "מהמלון לנמל תעופה כמה דקות במכונית?" '+J('ホテル___空港___車___何分ですか。'),
+   options:[J('から・まで・で'),J('まで・から・で'),J('に・まで・で'),J('から・に・で')],answer:0,
+   note:'から = מ-; まで = עד; で = באמצעי.'},
+  // זיהוי שגיאה
+  {q:'מי הנכון?',
+   options:[J('日本語で話しました。'),J('日本語に話しました。'),J('日本語を話しました。'),J('日本語へ話しました。')],answer:0,
+   note:'שפה = אמצעי ← で.'},
+  {q:'מי הנכון?',
+   options:[J('友達と映画を見ました。'),J('友達で映画を見ました。'),J('友達に映画を見ました。'),J('友達を映画を見ました。')],answer:0,
+   note:'עם אדם ← と.'},
+  // הבחנת שני שימושי から
+  {q:'ב-'+J('家から学校まで歩きます')+' — כאן から פירושו:',
+   options:['מ- (נקודת התחלה במרחב)','כי (סיבה)','מ- (נקודת התחלה בזמן)','ועד...'],answer:0,
+   note:'הקשר מרחב (בית←בית-ספר) ← から = מ-.'},
+  {q:'ב-'+J('雨が降っているから、傘を持ちます')+' — כאן から פירושו:',
+   options:['כי (סיבה)','מ- (מרחב)','מ- (זמן)','עד'],answer:0,
+   note:'הקשר סיבה-תוצאה: גשם ← מטרייה; から = כי.'},
+  // שילוב מלא
+  {q:'מה הפירוש של '+J('どうして電車で来ましたか。')+'?',
+   options:['מדוע הגעת ברכבת?','לאן הלכת ברכבת?','כשהגעת ברכבת?','עם מי הגעת ברכבת?'],answer:0,
+   note:'どうして = מדוע; 電車で = ברכבת; 来ましたか = הגעת (שאלה).'},
+  {q:'בנה משפט: "כי יש מבחן מחר, לומד מ-7 עד 12 בלילה עם חבר בספרייה." — איזה סדר נכון?',
+   options:[
+     J('明日テストがあるから、夜7時から12時まで友達と図書館で勉強します。'),
+     J('友達と図書館で勉強します、夜7時から12時まで、明日テストがあるから。'),
+     J('明日テストがあるから、図書館を7時まで12時から友達に勉強します。'),
+     J('夜7時に12時まで図書館と友達で勉強します明日テストから。')
+   ],answer:0,
+   note:'סיבה + から, ואז זמן (から〜まで), מקום (で), עם מי (と), פועל.'},
+  // קאנג'י בהקשר
+  {q:'מה הפירוש של '+J('新しい自転車で駅まで行きました。')+'?',
+   options:['הלכתי לתחנה באופניים חדשים','הגעתי ברכבת חדשה לתחנה','הלכתי לבית-ספר חדש','נסעתי עם חברים לתחנה'],answer:0,
+   note:'新しい = חדש; 自転車で = באופניים; 駅まで = עד לתחנה.'},
+  {q:'מה הפירוש של '+J('安いから、このレストランが好きです。')+'?',
+   options:['כי זה זול, אני אוהב את המסעדה הזאת','כי אני אוהב את המסעדה, היא זולה','המסעדה יקרה אבל אני אוהב אותה','כי המסעדה טעימה, היא זולה'],answer:0,
+   note:'安い = זול; から = כי (סיבה); このレストランが好き = אוהב את המסעדה הזאת.'}
+]);
+tipifyAll();
+tipifyAll();
+</script>
+<div class="week-nav">
+  <a href="N5-week7-lesson.html" class="nav-prev ">&#8594; שבוע 7</a>
+  <button class="nav-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8679;</button>
+  <a href="index.html" class="nav-home">&#127968; דף הבית</a>
+  <a href="N5-week9-lesson.html" class="nav-next ">שבוע 9 &#8592;</a>
+</div>
+
+</body>
+</html>

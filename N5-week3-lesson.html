@@ -1,0 +1,1052 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שבוע 3 — שמות תואר וימי השבוע | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre", Georgia, serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px, rgba(120,100,70,.06) 1px, transparent 0);
+    background-size:22px 22px;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 90px;}
+  .jp{font-family:"Noto Sans JP", system-ui, sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+  .big{font-size:1.35em; line-height:1;}
+
+  header.masthead{text-align:center; padding:56px 20px 34px; border-bottom:3px double var(--line); margin-bottom:6px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(28px,5.5vw,40px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:17px;}
+  .nav-links{display:flex; justify-content:space-between; margin:14px 0 0; font-size:14px;}
+  .nav-links span{color:var(--muted); font-family:"Heebo",sans-serif; font-weight:700;}
+
+  .lead{background:var(--card); border:1px solid var(--line); border-right:5px solid var(--accent); border-radius:12px; padding:18px 22px; margin:26px 0;}
+  .lead h2{font-family:"Heebo",sans-serif; font-size:18px; margin:0 0 6px;}
+  .lead ol{margin:6px 0 0; padding-inline-start:1.3em;}
+  .lead li{margin:3px 0;}
+
+  .topic{margin:46px 0;}
+  .topic-tag{display:inline-block; background:var(--accent); color:#fff; font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; padding:5px 14px; border-radius:999px; box-shadow:0 3px 8px rgba(150,60,30,.22);}
+  .topic h2{font-family:"Heebo",sans-serif; font-weight:800; font-size:25px; margin:12px 0 8px;}
+  .topic p{margin:.6em 0;}
+  .topic strong{color:#7e2a13;}
+
+  .formula{text-align:center; font-size:19px; background:#fff3ec; border:1px solid #e8c9b8; border-radius:10px; padding:12px 20px; margin:14px 0;}
+
+  .ex{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:6px 16px; margin:16px 0;}
+  .ex-row{padding:10px 0; border-bottom:1px dashed var(--line);}
+  .ex-row:last-child{border-bottom:none;}
+  .ex-jp{direction:ltr; unicode-bidi:isolate; text-align:right; font-family:"Noto Sans JP",sans-serif; font-size:19px; font-weight:500;}
+  .ex-jp .r{color:var(--muted); font-size:15px; font-weight:400;}
+  .ex-he{color:var(--ink); font-size:16px;}
+
+  /* conjugation grid */
+  .conj-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:16px 0;}
+  .conj-cell{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 16px;}
+  .conj-cell .label{font-family:"Heebo",sans-serif; font-weight:800; font-size:12px; color:var(--muted); margin-bottom:6px;}
+  .conj-cell .jp-form{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:20px; font-weight:500; color:var(--accent);}
+  .conj-cell .jp-read{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:13px; color:var(--muted);}
+  .conj-cell .he-form{font-size:15px; margin-top:4px;}
+  @media(max-width:500px){.conj-grid{grid-template-columns:1fr;}}
+
+  /* comparison rows */
+  .compare{background:var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden; margin:16px 0;}
+  .compare-head{display:grid; grid-template-columns:1fr 1fr; background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px;}
+  .compare-head div{padding:8px 14px;}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--line);}
+  .compare-row div{padding:9px 14px; font-size:16px;}
+  .compare-row div.jp-cell{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px;}
+
+  .note{background:#faf5ea; border:1px dashed var(--line); border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .note b{color:var(--accent);}
+  .warn{background:#fff5f3; border:1px dashed #e8b8aa; border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .warn b{color:var(--no);}
+
+  /* deepen / study-deeper section */
+  .deepen{background:linear-gradient(160deg,#f3eee0,#ece3cf); border:1.5px solid #d8c89a; border-radius:14px; padding:20px 24px; margin:24px 0;}
+  .deepen-head{display:flex; align-items:center; gap:8px; font-family:"Heebo",sans-serif; font-weight:800; font-size:14px; color:#7d6324; margin-bottom:12px;}
+  .deepen-head::before{content:"🔎"; font-size:16px;}
+  .deepen h4{font-family:"Heebo",sans-serif; font-weight:700; font-size:16px; color:#7d6324; margin:16px 0 6px;}
+  .deepen h4:first-of-type{margin-top:0;}
+  .deepen p{margin:.5em 0; font-size:16px;}
+  .deepen .ex{background:#fffdf8;}
+
+  /* days of week calendar strip */
+  .day-strip{display:flex; gap:6px; flex-wrap:wrap; margin:16px 0;}
+  .day-card{flex:1; min-width:80px; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:10px 8px; text-align:center;}
+  .day-card .kanji{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:22px; font-weight:700; color:var(--accent);}
+  .day-card .read{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:11px; color:var(--muted); margin:2px 0;}
+  .day-card .he{font-size:13px; font-family:"Heebo",sans-serif; font-weight:700;}
+  .day-card.sat .kanji,.day-card.sat .he{color:#4b6a8f;}
+  .day-card.sun .kanji,.day-card.sun .he{color:#b23a1e;}
+
+  /* quiz */
+  .qbox{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:16px 0; box-shadow:0 2px 8px rgba(80,60,30,.04);}
+  .qbox .htag{font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; color:var(--ok); margin-bottom:8px; display:flex; align-items:center; gap:7px;}
+  .qbox .htag::before{content:"✎"; font-size:15px;}
+  .q-text{font-size:18px; margin:0 0 12px; font-weight:500;}
+  .q-options{display:flex; flex-direction:column; gap:9px;}
+  .opt{font-family:inherit; font-size:17px; text-align:right; background:#fff; border:1.5px solid var(--line); border-radius:9px; padding:11px 16px; cursor:pointer; transition:.15s; color:var(--ink);}
+  .opt:hover:not(:disabled){border-color:var(--accent); background:#fffaf3;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:var(--ok-soft); border-color:var(--ok); color:#1f4d43; font-weight:700;}
+  .opt.wrong{background:var(--no-soft); border-color:var(--no); color:#7e2a13;}
+  .fb{margin:11px 0 0; font-size:16px; font-weight:600; min-height:1px;}
+  .fb-ok{color:var(--ok);} .fb-no{color:var(--no);}
+
+  .reveal{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .reveal-btn,.next-btn{font-family:"Heebo",sans-serif; font-weight:700; font-size:15px; background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 18px; cursor:pointer; transition:.15s;}
+  .reveal-btn:hover,.next-btn:hover{background:#8e2f17;}
+  .reveal-ans{display:none; margin-top:12px; padding:12px 16px; background:var(--ok-soft); border-radius:8px; font-size:17px;}
+
+  .quiz-widget{background:linear-gradient(160deg,#fffdf8,#fbf4e8); border:1.5px solid var(--line); border-radius:14px; padding:22px; margin:18px 0; box-shadow:0 4px 14px rgba(80,60,30,.07);}
+  .q-progress{font-family:"Heebo",sans-serif; font-size:13px; color:var(--muted); margin-bottom:10px; display:flex; justify-content:space-between;}
+  .q-bar{height:6px; background:#eadfc9; border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  .q-bar span{display:block; height:100%; background:var(--accent); transition:width .3s;}
+  .q-result{text-align:center; padding:14px 0;}
+  .score-big{font-family:"Heebo",sans-serif; font-weight:800; font-size:46px; color:var(--accent); line-height:1;}
+  .q-result p{font-size:18px; margin:10px 0 16px;}
+
+  h2.section{font-family:"Heebo",sans-serif; font-weight:800; font-size:26px; margin:54px 0 8px; padding:12px 20px; color:#fff; background:linear-gradient(100deg,var(--gold),#7d6324); border-radius:10px;}
+  h2.section.k{background:linear-gradient(100deg,var(--accent),#8e2f17);}
+
+  table{width:100%; border-collapse:collapse; margin:.4em 0 18px; font-size:16px; background:#fff; border-radius:10px; overflow:hidden; border:1px solid var(--line);}
+  thead th{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px; padding:9px 12px; text-align:right;}
+  td{padding:9px 12px; border-top:1px solid var(--line);}
+  tbody tr:nth-child(even){background:#fbf7ee;}
+  td.jp{text-align:right;} td.jp.big{text-align:center; color:var(--accent); font-size:1.5em;}
+
+  h3.sub-head{font-family:"Heebo",sans-serif; font-weight:700; font-size:19px; color:var(--accent); margin:22px 0 8px; border-right:4px solid var(--accent); padding-right:10px;}
+
+  .done-banner{text-align:center; margin:50px 0 0; padding:26px; background:var(--ok-soft); border:1px solid #bcd9d0; border-radius:14px;}
+  .done-banner h2{font-family:"Heebo",sans-serif; color:#1f4d43; margin:0 0 6px;}
+  .footer-note{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;}}
+
+  /* ── bottom navigation bar ── */
+  .week-nav{
+    display:inline-flex; align-items:center; gap:6px;
+    position:fixed; bottom:14px; left:50%; transform:translateX(-50%); z-index:999;
+    padding:5px 10px;
+    background:rgba(255,253,248,.96); border:1px solid var(--line);
+    border-radius:999px; box-shadow:0 4px 16px rgba(80,60,30,.15); backdrop-filter:blur(8px);
+  }
+  .week-nav a,.week-nav button{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:12px;
+    padding:5px 11px; border-radius:999px; border:none; cursor:pointer;
+    text-decoration:none; transition:.15s; display:inline-flex; align-items:center; gap:3px;
+    white-space:nowrap;
+  }
+  .nav-prev,.nav-next{background:var(--accent); color:#fff;}
+  .nav-prev:hover,.nav-next:hover{background:#8e2f17;}
+  .nav-prev.disabled,.nav-next.disabled{background:#d9ccb8; color:#a09070; cursor:default; pointer-events:none;}
+  .nav-home{background:var(--ok-soft); color:#1f4d43; border:1px solid #bcd9d0;}
+  .nav-home:hover{background:#c8e8e0;}
+  .nav-top{background:var(--accent-soft); color:var(--accent); border:1px solid #e0c0b0; font-size:14px; padding:4px 9px;}
+  .nav-top:hover{background:#e8c8bc;}
+  /* ── kanji hover tooltip ── */
+  .ktip{
+    position:relative; cursor:help;
+    border-bottom:1px dotted var(--accent);
+  }
+  .ktip::after{
+    content:attr(data-h);
+    position:absolute; bottom:calc(100% + 4px); left:50%; transform:translateX(-50%);
+    background:var(--ink); color:#fff;
+    font-family:"Noto Sans JP",sans-serif; font-size:11px; font-weight:400;
+    padding:2px 7px; border-radius:5px; white-space:nowrap;
+    pointer-events:none; opacity:0; transition:opacity .15s; z-index:200;
+  }
+  .ktip:hover::after{ opacity:1; }</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">שבוע 3 מתוך 20 · <span class="jp" dir="ltr">JLPT N5</span></div>
+  <h1>שמות תואר וימי השבוע</h1>
+  <p class="sub">שמות תואר ב-<span class="jp">い</span> וב-<span class="jp">な</span>, הטיה, וביטויי זמן</p>
+  <div class="nav-links">
+    <span>← שבוע 2: の ומספרים</span>
+    <span>שבוע 4: קיום (あります / います) ←</span>
+  </div>
+</header>
+
+<div class="lead">
+  <h2>מה נלמד השבוע</h2>
+  <ol>
+    <li>שמות תואר ב-<span class="jp">い</span> — הטיה לזמן הווה, שלילה ועבר.</li>
+    <li>שמות תואר ב-<span class="jp">な</span> — איך שונים מ-<span class="jp">い</span>, ומתי משתמשים בכל סוג.</li>
+    <li>ימי השבוע, היום / אתמול / מחר, ושאלת "איזה יום?".</li>
+  </ol>
+  <p style="margin:10px 0 0; font-size:15px; color:var(--muted)">זה השבוע שבו מתחילים לבנות תיאורים — ביחד עם שבועות 1 ו-2, עכשיו אפשר לכתוב משפטים ממש עשירים.</p>
+</div>
+
+<!-- ===== PREVIEW VOCAB TABLE (NEW) ===== -->
+<h2 class="section" style="margin-top:30px">📋 כל אוצר המילים של השבוע — מבט מקדים</h2>
+<p style="margin-top:-2px;color:var(--muted)">טבלה זו אוספת את כל המילים החדשות שתפגוש השבוע — גם אלה שבטבלת הסיכום בהמשך, וגם אלה שמופיעות רק בתוך ההסברים והדוגמאות. עברית ואנגלית.</p>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th><th>English</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">高い</td><td class="jp">たかい</td><td>גבוה / יקר</td><td>tall / expensive</td></tr>
+    <tr><td class="jp">山</td><td class="jp">やま</td><td>הר</td><td>mountain</td></tr>
+    <tr><td class="jp">古い</td><td class="jp">ふるい</td><td>ישן</td><td>old</td></tr>
+    <tr><td class="jp">食べ物</td><td class="jp">たべもの</td><td>אוכל</td><td>food</td></tr>
+    <tr><td class="jp">新しい</td><td class="jp">あたらしい</td><td>חדש</td><td>new</td></tr>
+    <tr><td class="jp">大きい</td><td class="jp">おおきい</td><td>גדול</td><td>big</td></tr>
+    <tr><td class="jp">小さい</td><td class="jp">ちいさい</td><td>קטן</td><td>small</td></tr>
+    <tr><td class="jp">おいしい</td><td class="jp">おいしい</td><td>טעים</td><td>delicious</td></tr>
+    <tr><td class="jp">いい / よい</td><td class="jp">いい / よい</td><td>טוב</td><td>good (irregular)</td></tr>
+    <tr><td class="jp">映画</td><td class="jp">えいが</td><td>סרט</td><td>movie</td></tr>
+    <tr><td class="jp">天気</td><td class="jp">てんき</td><td>מזג אוויר</td><td>weather</td></tr>
+    <tr><td class="jp">静か</td><td class="jp">しずか</td><td>שקט</td><td>quiet</td></tr>
+    <tr><td class="jp">町</td><td class="jp">まち</td><td>עיירה</td><td>town</td></tr>
+    <tr><td class="jp">有名</td><td class="jp">ゆうめい</td><td>מפורסם</td><td>famous</td></tr>
+    <tr><td class="jp">元気</td><td class="jp">げんき</td><td>בריא / שמח</td><td>healthy / energetic</td></tr>
+    <tr><td class="jp">きれい</td><td class="jp">きれい</td><td>יפה / נקי (חריג!)</td><td>pretty / clean (irregular な-adj)</td></tr>
+    <tr><td class="jp">嫌い</td><td class="jp">きらい</td><td>שנוא / שונא (חריג!)</td><td>disliked / hate (irregular な-adj)</td></tr>
+    <tr><td class="jp">おもしろい</td><td class="jp">おもしろい</td><td>מעניין / מצחיק</td><td>interesting / funny</td></tr>
+    <tr><td class="jp">人</td><td class="jp">ひと</td><td>אדם</td><td>person</td></tr>
+    <tr><td class="jp">曜日</td><td class="jp">ようび</td><td>יום בשבוע</td><td>day of the week</td></tr>
+    <tr><td class="jp">月曜日</td><td class="jp">げつようび</td><td>יום שני</td><td>Monday</td></tr>
+    <tr><td class="jp">火曜日</td><td class="jp">かようび</td><td>יום שלישי</td><td>Tuesday</td></tr>
+    <tr><td class="jp">水曜日</td><td class="jp">すいようび</td><td>יום רביעי</td><td>Wednesday</td></tr>
+    <tr><td class="jp">木曜日</td><td class="jp">もくようび</td><td>יום חמישי</td><td>Thursday</td></tr>
+    <tr><td class="jp">金曜日</td><td class="jp">きんようび</td><td>יום שישי</td><td>Friday</td></tr>
+    <tr><td class="jp">土曜日</td><td class="jp">どようび</td><td>שבת</td><td>Saturday</td></tr>
+    <tr><td class="jp">日曜日</td><td class="jp">にちようび</td><td>יום ראשון</td><td>Sunday</td></tr>
+    <tr><td class="jp">今日</td><td class="jp">きょう</td><td>היום</td><td>today</td></tr>
+    <tr><td class="jp">明日</td><td class="jp">あした</td><td>מחר</td><td>tomorrow</td></tr>
+    <tr><td class="jp">昨日</td><td class="jp">きのう</td><td>אתמול</td><td>yesterday</td></tr>
+    <tr><td class="jp">来週</td><td class="jp">らいしゅう</td><td>שבוע הבא</td><td>next week</td></tr>
+    <tr><td class="jp">先週</td><td class="jp">せんしゅう</td><td>שבוע שעבר</td><td>last week</td></tr>
+    <tr><td class="jp">毎日</td><td class="jp">まいにち</td><td>כל יום</td><td>every day</td></tr>
+    <tr><td class="jp">何曜日</td><td class="jp">なんようび</td><td>איזה יום (בשבוע)</td><td>what day (of the week)</td></tr>
+    <tr><td class="jp">忙しい</td><td class="jp">いそがしい</td><td>עמוס / עסוק</td><td>busy</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab-preview">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 מבחן מקדים — כל אוצר המילים של השבוע</div>
+</div>
+
+<!-- ========== TOPIC 1: い-adjectives ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 1</span>
+  <h2>שמות תואר ב-<span class="jp">い</span></h2>
+
+  <p>שמות תואר ב-<span class="jp">い</span> מסתיימים תמיד באות <span class="jp">い</span> ומתנהגים כמעט כמו פעלים — הם <strong>מטים את עצמם</strong> ישירות, בלי להזדקק ל-<span class="jp">です</span> כדי לסיים משפט (אם כי אפשר להוסיף <span class="jp">です</span> לנימוס).</p>
+
+  <h3 class="sub-head">מיקום: לפני שם עצם</h3>
+  <p>שם תואר ב-<span class="jp">い</span> מגיע <strong>ישירות</strong> לפני השם שהוא מתאר, ללא שינוי:</p>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">高い山</span> <span class="r">（たかいやま）</span></div>
+      <div class="ex-he">הר גבוה</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">古い本</span> <span class="r">（ふるいほん）</span></div>
+      <div class="ex-he">ספר ישן</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">おいしい食べ物</span> <span class="r">（おいしいたべもの）</span></div>
+      <div class="ex-he">אוכל טעים</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">מיקום: בסוף משפט (נשוא)</h3>
+  <p>כשהתואר הוא הנשוא (= "X הוא תואר"), הוא עומד <strong>בסוף בלי</strong> <span class="jp">だ</span>. (מוסיפים <span class="jp">です</span> רק לנימוס, לא לשינוי משמעות.)</p>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">この山は高い。</span> <span class="r">（このやまはたかい）</span></div>
+      <div class="ex-he">ההר הזה גבוה. ← דיבור רגיל</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">この山は高いです。</span> <span class="r">（このやまはたかいです）</span></div>
+      <div class="ex-he">ההר הזה גבוה. ← מנומס</div>
+    </div>
+  </div>
+  <div class="warn"><b>טעות נפוצה:</b> <span class="jp">高いだ</span> ❌ — לעולם אין מוסיפים <span class="jp">だ</span> אחרי שם תואר ב-<span class="jp">い</span>. ה-<span class="jp">い</span> עצמו כבר מסיים את המשפט.</div>
+
+  <h3 class="sub-head">הטיה: ארבעת הצורות</h3>
+  <p>שמות תואר ב-<span class="jp">い</span> מטים על ידי הסרת <span class="jp">い</span> הסופי והוספת סיומת חדשה. דוגמה עם <span class="jp">高い</span> (גבוה / יקר):</p>
+
+  <div class="conj-grid">
+    <div class="conj-cell">
+      <div class="label">הווה חיובי</div>
+      <div class="jp-form">高い</div>
+      <div class="jp-read">たかい</div>
+      <div class="he-form">גבוה / יקר</div>
+    </div>
+    <div class="conj-cell">
+      <div class="label">הווה שלילי ← הסר い + くない</div>
+      <div class="jp-form">高くない</div>
+      <div class="jp-read">たかくない</div>
+      <div class="he-form">לא גבוה / לא יקר</div>
+    </div>
+    <div class="conj-cell">
+      <div class="label">עבר חיובי ← הסר い + かった</div>
+      <div class="jp-form">高かった</div>
+      <div class="jp-read">たかかった</div>
+      <div class="he-form">היה גבוה / היה יקר</div>
+    </div>
+    <div class="conj-cell">
+      <div class="label">עבר שלילי ← הסר い + くなかった</div>
+      <div class="jp-form">高くなかった</div>
+      <div class="jp-read">たかくなかった</div>
+      <div class="he-form">לא היה גבוה</div>
+    </div>
+  </div>
+
+  <p>אותו כלל עובד לכל שמות התואר ב-<span class="jp">い</span>:</p>
+  <div class="compare">
+    <div class="compare-head"><div>שם תואר</div><div>שלילה (כלל: ← + くない)</div></div>
+    <div class="compare-row"><div class="jp-cell">新しい（あたらしい）— חדש</div><div class="jp-cell">新しくない</div></div>
+    <div class="compare-row"><div class="jp-cell">古い（ふるい）— ישן</div><div class="jp-cell">古くない</div></div>
+    <div class="compare-row"><div class="jp-cell">大きい（おおきい）— גדול</div><div class="jp-cell">大きくない</div></div>
+    <div class="compare-row"><div class="jp-cell">小さい（ちいさい）— קטן</div><div class="jp-cell">小さくない</div></div>
+    <div class="compare-row"><div class="jp-cell">おいしい — טעים</div><div class="jp-cell">おいしくない</div></div>
+  </div>
+
+  <div class="note"><b>יוצא דופן חשוב — <span class="jp">いい</span> (טוב):</b> הוא מטים מהצורה הישנה <span class="jp">よい</span>, לא מ-<span class="jp">いい</span>:<br>
+    הווה: <span class="jp">いい</span> · שלילה: <span class="jp">よくない</span> · עבר: <span class="jp">よかった</span> · עבר שלילי: <span class="jp">よくなかった</span><br>
+    <span class="jp">いいくない</span> ❌ — תמיד <span class="jp">よくない</span> ✓
+  </div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">この映画はよかった。</span> <span class="r">（このえいがはよかった）</span></div>
+      <div class="ex-he">הסרט הזה היה טוב.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">天気はよくなかった。</span> <span class="r">（てんきはよくなかった）</span></div>
+      <div class="ex-he">מזג האוויר לא היה טוב.</div>
+    </div>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — שמות תואר ב-い</div>
+
+    <h4>למה ה-い הוא חלק מהמילה ולא סיומת בלבד?</h4>
+    <p>שמות תואר ב-<span class="jp">い</span> מקורם בשפה היפנית הקלאסית, שבה תארים תפקדו כמעט כפעלים — היה להם הטיה עצמאית משלהם, בלי תלות ב-だ. זו הסיבה שגם היום הם "נושאים את עצמם" ולא צריכים אוגד נפרד: ה-<span class="jp">い</span> הסופי <em>הוא</em> הסימן הדקדוקי שמסיים את המשפט, בדיוק כמו שפועל בצורת מילון מסיים משפט בעצמו.</p>
+
+    <h4>הקשר בין ארבע הצורות — דפוס אחד מאחורי כולן</h4>
+    <p>שים לב שלכל ארבע הצורות (<span class="jp">高い・高くない・高かった・高くなかった</span>) משותף הגזע <span class="jp">高く</span> — זו צורת <span class="jp">い</span>-תואר שמשמשת כתואר-פועל ("ביוקר", "באופן יקר"). למעשה <span class="jp">高く</span> בעצמה היא תבנית עצמאית שמופיעה גם מחוץ להטיה (למשל <span class="jp">高く売る</span> — "למכור ביוקר"). ההטיה כולה בנויה על הגזע הזה: שלילה מוסיפה <span class="jp">ない</span>, עבר מוסיף <span class="jp">かった</span> (במקום <span class="jp">い</span> הרגיל), ועבר-שלילי משלב את שניהם.</p>
+
+    <h4>מדוע יש כל כך הרבה תוארי-い שמתחילים בעיצורים דומים?</h4>
+    <p>שמות תואר רבים ב-<span class="jp">い</span> מגיעים מצמדי ניגוד עתיקים: <span class="jp">大きい／小さい</span> (גדול/קטן), <span class="jp">高い／低い</span> (גבוה/נמוך), <span class="jp">新しい／古い</span> (חדש/ישן). שווה ללמוד אותם בזוגות — זה גם מקל על הזיכרון וגם מכין אותך מצוין להשוואות (<span class="jp">より</span>) שתלמד בשבוע 15.</p>
+
+    <h4>מתי כן אפשר לראות だ אחרי תואר?</h4>
+    <p>לעולם לא ישירות אחרי תואר ב-<span class="jp">い</span> עצמו. אבל בתוך פסוקיות מורכבות, אם ה-<span class="jp">い</span>-תואר מתפקד כשם עצם (למשל בתוך <span class="jp">のだ</span> להסבר/הדגשה: <span class="jp">高いんだ</span> — "זה שזה יקר, זה העניין") אפשר לראות צורות שנראות כמו חיבור. ברמת N5 זה לא קריטי, אך כדאי לזכור שזה לא סותר את הכלל הבסיסי.</p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="שלילה של い-תואר: מסירים い ומוסיפים くない. 新しい → 新し + くない = 新しくない.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה השלילה של <span class="jp">新しい</span> (חדש)?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">新しいじゃない</span></button>
+      <button class="opt"><span class="jp">新しいくない</span></button>
+      <button class="opt"><span class="jp">新しくない</span></button>
+      <button class="opt"><span class="jp">新しではない</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="עבר חיובי: מסירים い ומוסיפים かった. おいしい → おいし + かった = おいしかった.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה העבר של <span class="jp">おいしい</span> (טעים)?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">おいしいだった</span></button>
+      <button class="opt"><span class="jp">おいしかった</span></button>
+      <button class="opt"><span class="jp">おいしくかった</span></button>
+      <button class="opt"><span class="jp">おいしいでした</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="3" data-explain="いい (טוב) מוזר — מטים מ-よい: שלילה = よくない, לא いいくない!">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה השלילה של <span class="jp">いい</span> (טוב)?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">いいくない</span></button>
+      <button class="opt"><span class="jp">いいじゃない</span></button>
+      <button class="opt"><span class="jp">いいではない</span></button>
+      <button class="opt"><span class="jp">よくない</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית (מנומס): <strong>"הספר הזה לא היה יקר."</strong> (יקר = <span class="jp">高い</span>)</p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">この本は高くなかったです。</span><br>
+      <span style="color:var(--muted);font-size:15px">（このほんはたかくなかったです）</span><br>
+      <span style="font-size:15px">עבר שלילי: <span class="jp">高い → 高くなかった</span></span>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"האם הסרט היה טוב?"</strong> (סרט = <span class="jp">映画 / えいが</span>)</p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">映画はよかったですか。</span><br>
+      <span style="color:var(--muted);font-size:15px">（えいがはよかったですか）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 2: な-adjectives ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 2</span>
+  <h2>שמות תואר ב-<span class="jp">な</span></h2>
+
+  <p>שמות תואר ב-<span class="jp">な</span> מתנהגים כמו <strong>שמות עצם</strong> — הם משתמשים ב-<span class="jp">だ／です</span> לנשוא ומוסיפים <span class="jp">な</span> לפני שם עצם. <strong>אין כאן הטיה ישירה</strong> — הכל נעשה דרך <span class="jp">だ／です</span>.</p>
+
+  <h3 class="sub-head">מיקום: לפני שם עצם ← מוסיפים な</h3>
+  <div class="formula"><strong>[שם תואר] <span class="jp">な</span> + שם עצם</strong></div>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">静かな町</span> <span class="r">（しずかなまち）</span></div>
+      <div class="ex-he">עיירה שקטה</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">有名な人</span> <span class="r">（ゆうめいなひと）</span></div>
+      <div class="ex-he">אדם מפורסם</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">元気な子供</span> <span class="r">（げんきなこども）</span></div>
+      <div class="ex-he">ילד שובב / בריא</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">מיקום: בסוף משפט ← בלי な, עם だ／です</h3>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">この町は静かです。</span> <span class="r">（このまちはしずかです）</span></div>
+      <div class="ex-he">העיירה הזאת שקטה.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">田中さんは有名です。</span> <span class="r">（たなかさんはゆうめいです）</span></div>
+      <div class="ex-he">טנקה מפורסם.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">הטיה של שם תואר ב-な</h3>
+  <p>כיוון שהם מתנהגים כמו שמות עצם — משתמשים בדיוק באותן סיומות כמו שלמדנו בשבוע 1:</p>
+
+  <div class="conj-grid">
+    <div class="conj-cell">
+      <div class="label">הווה חיובי</div>
+      <div class="jp-form">静かです</div>
+      <div class="jp-read">しずかです</div>
+      <div class="he-form">שקט</div>
+    </div>
+    <div class="conj-cell">
+      <div class="label">הווה שלילי</div>
+      <div class="jp-form">静かじゃありません</div>
+      <div class="jp-read">しずかじゃありません</div>
+      <div class="he-form">לא שקט</div>
+    </div>
+    <div class="conj-cell">
+      <div class="label">עבר חיובי</div>
+      <div class="jp-form">静かでした</div>
+      <div class="jp-read">しずかでした</div>
+      <div class="he-form">היה שקט</div>
+    </div>
+    <div class="conj-cell">
+      <div class="label">עבר שלילי</div>
+      <div class="jp-form">静かじゃありませんでした</div>
+      <div class="jp-read">しずかじゃありませんでした</div>
+      <div class="he-form">לא היה שקט</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">השוואה: い מול な — הכלל הגדול</h3>
+  <div class="compare">
+    <div class="compare-head"><div>נושא</div><div><span class="jp">い</span>-תואר</div></div>
+    <div class="compare-row"><div>לפני שם עצם</div><div class="jp-cell">高い本 (ישיר)</div></div>
+    <div class="compare-row"><div>בסוף משפט</div><div class="jp-cell">本は高い ← <b>בלי</b> だ</div></div>
+    <div class="compare-row"><div>שלילה</div><div class="jp-cell">高くない ← מהטיה</div></div>
+    <div class="compare-row"><div>עבר</div><div class="jp-cell">高かった ← מהטיה</div></div>
+  </div>
+  <div class="compare" style="margin-top:-8px">
+    <div class="compare-head"><div>נושא</div><div><span class="jp">な</span>-תואר</div></div>
+    <div class="compare-row"><div>לפני שם עצם</div><div class="jp-cell">静かな町 ← <b>+な</b></div></div>
+    <div class="compare-row"><div>בסוף משפט</div><div class="jp-cell">町は静かです ← <b>+です</b></div></div>
+    <div class="compare-row"><div>שלילה</div><div class="jp-cell">静かじゃありません</div></div>
+    <div class="compare-row"><div>עבר</div><div class="jp-cell">静かでした</div></div>
+  </div>
+
+  <div class="note"><b>איך יודעים שזה な ולא い?</b> רוב שמות התואר שמסתיימים ב-<span class="jp">い</span> הם אכן <span class="jp">い</span>-תואר, אבל יש כמה חריגים — שמות תואר ב-<span class="jp">な</span> שמסתיימים גם ב-<span class="jp">い</span>: <span class="jp">きれい</span> (יפה), <span class="jp">嫌い</span> (שנוא). אלו חייבים להיזכר בנפרד. כלל האצבע: אם זה בא ממילה סינית (שם עצם-תואר), כנראה <span class="jp">な</span>.</div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — שמות תואר ב-な</div>
+
+    <h4>למה הם נקראים גם "שמות עצם-תואר" (na-nouns)?</h4>
+    <p>בבלשנות יפנית, שמות תואר ב-<span class="jp">な</span> מסווגים לרוב כ"<span class="jp" dir="ltr">na-adjectival nouns</span>" — כלומר הם <strong>שמות עצם</strong> שמתפקדים כתואר. זו לא רק תווית: זה מסביר מדוע הם מתנהגים זהה לשמות עצם רגילים (<span class="jp">学生だ／学生です</span>) ומדוע ה-<span class="jp">な</span> שמופיע לפני שם עצם הוא בעצם שריד של החלקיק התיאורי הקלאסי <span class="jp">なる</span> ("להיות"), לא חלק אינטגרלי מגוף המילה כמו ה-<span class="jp">い</span> בתוארי-い.</p>
+
+    <h4>מקור רוב המילים — לרוב מילים סיניות (漢語)</h4>
+    <p>שמות תואר ב-<span class="jp">な</span> מגיעים בעיקר ממילים ששורשן בסינית (<span class="jp">漢語 / かんご</span>): <span class="jp">有名（ゆうめい）</span>, <span class="jp">元気（げんき）</span>, <span class="jp">静か（しずか）</span>. זו הסיבה שהן נשמעות "מורכבות" יותר ולעיתים מורכבות מ-2 קאנג'י. לעומת זאת תוארי-<span class="jp">い</span> נוטים להיות מילים יפניות מקוריות (<span class="jp">大和言葉 / やまとことば</span>), קצרות ופשוטות יותר בצליל.</p>
+
+    <h4>החריגים שמסתיימים ב-い — רשימה להכרה</h4>
+    <p>מעבר ל-<span class="jp">きれい</span> ו-<span class="jp">嫌い</span> שראית, יש עוד חריגים ברמת N5 שכדאי להכיר: <span class="jp">嫌い（きらい）</span> — שונא, ו-<span class="jp">きれい</span> — יפה/נקי. לשניהם משותף שהם הגיעו ממקור שאינו י-תואר קלאסי, ולכן לא קיבלו את הדפוס הדקדוקי של תוארי-<span class="jp">い</span>.</p>
+
+    <h4>השוואה ישירה: מבנה ה"שכבות" של כל סוג תואר</h4>
+    <p>כדאי לחשוב על זה כך: תואר-<span class="jp">い</span> הוא <em>"מילה אחת שמתנהגת כמו פועל קטן"</em> — היא נושאת בתוכה את כל המידע הדקדוקי. תואר-<span class="jp">な</span> הוא <em>"שם עצם שצריך מילת-קישור כדי לתפקד כתואר"</em> — בדיוק כמו ש-<span class="jp">学生</span> צריך <span class="jp">の</span> כדי לתאר שם עצם אחר (<span class="jp">学生の本</span>), כך <span class="jp">静か</span> צריך <span class="jp">な</span>.</p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="לפני שם עצם, שם תואר ב-な מקבל な: 静か + な + 町.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "עיירה שקטה" (לפני שם עצם)?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">静かな町</span></button>
+      <button class="opt"><span class="jp">静かい町</span></button>
+      <button class="opt"><span class="jp">静かの町</span></button>
+      <button class="opt"><span class="jp">静か町</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="3" data-explain="בסוף משפט, な-תואר משתמש ב-です / だ — בלי な: 有名です. לא 有名いです ולא 有名なです.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך מסיימים: <span class="jp">田中さんは有名___。</span> (מנומס)</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">有名いです</span></button>
+      <button class="opt"><span class="jp">有名くです</span></button>
+      <button class="opt"><span class="jp">有名なです</span></button>
+      <button class="opt"><span class="jp">有名です</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="きれい (יפה) הוא な-תואר למרות שמסתיים ב-い! לפני שם עצם: きれいな.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text"><span class="jp">きれい</span> (יפה) הוא שם תואר מאיזה סוג?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">い</span>-תואר — כי מסתיים ב-<span class="jp">い</span></button>
+      <button class="opt"><span class="jp">な</span>-תואר — למרות שמסתיים ב-<span class="jp">い</span></button>
+      <button class="opt">לא שם תואר, אלא שם עצם</button>
+      <button class="opt">שניהם — תלוי בהקשר</button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"הספר של טנקה לא היה מעניין."</strong> (מעניין = <span class="jp">おもしろい</span> — שם תואר ב-<span class="jp">い</span>)</p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">田中さんの本はおもしろくなかったです。</span><br>
+      <span style="color:var(--muted);font-size:15px">（たなかさんのほんはおもしろくなかったです）</span><br>
+      <span style="font-size:15px">שלב: <span class="jp">の</span> משבוע 2 + עבר שלילי של <span class="jp">い</span>-תואר.</span>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"האדם הזה מפורסם ויפה."</strong> (מפורסם = <span class="jp">有名 / ゆうめい</span>, יפה = <span class="jp">きれい</span>)</p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">この人は有名できれいです。</span><br>
+      <span style="color:var(--muted);font-size:15px">（このひとはゆうめいできれいです）</span><br>
+      <span style="font-size:15px">חיבור שני תארי-<span class="jp">な</span>: <span class="jp">で</span> מחבר (נלמד לעומק בשבוע 14).</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 3: DAYS + TIME ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 3</span>
+  <h2>ימי השבוע וביטויי זמן</h2>
+
+  <p>ביפנית ימי השבוע בנויים לפי <strong>חמשת היסודות הקלאסיים</strong> (אש, מים, עץ, מתכת, אדמה) + ירח + שמש, כל אחד עם <span class="jp">曜日（ようび）</span> = "יום של ___".</p>
+
+  <div class="day-strip">
+    <div class="day-card">
+      <div class="kanji">月曜日</div>
+      <div class="read">げつようび</div>
+      <div class="he">שני</div>
+    </div>
+    <div class="day-card">
+      <div class="kanji">火曜日</div>
+      <div class="read">かようび</div>
+      <div class="he">שלישי</div>
+    </div>
+    <div class="day-card">
+      <div class="kanji">水曜日</div>
+      <div class="read">すいようび</div>
+      <div class="he">רביעי</div>
+    </div>
+    <div class="day-card">
+      <div class="kanji">木曜日</div>
+      <div class="read">もくようび</div>
+      <div class="he">חמישי</div>
+    </div>
+    <div class="day-card">
+      <div class="kanji">金曜日</div>
+      <div class="read">きんようび</div>
+      <div class="he">שישי</div>
+    </div>
+    <div class="day-card sat">
+      <div class="kanji">土曜日</div>
+      <div class="read">どようび</div>
+      <div class="he">שבת</div>
+    </div>
+    <div class="day-card sun">
+      <div class="kanji">日曜日</div>
+      <div class="read">にちようび</div>
+      <div class="he">ראשון</div>
+    </div>
+  </div>
+
+  <div class="note"><b>טריק לזכור:</b> <span class="jp">月</span> = ירח (שני), <span class="jp">火</span> = אש (שלישי), <span class="jp">水</span> = מים (רביעי), <span class="jp">木</span> = עץ (חמישי), <span class="jp">金</span> = זהב/מתכת (שישי), <span class="jp">土</span> = אדמה (שבת), <span class="jp">日</span> = שמש (ראשון).</div>
+
+  <h3 class="sub-head">ביטויי זמן שימושיים</h3>
+  <div class="ex">
+    <div class="ex-row"><div class="ex-jp"><span class="jp">今日（きょう）</span></div><div class="ex-he">היום</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">明日（あした）</span></div><div class="ex-he">מחר</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">昨日（きのう）</span></div><div class="ex-he">אתמול</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">来週（らいしゅう）</span></div><div class="ex-he">שבוע הבא</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">先週（せんしゅう）</span></div><div class="ex-he">שבוע שעבר</div></div>
+    <div class="ex-row"><div class="ex-jp"><span class="jp">毎日（まいにち）</span></div><div class="ex-he">כל יום</div></div>
+  </div>
+
+  <h3 class="sub-head">שאלת "איזה יום?" ואיך לענות</h3>
+  <div class="formula"><strong><span class="jp">今日は何曜日ですか。</span></strong> （きょうはなんようびですか）= "איזה יום היום?"</div>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">今日は月曜日です。</span> <span class="r">（きょうはげつようびです）</span></div>
+      <div class="ex-he">היום יום שני.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">明日は火曜日ですか。</span> <span class="r">（あしたはかようびですか）</span></div>
+      <div class="ex-he">האם מחר יום שלישי?</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">昨日は日曜日でした。</span> <span class="r">（きのうはにちようびでした）</span></div>
+      <div class="ex-he">אתמול היה יום ראשון.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">ימי השבוע + שמות תואר ← שילוב!</h3>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">月曜日は忙しいです。</span> <span class="r">（げつようびはいそがしいです）</span></div>
+      <div class="ex-he">יום שני עמוס. (忙しい = עמוס)</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">昨日の天気はよかったです。</span> <span class="r">（きのうのてんきはよかったです）</span></div>
+      <div class="ex-he">מזג האוויר של אתמול היה טוב. (שלב: の + עבר)</div>
+    </div>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — ימי השבוע וביטויי זמן</div>
+
+    <h4>מקור שיטת שבעת היסודות — אסטרולוגיה עתיקה</h4>
+    <p>שיטת שבעת ה"יסודות" שמככבים בשמות ימי השבוע (ירח, אש, מים, עץ, מתכת, אדמה, שמש) אינה מקרית — היא מגיעה משיטת <span class="jp">五行（ごぎょう）</span>, "חמשת היסודות" הסיניים העתיקים (עץ, אש, אדמה, מתכת, מים), בתוספת השמש והירח כשני "כוכבי הלכת" החשובים ביותר בעין. השיטה עברה ליפן עם לוח השנה הסיני הקדום, ולכן את אותו רעיון תמצא גם בקוריאנית ובסינית — ימי השבוע שלהן בנויים על אותם שבעה יסודות, רק בקריאה אחרת.</p>
+
+    <h4>למה 曜日 (ようび) ולא רק היסוד עצמו?</h4>
+    <p><span class="jp">曜</span> פירושו המקורי הוא "כוכב מבריק" (כמו כוכב לכת), ו-<span class="jp">日</span> כאן הוא "יום". כך ש-<span class="jp">月曜日</span> פירושו המילולי הוא "יום כוכב הירח" — לא "יום הירח" סתם. זו גם הסיבה שאפשר לקצר בדיבור יומיומי ל-<span class="jp">月曜</span> (בלי 日) במצבים מסוימים, אבל בכתיבה רשמית ובמבחנים תמיד משתמשים בצורה המלאה.</p>
+
+    <h4>ההבדל העמוק בין 今日/明日/昨日 לבין יום + 曜日</h4>
+    <p>שים לב שלמילים כמו <span class="jp">今日・明日・昨日</span> אין בתוכן שום מידע על *איזה* יום בשבוע — הן רק מציינות מרחק זמן יחסי מההווה. לכן אפשר (וצריך) לחבר אותן עם יום השבוע: <span class="jp">今日は月曜日です</span> אומר גם את המרחק היחסי (היום) וגם את הזיהוי המוחלט (יום שני). זה ההבדל בין "דייקטיקה" (ביטויים שתלויים בנקודת הזמן של הדובר) לבין זמן "מוחלט" שלא משתנה.</p>
+
+    <h4>למה でした ולא だった בהקשר הימים?</h4>
+    <p>ראינו ש-<span class="jp">昨日は日曜日でした</span> משתמש ב-<span class="jp">でした</span> (עבר מנומס של です) ולא ב-<span class="jp">だった</span> (עבר רגיל). שתי הצורות נכונות דקדוקית — ההבדל הוא רק רמת הנימוס, בדיוק כמו ש-<span class="jp">です</span> מול <span class="jp">だ</span> משקפים רמת פורמליות. ברמת N5 והמבחן, <span class="jp">でした</span> היא הצורה שתפגוש בעיקר, אך בדיבור יומיומי עם חברים <span class="jp">だった</span> נפוצה מאוד.</p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="水 = מים, 水曜日 = יום של מים = יום רביעי.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה הוא <span class="jp">水曜日</span>?</p>
+    <div class="q-options">
+      <button class="opt">יום שני</button>
+      <button class="opt">יום שלישי</button>
+      <button class="opt">יום רביעי</button>
+      <button class="opt">יום חמישי</button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="איזה יום = 何曜日. שאלה = + ですか.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך שואלים "איזה יום היום"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">今日は何曜日ですか。</span></button>
+      <button class="opt"><span class="jp">今日は何日ですか。</span></button>
+      <button class="opt"><span class="jp">今日は何時ですか。</span></button>
+      <button class="opt"><span class="jp">今日はいつですか。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="3" data-explain="昨日 (אתמול) + עבר = でした. 'לא היה' = じゃありませんでした.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "אתמול היה יום שישי"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">昨日は金曜日です。</span></button>
+      <button class="opt"><span class="jp">昨日は金曜日ですか。</span></button>
+      <button class="opt"><span class="jp">明日は金曜日でした。</span></button>
+      <button class="opt"><span class="jp">昨日は金曜日でした。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"מזג האוויר של שבוע הבא לא יהיה טוב."</strong><br><span style="font-size:15px;color:var(--muted)">(מזג אוויר = <span class="jp">天気 / てんき</span>; יפנית לא תמיד מבדילה עתיד מהווה — משתמשים בהווה)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">来週の天気はよくないです。</span><br>
+      <span style="color:var(--muted);font-size:15px">（らいしゅうのてんきはよくないです）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== VOCAB TABLE ===== -->
+<h2 class="section">אוצר מילים — שבוע 3</h2>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th><th>סוג</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">高い</td><td class="jp">たかい</td><td>גבוה / יקר</td><td>い-תואר</td></tr>
+    <tr><td class="jp">安い</td><td class="jp">やすい</td><td>זול</td><td>い-תואר</td></tr>
+    <tr><td class="jp">新しい</td><td class="jp">あたらしい</td><td>חדש</td><td>い-תואר</td></tr>
+    <tr><td class="jp">古い</td><td class="jp">ふるい</td><td>ישן</td><td>い-תואר</td></tr>
+    <tr><td class="jp">大きい</td><td class="jp">おおきい</td><td>גדול</td><td>い-תואר</td></tr>
+    <tr><td class="jp">小さい</td><td class="jp">ちいさい</td><td>קטן</td><td>い-תואר</td></tr>
+    <tr><td class="jp">おいしい</td><td class="jp">おいしい</td><td>טעים</td><td>い-תואר</td></tr>
+    <tr><td class="jp">いい / よい</td><td class="jp">いい / よい</td><td>טוב</td><td>い-תואר (חריג)</td></tr>
+    <tr><td class="jp">忙しい</td><td class="jp">いそがしい</td><td>עמוס / עסוק</td><td>い-תואר</td></tr>
+    <tr><td class="jp">おもしろい</td><td class="jp">おもしろい</td><td>מעניין / מצחיק</td><td>い-תואר</td></tr>
+    <tr><td class="jp">静か</td><td class="jp">しずか</td><td>שקט</td><td>な-תואר</td></tr>
+    <tr><td class="jp">有名</td><td class="jp">ゆうめい</td><td>מפורסם</td><td>な-תואר</td></tr>
+    <tr><td class="jp">元気</td><td class="jp">げんき</td><td>בריא / שמח</td><td>な-תואר</td></tr>
+    <tr><td class="jp">きれい</td><td class="jp">きれい</td><td>יפה / נקי</td><td>な-תואר (חריג!)</td></tr>
+    <tr><td class="jp">今日（きょう）</td><td class="jp">きょう</td><td>היום</td><td>זמן</td></tr>
+    <tr><td class="jp">明日（あした）</td><td class="jp">あした</td><td>מחר</td><td>זמן</td></tr>
+    <tr><td class="jp">昨日（きのう）</td><td class="jp">きのう</td><td>אתמול</td><td>זמן</td></tr>
+    <tr><td class="jp">毎日（まいにち）</td><td class="jp">まいにち</td><td>כל יום</td><td>זמן</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 תיבת בחינה — אוצר מילים</div>
+</div>
+
+<!-- ===== KANJI TABLE ===== -->
+<h2 class="section k">קאנג'י — שבוע 3 (ימי השבוע: 7 יסודות)</h2>
+<table>
+  <thead><tr><th>קאנג'י</th><th>קריאה</th><th>יסוד</th><th>יום</th></tr></thead>
+  <tbody>
+    <tr><td class="jp big">月</td><td class="jp">げつ / つき</td><td>ירח</td><td class="jp">月曜日 — שני</td></tr>
+    <tr><td class="jp big">火</td><td class="jp">か / ひ</td><td>אש</td><td class="jp">火曜日 — שלישי</td></tr>
+    <tr><td class="jp big">水</td><td class="jp">すい / みず</td><td>מים</td><td class="jp">水曜日 — רביעי</td></tr>
+    <tr><td class="jp big">木</td><td class="jp">もく / き</td><td>עץ</td><td class="jp">木曜日 — חמישי</td></tr>
+    <tr><td class="jp big">金</td><td class="jp">きん / かね</td><td>זהב</td><td class="jp">金曜日 — שישי</td></tr>
+    <tr><td class="jp big">土</td><td class="jp">ど / つち</td><td>אדמה</td><td class="jp">土曜日 — שבת</td></tr>
+    <tr><td class="jp big">日</td><td class="jp">にち / ひ</td><td>שמש</td><td class="jp">日曜日 — ראשון</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-kanji">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🔢 תיבת בחינה — קאנג'י</div>
+</div>
+
+<!-- ===== FINAL QUIZ ===== -->
+<h2 class="section">מבחן סיכום — שבוע 3</h2>
+<p style="margin-top:-2px;color:var(--muted)">שאלות מעורבות: דקדוק, אוצר מילים, קאנג'י וחזרה על שבועות 1–2. נסה להגיע ל-80%.</p>
+<div class="quiz-widget" id="quiz-final">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🎓 מבחן סיכום</div>
+</div>
+
+<h2 class="section" style="background:linear-gradient(100deg,#4b6a8f,#2e4d6b)">🧩 תרגול מעמיק — שבוע 3</h2>
+<p style="margin-top:-2px;color:var(--muted)">13 שאלות מעורבות: הבנת משפט, השלמה, חריגים ושילוב שבועות 1–3.</p>
+<div class="quiz-widget" id="quiz-bonus">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:#4b6a8f;margin-bottom:8px">🧩 תרגול מעמיק</div>
+</div>
+
+<div class="done-banner">
+  <h2>סיימת את שבוע 3! <span class="jp">よくできました</span> 🎉</h2>
+  <p>
+    עכשיו אתה יכול לתאר דברים בהווה, שלילה ועבר עם שני סוגי שמות התואר,<br>
+    לומר ימי השבוע ולשלב אותם עם תיאורים.<br>
+    כשתהיה מוכן — נבנה שבוע 4: קיום עם <span class="jp">あります</span> ו-<span class="jp">います</span>, והחלקיק <span class="jp">に</span> למיקום.
+  </p>
+</div>
+
+<p class="footer-note"><span class="jp" dir="ltr">日本語 N5</span> · שבוע 3 מתוך 20 · <span class="jp" dir="ltr">頑張って！</span></p>
+</div>
+
+<script>
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+document.querySelectorAll('.check').forEach(q=>{
+  const ans=+q.dataset.answer, fb=q.querySelector('.fb'), opts=q.querySelectorAll('.opt');
+  opts.forEach((btn,i)=>{
+    btn.addEventListener('click',()=>{
+      if(q.classList.contains('done'))return;
+      q.classList.add('done');
+      opts.forEach((b,j)=>{b.disabled=true; if(j===ans)b.classList.add('correct'); else if(j===i)b.classList.add('wrong');});
+      const ok=i===ans;
+      fb.textContent=(ok?'✓ נכון! ':'✗ לא מדויק. ')+(q.dataset.explain||'');
+      fb.className='fb '+(ok?'fb-ok':'fb-no');
+    });
+  });
+});
+
+document.querySelectorAll('.reveal-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const a=b.nextElementSibling, show=a.style.display!=='block';
+    a.style.display=show?'block':'none'; b.textContent=show?'הסתר תשובה':'הצג תשובה';
+  });
+});
+
+
+/* ── kanji reading tooltips ── */
+const KR={
+  '日':'にち','月':'つき','火':'ひ','水':'みず','木':'き','金':'きん','土':'ど',
+  '山':'やま','川':'かわ','田':'た','人':'ひと','口':'くち','手':'て','目':'め',
+  '耳':'みみ','足':'あし','車':'くるま','花':'はな','雨':'あめ','空':'そら',
+  '学':'がく','校':'こう','先':'せん','生':'せい','男':'おとこ','女':'おんな',
+  '子':'こ','小':'しょう','大':'だい','中':'ちゅう','上':'うえ','下':'した',
+  '右':'みぎ','左':'ひだり','本':'ほん','母':'はは','父':'ちち','年':'ねん',
+  '今':'いま','何':'なに','時':'じ','分':'ふん','半':'はん','前':'まえ',
+  '後':'ご','間':'あいだ','外':'そと','内':'うち','東':'ひがし','西':'にし',
+  '南':'みなみ','北':'きた','国':'くに','語':'ご','英':'えい',
+  '私':'わたし','友':'とも','名':'な','気':'き','天':'てん',
+  '電':'でん','話':'はなし','見':'み','来':'き','行':'い','食':'た','飲':'の',
+  '読':'よ','書':'か','聞':'き','言':'い','買':'か','帰':'かえ','起':'お',
+  '寝':'ね','着':'き','出':'で','入':'い','開':'あ','閉':'し','乗':'の',
+  '降':'お','使':'つか','教':'おし','習':'なら','始':'はじ','終':'お',
+  '会':'あ','待':'ま','持':'も','作':'つく','思':'おも','知':'し',
+  '住':'す','働':'はたら','遊':'あそ','泳':'およ','走':'はし','歩':'ある',
+  '立':'た','座':'すわ','休':'やす','止':'と',
+  '病':'びょう','院':'いん','店':'みせ','駅':'えき','道':'みち',
+  '公':'こう','園':'えん','図':'と','館':'かん',
+  '百':'ひゃく','千':'せん','万':'まん','円':'えん',
+  '一':'いち','二':'に','三':'さん','四':'し','五':'ご',
+  '六':'ろく','七':'なな','八':'はち','九':'きゅう','十':'じゅう',
+  '高':'たか','安':'やす','新':'あたら','古':'ふる','長':'なが',
+  '短':'みじか','広':'ひろ','多':'おお','少':'すく',
+  '早':'はや','速':'はや','遅':'おそ','強':'つよ','弱':'よわ',
+  '好':'す','楽':'たの','難':'むずか',
+  '暑':'あつ','寒':'さむ','暖':'あたた','涼':'すず',
+  '白':'しろ','黒':'くろ','赤':'あか','青':'あお',
+  '魚':'さかな','肉':'にく','野':'や','菜':'さい',
+  '卵':'たまご','牛':'ぎゅう','豚':'ぶた','猫':'ねこ','犬':'いぬ','鳥':'とり',
+  '家':'いえ','部':'へ','屋':'や','門':'もん','窓':'まど','机':'つくえ',
+  '春':'はる','夏':'なつ','秋':'あき','冬':'ふゆ',
+  '朝':'あさ','昼':'ひる','夜':'よる','週':'しゅう','曜':'よう',
+  '近':'ちか','遠':'とお','太':'ふと','細':'ほそ',
+  '明':'あか','暗':'くら','静':'しず','重':'おも','軽':'かる',
+  '辛':'から','甘':'あま','苦':'にが',
+  '町':'まち','村':'むら','市':'し','県':'けん',
+  '海':'うみ','池':'いけ','島':'しま','森':'もり',
+  '毎':'まい','午':'ご','自':'じ','転':'てん',
+  '映':'えい','画':'が','音':'おん','料':'りょう','理':'り',
+  '洗':'あら','顔':'かお','宿':'やど','題':'だい',
+  '北':'きた','駅':'えき','橋':'はし','港':'こう',
+};
+function tipify(el){
+  el.querySelectorAll('.jp').forEach(function(span){
+    if(span.querySelector('.ktip'))return;
+    span.innerHTML=span.innerHTML.replace(/[一-鿿]/g,function(ch){
+      return KR[ch]?('<span class="ktip" data-h="'+KR[ch]+'">'+ch+'</span>'):ch;
+    });
+  });
+}
+function tipifyAll(){
+  document.querySelectorAll('.jp').forEach(function(span){
+    if(span.querySelector('.ktip'))return;
+    span.innerHTML=span.innerHTML.replace(/[一-鿿]/g,function(ch){
+      return KR[ch]?('<span class="ktip" data-h="'+KR[ch]+'">'+ch+'</span>'):ch;
+    });
+  });
+}function makeQuiz(rootId,data){
+  const root=document.getElementById(rootId);
+  const head=root.querySelector('.htag');
+  let order,idx,score,locked;
+  function start(){order=shuffle([...data.keys()]);idx=0;score=0;locked=false;render();}
+  function render(){
+    [...root.children].forEach(c=>{if(c!==head)c.remove();});
+    if(idx>=order.length)return result();
+    const item=data[order[idx]];
+    const opts=shuffle(item.options.map((t,i)=>({t,correct:i===item.answer})));
+    const box=document.createElement('div');
+    box.innerHTML=`
+      <div class="q-progress"><span>שאלה ${idx+1} מתוך ${order.length}</span><span>ניקוד: ${score}</span></div>
+      <div class="q-bar"><span style="width:${idx/order.length*100}%"></span></div>
+      <p class="q-text">${item.q}</p>
+      <div class="q-options"></div>
+      <p class="fb"></p>
+      <button class="next-btn" style="display:none;margin-top:12px">הבא ←</button>`;
+    root.appendChild(box);
+    const wrap=box.querySelector('.q-options'),fb=box.querySelector('.fb'),next=box.querySelector('.next-btn');
+    opts.forEach(o=>{
+      const btn=document.createElement('button');btn.className='opt';btn.innerHTML=o.t;tipify(btn);
+      btn.addEventListener('click',()=>{
+        if(locked)return;locked=true;
+        wrap.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        if(o.correct){btn.classList.add('correct');score++;fb.textContent='✓ נכון!';fb.className='fb fb-ok';}
+        else{btn.classList.add('wrong');fb.textContent='✗ לא מדויק'+(item.note?(' — '+item.note):'');fb.className='fb fb-no';
+          [...wrap.children].forEach((c,k)=>{if(opts[k].correct)c.classList.add('correct');});}
+        next.style.display='inline-block';
+      });
+      wrap.appendChild(btn);
+    });
+    next.addEventListener('click',()=>{idx++;locked=false;render();});
+  }
+  function result(){
+    const pct=Math.round(score/data.length*100);
+    const msg=pct>=80?'מצוין! אתה שולט בחומר 🎉':pct>=60?'יפה! עוד קצת חזרה ותהיה מצוין.':'כדאי לחזור על החומר ולנסות שוב.';
+    const box=document.createElement('div');box.className='q-result';
+    box.innerHTML=`<div class="score-big">${score} / ${data.length}</div><p>${msg}</p><button class="next-btn">התחל מחדש 🔁</button>`;
+    root.appendChild(box);
+    box.querySelector('.next-btn').addEventListener('click',start);
+  }
+  start();
+}
+
+const J=s=>`<span class="jp">${s}</span>`;
+
+makeQuiz('quiz-vocab-preview',[
+  {q:'מה הפירוש של '+J('高い')+'?',options:['גבוה / יקר','זול','קטן','חדש'],answer:0},
+  {q:'מה הפירוש של '+J('山')+'?',options:['הר','עץ','נהר','שדה'],answer:0},
+  {q:'מה הפירוש של '+J('古い')+'?',options:['ישן','חדש','גדול','קטן'],answer:0},
+  {q:'מה הפירוש של '+J('食べ物')+'?',options:['אוכל','משקה','ירק','בשר'],answer:0},
+  {q:'מה הפירוש של '+J('新しい')+'?',options:['חדש','ישן','גדול','יפה'],answer:0},
+  {q:'מה הפירוש של '+J('大きい')+'?',options:['גדול','קטן','ארוך','כבד'],answer:0},
+  {q:'מה הפירוש של '+J('小さい')+'?',options:['קטן','גדול','דק','קצר'],answer:0},
+  {q:'מה הפירוש של '+J('おいしい')+'?',options:['טעים','יפה','נחמד','שקט'],answer:0},
+  {q:'מה הפירוש של '+J('映画')+'?',options:['סרט','ספר','שיר','תמונה'],answer:0},
+  {q:'מה הפירוש של '+J('天気')+'?',options:['מזג אוויר','שמיים','גשם','שמש'],answer:0},
+  {q:'מה הפירוש של '+J('静か')+'?',options:['שקט','עמוס','מפורסם','יפה'],answer:0},
+  {q:'מה הפירוש של '+J('町')+'?',options:['עיירה','מדינה','כפר','עיר גדולה'],answer:0},
+  {q:'מה הפירוש של '+J('有名')+'?',options:['מפורסם','שקט','בריא','טעים'],answer:0},
+  {q:'מה הפירוש של '+J('元気')+'?',options:['בריא / שמח','שקט','יפה','עמוס'],answer:0},
+  {q:'מה הפירוש של '+J('きれい')+'?',options:['יפה / נקי','טעים','שקט','מפורסם'],answer:0},
+  {q:'מה הפירוש של '+J('嫌い')+'?',options:['שנוא / שונא','אהוב','יפה','בריא'],answer:0},
+  {q:'מה הפירוש של '+J('おもしろい')+'?',options:['מעניין / מצחיק','משעמם','קל','קשה'],answer:0},
+  {q:'מה הפירוש של '+J('人')+'?',options:['אדם','חתול','כלב','בית'],answer:0},
+  {q:'מה הפירוש של '+J('曜日')+'?',options:['יום בשבוע','שבוע','חודש','שנה'],answer:0},
+  {q:'מה הפירוש של '+J('今日')+'?',options:['היום','מחר','אתמול','כל יום'],answer:0},
+  {q:'מה הפירוש של '+J('明日')+'?',options:['מחר','היום','אתמול','שבוע הבא'],answer:0},
+  {q:'מה הפירוש של '+J('昨日')+'?',options:['אתמול','מחר','היום','שבוע שעבר'],answer:0},
+  {q:'מה הפירוש של '+J('来週')+'?',options:['שבוע הבא','שבוע שעבר','כל שבוע','עוד שבועיים'],answer:0},
+  {q:'מה הפירוש של '+J('先週')+'?',options:['שבוע שעבר','שבוע הבא','כל שבוע','השבוע'],answer:0},
+  {q:'מה הפירוש של '+J('毎日')+'?',options:['כל יום','היום','מחר','כל שבוע'],answer:0},
+  {q:'מה הפירוש של '+J('忙しい')+'?',options:['עמוס / עסוק','פנוי','עייף','שמח'],answer:0}
+]);
+
+makeQuiz('quiz-vocab',[
+  {q:'מה הפירוש של '+J('新しい')+'?',options:['חדש','ישן','גדול','יפה'],answer:0},
+  {q:'מה הפירוש של '+J('古い')+'?',options:['ישן','חדש','קטן','יקר'],answer:0},
+  {q:'מה הפירוש של '+J('大きい')+'?',options:['גדול','קטן','ארוך','כבד'],answer:0},
+  {q:'מה הפירוש של '+J('小さい')+'?',options:['קטן','גדול','דק','קצר'],answer:0},
+  {q:'מה הפירוש של '+J('おいしい')+'?',options:['טעים','יפה','נחמד','שקט'],answer:0},
+  {q:'מה הפירוש של '+J('静か')+'?',options:['שקט','עמוס','מפורסם','יפה'],answer:0},
+  {q:'מה הפירוש של '+J('有名')+'?',options:['מפורסם','שקט','בריא','טעים'],answer:0},
+  {q:'מה הפירוש של '+J('元気')+'?',options:['בריא / שמח','שקט','יפה','עמוס'],answer:0},
+  {q:'מה הפירוש של '+J('きれい')+'?',options:['יפה / נקי','טעים','שקט','מפורסם'],answer:0},
+  {q:'מה הפירוש של '+J('今日')+'?',options:['היום','מחר','אתמול','כל יום'],answer:0},
+  {q:'מה הפירוש של '+J('明日')+'?',options:['מחר','היום','אתמול','שבוע הבא'],answer:0},
+  {q:'מה הפירוש של '+J('昨日')+'?',options:['אתמול','מחר','היום','שבוע שעבר'],answer:0},
+  {q:'מה הסוג של '+J('きれい')+'?',options:[J('な')+'-תואר (חריג!)','い-תואר','שם עצם','פועל'],answer:0,note:'למרות שמסתיים ב-い, זה な-תואר!'}
+]);
+
+makeQuiz('quiz-kanji',[
+  {q:'איזה יום הוא '+J('月曜日')+'?',options:['שני','שלישי','רביעי','חמישי'],answer:0},
+  {q:'איזה יום הוא '+J('火曜日')+'?',options:['שלישי','שני','רביעי','שישי'],answer:0},
+  {q:'איזה יום הוא '+J('水曜日')+'?',options:['רביעי','שלישי','חמישי','שני'],answer:0},
+  {q:'איזה יום הוא '+J('木曜日')+'?',options:['חמישי','שישי','רביעי','שבת'],answer:0},
+  {q:'איזה יום הוא '+J('金曜日')+'?',options:['שישי','חמישי','שבת','שני'],answer:0},
+  {q:'איזה יום הוא '+J('土曜日')+'?',options:['שבת','ראשון','שישי','שני'],answer:0},
+  {q:'איזה יום הוא '+J('日曜日')+'?',options:['ראשון','שבת','שישי','שני'],answer:0},
+  {q:'איזה קאנג\'י מייצג "מים"?',options:[J('水'),J('火'),J('木'),J('金')],answer:0},
+  {q:'איזה קאנג\'י מייצג "אש"?',options:[J('火'),J('水'),J('木'),J('土')],answer:0},
+  {q:'איזה קאנג\'י מייצג "שמש"?',options:[J('日'),J('月'),J('金'),J('土')],answer:0}
+]);
+
+makeQuiz('quiz-final',[
+  {q:'מה השלילה של '+J('新しい')+'?',options:[J('新しくない'),J('新しいじゃない'),J('新しいくない'),J('新しではない')],answer:0,note:'מסירים い ומוסיפים くない.'},
+  {q:'מה העבר של '+J('おいしい')+'?',options:[J('おいしかった'),J('おいしいでした'),J('おいしくた'),J('おいしかてた')],answer:0,note:'מסירים い ומוסיפים かった.'},
+  {q:'מה השלילה של '+J('いい')+'?',options:[J('よくない'),J('いいくない'),J('いいじゃない'),J('いくない')],answer:0,note:'いい מוזר — מטים מ-よい.'},
+  {q:'איך אומרים "עיירה שקטה" (לפני שם עצם)?',options:[J('静かな町'),J('静かい町'),J('静かの町'),J('静か町')],answer:0,note:'な-תואר + な + שם עצם.'},
+  {q:'איך מסיימים: '+J('田中さんは有名_')+'? (מנומס)',options:[J('です'),J('いです'),J('なです'),J('くです')],answer:0,note:'な-תואר בסוף משפט: + です בלבד.'},
+  {q:'מה הוא '+J('木曜日')+'?',options:['יום חמישי','יום רביעי','יום שישי','יום שני'],answer:0},
+  {q:'איך שואלים "איזה יום היום?"',options:[J('今日は何曜日ですか。'),J('今日は何日ですか。'),J('今日は何時ですか。'),J('今日はいくらですか。')],answer:0},
+  {q:'איך אומרים "אתמול היה יום שישי"?',options:[J('昨日は金曜日でした。'),J('昨日は金曜日です。'),J('明日は金曜日でした。'),J('今日は金曜日でした。')],answer:0,note:'עבר של שם: でした.'},
+  {q:'מה הפירוש של '+J('毎日')+'?',options:['כל יום','היום','מחר','כל שבוע'],answer:0},
+  {q:'מה הפירוש של '+J('来週')+'?',options:['שבוע הבא','שבוע שעבר','כל שבוע','עוד שבועיים'],answer:0},
+  {q:'הספר הזה לא היה מעניין — מה הצורה הנכונה של '+J('おもしろい')+'?',options:[J('おもしろくなかった'),J('おもしろくない'),J('おもしろかった'),J('おもしろくなかてた')],answer:0,note:'עבר שלילי: מסירים い + くなかった.'}
+]);
+
+// ── BONUS DRILL ──
+makeQuiz('quiz-bonus',[
+  // הבנת משפט שלם
+  {q:'מה הפירוש של '+J('昨日は天気がよくなかったです。')+'?',
+   options:['מזג האוויר של אתמול לא היה טוב','אתמול היה יום טוב','מחר מזג האוויר טוב','אתמול ירד גשם'],answer:0,
+   note:'昨日 = אתמול; 天気 = מזג אוויר; よくなかった = לא היה טוב (עבר שלילי של いい).'},
+  {q:'מה הפירוש של '+J('この町は静かできれいです。')+'?',
+   options:['העיירה הזאת שקטה ויפה','העיירה הזאת שקטה אבל לא יפה','עיירה שקטה ויפה רחוקה','העיירה שקטה לפעמים'],answer:0,
+   note:'静か + きれい = שקט ויפה (שני תארי-な).'},
+  // השלמת משפט — い-תואר
+  {q:'השלם: "הספר הישן הזה לא יקר." '+J('この古い本は高く___。'),
+   options:[J('ない'),J('ない'),J('なかった'),J('くない')],answer:0,
+   note:'שלילת הווה: 高い → 高くない.'},
+  {q:'השלם: "הסרט של אתמול היה מעניין." '+J('昨日の映画はおもしろ___。'),
+   options:[J('かった'),J('い'),J('くない'),J('かった')],answer:0,
+   note:'עבר חיובי: おもしろい → おもしろかった.'},
+  // השלמה — な-תואר
+  {q:'השלם: "המורה הזה מפורסם." '+J('この先生は有名___。'),
+   options:[J('です'),J('いです'),J('なです'),J('くです')],answer:0,
+   note:'な-תואר בסוף משפט: + です.'},
+  {q:'השלם: "עיירה שקטה" (לפני שם עצם) '+J('静か___町'),
+   options:[J('な'),J('い'),J('の'),J('が')],answer:0,
+   note:'な-תואר לפני שם עצם: + な.'},
+  // זיהוי ימי השבוע
+  {q:'אם היום שני '+J('(月曜日)')+', מחר הוא:',
+   options:[J('火曜日'),J('日曜日'),J('土曜日'),J('水曜日')],answer:0,
+   note:'שני ← שלישי = 火曜日.'},
+  {q:'אם אתמול היה שישי '+J('(金曜日)')+', היום הוא:',
+   options:[J('土曜日'),J('日曜日'),J('木曜日'),J('月曜日')],answer:0,
+   note:'שישי → שבת = 土曜日.'},
+  // חריגים
+  {q:'מה השלילה של '+J('いい')+'? (שאלת חריג)',
+   options:[J('よくない'),J('いいくない'),J('いくない'),J('よいくない')],answer:0,
+   note:'いい חריג — מטים מ-よい: שלילה = よくない.'},
+  {q:'מה העבר של '+J('いい')+'?',
+   options:[J('よかった'),J('いかった'),J('いいかった'),J('よいかった')],answer:0,
+   note:'עבר: よかった.'},
+  // קאנג'י ביסודות
+  {q:'איזה יסוד מחבר בין '+J('水曜日')+' ל-'+J('水')+' (מים)?',
+   options:['רביעי = "יום של מים" בשיטת 5 היסודות','מים = כחול ורביעי = כחול','אין קשר, זה מקרי','מים הם השלישי בטבע'],answer:0,
+   note:'ימי השבוע ביפנית בנויים על 5 יסודות + ירח + שמש.'},
+  // שילוב שבועות
+  {q:'איך אומרים "הספר של המורה לא היה יקר"?',
+   options:[J('先生の本は高くなかったです。'),J('先生の本は高いでした。'),J('先生の本は高くないでした。'),J('先生の本が高くなかったです。')],answer:0,
+   note:'の (של) + עבר שלילי: 高くなかった.'},
+  {q:'מה הפירוש של '+J('明日は水曜日ですか。')+'?',
+   options:['האם מחר רביעי?','האם אתמול היה רביעי?','מחר רביעי','מחר לא רביעי'],answer:0,
+   note:'明日 = מחר; 水曜日 = רביעי; ですか = שאלה.'},
+]);
+tipifyAll();
+tipifyAll();
+</script>
+<div class="week-nav">
+  <a href="N5-week2-lesson.html" class="nav-prev ">&#8594; שבוע 2</a>
+  <button class="nav-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8679;</button>
+  <a href="index.html" class="nav-home">&#127968; דף הבית</a>
+  <a href="N5-week4-lesson.html" class="nav-next ">שבוע 4 &#8592;</a>
+</div>
+
+</body>
+</html>

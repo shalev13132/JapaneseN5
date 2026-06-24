@@ -1,0 +1,937 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שבוע 4 — קיום: יש / נמצא | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre", Georgia, serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px, rgba(120,100,70,.06) 1px, transparent 0);
+    background-size:22px 22px;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 90px;}
+  .jp{font-family:"Noto Sans JP", system-ui, sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+  .big{font-size:1.35em; line-height:1;}
+
+  header.masthead{text-align:center; padding:56px 20px 34px; border-bottom:3px double var(--line); margin-bottom:6px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(28px,5.5vw,40px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:17px;}
+  .nav-links{display:flex; justify-content:space-between; margin:14px 0 0; font-size:14px;}
+  .nav-links span{color:var(--muted); font-family:"Heebo",sans-serif; font-weight:700;}
+
+  .lead{background:var(--card); border:1px solid var(--line); border-right:5px solid var(--accent); border-radius:12px; padding:18px 22px; margin:26px 0;}
+  .lead h2{font-family:"Heebo",sans-serif; font-size:18px; margin:0 0 6px;}
+  .lead ol{margin:6px 0 0; padding-inline-start:1.3em;}
+  .lead li{margin:3px 0;}
+
+  .topic{margin:46px 0;}
+  .topic-tag{display:inline-block; background:var(--accent); color:#fff; font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; padding:5px 14px; border-radius:999px; box-shadow:0 3px 8px rgba(150,60,30,.22);}
+  .topic h2{font-family:"Heebo",sans-serif; font-weight:800; font-size:25px; margin:12px 0 8px;}
+  .topic p{margin:.6em 0;}
+  .topic strong{color:#7e2a13;}
+
+  .formula{text-align:center; font-size:19px; background:#fff3ec; border:1px solid #e8c9b8; border-radius:10px; padding:12px 20px; margin:14px 0;}
+
+  .ex{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:6px 16px; margin:16px 0;}
+  .ex-row{padding:10px 0; border-bottom:1px dashed var(--line);}
+  .ex-row:last-child{border-bottom:none;}
+  .ex-jp{direction:ltr; unicode-bidi:isolate; text-align:right; font-family:"Noto Sans JP",sans-serif; font-size:19px; font-weight:500;}
+  .ex-jp .r{color:var(--muted); font-size:15px; font-weight:400;}
+  .ex-he{color:var(--ink); font-size:16px;}
+
+  h3.sub-head{font-family:"Heebo",sans-serif; font-weight:700; font-size:19px; color:var(--accent); margin:22px 0 8px; border-right:4px solid var(--accent); padding-right:10px;}
+
+  /* big compare table */
+  .compare{background:var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden; margin:16px 0;}
+  .compare-head{display:grid; grid-template-columns:1fr 1fr 1fr; background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px;}
+  .compare-head div,.compare-row div{padding:9px 14px;}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid var(--line); font-size:16px;}
+  .compare-row div.jp-cell{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px;}
+
+  /* particle cards */
+  .particle-cards{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0;}
+  .particle-card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 18px;}
+  .particle-card .p-sym{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:32px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:6px;}
+  .particle-card .p-label{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--muted); margin-bottom:6px;}
+  .particle-card .p-rule{font-size:16px; margin-bottom:8px;}
+  .particle-card .p-ex{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:15px; color:var(--ink); background:#faf5ea; border-radius:6px; padding:5px 10px;}
+  @media(max-width:500px){.particle-cards{grid-template-columns:1fr;}}
+
+  /* scene box */
+  .scene{background:linear-gradient(135deg,#fffdf8,#f5ede0); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:16px 0;}
+  .scene-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:14px; color:var(--gold); margin-bottom:10px;}
+  .scene .ex-row{border-bottom:1px dashed var(--line);}
+  .scene .ex-row:last-child{border-bottom:none;}
+
+  .note{background:#faf5ea; border:1px dashed var(--line); border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .note b{color:var(--accent);}
+  .warn{background:#fff5f3; border:1px dashed #e8b8aa; border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .warn b{color:var(--no);}
+
+  /* deepen / study-deeper section */
+  .deepen{background:linear-gradient(160deg,#f3eee0,#ece3cf); border:1.5px solid #d8c89a; border-radius:14px; padding:20px 24px; margin:24px 0;}
+  .deepen-head{display:flex; align-items:center; gap:8px; font-family:"Heebo",sans-serif; font-weight:800; font-size:14px; color:#7d6324; margin-bottom:12px;}
+  .deepen-head::before{content:"🔎"; font-size:16px;}
+  .deepen h4{font-family:"Heebo",sans-serif; font-weight:700; font-size:16px; color:#7d6324; margin:16px 0 6px;}
+  .deepen h4:first-of-type{margin-top:0;}
+  .deepen p{margin:.5em 0; font-size:16px;}
+  .deepen .ex{background:#fffdf8;}
+
+  /* quiz */
+  .qbox{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:16px 0; box-shadow:0 2px 8px rgba(80,60,30,.04);}
+  .qbox .htag{font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; color:var(--ok); margin-bottom:8px; display:flex; align-items:center; gap:7px;}
+  .qbox .htag::before{content:"✎"; font-size:15px;}
+  .q-text{font-size:18px; margin:0 0 12px; font-weight:500;}
+  .q-options{display:flex; flex-direction:column; gap:9px;}
+  .opt{font-family:inherit; font-size:17px; text-align:right; background:#fff; border:1.5px solid var(--line); border-radius:9px; padding:11px 16px; cursor:pointer; transition:.15s; color:var(--ink);}
+  .opt:hover:not(:disabled){border-color:var(--accent); background:#fffaf3;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:var(--ok-soft); border-color:var(--ok); color:#1f4d43; font-weight:700;}
+  .opt.wrong{background:var(--no-soft); border-color:var(--no); color:#7e2a13;}
+  .fb{margin:11px 0 0; font-size:16px; font-weight:600; min-height:1px;}
+  .fb-ok{color:var(--ok);} .fb-no{color:var(--no);}
+
+  .reveal{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .reveal-btn,.next-btn{font-family:"Heebo",sans-serif; font-weight:700; font-size:15px; background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 18px; cursor:pointer; transition:.15s;}
+  .reveal-btn:hover,.next-btn:hover{background:#8e2f17;}
+  .reveal-ans{display:none; margin-top:12px; padding:12px 16px; background:var(--ok-soft); border-radius:8px; font-size:17px;}
+
+  .quiz-widget{background:linear-gradient(160deg,#fffdf8,#fbf4e8); border:1.5px solid var(--line); border-radius:14px; padding:22px; margin:18px 0; box-shadow:0 4px 14px rgba(80,60,30,.07);}
+  .q-progress{font-family:"Heebo",sans-serif; font-size:13px; color:var(--muted); margin-bottom:10px; display:flex; justify-content:space-between;}
+  .q-bar{height:6px; background:#eadfc9; border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  .q-bar span{display:block; height:100%; background:var(--accent); transition:width .3s;}
+  .q-result{text-align:center; padding:14px 0;}
+  .score-big{font-family:"Heebo",sans-serif; font-weight:800; font-size:46px; color:var(--accent); line-height:1;}
+  .q-result p{font-size:18px; margin:10px 0 16px;}
+
+  h2.section{font-family:"Heebo",sans-serif; font-weight:800; font-size:26px; margin:54px 0 8px; padding:12px 20px; color:#fff; background:linear-gradient(100deg,var(--gold),#7d6324); border-radius:10px;}
+  h2.section.k{background:linear-gradient(100deg,var(--accent),#8e2f17);}
+
+  table{width:100%; border-collapse:collapse; margin:.4em 0 18px; font-size:16px; background:#fff; border-radius:10px; overflow:hidden; border:1px solid var(--line);}
+  thead th{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px; padding:9px 12px; text-align:right;}
+  td{padding:9px 12px; border-top:1px solid var(--line);}
+  tbody tr:nth-child(even){background:#fbf7ee;}
+  td.jp{text-align:right;} td.jp.big{text-align:center; color:var(--accent); font-size:1.5em;}
+
+  .done-banner{text-align:center; margin:50px 0 0; padding:26px; background:var(--ok-soft); border:1px solid #bcd9d0; border-radius:14px;}
+  .done-banner h2{font-family:"Heebo",sans-serif; color:#1f4d43; margin:0 0 6px;}
+  .footer-note{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;}}
+
+  /* ── bottom navigation bar ── */
+  .week-nav{
+    display:inline-flex; align-items:center; gap:6px;
+    position:fixed; bottom:14px; left:50%; transform:translateX(-50%); z-index:999;
+    padding:5px 10px;
+    background:rgba(255,253,248,.96); border:1px solid var(--line);
+    border-radius:999px; box-shadow:0 4px 16px rgba(80,60,30,.15); backdrop-filter:blur(8px);
+  }
+  .week-nav a,.week-nav button{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:12px;
+    padding:5px 11px; border-radius:999px; border:none; cursor:pointer;
+    text-decoration:none; transition:.15s; display:inline-flex; align-items:center; gap:3px;
+    white-space:nowrap;
+  }
+  .nav-prev,.nav-next{background:var(--accent); color:#fff;}
+  .nav-prev:hover,.nav-next:hover{background:#8e2f17;}
+  .nav-prev.disabled,.nav-next.disabled{background:#d9ccb8; color:#a09070; cursor:default; pointer-events:none;}
+  .nav-home{background:var(--ok-soft); color:#1f4d43; border:1px solid #bcd9d0;}
+  .nav-home:hover{background:#c8e8e0;}
+  .nav-top{background:var(--accent-soft); color:var(--accent); border:1px solid #e0c0b0; font-size:14px; padding:4px 9px;}
+  .nav-top:hover{background:#e8c8bc;}
+  /* ── kanji hover tooltip ── */
+  .ktip{
+    position:relative; cursor:help;
+    border-bottom:1px dotted var(--accent);
+  }
+  .ktip::after{
+    content:attr(data-h);
+    position:absolute; bottom:calc(100% + 4px); left:50%; transform:translateX(-50%);
+    background:var(--ink); color:#fff;
+    font-family:"Noto Sans JP",sans-serif; font-size:11px; font-weight:400;
+    padding:2px 7px; border-radius:5px; white-space:nowrap;
+    pointer-events:none; opacity:0; transition:opacity .15s; z-index:200;
+  }
+  .ktip:hover::after{ opacity:1; }</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">שבוע 4 מתוך 20 · <span class="jp" dir="ltr">JLPT N5</span></div>
+  <h1>קיום: "יש / נמצא"</h1>
+  <p class="sub"><span class="jp">あります</span> ו-<span class="jp">います</span>, החלקיק <span class="jp">に</span> למיקום, ו-<span class="jp">と／や</span> לרשימות</p>
+  <div class="nav-links">
+    <span>← שבוע 3: שמות תואר</span>
+    <span>שבוע 5: は מול が ←</span>
+  </div>
+</header>
+
+<div class="lead">
+  <h2>מה נלמד השבוע</h2>
+  <ol>
+    <li><span class="jp">あります</span> ו-<span class="jp">います</span> — "יש / נמצא" לדוממים ולחיים.</li>
+    <li>החלקיק <span class="jp">に</span> — מיקום קיום ("נמצא <em>ב...</em>").</li>
+    <li><span class="jp">と</span> ו-<span class="jp">や</span> — רשימות וחיבורי "ו-".</li>
+    <li>שאלות מיקום: <span class="jp">どこ</span> ("איפה?") ו-<span class="jp">どこにありますか</span>.</li>
+  </ol>
+  <p style="margin:10px 0 0; font-size:15px; color:var(--muted)">בסוף השבוע הזה תוכל לתאר סצנה שלמה — מה יש בחדר, מי נמצא איפה, ואיתו מי.</p>
+</div>
+
+<!-- ===== PREVIEW VOCAB TABLE (NEW) ===== -->
+<h2 class="section" style="margin-top:30px">📋 כל אוצר המילים של השבוע — מבט מקדים</h2>
+<p style="margin-top:-2px;color:var(--muted)">טבלה זו אוספת את כל המילים החדשות שתפגוש השבוע — גם אלה שבטבלת הסיכום בהמשך, וגם אלה שמופיעות רק בתוך ההסברים והדוגמאות. עברית ואנגלית.</p>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th><th>English</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">あります</td><td class="jp">あります</td><td>יש / נמצא (דומם)</td><td>there is/are (inanimate)</td></tr>
+    <tr><td class="jp">います</td><td class="jp">います</td><td>יש / נמצא (חי)</td><td>there is/are (animate)</td></tr>
+    <tr><td class="jp">が</td><td class="jp">が</td><td>חלקיק זיהוי ("מה קיים")</td><td>identification particle</td></tr>
+    <tr><td class="jp">誰も</td><td class="jp">だれも</td><td>אף אחד (+שלילה)</td><td>nobody (+negative)</td></tr>
+    <tr><td class="jp">何も</td><td class="jp">なにも</td><td>שום דבר (+שלילה)</td><td>nothing (+negative)</td></tr>
+    <tr><td class="jp">どこも</td><td class="jp">どこも</td><td>בשום מקום (+שלילה)</td><td>nowhere (+negative)</td></tr>
+    <tr><td class="jp">に</td><td class="jp">に</td><td>חלקיק מיקום קיום</td><td>location-of-existence particle</td></tr>
+    <tr><td class="jp">どこ</td><td class="jp">どこ</td><td>איפה</td><td>where</td></tr>
+    <tr><td class="jp">ここ</td><td class="jp">ここ</td><td>כאן</td><td>here</td></tr>
+    <tr><td class="jp">そこ</td><td class="jp">そこ</td><td>שם (קרוב לך)</td><td>there (near listener)</td></tr>
+    <tr><td class="jp">あそこ</td><td class="jp">あそこ</td><td>שם (רחוק)</td><td>over there (far)</td></tr>
+    <tr><td class="jp">上</td><td class="jp">うえ</td><td>מעל / על</td><td>above / on top</td></tr>
+    <tr><td class="jp">下</td><td class="jp">した</td><td>מתחת</td><td>under / below</td></tr>
+    <tr><td class="jp">中</td><td class="jp">なか</td><td>בתוך</td><td>inside</td></tr>
+    <tr><td class="jp">前</td><td class="jp">まえ</td><td>לפני / מול</td><td>front / before</td></tr>
+    <tr><td class="jp">後ろ</td><td class="jp">うしろ</td><td>מאחורי</td><td>behind</td></tr>
+    <tr><td class="jp">右</td><td class="jp">みぎ</td><td>ימין</td><td>right</td></tr>
+    <tr><td class="jp">左</td><td class="jp">ひだり</td><td>שמאל</td><td>left</td></tr>
+    <tr><td class="jp">隣</td><td class="jp">となり</td><td>לצד / שכן</td><td>next to / neighbor</td></tr>
+    <tr><td class="jp">部屋</td><td class="jp">へや</td><td>חדר</td><td>room</td></tr>
+    <tr><td class="jp">机</td><td class="jp">つくえ</td><td>שולחן</td><td>desk</td></tr>
+    <tr><td class="jp">いす</td><td class="jp">いす</td><td>כסא</td><td>chair</td></tr>
+    <tr><td class="jp">財布</td><td class="jp">さいふ</td><td>ארנק</td><td>wallet</td></tr>
+    <tr><td class="jp">バッグ</td><td class="jp">ばっぐ</td><td>תיק</td><td>bag</td></tr>
+    <tr><td class="jp">犬</td><td class="jp">いぬ</td><td>כלב</td><td>dog</td></tr>
+    <tr><td class="jp">誰</td><td class="jp">だれ</td><td>מי</td><td>who</td></tr>
+    <tr><td class="jp">トイレ</td><td class="jp">といれ</td><td>שירותים</td><td>toilet / restroom</td></tr>
+    <tr><td class="jp">図書館</td><td class="jp">としょかん</td><td>ספרייה</td><td>library</td></tr>
+    <tr><td class="jp">公園</td><td class="jp">こうえん</td><td>פארק</td><td>park</td></tr>
+    <tr><td class="jp">家</td><td class="jp">いえ</td><td>בית</td><td>house</td></tr>
+    <tr><td class="jp">木</td><td class="jp">き</td><td>עץ</td><td>tree</td></tr>
+    <tr><td class="jp">庭</td><td class="jp">にわ</td><td>גן</td><td>garden / yard</td></tr>
+    <tr><td class="jp">と</td><td class="jp">と</td><td>ו- (רשימה סגורה)</td><td>and (closed list)</td></tr>
+    <tr><td class="jp">や</td><td class="jp">や</td><td>ו- (רשימה פתוחה)</td><td>and (open list, "and others")</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab-preview">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 מבחן מקדים — כל אוצר המילים של השבוע</div>
+</div>
+
+<!-- ========== TOPIC 1: あります vs います ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 1</span>
+  <h2><span class="jp">あります</span> מול <span class="jp">います</span></h2>
+
+  <p>ביפנית "יש / נמצא" מתחלק לשני פעלים — תלוי אם הדבר <strong>דומם</strong> או <strong>חי</strong>:</p>
+
+  <div class="compare">
+    <div class="compare-head"><div>פועל</div><div>משמשת עבור</div><div>דוגמה</div></div>
+    <div class="compare-row">
+      <div class="jp-cell">あります</div>
+      <div>דוממים: חפצים, צמחים, מבנים, כסף, זמן...</div>
+      <div class="jp-cell">本があります — יש ספר</div>
+    </div>
+    <div class="compare-row">
+      <div class="jp-cell">います</div>
+      <div>חיים: אנשים, בעלי חיים, תינוקות...</div>
+      <div class="jp-cell">猫がいます — יש חתול</div>
+    </div>
+  </div>
+
+  <div class="note"><b>כלל האצבע:</b> אם זה יכול לזוז מעצמו — <span class="jp">います</span>. אם לא — <span class="jp">あります</span>. צמחים ועצים הם <span class="jp">あります</span> (לא זזים מרצונם). רובוט? <span class="jp">あります</span> — אלא אם כן הוא מדבר ומרגיש, ואז זה עמום.</div>
+
+  <h3 class="sub-head">המבנה הבסיסי</h3>
+  <div class="formula"><strong>[שם] <span class="jp">が</span> <span class="jp">あります／います</span>。</strong></div>
+  <p>שם מה שקיים מסומן עם <span class="jp">が</span> (לא <span class="jp">は</span>) — כי <span class="jp">が</span> מזהה <em>מה</em> קיים.</p>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">本があります。</span> <span class="r">（ほんがあります）</span></div>
+      <div class="ex-he">יש ספר.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">猫がいます。</span> <span class="r">（ねこがいます）</span></div>
+      <div class="ex-he">יש חתול.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">田中さんがいます。</span> <span class="r">（たなかさんがいます）</span></div>
+      <div class="ex-he">טנקה נמצא/ת.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">お金がありません。</span> <span class="r">（おかねがありません）</span></div>
+      <div class="ex-he">אין כסף. (שלילה: <span class="jp">ありません</span>)</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">誰もいません。</span> <span class="r">（だれもいません）</span></div>
+      <div class="ex-he">אין אף אחד. (<span class="jp">誰も</span> + שלילה)</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">הטיה — עבר ושלילה</h3>
+  <div class="compare">
+    <div class="compare-head"><div>צורה</div><div>あります</div><div>います</div></div>
+    <div class="compare-row"><div>הווה חיובי</div><div class="jp-cell">あります</div><div class="jp-cell">います</div></div>
+    <div class="compare-row"><div>הווה שלילי</div><div class="jp-cell">ありません</div><div class="jp-cell">いません</div></div>
+    <div class="compare-row"><div>עבר חיובי</div><div class="jp-cell">ありました</div><div class="jp-cell">いました</div></div>
+    <div class="compare-row"><div>עבר שלילי</div><div class="jp-cell">ありませんでした</div><div class="jp-cell">いませんでした</div></div>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — あります ו-います</div>
+
+    <h4>למה שני פעלים נפרדים בכלל? מבט בלשני</h4>
+    <p>השפה היפנית מבחינה דקדוקית בין "דברים שיש להם רצון/תודעה משלהם" לבין "דברים שאין להם" — חלוקה הקרויה <span class="jp">有情（うじょう）</span> ("בעלי תחושה") מול <span class="jp">非情（ひじょう）</span> ("חסרי תחושה"). חלוקה זו חוצה גם פעלים אחרים ביפנית (לדוגמה, "לתת" ו"לקבל" עובדים אחרת בהתאם למי שמעורב), ו-あります/います היא הדוגמה הראשונה והבסיסית ביותר לעיקרון הזה. זו לא רק שאלה של "חי או דומם" ביולוגית — זו שאלה של תפיסה תרבותית-לשונית של סוכנות (agency).</p>
+
+    <h4>אזורי הגבול — מקרים שלא חד-משמעיים</h4>
+    <p>רובוטים, בובות, ודמויות מצוירות הם תחום אפור. ביפנית מודרנית, רובוט פשוט (כמו שואב אבק רובוטי) הוא <span class="jp">あります</span>, אבל רובוט מתקדם שמדמה אדם (כמו ברומאנים מדע-בדיוני) יכול להיות <span class="jp">います</span> אם הדובר רוצה להעניק לו סוכנות. גם עוברים/תינוקות שעדיין ברחם נחשבים <span class="jp">います</span> — כי יש להם "חיים", גם בלי תנועה עצמאית נראית לעין.</p>
+
+    <h4>מבנה ה-が — מדוע לא は?</h4>
+    <p>שים לב שבמשפט קיום הבסיסי (<span class="jp">猫がいます</span>) משתמשים ב-<span class="jp">が</span>, לא ב-<span class="jp">は</span>. הסיבה: כשמכריזים על <em>קיומו</em> של דבר, זו מידע חדש שמוצג לראשונה — בדיוק התפקיד של <span class="jp">が</span> שלמדת בשבוע 5. רק אם רוצים להפוך את הדבר הקיים לנושא הכרזה (כגון "אשר לחתול, הוא נמצא בחדר") נשתמש ב-<span class="jp">は</span>: <span class="jp">猫は部屋にいます</span>.</p>
+
+    <h4>誰も + שלילה — מבנה ה"כמת השלילי"</h4>
+    <p>המבנה <span class="jp">誰も+שלילה</span> ("אף אחד לא...") הוא דוגמה ל"כמת שלילי" (negative quantifier) ביפנית. שים לב שהמילה <span class="jp">誰</span> כאן <strong>לא</strong> מקבלת חלקיק שאלה כלשהו — היא משתלבת עם <span class="jp">も</span> כדי ליצור משמעות של "אף אחד, גם לא אחד." אותו מבנה עובד עם <span class="jp">何も</span> ("שום דבר") ו-<span class="jp">どこも</span> ("בשום מקום") — כולן דורשות שלילה בסוף המשפט.</p>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="חתול = חי ← います. ספר = דומם ← あります.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איזה פועל משתמשים עם <span class="jp">猫</span> (חתול)?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">あります</span></button>
+      <button class="opt"><span class="jp">います</span></button>
+      <button class="opt">שניהם אפשריים</button>
+      <button class="opt">לא צריך פועל</button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="עץ = צמח = דומם ← あります. צמחים לא זזים מרצונם.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איזה פועל משתמשים עם <span class="jp">木</span> (עץ)?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">あります</span></button>
+      <button class="opt"><span class="jp">います</span></button>
+      <button class="opt">שניהם</button>
+      <button class="opt">אין צורך בפועל</button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="שלילה של います = いません.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "אין אנשים"? (<span class="jp">人 / ひと</span> = אנשים)</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">人がありません。</span></button>
+      <button class="opt"><span class="jp">人がいます。</span></button>
+      <button class="opt"><span class="jp">人がいません。</span></button>
+      <button class="opt"><span class="jp">人はありません。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"אתמול לא היה כסף."</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">昨日はお金がありませんでした。</span><br>
+      <span style="color:var(--muted);font-size:15px">（きのうはおかねがありませんでした）</span><br>
+      <span style="font-size:15px">שלב: זמן מהשבוע הקודם + עבר שלילי של あります.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 2: に for location ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 2</span>
+  <h2>החלקיק <span class="jp">に</span> — מיקום קיום</h2>
+
+  <p>כשרוצים לומר <strong>היכן</strong> משהו נמצא, מוסיפים את המיקום לפני הפועל ומסמנים אותו ב-<span class="jp">に</span>.</p>
+  <div class="formula"><strong>[מיקום] <span class="jp">に</span> [שם] <span class="jp">が</span> <span class="jp">あります／います</span>。</strong></div>
+  <p>המיקום בא <strong>ראשון</strong>, לפני מה שנמצא שם.</p>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">机の上に本があります。</span> <span class="r">（つくえのうえにほんがあります）</span></div>
+      <div class="ex-he">על השולחן יש ספר.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">部屋に猫がいます。</span> <span class="r">（へやにねこがいます）</span></div>
+      <div class="ex-he">בחדר יש חתול.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">学校に田中さんがいます。</span> <span class="r">（がっこうにたなかさんがいます）</span></div>
+      <div class="ex-he">בבית-הספר נמצאת טנקה.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">バッグの中に財布があります。</span> <span class="r">（ばっぐのなかにさいふがあります）</span></div>
+      <div class="ex-he">בתוך התיק יש ארנק.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">מילות מיקום שימושיות</h3>
+  <div class="compare">
+    <div class="compare-head"><div>יפנית</div><div>קריאה</div><div>עברית</div></div>
+    <div class="compare-row"><div class="jp-cell">上（うえ）</div><div class="jp-cell">うえ</div><div>מעל / על</div></div>
+    <div class="compare-row"><div class="jp-cell">下（した）</div><div class="jp-cell">した</div><div>מתחת</div></div>
+    <div class="compare-row"><div class="jp-cell">中（なか）</div><div class="jp-cell">なか</div><div>בתוך</div></div>
+    <div class="compare-row"><div class="jp-cell">前（まえ）</div><div class="jp-cell">まえ</div><div>לפני / מול</div></div>
+    <div class="compare-row"><div class="jp-cell">後ろ（うしろ）</div><div class="jp-cell">うしろ</div><div>מאחורי</div></div>
+    <div class="compare-row"><div class="jp-cell">右（みぎ）</div><div class="jp-cell">みぎ</div><div>ימין</div></div>
+    <div class="compare-row"><div class="jp-cell">左（ひだり）</div><div class="jp-cell">ひだり</div><div>שמאל</div></div>
+    <div class="compare-row"><div class="jp-cell">隣（となり）</div><div class="jp-cell">となり</div><div>לצד / שכן</div></div>
+  </div>
+  <p>מחברים מילות מיקום עם <span class="jp">の</span> לשם עצם: <span class="jp">机の上</span> = "על השולחן", <span class="jp">本の下</span> = "מתחת לספר".</p>
+
+  <h3 class="sub-head">שאלת "איפה?"</h3>
+  <div class="formula"><strong>[שם] <span class="jp">は</span> <span class="jp">どこ</span> <span class="jp">に</span> <span class="jp">あります／います</span> <span class="jp">か</span>。</strong> = "איפה נמצא [שם]?"</div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">猫はどこにいますか。</span> <span class="r">（ねこはどこにいますか）</span></div>
+      <div class="ex-he">איפה החתול?</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">机の下にいます。</span> <span class="r">（つくえのしたにいます）</span></div>
+      <div class="ex-he">הוא מתחת לשולחן.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">トイレはどこにありますか。</span> <span class="r">（といれはどこにありますか）</span></div>
+      <div class="ex-he">איפה השירותים?</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">あそこにあります。</span> <span class="r">（あそこにあります）</span></div>
+      <div class="ex-he">שם (רחוק) זה. (<span class="jp">あそこ</span> = שם, רחוק)</div>
+    </div>
+  </div>
+
+  <div class="note"><b>שלושת מילות "שם":</b> <span class="jp">ここ</span> (כאן, אצלי) · <span class="jp">そこ</span> (שם, אצלך) · <span class="jp">あそこ</span> (שם, רחוק) — כמו <span class="jp">これ／それ／あれ</span> משבוע 1, אבל למיקום.</div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — החלקיק に למיקום קיום</div>
+
+    <h4>に הוא חלקיק "רב-תכליתי" — איך לזהות את התפקיד הנכון</h4>
+    <p>החלקיק <span class="jp">に</span> משמש למספר תפקידים שונים ביפנית: מיקום קיום (שבוע זה), זמן מדויק (שבוע 7), יעד תנועה (שבוע 7), ועוד. המפתח הוא לא לזכור "תפקיד אחד" ל-<span class="jp">に</span>, אלא לזהות את ההקשר: אם יש <span class="jp">あります／います</span> בסוף — זה מיקום קיום. אם יש פועל תנועה (<span class="jp">行く・来る</span>) — זה יעד. אם יש מספר+יחידת זמן — זה זמן.</p>
+
+    <h4>מבנה ה"מארז" — שכבות מיקום מקוננות</h4>
+    <p>ביפנית אפשר לקנן מיקומים בתוך מיקומים בעזרת <span class="jp">の</span>: <span class="jp">バッグの中の本</span> ("הספר שבתוך התיק") הוא בעצם <span class="jp">[バッグの中]の本</span> — "הספר של [תוך התיק]". כשממירים את זה למשפט קיום: <span class="jp">バッグの中に本があります</span>, ה-<span class="jp">の中</span> כולו מתפקד כיחידת מיקום אחת שמקבלת את <span class="jp">に</span>. ניתן להאריך עוד: <span class="jp">机の上のバッグの中</span> ("בתוך התיק שעל השולחן") וכן הלאה.</p>
+
+    <h4>הבדל דק בין に ו-で במיקום (תזכורת מוקדמת לשבוע 7)</h4>
+    <p>כבר כאן שווה לשים לב: <span class="jp">に</span> מתאר <em>היכן דבר נמצא</em> (סטטי, קיום), בעוד ש-<span class="jp">で</span> (שתלמד בהמשך) מתאר <em>היכן פעולה מתבצעת</em>. ההבדל הזה הוא אחד הנפוצים ביותר לבלבול בקרב לומדים, כי בעברית שתי המשמעויות מתורגמות זהה ל"ב-". הכלל הזכיר: יש דבר/מישהו ← <span class="jp">に</span>. מתבצעת פעולה ← <span class="jp">で</span>.</p>
+
+    <h4>אסימטריה תרבותית — סדר המיקומים הנפוץ ביפנית</h4>
+    <p>שים לב שביפנית נוטים לציין תחילה את המיקום הגדול ואז המצומצם יותר (בניין → חדר → שולחן), בדומה לכתובות יפניות (מדינה → עיר → רחוב → מספר בית) — בכיוון הפוך מעברית. כשתבנה משפטים מורכבים יותר, שים לב לסדר הזה: <span class="jp">学校の図書館の机の上に</span> ("על השולחן בספרייה בבית-הספר") — מהגדול לקטן.</p>
+  </div>
+
+  <div class="qbox check" data-answer="2" data-explain="מיקום קיום: [מיקום] に [שם] が あります. שולחן = 机, על = 上.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "על השולחן יש ספר"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">本が机の上います。</span></button>
+      <button class="opt"><span class="jp">本は机の上にあります。</span></button>
+      <button class="opt"><span class="jp">机の上に本があります。</span></button>
+      <button class="opt"><span class="jp">机に上の本があります。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="שאלת מיקום: [שם] は どこ に あります/いますか.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך שואלים "איפה טנקה?"</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">田中さんはどこにいますか。</span></button>
+      <button class="opt"><span class="jp">どこが田中さんにいますか。</span></button>
+      <button class="opt"><span class="jp">田中さんはどこがいますか。</span></button>
+      <button class="opt"><span class="jp">田中さんにどこいますか。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"הארנק נמצא בתוך התיק."</strong><br>
+    <span style="font-size:15px;color:var(--muted)">(ארנק = <span class="jp">財布 / さいふ</span>; תיק = <span class="jp">バッグ</span>; בתוך = <span class="jp">中 / なか</span>)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">バッグの中に財布があります。</span><br>
+      <span style="color:var(--muted);font-size:15px">（ばっぐのなかにさいふがあります）</span>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"מאחורי הספרייה יש פארק."</strong><br>
+    <span style="font-size:15px;color:var(--muted)">(ספרייה = <span class="jp">図書館 / としょかん</span>; פארק = <span class="jp">公園 / こうえん</span>; מאחורי = <span class="jp">後ろ / うしろ</span>)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">図書館の後ろに公園があります。</span><br>
+      <span style="color:var(--muted);font-size:15px">（としょかんのうしろにこうえんがあります）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 3: と and や ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 3</span>
+  <h2>רשימות עם <span class="jp">と</span> ו-<span class="jp">や</span></h2>
+
+  <p>ביפנית יש שתי דרכים לחבר שמות ברשימה, ולכל אחת משמעות שונה:</p>
+
+  <div class="particle-cards">
+    <div class="particle-card">
+      <div class="p-label">חיבור מלא</div>
+      <div class="p-sym">と</div>
+      <div class="p-rule">רשימה <strong>מלאה וסגורה</strong> — "A ו-B (ורק הם)"</div>
+      <div class="p-ex">猫と犬がいます。<br><span style="color:var(--muted);font-size:13px">（ねこといぬがいます）<br>יש חתול וכלב. ← רק שניים, לא יותר</span></div>
+    </div>
+    <div class="particle-card">
+      <div class="p-label">חיבור חלקי</div>
+      <div class="p-sym">や</div>
+      <div class="p-rule">רשימה <strong>חלקית ופתוחה</strong> — "A וB וכו'..."</div>
+      <div class="p-ex">猫や犬がいます。<br><span style="color:var(--muted);font-size:13px">（ねこやいぬがいます）<br>יש חתולים, כלבים ועוד...</span></div>
+    </div>
+  </div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">机の上に本とペンがあります。</span> <span class="r">（つくえのうえにほんとぺんがあります）</span></div>
+      <div class="ex-he">על השולחן יש ספר ועט (ורק הם).</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">冷蔵庫に野菜や果物があります。</span> <span class="r">（れいぞうこにやさいやくだものがあります）</span></div>
+      <div class="ex-he">במקרר יש ירקות ופירות (ועוד דברים).</div>
+    </div>
+  </div>
+
+  <div class="note"><b>ו-と כ"עם":</b> כשמדברים על פעולה שנעשית <em>עם</em> מישהו, משתמשים גם ב-<span class="jp">と</span>: <span class="jp">田中さんと行きます</span> = "הולך/ת עם טנקה" (נלמד יותר בשבוע 8).</div>
+
+  <h3 class="sub-head">סצנה שלמה — שילוב של השבוע</h3>
+  <div class="scene">
+    <div class="scene-title">🏠 תיאור חדר — שלב כל מה שלמדנו</div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">部屋の中に机といすがあります。</span> <span class="r">（へやのなかにつくえといすがあります）</span></div>
+      <div class="ex-he">בחדר יש שולחן וכסא.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">机の上に本やノートがあります。</span> <span class="r">（つくえのうえにほんやのーとがあります）</span></div>
+      <div class="ex-he">על השולחן יש ספרים, מחברות ועוד.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">いすの下に猫がいます。</span> <span class="r">（いすのしたにねこがいます）</span></div>
+      <div class="ex-he">מתחת לכסא יש חתול.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">猫の隣に小さい犬がいます。</span> <span class="r">（ねこのとなりにちいさいいぬがいます）</span></div>
+      <div class="ex-he">לצד החתול יש כלב קטן.</div>
+    </div>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — と ו-や ברשימות</div>
+
+    <h4>と ו-や הם רק שניים מתוך משפחת חלקיקי-רשימה</h4>
+    <p>ביפנית קיימות עוד דרכים לרשימה שלא נכללות ב-N5 אך שווה להכיר את קיומן: <span class="jp">か</span> (לרשימת אפשרויות — "A או B"), ו-<span class="jp">も</span> (לכל הרשימה כולה — "גם A וגם B"). ה-<span class="jp">と</span> וה-<span class="jp">や</span> שלמדת הם הבסיסיים והנפוצים ביותר, אבל יפנית מבחינה גם בין "רשימה סגורה של בחירות" לבין "רשימה פתוחה של פריטים".</p>
+
+    <h4>と במשמעות "עם" מול と ברשימה — אותה מילה, היגיון משותף</h4>
+    <p>שים לב שיש קשר הגיוני בין שני התפקידים של <span class="jp">と</span>: גם ברשימה (<span class="jp">猫と犬</span> — "חתול ועם-זה כלב") וגם כ"עם" (<span class="jp">友達と行く</span> — "ללכת עם חבר"), <span class="jp">と</span> מבטא <strong>חיבור הדוק וסגור</strong> בין שני אלמנטים. ה"סגירות" הזו היא מה שמייחד את <span class="jp">と</span> מ-<span class="jp">や</span> — לעולם לא נגיד <span class="jp">友達や行く</span> ("עם חבר ועוד מישהו לא-מוגדר"), כי "עם" מצריך זיהוי מדויק של השותף.</p>
+
+    <h4>や ו-など — שדרוג ל-N4 שכבר שווה להכיר</h4>
+    <p>ברמת N4 (השלב הבא אחרי N5) תפגוש את התבנית <span class="jp">や〜など</span>, שמוסיפה את <span class="jp">など</span> ("וכו'") בסוף רשימת <span class="jp">や</span> כדי להבהיר במפורש שזו רשימה חלקית: <span class="jp">猫や犬などがいます</span> ("יש חתולים, כלבים וכו'"). ב-N5 אפשר להשתמש ב-<span class="jp">や</span> בלי <span class="jp">など</span> ועדיין להיות מובן נכון, אבל דע שזה הצעד הטבעי הבא.</p>
+
+    <h4>מתי כדאי פשוט לא להשתמש בחלקיק רשימה בכלל</h4>
+    <p>בדיבור מהיר וטבעי, יפנים רבים פשוט מפרידים פריטים בהפסקה קלה או בקריאה נפרדת, ולא בכל מקרה משתמשים ב-<span class="jp">と</span> או <span class="jp">や</span> — בדיוק כמו שבעברית אפשר לומר "יש לי כלב, חתול, ציפור" בלי "ו-" בין כולם. ברמת הכתיבה (ובוודאי במבחן), עדיף להשתמש בחלקיק מפורש כדי להראות שליטה בדקדוק.</p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="と = רשימה מלאה וסגורה. や = חלקית ופתוחה ('ועוד').">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה ההבדל בין <span class="jp">と</span> ל-<span class="jp">や</span>?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">と</span> = רשימה סגורה ומלאה; <span class="jp">や</span> = חלקית (יש עוד)</button>
+      <button class="opt"><span class="jp">と</span> = לאנשים; <span class="jp">や</span> = לחפצים</button>
+      <button class="opt"><span class="jp">と</span> = שלושה ומעלה; <span class="jp">や</span> = שניים בלבד</button>
+      <button class="opt">אין הבדל, אפשר להחליף ביניהם</button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="את המחברת לא ציינת — זה מרמז שיש עוד. לכן や מתאים יותר מ-と.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">אתה רוצה לומר "בתיק יש ספר ועט ועוד דברים". איזה חלקיק?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">本と</span>ペンがあります</button>
+      <button class="opt"><span class="jp">本や</span>ペンがあります</button>
+      <button class="opt"><span class="jp">本が</span>ペンがあります</button>
+      <button class="opt"><span class="jp">本は</span>ペンがあります</button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם ליפנית: <strong>"לצד הבית יש עץ גדול וגן."</strong><br>
+    <span style="font-size:15px;color:var(--muted)">(בית = <span class="jp">家 / いえ</span>; עץ = <span class="jp">木 / き</span>; גן = <span class="jp">庭 / にわ</span>; לצד = <span class="jp">隣 / となり</span>; גדול = <span class="jp">大きい</span>)</span></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">家の隣に大きい木と庭があります。</span><br>
+      <span style="color:var(--muted);font-size:15px">（いえのとなりにおおきいきとにわがあります）</span><br>
+      <span style="font-size:15px">שלב: מיקום + と + שם תואר ב-い.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== VOCAB TABLE ===== -->
+<h2 class="section">אוצר מילים — שבוע 4</h2>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">あります</td><td class="jp">あります</td><td>יש / נמצא (דומם)</td></tr>
+    <tr><td class="jp">います</td><td class="jp">います</td><td>יש / נמצא (חי)</td></tr>
+    <tr><td class="jp">どこ</td><td class="jp">どこ</td><td>איפה</td></tr>
+    <tr><td class="jp">ここ</td><td class="jp">ここ</td><td>כאן</td></tr>
+    <tr><td class="jp">そこ</td><td class="jp">そこ</td><td>שם (קרוב לך)</td></tr>
+    <tr><td class="jp">あそこ</td><td class="jp">あそこ</td><td>שם (רחוק)</td></tr>
+    <tr><td class="jp">上（うえ）</td><td class="jp">うえ</td><td>מעל / על</td></tr>
+    <tr><td class="jp">下（した）</td><td class="jp">した</td><td>מתחת</td></tr>
+    <tr><td class="jp">中（なか）</td><td class="jp">なか</td><td>בתוך</td></tr>
+    <tr><td class="jp">前（まえ）</td><td class="jp">まえ</td><td>לפני / מול</td></tr>
+    <tr><td class="jp">後ろ（うしろ）</td><td class="jp">うしろ</td><td>מאחורי</td></tr>
+    <tr><td class="jp">隣（となり）</td><td class="jp">となり</td><td>לצד</td></tr>
+    <tr><td class="jp">部屋（へや）</td><td class="jp">へや</td><td>חדר</td></tr>
+    <tr><td class="jp">机（つくえ）</td><td class="jp">つくえ</td><td>שולחן</td></tr>
+    <tr><td class="jp">いす</td><td class="jp">いす</td><td>כסא</td></tr>
+    <tr><td class="jp">財布（さいふ）</td><td class="jp">さいふ</td><td>ארנק</td></tr>
+    <tr><td class="jp">犬（いぬ）</td><td class="jp">いぬ</td><td>כלב</td></tr>
+    <tr><td class="jp">誰（だれ）</td><td class="jp">だれ</td><td>מי</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 תיבת בחינה — אוצר מילים</div>
+</div>
+
+<!-- ===== KANJI TABLE ===== -->
+<h2 class="section k">קאנג'י — שבוע 4 (זמן וכיוון)</h2>
+<table>
+  <thead><tr><th>קאנג'י</th><th>קריאה</th><th>משמעות</th><th>דוגמה</th></tr></thead>
+  <tbody>
+    <tr><td class="jp big">年</td><td class="jp">ねん / とし</td><td>שנה</td><td class="jp">今年（ことし）= השנה</td></tr>
+    <tr><td class="jp big">時</td><td class="jp">じ / とき</td><td>שעה / זמן</td><td class="jp">何時（なんじ）= איזו שעה</td></tr>
+    <tr><td class="jp big">分</td><td class="jp">ふん / ぷん</td><td>דקה</td><td class="jp">五分（ごふん）= 5 דקות</td></tr>
+    <tr><td class="jp big">半</td><td class="jp">はん</td><td>חצי</td><td class="jp">三時半（さんじはん）= 3:30</td></tr>
+    <tr><td class="jp big">今</td><td class="jp">いま / こん</td><td>עכשיו / הנוכחי</td><td class="jp">今日（きょう）= היום</td></tr>
+    <tr><td class="jp big">週</td><td class="jp">しゅう</td><td>שבוע</td><td class="jp">来週（らいしゅう）= שבוע הבא</td></tr>
+    <tr><td class="jp big">間</td><td class="jp">かん / あいだ</td><td>מרווח / בין</td><td class="jp">時間（じかん）= שעה (כמות)</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-kanji">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🔢 תיבת בחינה — קאנג'י</div>
+</div>
+
+<!-- ===== FINAL QUIZ ===== -->
+<h2 class="section">מבחן סיכום — שבוע 4</h2>
+<p style="margin-top:-2px;color:var(--muted)">שאלות מעורבות: דקדוק, אוצר מילים וקאנג'י + חזרה על שבועות 1–3.</p>
+<div class="quiz-widget" id="quiz-final">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🎓 מבחן סיכום</div>
+</div>
+
+<h2 class="section" style="background:linear-gradient(100deg,#4b6a8f,#2e4d6b)">🧩 תרגול מעמיק — שבוע 4</h2>
+<p style="margin-top:-2px;color:var(--muted)">13 שאלות מעורבות: הבנת משפט, השלמה, מיקום, あります/います ושילוב שבועות קודמים.</p>
+<div class="quiz-widget" id="quiz-bonus">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:#4b6a8f;margin-bottom:8px">🧩 תרגול מעמיק</div>
+</div>
+
+<div class="done-banner">
+  <h2>סיימת את שבוע 4 — וסיימת את חלק א'! <span class="jp">すごい！</span> 🎉</h2>
+  <p>
+    עכשיו אתה יכול לתאר מה ומי נמצא איפה, לשאול "איפה?",<br>
+    ולבנות רשימות עם <span class="jp">と</span> ו-<span class="jp">や</span>.<br><br>
+    <strong>סיכום חלק א' (שבועות 1–4):</strong><br>
+    משפטי שם · החלקיק は · מילות הצבעה · שאלות ב-か<br>
+    החלקיק の · מספרים · מחירים<br>
+    שמות תואר ב-い וב-な · ימי השבוע<br>
+    קיום עם あります／います · מיקום עם に · רשימות עם と／や<br><br>
+    כשתהיה מוכן — נמשיך לחלק ב' (שבוע 5): <span class="jp">は</span> מול <span class="jp">が</span> ופעלים בצורת <span class="jp">ます</span>.
+  </p>
+</div>
+
+<p class="footer-note"><span class="jp" dir="ltr">日本語 N5</span> · שבוע 4 מתוך 20 · <span class="jp" dir="ltr">頑張って！</span></p>
+</div>
+
+<script>
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+document.querySelectorAll('.check').forEach(q=>{
+  const ans=+q.dataset.answer,fb=q.querySelector('.fb'),opts=q.querySelectorAll('.opt');
+  opts.forEach((btn,i)=>{
+    btn.addEventListener('click',()=>{
+      if(q.classList.contains('done'))return;
+      q.classList.add('done');
+      opts.forEach((b,j)=>{b.disabled=true;if(j===ans)b.classList.add('correct');else if(j===i)b.classList.add('wrong');});
+      const ok=i===ans;
+      fb.textContent=(ok?'✓ נכון! ':'✗ לא מדויק. ')+(q.dataset.explain||'');
+      fb.className='fb '+(ok?'fb-ok':'fb-no');
+    });
+  });
+});
+
+document.querySelectorAll('.reveal-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const a=b.nextElementSibling,show=a.style.display!=='block';
+    a.style.display=show?'block':'none';b.textContent=show?'הסתר תשובה':'הצג תשובה';
+  });
+});
+
+
+/* ── kanji reading tooltips ── */
+const KR={
+  '日':'にち','月':'つき','火':'ひ','水':'みず','木':'き','金':'きん','土':'ど',
+  '山':'やま','川':'かわ','田':'た','人':'ひと','口':'くち','手':'て','目':'め',
+  '耳':'みみ','足':'あし','車':'くるま','花':'はな','雨':'あめ','空':'そら',
+  '学':'がく','校':'こう','先':'せん','生':'せい','男':'おとこ','女':'おんな',
+  '子':'こ','小':'しょう','大':'だい','中':'ちゅう','上':'うえ','下':'した',
+  '右':'みぎ','左':'ひだり','本':'ほん','母':'はは','父':'ちち','年':'ねん',
+  '今':'いま','何':'なに','時':'じ','分':'ふん','半':'はん','前':'まえ',
+  '後':'ご','間':'あいだ','外':'そと','内':'うち','東':'ひがし','西':'にし',
+  '南':'みなみ','北':'きた','国':'くに','語':'ご','英':'えい',
+  '私':'わたし','友':'とも','名':'な','気':'き','天':'てん',
+  '電':'でん','話':'はなし','見':'み','来':'き','行':'い','食':'た','飲':'の',
+  '読':'よ','書':'か','聞':'き','言':'い','買':'か','帰':'かえ','起':'お',
+  '寝':'ね','着':'き','出':'で','入':'い','開':'あ','閉':'し','乗':'の',
+  '降':'お','使':'つか','教':'おし','習':'なら','始':'はじ','終':'お',
+  '会':'あ','待':'ま','持':'も','作':'つく','思':'おも','知':'し',
+  '住':'す','働':'はたら','遊':'あそ','泳':'およ','走':'はし','歩':'ある',
+  '立':'た','座':'すわ','休':'やす','止':'と',
+  '病':'びょう','院':'いん','店':'みせ','駅':'えき','道':'みち',
+  '公':'こう','園':'えん','図':'と','館':'かん',
+  '百':'ひゃく','千':'せん','万':'まん','円':'えん',
+  '一':'いち','二':'に','三':'さん','四':'し','五':'ご',
+  '六':'ろく','七':'なな','八':'はち','九':'きゅう','十':'じゅう',
+  '高':'たか','安':'やす','新':'あたら','古':'ふる','長':'なが',
+  '短':'みじか','広':'ひろ','多':'おお','少':'すく',
+  '早':'はや','速':'はや','遅':'おそ','強':'つよ','弱':'よわ',
+  '好':'す','楽':'たの','難':'むずか',
+  '暑':'あつ','寒':'さむ','暖':'あたた','涼':'すず',
+  '白':'しろ','黒':'くろ','赤':'あか','青':'あお',
+  '魚':'さかな','肉':'にく','野':'や','菜':'さい',
+  '卵':'たまご','牛':'ぎゅう','豚':'ぶた','猫':'ねこ','犬':'いぬ','鳥':'とり',
+  '家':'いえ','部':'へ','屋':'や','門':'もん','窓':'まど','机':'つくえ',
+  '春':'はる','夏':'なつ','秋':'あき','冬':'ふゆ',
+  '朝':'あさ','昼':'ひる','夜':'よる','週':'しゅう','曜':'よう',
+  '近':'ちか','遠':'とお','太':'ふと','細':'ほそ',
+  '明':'あか','暗':'くら','静':'しず','重':'おも','軽':'かる',
+  '辛':'から','甘':'あま','苦':'にが',
+  '町':'まち','村':'むら','市':'し','県':'けん',
+  '海':'うみ','池':'いけ','島':'しま','森':'もり',
+  '毎':'まい','午':'ご','自':'じ','転':'てん',
+  '映':'えい','画':'が','音':'おん','料':'りょう','理':'り',
+  '洗':'あら','顔':'かお','宿':'やど','題':'だい',
+  '北':'きた','駅':'えき','橋':'はし','港':'こう',
+};
+function tipify(el){
+  el.querySelectorAll('.jp').forEach(function(span){
+    if(span.querySelector('.ktip'))return;
+    span.innerHTML=span.innerHTML.replace(/[一-鿿]/g,function(ch){
+      return KR[ch]?('<span class="ktip" data-h="'+KR[ch]+'">'+ch+'</span>'):ch;
+    });
+  });
+}
+function tipifyAll(){
+  document.querySelectorAll('.jp').forEach(function(span){
+    if(span.querySelector('.ktip'))return;
+    span.innerHTML=span.innerHTML.replace(/[一-鿿]/g,function(ch){
+      return KR[ch]?('<span class="ktip" data-h="'+KR[ch]+'">'+ch+'</span>'):ch;
+    });
+  });
+}function makeQuiz(rootId,data){
+  const root=document.getElementById(rootId);
+  const head=root.querySelector('.htag');
+  let order,idx,score,locked;
+  function start(){order=shuffle([...data.keys()]);idx=0;score=0;locked=false;render();}
+  function render(){
+    [...root.children].forEach(c=>{if(c!==head)c.remove();});
+    if(idx>=order.length)return result();
+    const item=data[order[idx]];
+    const opts=shuffle(item.options.map((t,i)=>({t,correct:i===item.answer})));
+    const box=document.createElement('div');
+    box.innerHTML=`
+      <div class="q-progress"><span>שאלה ${idx+1} מתוך ${order.length}</span><span>ניקוד: ${score}</span></div>
+      <div class="q-bar"><span style="width:${idx/order.length*100}%"></span></div>
+      <p class="q-text">${item.q}</p>
+      <div class="q-options"></div>
+      <p class="fb"></p>
+      <button class="next-btn" style="display:none;margin-top:12px">הבא ←</button>`;
+    root.appendChild(box);
+    const wrap=box.querySelector('.q-options'),fb=box.querySelector('.fb'),next=box.querySelector('.next-btn');
+    opts.forEach(o=>{
+      const btn=document.createElement('button');btn.className='opt';btn.innerHTML=o.t;tipify(btn);
+      btn.addEventListener('click',()=>{
+        if(locked)return;locked=true;
+        wrap.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        if(o.correct){btn.classList.add('correct');score++;fb.textContent='✓ נכון!';fb.className='fb fb-ok';}
+        else{btn.classList.add('wrong');fb.textContent='✗ לא מדויק'+(item.note?(' — '+item.note):'');fb.className='fb fb-no';
+          [...wrap.children].forEach((c,k)=>{if(opts[k].correct)c.classList.add('correct');});}
+        next.style.display='inline-block';
+      });
+      wrap.appendChild(btn);
+    });
+    next.addEventListener('click',()=>{idx++;locked=false;render();});
+  }
+  function result(){
+    const pct=Math.round(score/data.length*100);
+    const msg=pct>=80?'מצוין! אתה שולט בחומר 🎉':pct>=60?'יפה! עוד קצת חזרה ותהיה מצוין.':'כדאי לחזור על החומר ולנסות שוב.';
+    const box=document.createElement('div');box.className='q-result';
+    box.innerHTML=`<div class="score-big">${score} / ${data.length}</div><p>${msg}</p><button class="next-btn">התחל מחדש 🔁</button>`;
+    root.appendChild(box);
+    box.querySelector('.next-btn').addEventListener('click',start);
+  }
+  start();
+}
+
+const J=s=>`<span class="jp">${s}</span>`;
+
+makeQuiz('quiz-vocab-preview',[
+  {q:'מה הפירוש של '+J('あります')+'?',options:['יש / נמצא (דומם)','יש / נמצא (חי)','הולך','בא'],answer:0},
+  {q:'מה הפירוש של '+J('います')+'?',options:['יש / נמצא (חי)','יש / נמצא (דומם)','רואה','יושב'],answer:0},
+  {q:'מה הפירוש של '+J('誰も')+' (+שלילה)?',options:['אף אחד','כולם','מישהו','איש'],answer:0},
+  {q:'מה הפירוש של '+J('何も')+' (+שלילה)?',options:['שום דבר','הכל','משהו','דבר'],answer:0},
+  {q:'מה הפירוש של '+J('どこも')+' (+שלילה)?',options:['בשום מקום','בכל מקום','איפשהו','כאן'],answer:0},
+  {q:'מה הפירוש של '+J('どこ')+'?',options:['איפה','מתי','מי','מה'],answer:0},
+  {q:'מה הפירוש של '+J('ここ')+'?',options:['כאן','שם','שם (רחוק)','איפה'],answer:0},
+  {q:'מה הפירוש של '+J('上')+'?',options:['מעל / על','מתחת','בתוך','לצד'],answer:0},
+  {q:'מה הפירוש של '+J('下')+'?',options:['מתחת','מעל','מאחורי','מול'],answer:0},
+  {q:'מה הפירוש של '+J('中')+'?',options:['בתוך','מחוץ','לצד','מעל'],answer:0},
+  {q:'מה הפירוש של '+J('前')+'?',options:['לפני / מול','אחרי','ימין','שמאל'],answer:0},
+  {q:'מה הפירוש של '+J('後ろ')+'?',options:['מאחורי','לפני','ימין','שמאל'],answer:0},
+  {q:'מה הפירוש של '+J('右')+'?',options:['ימין','שמאל','מעלה','מטה'],answer:0},
+  {q:'מה הפירוש של '+J('左')+'?',options:['שמאל','ימין','מעלה','מטה'],answer:0},
+  {q:'מה הפירוש של '+J('隣')+'?',options:['לצד','מול','מאחורי','בתוך'],answer:0},
+  {q:'מה הפירוש של '+J('部屋')+'?',options:['חדר','שולחן','כסא','בית'],answer:0},
+  {q:'מה הפירוש של '+J('財布')+'?',options:['ארנק','תיק','מחברת','ספר'],answer:0},
+  {q:'מה הפירוש של '+J('バッグ')+'?',options:['תיק','ארנק','קופסה','שקית'],answer:0},
+  {q:'מה הפירוש של '+J('犬')+'?',options:['כלב','חתול','ציפור','דג'],answer:0},
+  {q:'מה הפירוש של '+J('誰')+'?',options:['מי','מה','איפה','מתי'],answer:0},
+  {q:'מה הפירוש של '+J('トイレ')+'?',options:['שירותים','מטבח','חדר שינה','סלון'],answer:0},
+  {q:'מה הפירוש של '+J('図書館')+'?',options:['ספרייה','בית-ספר','מסעדה','חנות'],answer:0},
+  {q:'מה הפירוש של '+J('公園')+'?',options:['פארק','רחוב','כיכר','שוק'],answer:0},
+  {q:'מה הפירוש של '+J('家')+'?',options:['בית','חדר','דירה','בניין'],answer:0},
+  {q:'מה הפירוש של '+J('木')+'?',options:['עץ','פרח','דשא','עלה'],answer:0},
+  {q:'מה הפירוש של '+J('庭')+'?',options:['גן','בית','חדר','גינה ציבורית'],answer:0},
+  {q:'מה ההבדל בין '+J('と')+' ל-'+J('や')+'?',options:['と = רשימה סגורה; や = פתוחה','שניהם זהים','と = פתוחה; や = סגורה','אין הבדל'],answer:0}
+]);
+
+makeQuiz('quiz-vocab',[
+  {q:'מה הפירוש של '+J('あります')+'?',options:['יש / נמצא (דומם)','יש / נמצא (חי)','הולך','בא'],answer:0},
+  {q:'מה הפירוש של '+J('います')+'?',options:['יש / נמצא (חי)','יש / נמצא (דומם)','רואה','יושב'],answer:0},
+  {q:'מה הפירוש של '+J('どこ')+'?',options:['איפה','מתי','מי','מה'],answer:0},
+  {q:'מה הפירוש של '+J('ここ')+'?',options:['כאן','שם','שם (רחוק)','איפה'],answer:0},
+  {q:'מה הפירוש של '+J('上')+'?',options:['מעל / על','מתחת','בתוך','לצד'],answer:0},
+  {q:'מה הפירוש של '+J('下')+'?',options:['מתחת','מעל','מאחורי','מול'],answer:0},
+  {q:'מה הפירוש של '+J('中')+'?',options:['בתוך','מחוץ','לצד','מעל'],answer:0},
+  {q:'מה הפירוש של '+J('前')+'?',options:['לפני / מול','אחרי','ימין','שמאל'],answer:0},
+  {q:'מה הפירוש של '+J('隣')+'?',options:['לצד','מול','מאחורי','בתוך'],answer:0},
+  {q:'מה הפירוש של '+J('部屋')+'?',options:['חדר','שולחן','כסא','בית'],answer:0},
+  {q:'מה הפירוש של '+J('財布')+'?',options:['ארנק','תיק','מחברת','ספר'],answer:0},
+  {q:'מה הפירוש של '+J('誰')+'?',options:['מי','מה','איפה','מתי'],answer:0}
+]);
+
+makeQuiz('quiz-kanji',[
+  {q:'מה הפירוש של '+J('<span class="big">年</span>')+'?',options:['שנה','חודש','שבוע','יום'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">時</span>')+'?',options:['שעה / זמן','דקה','שנייה','חצי'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">分</span>')+'?',options:['דקה','שעה','שנייה','חצי'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">半</span>')+'?',options:['חצי','רבע','שלם','כפול'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">今</span>')+'?',options:['עכשיו / הנוכחי','עבר','עתיד','תמיד'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">週</span>')+'?',options:['שבוע','חודש','שנה','יום'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">間</span>')+'?',options:['מרווח / בין','זמן','שעה','יחד'],answer:0},
+  {q:'איך כותבים "שבוע הבא"?',options:[J('来週'),J('先週'),J('今週'),J('毎週')],answer:0,note:'来 = בא, 週 = שבוע.'},
+  {q:'מה הפירוש של '+J('時間')+'?',options:['שעה (כמות)','שעה (ביום)','זמן כללי','דקה'],answer:0,note:'時間 = ji-kan = שעה כיחידת זמן.'}
+]);
+
+makeQuiz('quiz-final',[
+  {q:'איזה פועל משתמשים עם '+J('猫')+'?',options:[J('います'),J('あります'),'שניהם','אף אחד'],answer:0,note:'חתול = חי ← います.'},
+  {q:'איזה פועל משתמשים עם '+J('本')+'?',options:[J('あります'),J('います'),'שניהם','אף אחד'],answer:0,note:'ספר = דומם ← あります.'},
+  {q:'איך אומרים "בחדר יש חתול"?',options:[J('部屋に猫がいます。'),J('部屋が猫にいます。'),J('猫は部屋があります。'),J('部屋の猫います。')],answer:0,note:'[מיקום] に [שם] が います.'},
+  {q:'איך אומרים "איפה הכלב"?',options:[J('犬はどこにいますか。'),J('犬がどこありますか。'),J('どこが犬にいますか。'),J('犬はどこですか。')],answer:0},
+  {q:'מה ההבדל בין '+J('と')+' ל-'+J('や')+'?',options:[J('と')+' = רשימה סגורה; '+J('や')+' = חלקית',J('と')+' = לאנשים; '+J('や')+' = לחפצים','אין הבדל',''+J('と')+' = שניים; '+J('や')+' = שלושה ומעלה'],answer:0},
+  {q:'איך אומרים "על השולחן"?',options:[J('机の上'),J('机に上'),J('机が上'),J('上の机')],answer:0,note:'מיקום = שם + の + מילת מיקום.'},
+  {q:'מה הפירוש של '+J('時間')+'?',options:['שעה (כמות)','שעה (ביום)','זמן','דקה'],answer:0},
+  {q:'תרגם: "אין כסף"',options:[J('お金がありません。'),J('お金がいません。'),J('お金はありますか。'),J('お金をありません。')],answer:0,note:'כסף = דומם, שלילה = ありません.'},
+  {q:'מה הפירוש של '+J('後ろ')+'?',options:['מאחורי','לפני','ימין','שמאל'],answer:0},
+  {q:'חבר משפט: "בתיק יש ספרים ועט ועוד..." — איזה חלקיק?',options:[J('本やペン'),J('本とペン'),J('本がペン'),J('本はペン')],answer:0,note:'ya = רשימה פתוחה.'},
+  {q:'מה הפירוש של '+J('誰もいません')+'?',options:['אין אף אחד','מישהו כאן','כולם נמצאים','מי נמצא'],answer:0,note:'誰も + שלילה = אין אף אחד.'}
+]);
+
+// ── BONUS DRILL ──
+makeQuiz('quiz-bonus',[
+  // הבנת משפטים
+  {q:'מה הפירוש של '+J('机の上に本とペンがあります。')+'?',
+   options:['על השולחן יש ספר ועט','בתוך הספר יש עט','על העט יש שולחן','השולחן על הספר'],answer:0,
+   note:'机の上に = על השולחן; 本とペン = ספר ועט (רשימה סגורה).'},
+  {q:'מה הפירוש של '+J('部屋に犬や猫がいます。')+'?',
+   options:['בחדר יש כלבים, חתולים ועוד...','בחדר יש רק כלב וחתול','הכלב והחתול בחוץ','בחדר אין חיות'],answer:0,
+   note:'や = רשימה פתוחה "ועוד".'},
+  {q:'מה הפירוש של '+J('財布はバッグの中にありますか。')+'?',
+   options:['האם הארנק בתוך התיק?','הארנק בתוך התיק','האם התיק בתוך הארנק?','איפה התיק?'],answer:0,
+   note:'財布 = ארנק; バッグの中 = בתוך התיק; ありますか = שאלה.'},
+  // השלמת משפט
+  {q:'השלם: "מתחת לשולחן יש חתול." '+J('机の___に猫がいます。'),
+   options:[J('下'),J('上'),J('中'),J('前')],answer:0,
+   note:'מתחת = 下 (した).'},
+  {q:'השלם: "אין אף אחד בחדר." '+J('部屋に誰も___。'),
+   options:[J('いません'),J('ありません'),J('います'),J('あります')],answer:0,
+   note:'אנשים = חיים ← います; שלילה = いません.'},
+  {q:'השלם: "לצד הבית יש פארק." '+J('家の___に公園があります。'),
+   options:[J('隣'),J('上'),J('中'),J('後ろ')],answer:0,
+   note:'לצד = 隣 (となり).'},
+  // בחירה: あります / います
+  {q:'איזה פועל עם '+J('木')+'（עץ）?',
+   options:[J('あります'),J('います'),'שניהם','אין'],answer:0,
+   note:'עץ = צמח = דומם ← あります.'},
+  {q:'איזה פועל עם '+J('赤ちゃん')+'（תינוק）?',
+   options:[J('います'),J('あります'),'שניהם','אין'],answer:0,
+   note:'תינוק = חי ← います.'},
+  // と מול や
+  {q:'אני רוצה לומר "על הצלחת יש אורז ועוף (ועוד דברים)". איזה חלקיק?',
+   options:[J('ご飯や鶏肉があります'),J('ご飯と鶏肉があります'),J('ご飯が鶏肉があります'),J('ご飯は鶏肉があります')],answer:0,
+   note:'ועוד = や. (ご飯 = אורז; 鶏肉 = עוף)'},
+  // שאלת מיקום
+  {q:'איך שואלים "איפה הספרייה?"',
+   options:[J('図書館はどこにありますか。'),J('図書館はどこにいますか。'),J('図書館がどこありますか。'),J('どこは図書館ありますか。')],answer:0,
+   note:'ספרייה = דומם ← あります; שאלת מיקום = どこに.'},
+  // מילות מיקום
+  {q:'מה ההבדל בין '+J('前')+'（まえ）ל-'+J('後ろ')+'（うしろ）?',
+   options:[J('前')+' = לפני/מול; '+J('後ろ')+' = מאחורי',J('前')+' = מאחורי; '+J('後ろ')+' = לפני','אין הבדל, שניהם = מול',''+J('前')+' = ימין; '+J('後ろ')+' = שמאל'],answer:0},
+  // קאנג'י זמן
+  {q:'מה הפירוש של '+J('来週')+'?',
+   options:['שבוע הבא','שבוע שעבר','כל שבוע','השבוע'],answer:0,
+   note:'来 = בא/הבא; 週 = שבוע.'},
+  {q:'מה הפירוש של '+J('先週')+'?',
+   options:['שבוע שעבר','שבוע הבא','השבוע','כל שבוע'],answer:0,
+   note:'先 = קודם/שעבר; 週 = שבוע.'},
+]);
+tipifyAll();
+tipifyAll();
+</script>
+<div class="week-nav">
+  <a href="N5-week3-lesson.html" class="nav-prev ">&#8594; שבוע 3</a>
+  <button class="nav-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8679;</button>
+  <a href="index.html" class="nav-home">&#127968; דף הבית</a>
+  <a href="N5-week5-lesson.html" class="nav-next ">שבוע 5 &#8592;</a>
+</div>
+
+</body>
+</html>

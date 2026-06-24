@@ -1,0 +1,794 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שבוע 13 — רצונות: たい ו-ほしい | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+    --blue:#4b6a8f; --blue-soft:#e3eaf3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre",Georgia,serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px,rgba(120,100,70,.06) 1px,transparent 0);
+    background-size:22px 22px;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 90px;}
+  .jp{font-family:"Noto Sans JP",system-ui,sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+  .big{font-size:1.35em; line-height:1;}
+
+  header.masthead{text-align:center; padding:56px 20px 34px; border-bottom:3px double var(--line); margin-bottom:6px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(28px,5.5vw,40px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:17px;}
+  .nav-links{display:flex; justify-content:space-between; margin:14px 0 0; font-size:14px;}
+  .nav-links span{color:var(--muted); font-family:"Heebo",sans-serif; font-weight:700;}
+
+  .lead{background:var(--card); border:1px solid var(--line); border-right:5px solid var(--accent); border-radius:12px; padding:18px 22px; margin:26px 0;}
+  .lead h2{font-family:"Heebo",sans-serif; font-size:18px; margin:0 0 6px;}
+  .lead ol{margin:6px 0 0; padding-inline-start:1.3em;}
+  .lead li{margin:3px 0;}
+
+  .topic{margin:46px 0;}
+  .topic-tag{display:inline-block; background:var(--accent); color:#fff; font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; padding:5px 14px; border-radius:999px; box-shadow:0 3px 8px rgba(150,60,30,.22);}
+  .topic h2{font-family:"Heebo",sans-serif; font-weight:800; font-size:25px; margin:12px 0 8px;}
+  .topic p{margin:.6em 0;}
+  .topic strong{color:#7e2a13;}
+
+  .formula{text-align:center; font-size:19px; background:#fff3ec; border:1px solid #e8c9b8; border-radius:10px; padding:12px 20px; margin:14px 0;}
+
+  h3.sub-head{font-family:"Heebo",sans-serif; font-weight:700; font-size:19px; color:var(--accent); margin:22px 0 8px; border-right:4px solid var(--accent); padding-right:10px;}
+
+  .ex{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:6px 16px; margin:16px 0;}
+  .ex-row{padding:10px 0; border-bottom:1px dashed var(--line);}
+  .ex-row:last-child{border-bottom:none;}
+  .ex-jp{direction:ltr; unicode-bidi:isolate; text-align:right; font-family:"Noto Sans JP",sans-serif; font-size:19px; font-weight:500;}
+  .ex-jp .r{color:var(--muted); font-size:15px; font-weight:400;}
+  .ex-he{color:var(--ink); font-size:16px;}
+
+  /* conjugation grid */
+  .conj-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:16px 0;}
+  @media(max-width:500px){.conj-grid{grid-template-columns:1fr;}}
+  .conj-cell{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 16px;}
+  .conj-cell .label{font-family:"Heebo",sans-serif; font-weight:800; font-size:12px; color:var(--muted); margin-bottom:6px;}
+  .conj-cell .jp-form{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:20px; font-weight:700; color:var(--accent);}
+  .conj-cell .he-form{font-size:15px; margin-top:4px;}
+
+  .compare{background:var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden; margin:16px 0;}
+  .compare-head{display:grid; grid-template-columns:1fr 1fr; background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px;}
+  .compare-head div,.compare-row div{padding:9px 14px;}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--line); font-size:16px;}
+  .compare-row div.jp-cell{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px;}
+
+  .dialogue{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .dialogue-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--gold); margin-bottom:12px;}
+  .d-row{display:flex; gap:10px; align-items:flex-start; margin:10px 0;}
+  .d-who{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--muted); min-width:40px; padding-top:4px;}
+  .d-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px; font-weight:500; flex:1;}
+  .d-he{font-size:15px; color:var(--muted);}
+
+  .note{background:#faf5ea; border:1px dashed var(--line); border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .note b{color:var(--accent);}
+  .warn{background:#fff5f3; border:1px dashed #e8b8aa; border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .warn b{color:var(--no);}
+
+  /* deepen / study-deeper section */
+  .deepen{background:linear-gradient(160deg,#f3eee0,#ece3cf); border:1.5px solid #d8c89a; border-radius:14px; padding:20px 24px; margin:24px 0;}
+  .deepen-head{display:flex; align-items:center; gap:8px; font-family:"Heebo",sans-serif; font-weight:800; font-size:14px; color:#7d6324; margin-bottom:12px;}
+  .deepen-head::before{content:"🔎"; font-size:16px;}
+  .deepen h4{font-family:"Heebo",sans-serif; font-weight:700; font-size:16px; color:#7d6324; margin:16px 0 6px;}
+  .deepen h4:first-of-type{margin-top:0;}
+  .deepen p{margin:.5em 0; font-size:16px;}
+  .deepen .ex{background:#fffdf8;}
+
+  .qbox{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:16px 0; box-shadow:0 2px 8px rgba(80,60,30,.04);}
+  .qbox .htag{font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; color:var(--ok); margin-bottom:8px; display:flex; align-items:center; gap:7px;}
+  .qbox .htag::before{content:"✎"; font-size:15px;}
+  .q-text{font-size:18px; margin:0 0 12px; font-weight:500;}
+  .q-options{display:flex; flex-direction:column; gap:9px;}
+  .opt{font-family:inherit; font-size:17px; text-align:right; background:#fff; border:1.5px solid var(--line); border-radius:9px; padding:11px 16px; cursor:pointer; transition:.15s; color:var(--ink);}
+  .opt:hover:not(:disabled){border-color:var(--accent); background:#fffaf3;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:var(--ok-soft); border-color:var(--ok); color:#1f4d43; font-weight:700;}
+  .opt.wrong{background:var(--no-soft); border-color:var(--no); color:#7e2a13;}
+  .fb{margin:11px 0 0; font-size:16px; font-weight:600; min-height:1px;}
+  .fb-ok{color:var(--ok);} .fb-no{color:var(--no);}
+
+  .reveal{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .reveal-btn,.next-btn{font-family:"Heebo",sans-serif; font-weight:700; font-size:15px; background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 18px; cursor:pointer; transition:.15s;}
+  .reveal-btn:hover,.next-btn:hover{background:#8e2f17;}
+  .reveal-ans{display:none; margin-top:12px; padding:12px 16px; background:var(--ok-soft); border-radius:8px; font-size:17px;}
+
+  .quiz-widget{background:linear-gradient(160deg,#fffdf8,#fbf4e8); border:1.5px solid var(--line); border-radius:14px; padding:22px; margin:18px 0; box-shadow:0 4px 14px rgba(80,60,30,.07);}
+  .q-progress{font-family:"Heebo",sans-serif; font-size:13px; color:var(--muted); margin-bottom:10px; display:flex; justify-content:space-between;}
+  .q-bar{height:6px; background:#eadfc9; border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  .q-bar span{display:block; height:100%; background:var(--accent); transition:width .3s;}
+  .q-result{text-align:center; padding:14px 0;}
+  .score-big{font-family:"Heebo",sans-serif; font-weight:800; font-size:46px; color:var(--accent); line-height:1;}
+  .q-result p{font-size:18px; margin:10px 0 16px;}
+
+  h2.section{font-family:"Heebo",sans-serif; font-weight:800; font-size:26px; margin:54px 0 8px; padding:12px 20px; color:#fff; background:linear-gradient(100deg,var(--gold),#7d6324); border-radius:10px;}
+  h2.section.k{background:linear-gradient(100deg,var(--accent),#8e2f17);}
+
+  table{width:100%; border-collapse:collapse; margin:.4em 0 18px; font-size:16px; background:#fff; border-radius:10px; overflow:hidden; border:1px solid var(--line);}
+  thead th{background:#efe6d4; font-family:"Heebo",sans-serif; font-weight:700; font-size:14px; padding:9px 12px; text-align:right;}
+  td{padding:9px 12px; border-top:1px solid var(--line);}
+  tbody tr:nth-child(even){background:#fbf7ee;}
+  td.jp{text-align:right;} td.jp.big{text-align:center; color:var(--accent); font-size:1.5em;}
+
+  .done-banner{text-align:center; margin:50px 0 0; padding:26px; background:var(--ok-soft); border:1px solid #bcd9d0; border-radius:14px;}
+  .done-banner h2{font-family:"Heebo",sans-serif; color:#1f4d43; margin:0 0 6px;}
+  .footer-note{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;}}
+
+  /* ── bottom navigation bar ── */
+  .week-nav{
+    display:inline-flex; align-items:center; gap:6px;
+    position:fixed; bottom:14px; left:50%; transform:translateX(-50%); z-index:999;
+    padding:5px 10px;
+    background:rgba(255,253,248,.96); border:1px solid var(--line);
+    border-radius:999px; box-shadow:0 4px 16px rgba(80,60,30,.15); backdrop-filter:blur(8px);
+  }
+  .week-nav a,.week-nav button{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:12px;
+    padding:5px 11px; border-radius:999px; border:none; cursor:pointer;
+    text-decoration:none; transition:.15s; display:inline-flex; align-items:center; gap:3px;
+    white-space:nowrap;
+  }
+  .nav-prev,.nav-next{background:var(--accent); color:#fff;}
+  .nav-prev:hover,.nav-next:hover{background:#8e2f17;}
+  .nav-prev.disabled,.nav-next.disabled{background:#d9ccb8; color:#a09070; cursor:default; pointer-events:none;}
+  .nav-home{background:var(--ok-soft); color:#1f4d43; border:1px solid #bcd9d0;}
+  .nav-home:hover{background:#c8e8e0;}
+  .nav-top{background:var(--accent-soft); color:var(--accent); border:1px solid #e0c0b0; font-size:14px; padding:4px 9px;}
+  .nav-top:hover{background:#e8c8bc;}
+  /* ── kanji hover tooltip ── */
+  .ktip{
+    position:relative; cursor:help;
+    border-bottom:1px dotted var(--accent);
+  }
+  .ktip::after{
+    content:attr(data-h);
+    position:absolute; bottom:calc(100% + 4px); left:50%; transform:translateX(-50%);
+    background:var(--ink); color:#fff;
+    font-family:"Noto Sans JP",sans-serif; font-size:11px; font-weight:400;
+    padding:2px 7px; border-radius:5px; white-space:nowrap;
+    pointer-events:none; opacity:0; transition:opacity .15s; z-index:200;
+  }
+  .ktip:hover::after{ opacity:1; }</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">שבוע 13 מתוך 20 · <span class="jp" dir="ltr">JLPT N5</span> · חלק ד'</div>
+  <h1>רצונות: <span class="jp">たい</span> ו-<span class="jp">ほしい</span></h1>
+  <p class="sub">"רוצה ל..." ו"רוצה [דבר]"</p>
+  <div class="nav-links">
+    <span>← שבוע 12: רשות ואיסור</span>
+    <span>שבוע 14: חיבור רעיונות ←</span>
+  </div>
+</header>
+
+<div class="lead">
+  <h2>מה נלמד השבוע</h2>
+  <ol>
+    <li><span class="jp">〜たい</span> — "רוצה ל[פעולה]" — רצון לעשות משהו.</li>
+    <li><span class="jp">〜がほしい</span> — "רוצה [דבר]" — רצון לקבל חפץ.</li>
+    <li>שילוב רצונות עם סיבות, שאלות, ושלילה.</li>
+  </ol>
+  <p style="margin:10px 0 0;font-size:15px;color:var(--muted)">זהו השבוע שבו פותחים את חלק ד' — תוכן שמעניק לך יותר עומק ביטוי: לא רק לתאר עובדות, אלא גם רצונות ומשאלות.</p>
+</div>
+
+<!-- ===== PREVIEW VOCAB TABLE (NEW) ===== -->
+<h2 class="section" style="margin-top:30px">📋 כל אוצר המילים של השבוע — מבט מקדים</h2>
+<p style="margin-top:-2px;color:var(--muted)">טבלה זו אוספת את כל המילים החדשות שתפגוש השבוע — גם אלה שבטבלת הסיכום בהמשך, וגם אלה שמופיעות רק בתוך ההסברים והדוגמאות. עברית ואנגלית.</p>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th><th>English</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">たい</td><td class="jp">たい</td><td>רוצה ל... (פעולה) — תואר-い</td><td>want to (do) — い-adj</td></tr>
+    <tr><td class="jp">ほしい</td><td class="jp">ほしい</td><td>רוצה (חפץ) — תואר-い</td><td>want (a thing) — い-adj</td></tr>
+    <tr><td class="jp">時間</td><td class="jp">じかん</td><td>זמן</td><td>time</td></tr>
+    <tr><td class="jp">お金</td><td class="jp">おかね</td><td>כסף</td><td>money</td></tr>
+    <tr><td class="jp">誕生日</td><td class="jp">たんじょうび</td><td>יום הולדת</td><td>birthday</td></tr>
+    <tr><td class="jp">プレゼント</td><td class="jp">ぷれぜんと</td><td>מתנה</td><td>present / gift</td></tr>
+    <tr><td class="jp">何か</td><td class="jp">なにか</td><td>משהו</td><td>something</td></tr>
+    <tr><td class="jp">誰か</td><td class="jp">だれか</td><td>מישהו</td><td>someone</td></tr>
+    <tr><td class="jp">どこか</td><td class="jp">どこか</td><td>איפשהו</td><td>somewhere</td></tr>
+    <tr><td class="jp">どんな</td><td class="jp">どんな</td><td>איזה סוג של</td><td>what kind of</td></tr>
+    <tr><td class="jp">忙しい</td><td class="jp">いそがしい</td><td>עסוק</td><td>busy</td></tr>
+    <tr><td class="jp">ので</td><td class="jp">ので</td><td>כי / מכיוון ש (רך)</td><td>because (soft)</td></tr>
+    <tr><td class="jp">日本</td><td class="jp">にほん</td><td>יפן</td><td>Japan</td></tr>
+    <tr><td class="jp">寿司</td><td class="jp">すし</td><td>סושי</td><td>sushi</td></tr>
+    <tr><td class="jp">ラーメン</td><td class="jp">らーめん</td><td>ראמן</td><td>ramen</td></tr>
+    <tr><td class="jp">買う</td><td class="jp">かう</td><td>לקנות</td><td>to buy</td></tr>
+    <tr><td class="jp">たがる</td><td class="jp">たがる</td><td>רוצה (גוף שלישי, תזכורת)</td><td>want to (third person)</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab-preview">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 מבחן מקדים — כל אוצר המילים של השבוע</div>
+</div>
+
+<!-- ========== TOPIC 1: たい ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 1</span>
+  <h2><span class="jp">〜たい</span> — "רוצה ל..."</h2>
+
+  <p><span class="jp">たい</span> מתחבר ל<strong>גזע ます</strong> (הצורה שלמדנו בשבוע 6, לפני שמוסיפים ます) ומבטא רצון לבצע פעולה. החידוש: <span class="jp">たい</span> עצמו מתנהג כשם תואר ב-<span class="jp">い</span> — בדיוק כמו <span class="jp">ない</span> שלמדנו!</p>
+
+  <div class="formula"><strong>[גזע ます] <span class="jp">たい</span></strong> = "רוצה ל[פעולה]"</div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">水を飲み<b>たい</b>です。</span> <span class="r">（みずをのみたいです）</span></div>
+      <div class="ex-he">רוצה לשתות מים.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">日本へ行き<b>たい</b>です。</span> <span class="r">（にほんへいきたいです）</span></div>
+      <div class="ex-he">רוצה ללכת ליפן.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">寿司を食べ<b>たい</b>です。</span> <span class="r">（すしをたべたいです）</span></div>
+      <div class="ex-he">רוצה לאכול סושי.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">何を見<b>たい</b>ですか。</span> <span class="r">（なにをみたいですか）</span></div>
+      <div class="ex-he">מה אתה רוצה לראות?</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">הטיה — כתואר-い</h3>
+  <div class="conj-grid">
+    <div class="conj-cell">
+      <div class="label">הווה חיובי</div>
+      <div class="jp-form">行きたいです</div>
+      <div class="he-form">רוצה ללכת</div>
+    </div>
+    <div class="conj-cell">
+      <div class="label">הווה שלילי ← い→くない</div>
+      <div class="jp-form">行きたくないです</div>
+      <div class="he-form">לא רוצה ללכת</div>
+    </div>
+    <div class="conj-cell">
+      <div class="label">עבר חיובי ← い→かった</div>
+      <div class="jp-form">行きたかったです</div>
+      <div class="he-form">רציתי ללכת</div>
+    </div>
+    <div class="conj-cell">
+      <div class="label">עבר שלילי ← い→くなかった</div>
+      <div class="jp-form">行きたくなかったです</div>
+      <div class="he-form">לא רציתי ללכת</div>
+    </div>
+  </div>
+
+  <div class="warn"><b>שים לב — חלקיק המושא עם たい:</b> ניתן להשתמש גם ב-<span class="jp">が</span> וגם ב-<span class="jp">を</span> עם たい: <span class="jp">水が飲みたい</span> או <span class="jp">水を飲みたい</span> — שניהם נכונים! <span class="jp">が</span> מדגיש את הרצון לדבר הספציפי יותר.</div>
+
+  <div class="qbox check" data-answer="2" data-explain="גזע ます + たい. 飲みます → 飲みたいです.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "רוצה לשתות קפה"? (<span class="jp">コーヒー</span>)</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">コーヒーを飲みます。</span></button>
+      <button class="opt"><span class="jp">コーヒーを飲んでください。</span></button>
+      <button class="opt"><span class="jp">コーヒーを飲みたいです。</span></button>
+      <button class="opt"><span class="jp">コーヒーを飲みましょう。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="たい כתואר-い: שלילה = い→くない. 行きたい → 行きたくない.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה השלילה של <span class="jp">行きたいです</span>?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">行きたくないです</span></button>
+      <button class="opt"><span class="jp">行きませんです</span></button>
+      <button class="opt"><span class="jp">行きたいじゃないです</span></button>
+      <button class="opt"><span class="jp">行きないたいです</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — たい</div>
+
+    <h4>למה たい מתנהג כתואר-い ולא כסיומת פועל</h4>
+    <p>היסטורית, <span class="jp">たい</span> אינו "חלק" מהפועל אלא <strong>תוסף</strong> שעצמו מהווה תואר עצמאי — בדיוק כמו <span class="jp">ない</span> שלמדת בשבוע 9. זו הסיבה שכל ההטיה שלו (שלילה, עבר) פועלת לפי כללי תואר-<span class="jp">い</span> שלמדת בשבוע 3, ולא לפי כללי הטיית פעלים. ברגע שתפנים את העיקרון "תוסף-תואר על גבי הפועל", ההטיה הופכת אינטואיטיבית.</p>
+
+    <h4>が מול を עם たい — מה ההבדל הסמנטי המדויק</h4>
+    <p>ה-<span class="jp">が</span> עם <span class="jp">たい</span> מקשר לעיקרון שלמדת בשבוע 5 (好き/嫌い וכו') — כשמתארים <em>רצון/תכונה</em>, ולא פעולה ישירה, נוטים ל-が. <span class="jp">水が飲みたい</span> מדגיש מעט יותר "המים הם מה שאני רוצה" (זרקור על המים), בעוד <span class="jp">水を飲みたい</span> מתאר את הפעולה כולה ("לשתות מים") בנימה כללית יותר. בפועל, שניהם נפוצים ומשמשים לסירוגין.</p>
+
+    <h4>たがる — צורה נוספת ל"רוצה" עבור גוף שלישי (מבט קדימה)</h4>
+    <p>ב-N5 בעיקר נשתמש ב-<span class="jp">たい</span> כדי לתאר את רצון <em>הדובר עצמו</em> (גוף ראשון). כשרוצים לתאר רצון של מישהו אחר (גוף שלישי), יפנית "טבעית" נוטה להשתמש בצורה <span class="jp">たがる</span> (לא בתוכן N5 הרשמי): <span class="jp">田中さんは行きたがっています</span> ("טנקה רוצה ללכת" — נצפה מבחוץ). ב-N5 לרוב ניתן להסתפק ב-たい גם לגוף שלישי, אבל שווה לדעת שקיים הבדל גוון.</p>
+
+    <h4>たい מול ほしい — תזכורת מוקדמת לנושא הבא</h4>
+    <p>שים לב להבדל מבני שתפגוש בנושא הבא: <span class="jp">たい</span> מתחבר ל<em>פועל</em> (גזע ます) ומבטא רצון לבצע פעולה. <span class="jp">ほしい</span>, לעומת זאת, מתחבר ל<em>שם עצם</em> ומבטא רצון לקבל חפץ. שניהם תוארי-い ומתנהגים אותו דבר בהטיה, אבל הם משמשים בהקשרים שונים לחלוטין.</p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"רציתי לראות את הסרט הזה, אבל לא ראיתי."</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">この映画を見たかったですが、見ませんでした。</span><br>
+      <span style="color:var(--muted);font-size:14px">（このえいがをみたかったですが、みませんでした）</span><br>
+      <span style="font-size:14px">見たかった = עבר חיובי של たい.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 2: ほしい ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 2</span>
+  <h2><span class="jp">〜がほしい</span> — "רוצה [דבר]"</h2>
+
+  <p><span class="jp">ほしい</span> הוא תואר-<span class="jp">い</span> שמבטא רצון לקבל <strong>חפץ/דבר</strong> (לא פעולה). מתחבר ישירות לשם עצם עם <span class="jp">が</span> — בדיוק כמו <span class="jp">好き</span> ו-<span class="jp">嫌い</span> משבוע 5.</p>
+
+  <div class="formula"><strong>[נושא] <span class="jp">は</span> [דבר] <span class="jp">が</span> <span class="jp">ほしいです</span>。</strong></div>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">新しい車<b>が</b>ほしいです。</span> <span class="r">（あたらしいくるまがほしいです）</span></div>
+      <div class="ex-he">רוצה מכונית חדשה.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">何<b>が</b>ほしいですか。</span> <span class="r">（なにがほしいですか）</span></div>
+      <div class="ex-he">מה אתה רוצה?</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">時間<b>が</b>ほしいです。</span> <span class="r">（じかんがほしいです）</span></div>
+      <div class="ex-he">רוצה (יותר) זמן.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">お金は<b>ほしくない</b>です。</span> <span class="r">（おかねはほしくないです）</span></div>
+      <div class="ex-he">לא רוצה כסף.</div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <div class="compare-head"><div>たい — פעולה</div><div>ほしい — חפץ</div></div>
+    <div class="compare-row"><div class="jp-cell">水を飲みたいです。</div><div class="jp-cell">水がほしいです。</div></div>
+    <div class="compare-row"><div>רוצה <em>לשתות</em> מים (פעולה)</div><div>רוצה (לקבל) מים (חפץ)</div></div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dialogue-title">💬 שיחה — מתכננים מתנת יום-הולדת</div>
+    <div class="d-row"><div class="d-who">A:</div><div><div class="d-jp">誕生日に何がほしいですか。</div><div class="d-he">מה אתה רוצה ליום-הולדת?</div></div></div>
+    <div class="d-row"><div class="d-who">B:</div><div><div class="d-jp">新しい本がほしいです。日本語を勉強したいので。</div><div class="d-he">רוצה ספר חדש. כי אני רוצה ללמוד יפנית.</div></div></div>
+    <div class="d-row"><div class="d-who">A:</div><div><div class="d-jp">いいですね！どんな本がほしいですか。</div><div class="d-he">נחמד! איזה ספר אתה רוצה?</div></div></div>
+  </div>
+
+  <div class="qbox check" data-answer="1" data-explain="חפץ + ほしい. תמיד עם が, כמו 好き. 車がほしいです.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "רוצה מכונית חדשה"?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">新しい車を買いたいです。</span></button>
+      <button class="opt"><span class="jp">新しい車がほしいです。</span></button>
+      <button class="opt"><span class="jp">新しい車をほしいです。</span></button>
+      <button class="opt"><span class="jp">新しい車はほしいたいです。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="ほしい כתואר-い: שלילה = い→くない. ほしい → ほしくない.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">מה השלילה של <span class="jp">ほしいです</span>?</p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">ほしくないです</span></button>
+      <button class="opt"><span class="jp">ほしいじゃないです</span></button>
+      <button class="opt"><span class="jp">ほしませんです</span></button>
+      <button class="opt"><span class="jp">ほしいくないです</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — ほしい</div>
+
+    <h4>הקשר ל-好き/嫌い/上手/下手 (שבוע 5) — אותה משפחת תוארי-תחושה</h4>
+    <p><span class="jp">ほしい</span> משתייך לאותה משפחה לוגית שראית בשבוע 5 — תוארי-תחושה שמתארים יחס נפשי כלפי דבר-מה, לא פעולה. ההבדל: <span class="jp">好き/嫌い/上手/下手</span> הם תוארי-<span class="jp">な</span>, בעוד <span class="jp">ほしい</span> הוא תואר-<span class="jp">い</span> — אבל שניהם דורשים <span class="jp">が</span> למה שמתייחסים אליו, ושניהם מתארים מצב נפשי/יחס, לא פעולה ישירה.</p>
+
+    <h4>ほしい רק לדובר עצמו — כלל חברתי-לשוני</h4>
+    <p>נקודה חשובה: <span class="jp">ほしい</span> (כמו <span class="jp">たい</span>) משמש בעיקר לתיאור הרצון <em>של הדובר עצמו</em>. לתאר רצון של מישהו אחר ("הוא רוצה X") נדרשת צורה אחרת (<span class="jp">ほしがっている</span>, לא בתוכן N5). זו תופעה כללית ביפנית: ביטויי-רצון/תחושה ישירים שמורים בעיקר לדובר עצמו, כי אי אפשר "לדעת בוודאות" מה מישהו אחר מרגיש — צורך לשוני בסימון מקור הידע (evidentiality).</p>
+
+    <h4>למה ほしくない ולא ほしいくない</h4>
+    <p>זה אותו כלל הטיית-תואר-<span class="jp">い</span> שראית כבר פעמים רבות: הסר <span class="jp">い</span>, הוסף <span class="jp">くない</span>. <span class="jp">ほしい→ほし+くない=ほしくない</span>. הקפדה על הכלל הזה (במקום לזכור כל מילה בנפרד) חוסכת המון בלבול — ברגע שמילה כלשהי מזוהה כתואר-<span class="jp">い</span>, אותם 4 כללי הטיה (הווה/שלילה/עבר/עבר-שלילי) חלים עליה ללא יוצא מהכלל.</p>
+
+    <h4>誕生日に — שילוב עם זמן מדויק (תזכורת משבוע 7)</h4>
+    <p>בדיאלוג ראית <span class="jp">誕生日に何がほしいですか</span> ("מה אתה רוצה ליום-הולדת?") — שילוב של <span class="jp">に</span> לזמן מדויק (יום-הולדת הוא תאריך מסוים, שבוע 7) עם שאלת רצון. שים לב שזה לא "ל-יום הולדת" כיעד תנועה, אלא "ב-זמן יום ההולדת" — הקשר זמני, לא מקום.</p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"מה אתה רוצה לאכול? — רוצה ראמן."</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">何が食べたいですか。 — ラーメンが食べたいです。</span><br>
+      <span style="color:var(--muted);font-size:14px">（なにがたべたいですか。 — らーめんがたべたいです）</span><br>
+      <span style="font-size:14px">שים לב: זו פעולה (לאכול), אז たい, לא ほしい!</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOPIC 3: COMBINING DESIRES ========== -->
+<div class="topic">
+  <span class="topic-tag">נושא 3</span>
+  <h2>שילוב רצונות עם סיבות ושאלות</h2>
+
+  <p>נראה איך לחבר <span class="jp">たい</span> ו-<span class="jp">ほしい</span> עם <span class="jp">から/ので</span> (סיבה) ו-<span class="jp">が</span> (אבל) כדי לבנות משפטים עשירים יותר.</p>
+
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">日本語が好きだ<b>から</b>、日本へ行きたいです。</span></div>
+      <div class="ex-he">כי אני אוהב יפנית, רוצה לנסוע ליפן.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">時間がほしいです<b>が</b>、忙しいです。</span></div>
+      <div class="ex-he">רוצה זמן, אבל אני עסוק.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">お腹が空いた<b>ので</b>、何か食べたいです。</span> <span class="r">（おなかがすいたので、なにかたべたいです）</span></div>
+      <div class="ex-he">כי אני רעב, רוצה לאכול משהו.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">何か — "משהו"</h3>
+  <p>שים לב למילה <span class="jp">何か</span> ("משהו") — מבנה דומה ל-<span class="jp">誰か</span> ("מישהו") ו-<span class="jp">どこか</span> ("איפשהו"). ה-<span class="jp">か</span> הופך מילת-שאלה ל"לא-מוגדר":</p>
+  <div class="ex">
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">何か食べたいです。</span></div>
+      <div class="ex-he">רוצה לאכול משהו.</div>
+    </div>
+    <div class="ex-row">
+      <div class="ex-jp"><span class="jp">誰かに会いたいです。</span> <span class="r">（だれかにあいたいです）</span></div>
+      <div class="ex-he">רוצה להיפגש עם מישהו.</div>
+    </div>
+  </div>
+
+  <div class="qbox check" data-answer="0" data-explain="から (כי) + たい/ほしい. הסיבה לפני, הרצון אחרי.">
+    <div class="htag">שאלת תרגול</div>
+    <p class="q-text">איך אומרים "כי אני עייף, רוצה לישון"?<br><span style="font-size:14px;color:var(--muted)">(לישון = <span class="jp">寝る</span>)</span></p>
+    <div class="q-options">
+      <button class="opt"><span class="jp">疲れたから、寝たいです。</span></button>
+      <button class="opt"><span class="jp">寝たいから、疲れました。</span></button>
+      <button class="opt"><span class="jp">疲れたが、寝たいです。</span></button>
+      <button class="opt"><span class="jp">疲れますから、寝ます。</span></button>
+    </div>
+    <p class="fb"></p>
+  </div>
+
+  <div class="deepen">
+    <div class="deepen-head">העמקה — שילוב מבנים</div>
+
+    <h4>から מול ので עם רצונות — איזה נשמע יותר טבעי</h4>
+    <p>שני המבנים תקינים אחרי רצון, אבל יש הבדל גוון עדין שראית בשבוע 8: <span class="jp">から</span> מציג סיבה כהחלטה/קביעה אקטיבית, <span class="jp">ので</span> מציג אותה כנסיבה טבעית. במשפטי-רצון, <span class="jp">ので</span> נשמע לרוב טבעי ורך יותר (כמו בדיאלוג: "<span class="jp">日本語を勉強したいので</span>" — "כי אני רוצה ללמוד יפנית" — נשמע כהסבר נעים, לא כהצדקה תקיפה).</p>
+
+    <h4>何か / 誰か / どこか — משפחת ה"בלתי-מוגדרים" המלאה</h4>
+    <p>ה-<span class="jp">か</span> שמצורף למילות שאלה (<span class="jp">何・誰・どこ・いつ</span>) יוצר סדרה שלמה של ביטויי "לא-מוגדר": <span class="jp">何か</span> (משהו), <span class="jp">誰か</span> (מישהו), <span class="jp">どこか</span> (איפשהו), <span class="jp">いつか</span> (מתישהו). זה דפוס שיטתי שיחול שוב ושוב — ברגע שמכירים את העיקרון (מילת-שאלה + か = בלתי-מוגדר), אפשר ליישם אותו על כל מילות השאלה.</p>
+
+    <h4>הניגוד בין מילת-שאלה+か לבין מילת-שאלה+も (שבוע 4)</h4>
+    <p>שים לב להבדל בין <span class="jp">か</span> (בלתי-מוגדר חיובי, "משהו") לבין <span class="jp">も</span> + שלילה (כמת שלילי, "כלום", שלמדת בשבוע 4 ו-6): <span class="jp">何か食べたい</span> ("רוצה לאכול משהו") מול <span class="jp">何も食べたくない</span> ("לא רוצה לאכול כלום"). שתי המילים <span class="jp">何か</span> ו-<span class="jp">何も</span> שונות לחלוטין בתפקיד — אחת חיובית-לא-מוגדרת, השנייה שלילית-מוחלטת.</p>
+
+    <h4>מבט קדימה — איך הקורס מתקדם מ"מצבים" ל"רצונות ובחירות"</h4>
+    <p>שים לב למעבר ההדרגתי בקורס: חלקים א'-ב' עסקו בתיאור עובדות ופעולות (יש, עשיתי, אוכל). חלק ג' הוסיף את הצורה הרגילה ואת המבנים העמוקים יותר (אני חושב ש, צורת て). חלק ד' (כאן) מוסיף שכבה רגשית-רצונית: מה <em>רוצים</em>, מה <em>מותר/אסור</em>. כל חלק מוסיף יכולת ביטוי עמוקה יותר — מתיאור עולם לתיאור פנימיות.</p>
+  </div>
+
+  <div class="reveal">
+    <p class="q-text">תרגם: <strong>"כי רוצה ללמוד יפנית, אני רוצה ספר חדש."</strong></p>
+    <button class="reveal-btn">הצג תשובה</button>
+    <div class="reveal-ans">
+      <span class="jp">日本語を勉強したいので、新しい本がほしいです。</span><br>
+      <span style="color:var(--muted);font-size:14px">（にほんごをべんきょうしたいので、あたらしいほんがほしいです）</span><br>
+      <span style="font-size:14px">שילוב: たい (רצון לפעולה) + ので (סיבה) + ほしい (רצון לחפץ).</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== VOCAB TABLE ===== -->
+<h2 class="section">אוצר מילים — שבוע 13</h2>
+<table>
+  <thead><tr><th>יפנית</th><th>קריאה</th><th>עברית</th></tr></thead>
+  <tbody>
+    <tr><td class="jp">ほしい</td><td class="jp">ほしい</td><td>רוצה (חפץ) — תואר-い</td></tr>
+    <tr><td class="jp">時間</td><td class="jp">じかん</td><td>זמן</td></tr>
+    <tr><td class="jp">お金</td><td class="jp">おかね</td><td>כסף</td></tr>
+    <tr><td class="jp">誕生日</td><td class="jp">たんじょうび</td><td>יום הולדת</td></tr>
+    <tr><td class="jp">プレゼント</td><td class="jp">ぷれぜんと</td><td>מתנה</td></tr>
+    <tr><td class="jp">何か</td><td class="jp">なにか</td><td>משהו</td></tr>
+    <tr><td class="jp">誰か</td><td class="jp">だれか</td><td>מישהו</td></tr>
+    <tr><td class="jp">どこか</td><td class="jp">どこか</td><td>איפשהו</td></tr>
+    <tr><td class="jp">どんな</td><td class="jp">どんな</td><td>איזה סוג של</td></tr>
+    <tr><td class="jp">忙しい</td><td class="jp">いそがしい</td><td>עסוק</td></tr>
+    <tr><td class="jp">ので</td><td class="jp">ので</td><td>כי / מכיוון ש (רך)</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-vocab">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 תיבת בחינה — אוצר מילים</div>
+</div>
+
+<!-- ===== KANJI TABLE ===== -->
+<h2 class="section k">קאנג'י — שבוע 13 (זמן ורצון)</h2>
+<table>
+  <thead><tr><th>קאנג'י</th><th>קריאה</th><th>משמעות</th><th>דוגמה</th></tr></thead>
+  <tbody>
+    <tr><td class="jp big">誕</td><td class="jp">たん</td><td>לידה</td><td class="jp">誕生日（たんじょうび）= יום הולדת</td></tr>
+    <tr><td class="jp big">生</td><td class="jp">せい / う</td><td>חיים / לידה</td><td class="jp">誕生（たんじょう）= לידה</td></tr>
+    <tr><td class="jp big">金</td><td class="jp">きん / かね</td><td>כסף / זהב</td><td class="jp">お金（おかね）= כסף</td></tr>
+    <tr><td class="jp big">忙</td><td class="jp">いそが / ぼう</td><td>עסוק</td><td class="jp">忙しい（いそがしい）</td></tr>
+    <tr><td class="jp big">空</td><td class="jp">あ / そら / くう</td><td>ריק / שמיים</td><td class="jp">お腹が空く（おなかがあく）= להיות רעב</td></tr>
+  </tbody>
+</table>
+<div class="quiz-widget" id="quiz-kanji">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🔢 תיבת בחינה — קאנג'י</div>
+</div>
+
+<!-- ===== FINAL QUIZ ===== -->
+<h2 class="section">מבחן סיכום — שבוע 13</h2>
+<p style="margin-top:-2px;color:var(--muted)">שאלות מעורבות: דקדוק, אוצר מילים, קאנג'י + חזרה.</p>
+<div class="quiz-widget" id="quiz-final">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">🎓 מבחן סיכום</div>
+</div>
+
+<!-- ===== BONUS DRILL ===== -->
+<h2 class="section" style="background:linear-gradient(100deg,#4b6a8f,#2e4d6b)">🧩 תרגול מעמיק — שבוע 13</h2>
+<p style="margin-top:-2px;color:var(--muted)">13 שאלות: たい מול ほしい, הטיות, ושילוב עם סיבות.</p>
+<div class="quiz-widget" id="quiz-bonus">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:#4b6a8f;margin-bottom:8px">🧩 תרגול מעמיק</div>
+</div>
+
+<div class="done-banner">
+  <h2>סיימת את שבוע 13! <span class="jp">よくできました</span> 🎉</h2>
+  <p>
+    יש לך עכשיו דרכים מלאות לבטא רצון לפעולה (<span class="jp">たい</span>) ולחפץ (<span class="jp">ほしい</span>).<br><br>
+    שבוע 14: חיבור רעיונות — <span class="jp">くて／で</span>, ו-<span class="jp">もう／まだ</span>.
+  </p>
+</div>
+
+<p class="footer-note"><span class="jp" dir="ltr">日本語 N5</span> · שבוע 13 מתוך 20 · <span class="jp" dir="ltr">頑張って！</span></p>
+</div>
+
+<script>
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+document.querySelectorAll('.check').forEach(q=>{
+  const ans=+q.dataset.answer,fb=q.querySelector('.fb'),opts=q.querySelectorAll('.opt');
+  opts.forEach((btn,i)=>{
+    btn.addEventListener('click',()=>{
+      if(q.classList.contains('done'))return; q.classList.add('done');
+      opts.forEach((b,j)=>{b.disabled=true;if(j===ans)b.classList.add('correct');else if(j===i)b.classList.add('wrong');});
+      const ok=i===ans;
+      fb.textContent=(ok?'✓ נכון! ':'✗ לא מדויק. ')+(q.dataset.explain||'');
+      fb.className='fb '+(ok?'fb-ok':'fb-no');
+    });
+  });
+});
+document.querySelectorAll('.reveal-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const a=b.nextElementSibling,show=a.style.display!=='block';
+    a.style.display=show?'block':'none';b.textContent=show?'הסתר תשובה':'הצג תשובה';
+  });
+});
+
+/* ── kanji reading tooltips ── */
+const KR={
+  '日':'にち','月':'つき','火':'ひ','水':'みず','木':'き','金':'きん','土':'ど',
+  '山':'やま','川':'かわ','田':'た','人':'ひと','口':'くち','手':'て','目':'め',
+  '耳':'みみ','足':'あし','車':'くるま','花':'はな','雨':'あめ','空':'そら',
+  '学':'がく','校':'こう','先':'せん','生':'せい','男':'おとこ','女':'おんな',
+  '子':'こ','小':'しょう','大':'だい','中':'ちゅう','上':'うえ','下':'した',
+  '右':'みぎ','左':'ひだり','本':'ほん','母':'はは','父':'ちち','年':'ねん',
+  '今':'いま','何':'なに','時':'じ','分':'ふん','半':'はん','前':'まえ',
+  '後':'ご','間':'あいだ','外':'そと','内':'うち','東':'ひがし','西':'にし',
+  '南':'みなみ','北':'きた','国':'くに','語':'ご','英':'えい',
+  '私':'わたし','友':'とも','名':'な','気':'き','天':'てん',
+  '電':'でん','話':'はなし','見':'み','来':'き','行':'い','食':'た','飲':'の',
+  '読':'よ','書':'か','聞':'き','言':'い','買':'か','帰':'かえ','起':'お',
+  '寝':'ね','着':'き','出':'で','入':'い','開':'あ','閉':'し','乗':'の',
+  '降':'お','使':'つか','教':'おし','習':'なら','始':'はじ','終':'お',
+  '会':'あ','待':'ま','持':'も','作':'つく','思':'おも','知':'し',
+  '住':'す','働':'はたら','遊':'あそ','泳':'およ','走':'はし','歩':'ある',
+  '立':'た','座':'すわ','休':'やす','止':'と',
+  '病':'びょう','院':'いん','店':'みせ','駅':'えき','道':'みち',
+  '公':'こう','園':'えん','図':'と','館':'かん',
+  '百':'ひゃく','千':'せん','万':'まん','円':'えん',
+  '一':'いち','二':'に','三':'さん','四':'し','五':'ご',
+  '六':'ろく','七':'なな','八':'はち','九':'きゅう','十':'じゅう',
+  '高':'たか','安':'やす','新':'あたら','古':'ふる','長':'なが',
+  '短':'みじか','広':'ひろ','多':'おお','少':'すく',
+  '早':'はや','速':'はや','遅':'おそ','強':'つよ','弱':'よわ',
+  '好':'す','楽':'たの','難':'むずか',
+  '暑':'あつ','寒':'さむ','暖':'あたた','涼':'すず',
+  '白':'しろ','黒':'くろ','赤':'あか','青':'あお',
+  '魚':'さかな','肉':'にく','野':'や','菜':'さい',
+  '卵':'たまご','牛':'ぎゅう','豚':'ぶた','猫':'ねこ','犬':'いぬ','鳥':'とり',
+  '家':'いえ','部':'へ','屋':'や','門':'もん','窓':'まど','机':'つくえ',
+  '春':'はる','夏':'なつ','秋':'あき','冬':'ふゆ',
+  '朝':'あさ','昼':'ひる','夜':'よる','週':'しゅう','曜':'よう',
+  '近':'ちか','遠':'とお','太':'ふと','細':'ほそ',
+  '明':'あか','暗':'くら','静':'しず','重':'おも','軽':'かる',
+  '辛':'から','甘':'あま','苦':'にが',
+  '町':'まち','村':'むら','市':'し','県':'けん',
+  '海':'うみ','池':'いけ','島':'しま','森':'もり',
+  '毎':'まい','午':'ご','自':'じ','転':'てん',
+  '映':'えい','画':'が','音':'おん','料':'りょう','理':'り',
+  '洗':'あら','顔':'かお','宿':'やど','題':'だい',
+  '北':'きた','駅':'えき','橋':'はし','港':'こう',
+};
+function tipify(el){
+  el.querySelectorAll('.jp').forEach(function(span){
+    if(span.querySelector('.ktip'))return;
+    span.innerHTML=span.innerHTML.replace(/[一-鿿]/g,function(ch){
+      return KR[ch]?('<span class="ktip" data-h="'+KR[ch]+'">'+ch+'</span>'):ch;
+    });
+  });
+}
+function tipifyAll(){
+  document.querySelectorAll('.jp').forEach(function(span){
+    if(span.querySelector('.ktip'))return;
+    span.innerHTML=span.innerHTML.replace(/[一-鿿]/g,function(ch){
+      return KR[ch]?('<span class="ktip" data-h="'+KR[ch]+'">'+ch+'</span>'):ch;
+    });
+  });
+}function makeQuiz(rootId,data){
+  const root=document.getElementById(rootId);
+  const head=root.querySelector('.htag');
+  let order,idx,score,locked;
+  function start(){order=shuffle([...data.keys()]);idx=0;score=0;locked=false;render();}
+  function render(){
+    [...root.children].forEach(c=>{if(c!==head)c.remove();});
+    if(idx>=order.length)return result();
+    const item=data[order[idx]];
+    const opts=shuffle(item.options.map((t,i)=>({t,correct:i===item.answer})));
+    const box=document.createElement('div');
+    box.innerHTML=`
+      <div class="q-progress"><span>שאלה ${idx+1} מתוך ${order.length}</span><span>ניקוד: ${score}</span></div>
+      <div class="q-bar"><span style="width:${idx/order.length*100}%"></span></div>
+      <p class="q-text">${item.q}</p>
+      <div class="q-options"></div>
+      <p class="fb"></p>
+      <button class="next-btn" style="display:none;margin-top:12px">הבא ←</button>`;
+    root.appendChild(box);
+    const wrap=box.querySelector('.q-options'),fb=box.querySelector('.fb'),next=box.querySelector('.next-btn');
+    opts.forEach(o=>{
+      const btn=document.createElement('button');btn.className='opt';btn.innerHTML=o.t;tipify(btn);
+      btn.addEventListener('click',()=>{
+        if(locked)return;locked=true;
+        wrap.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        if(o.correct){btn.classList.add('correct');score++;fb.textContent='✓ נכון!';fb.className='fb fb-ok';}
+        else{btn.classList.add('wrong');fb.textContent='✗ לא מדויק'+(item.note?(' — '+item.note):'');fb.className='fb fb-no';
+          [...wrap.children].forEach((c,k)=>{if(opts[k].correct)c.classList.add('correct');});}
+        next.style.display='inline-block';
+      });
+      wrap.appendChild(btn);
+    });
+    next.addEventListener('click',()=>{idx++;locked=false;render();});
+  }
+  function result(){
+    const pct=Math.round(score/data.length*100);
+    const msg=pct>=80?'מצוין! אתה שולט בחומר 🎉':pct>=60?'יפה! עוד קצת חזרה ותהיה מצוין.':'כדאי לחזור על החומר ולנסות שוב.';
+    const box=document.createElement('div');box.className='q-result';
+    box.innerHTML=`<div class="score-big">${score} / ${data.length}</div><p>${msg}</p><button class="next-btn">התחל מחדש 🔁</button>`;
+    root.appendChild(box);
+    box.querySelector('.next-btn').addEventListener('click',start);
+  }
+  start();
+}
+const J=s=>`<span class="jp">${s}</span>`;
+
+makeQuiz('quiz-vocab-preview',[
+  {q:'מה הפירוש של '+J('たい')+'?',options:['רוצה ל... (פעולה)','רוצה (חפץ)','אוהב','שונא'],answer:0},
+  {q:'מה הפירוש של '+J('ほしい')+'?',options:['רוצה (חפץ)','רוצה (פעולה)','אוהב','שונא'],answer:0},
+  {q:'מה הפירוש של '+J('時間')+'?',options:['זמן','שעה','דקה','יום'],answer:0},
+  {q:'מה הפירוש של '+J('誕生日')+'?',options:['יום הולדת','חג','מסיבה','חתונה'],answer:0},
+  {q:'מה הפירוש של '+J('プレゼント')+'?',options:['מתנה','כרטיס','עוגה','פרח'],answer:0},
+  {q:'מה הפירוש של '+J('何か')+'?',options:['משהו','כלום','הכל','כל דבר'],answer:0},
+  {q:'מה הפירוש של '+J('誰か')+'?',options:['מישהו','אף אחד','כולם','איש'],answer:0},
+  {q:'מה הפירוש של '+J('どんな')+'?',options:['איזה סוג של','כמה','מתי','איפה'],answer:0},
+  {q:'מה הפירוש של '+J('忙しい')+'?',options:['עסוק','פנוי','עייף','שמח'],answer:0},
+  {q:'מה הפירוש של '+J('ので')+'?',options:['כי (רך)','אבל','או','אם'],answer:0},
+  {q:'מה הפירוש של '+J('たがる')+'?',options:['רוצה (גוף שלישי)','רוצה (גוף ראשון)','לא רוצה','אוהב'],answer:0}
+]);
+
+makeQuiz('quiz-vocab',[
+  {q:'מה הפירוש של '+J('ほしい')+'?',options:['רוצה (חפץ)','רוצה (פעולה)','אוהב','שונא'],answer:0},
+  {q:'מה הפירוש של '+J('時間')+'?',options:['זמן','שעה','דקה','יום'],answer:0},
+  {q:'מה הפירוש של '+J('誕生日')+'?',options:['יום הולדת','חג','מסיבה','חתונה'],answer:0},
+  {q:'מה הפירוש של '+J('プレゼント')+'?',options:['מתנה','כרטיס','עוגה','פרח'],answer:0},
+  {q:'מה הפירוש של '+J('何か')+'?',options:['משהו','כלום','הכל','כל דבר'],answer:0},
+  {q:'מה הפירוש של '+J('誰か')+'?',options:['מישהו','אף אחד','כולם','איש'],answer:0},
+  {q:'מה הפירוש של '+J('どんな')+'?',options:['איזה סוג של','כמה','מתי','איפה'],answer:0},
+  {q:'מה הפירוש של '+J('忙しい')+'?',options:['עסוק','פנוי','עייף','שמח'],answer:0},
+  {q:'מה הפירוש של '+J('ので')+'?',options:['כי (רך)','אבל','או','אם'],answer:0}
+]);
+
+makeQuiz('quiz-kanji',[
+  {q:'מה הפירוש של '+J('<span class="big">誕</span>')+'?',options:['לידה','חיים','מות','שמחה'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">忙</span>')+'?',options:['עסוק','פנוי','עייף','שמח'],answer:0},
+  {q:'מה הפירוש של '+J('<span class="big">空</span>')+'?',options:['ריק / שמיים','מלא','אדמה','מים'],answer:0},
+  {q:'מה הקריאה של '+J('誕生日')+'?',options:[J('たんじょうび'),J('たんせいび'),J('せいじょうび'),J('たんじょうひ')],answer:0,note:'誕生日 = たんじょうび = יום הולדת.'},
+  {q:'מה הקריאה של '+J('お金')+'?',options:[J('おかね'),J('おきん'),J('おがね'),J('かねお')],answer:0,note:'お金 = おかね = כסף.'},
+  {q:'מה הקריאה של '+J('お腹が空く')+'?',options:[J('おなかがあく'),J('おはらがすく'),J('おなかがすく'),J('おなかがくう')],answer:0,note:'お腹が空く = おなかがすく = להיות רעב.'}
+]);
+
+makeQuiz('quiz-final',[
+  {q:'איך אומרים "רוצה לשתות קפה"?',options:[J('コーヒーを飲みたいです。'),J('コーヒーがほしいです。'),J('コーヒーを飲んでください。'),J('コーヒーを飲みましょう。')],answer:0,note:'פעולה (לשתות) = たい.'},
+  {q:'איך אומרים "רוצה מכונית חדשה"?',options:[J('新しい車がほしいです。'),J('新しい車を買いたいです。'),J('新しい車に乗りたいです。'),J('新しい車をほしいです。')],answer:0,note:'חפץ = ほしい + が, לא を.'},
+  {q:'מה השלילה של '+J('行きたいです')+'?',options:[J('行きたくないです'),J('行きませんです'),J('行きたいじゃないです'),J('行かないたいです')],answer:0,note:'たい כתואר-い: い→くない.'},
+  {q:'מה עבר חיובי של '+J('食べたいです')+'?',options:[J('食べたかったです'),J('食べましたです'),J('食べたいでした'),J('食べたいだった')],answer:0,note:'たい כתואר-い: い→かった.'},
+  {q:'מה השלילה של '+J('ほしいです')+'?',options:[J('ほしくないです'),J('ほしませんです'),J('ほしいじゃないです'),J('ほしいくないです')],answer:0,note:'ほしい כתואר-い: い→くない.'},
+  {q:'מה הפירוש של '+J('何か食べたいです')+'?',options:['רוצה לאכול משהו','לא רוצה לאכול כלום','אוכל הכל','רוצה לאכול הכל'],answer:0,note:'何か = משהו (לא何も+שלילה).'},
+  {q:'מה הפירוש של '+J('<span class="big">忙</span>')+'?',options:['עסוק','פנוי','שמח','עייף'],answer:0},
+  {q:'איך אומרים "כי אני עייף, רוצה לישון"?',options:[J('疲れたから、寝たいです。'),J('寝たいから、疲れました。'),J('疲れたが、寝たいです。'),J('疲れますから、寝ます。')],answer:0},
+  {q:'מה ההבדל בין '+J('水を飲みたい')+' ל-'+J('水がほしい')+'?',options:['הראשון = רוצה לשתות (פעולה); השני = רוצה (לקבל) מים (חפץ)','שניהם זהים','הראשון = חפץ; השני = פעולה','אין הבדל'],answer:0},
+  {q:'מה הפירוש של '+J('誕生日に何がほしいですか')+'?',options:['מה אתה רוצה ליום הולדת?','מתי יום ההולדת שלך?','מה עשית ביום ההולדת?','איפה יום ההולדת שלך?'],answer:0}
+]);
+
+makeQuiz('quiz-bonus',[
+  // הבנת משפט
+  {q:'מה הפירוש של '+J('日本語が好きだから、日本へ行きたいです。')+'?',
+   options:['כי אני אוהב יפנית, רוצה לנסוע ליפן','כי נסעתי ליפן, אהבתי יפנית','לא אוהב יפנית אז לא רוצה לנסוע','רוצה ללמוד יפנית ביפן'],answer:0,
+   note:'好きだから = כי אוהב; 行きたい = רוצה ללכת.'},
+  {q:'מה הפירוש של '+J('お腹が空いたので、何か食べたいです。')+'?',
+   options:['כי אני רעב, רוצה לאכול משהו','אכלתי הרבה אז לא רעב','לא רעב אז לא רוצה לאכול','רוצה לאכול הכל כי רעב מאוד'],answer:0,
+   note:'お腹が空いたので = כי נהייתי רעב; 何か食べたい = רוצה לאכול משהו.'},
+  // השלמה
+  {q:'השלם: "רוצה לראות את הסרט הזה." '+J('この映画を見___です。'),
+   options:[J('たい'),J('ほしい'),J('たかった'),J('たくない')],answer:0,
+   note:'פעולה (לראות) = たい.'},
+  {q:'השלם: "רוצה (לקבל) זמן." '+J('時間___ほしいです。'),
+   options:[J('が'),J('を'),J('は'),J('に')],answer:0,
+   note:'ほしい תמיד עם が.'},
+  {q:'השלם: "לא רציתי לאכול." '+J('食べ___なかったです。'),
+   options:[J('た'),J('たい'),J('たく'),J('たかっ')],answer:2,
+   note:'עבר שלילי: たい→たく+なかった (לא たかっ — זה היה שייך לעבר חיובי, לא שלילי).'},
+  // זיהוי שגיאה
+  {q:'מי הנכון — "רוצה מתנה חדשה"?',
+   options:[J('新しいプレゼントがほしいです。'),J('新しいプレゼントをほしいです。'),J('新しいプレゼントを買いたいですをほしい。'),J('新しいプレゼントはほしいたいです。')],answer:0,
+   note:'ほしい תמיד עם が.'},
+  {q:'מי הנכון — "רוצה לקנות מתנה חדשה"?',
+   options:[J('新しいプレゼントを買いたいです。'),J('新しいプレゼントが買いたいです。'),J('新しいプレゼントをほしいたいです。'),J('新しいプレゼントは買いほしいです。')],answer:0,
+   note:'פעולה (לקנות) = たい, עם を (גם が אפשרי, אבל を נפוץ יותר עם פעלי-פעולה ברורים כמו 買う).'},
+  // הבחנה たい מול ほしい
+  {q:'מה ההבדל בין '+J('食べたい')+' ל-'+J('食べ物がほしい')+'?',
+   options:['הראשון = רוצה לאכול (פעולה); השני = רוצה אוכל (חפץ)','שניהם זהים','הראשון = חפץ; השני = פעולה','אין הבדל משמעותי'],answer:0},
+  // משפחת か
+  {q:'מה הפירוש של '+J('誰かに会いたいです。')+'?',
+   options:['רוצה להיפגש עם מישהו','לא רוצה להיפגש עם אף אחד','נפגשתי עם מישהו','כולם רוצים להיפגש'],answer:0,
+   note:'誰か = מישהו; に会いたい = רוצה להיפגש עם.'},
+  {q:'מה ההבדל בין '+J('何か食べたい')+' ל-'+J('何も食べたくない')+'?',
+   options:['הראשון = רוצה לאכול משהו; השני = לא רוצה לאכול כלום','שניהם אומרים אותו דבר','הראשון שלילי; השני חיובי','אין הבדל'],answer:0,
+   note:'何か = בלתי-מוגדר חיובי; 何も+שלילה = כמת שלילי מוחלט.'},
+  // שילוב מלא
+  {q:'תרגם: "כי יש לי יום הולדת מחר, רוצה ספר חדש ורוצה ללכת למסעדה עם חברים."',
+   options:[
+     J('明日誕生日があるので、新しい本がほしいですし、友達とレストランへ行きたいです。'),
+     J('明日誕生日があったから、新しい本を買いますし、友達とレストランへ行きました。'),
+     J('明日誕生日があるので、新しい本を読みたくないし、友達とレストランへ行きません。'),
+     J('明日誕生日があるから、新しい本がほしくないし、友達とレストランへ行きたくないです。')
+   ],answer:0,
+   note:'誕生日があるので = כי יש יום הולדת; がほしい = רוצה (חפץ); と行きたい = רוצה ללכת עם.'},
+  // קאנג'י בהקשר
+  {q:'מה הפירוש של '+J('忙しいので、今は休みたいです。')+'?',
+   options:['כי אני עסוק, רוצה להתנפש כרגע','כי אני פנוי, רוצה לעבוד','עסוק מאוד ולא רוצה לנוח','לא עסוק כרגע'],answer:0,
+   note:'忙しいので = כי עסוק; 休みたい = רוצה לנוח.'},
+  {q:'מה הפירוש של '+J('お金がほしいですが、忙しくて働けません。')+'?',
+   options:['רוצה כסף, אבל עסוק מכדי לעבוד','לא רוצה כסף בכלל','עובד הרבה ומרוויח הרבה','רוצה לעבוד אבל אין כסף'],answer:0,
+   note:'お金がほしいですが = רוצה כסף, אבל; 忙しくて働けません = עסוק מכדי לעבוד (צורת יכולת — לא בתוכן N5, אך מובן בהקשר).'}
+]);
+tipifyAll();
+tipifyAll();
+</script>
+<div class="week-nav">
+  <a href="N5-week12-lesson.html" class="nav-prev ">&#8594; שבוע 12</a>
+  <button class="nav-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8679;</button>
+  <a href="index.html" class="nav-home">&#127968; דף הבית</a>
+  <a href="N5-week14-lesson.html" class="nav-next ">שבוע 14 &#8592;</a>
+</div>
+
+</body>
+</html>

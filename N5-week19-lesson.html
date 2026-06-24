@@ -1,0 +1,418 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שבוע 19 — סימולציית מבחן 1 | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+    --blue:#4b6a8f; --blue-soft:#e3eaf3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre",Georgia,serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px,rgba(120,100,70,.06) 1px,transparent 0);
+    background-size:22px 22px;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 90px;}
+  .jp{font-family:"Noto Sans JP",system-ui,sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+  .big{font-size:1.35em; line-height:1;}
+
+  header.masthead{text-align:center; padding:56px 20px 34px; border-bottom:3px double var(--line); margin-bottom:6px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(28px,5.5vw,40px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:17px;}
+  .nav-links{display:flex; justify-content:space-between; margin:14px 0 0; font-size:14px;}
+  .nav-links span{color:var(--muted); font-family:"Heebo",sans-serif; font-weight:700;}
+
+  .lead{background:var(--card); border:1px solid var(--line); border-right:5px solid var(--accent); border-radius:12px; padding:18px 22px; margin:26px 0;}
+  .lead h2{font-family:"Heebo",sans-serif; font-size:18px; margin:0 0 6px;}
+  .lead ol{margin:6px 0 0; padding-inline-start:1.3em;}
+  .lead li{margin:3px 0;}
+
+  /* exam instructions box */
+  .exam-info{background:linear-gradient(135deg,#fff3ec,#fbe8db); border:2px solid var(--accent); border-radius:14px; padding:20px 24px; margin:24px 0; text-align:center;}
+  .exam-info h3{font-family:"Heebo",sans-serif; font-weight:800; font-size:18px; color:var(--accent); margin-bottom:10px;}
+  .exam-info .ei-row{display:flex; justify-content:space-around; flex-wrap:wrap; gap:14px; margin-top:14px;}
+  .exam-info .ei-stat{text-align:center;}
+  .exam-info .ei-num{font-family:"Heebo",sans-serif; font-weight:800; font-size:26px; color:var(--gold);}
+  .exam-info .ei-label{font-size:13px; color:var(--muted);}
+
+  .topic{margin:46px 0;}
+  .topic-tag{display:inline-block; background:var(--accent); color:#fff; font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; padding:5px 14px; border-radius:999px; box-shadow:0 3px 8px rgba(150,60,30,.22);}
+  .topic h2{font-family:"Heebo",sans-serif; font-weight:800; font-size:25px; margin:12px 0 8px;}
+  .topic p{margin:.6em 0;}
+
+  .passage{background:var(--card); border:2px solid var(--line); border-radius:14px; padding:20px 24px; margin:18px 0;}
+  .passage-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--gold); margin-bottom:12px; display:flex; align-items:center; gap:8px;}
+  .passage-title::before{content:"📄";}
+  .passage-text{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:18px; line-height:2; background:#faf5ea; border-radius:8px; padding:16px 20px;}
+
+  .dialogue{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin:16px 0;}
+  .dialogue-title{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--gold); margin-bottom:12px; display:flex; align-items:center; gap:6px;}
+  .dialogue-title::before{content:"🎧";}
+  .d-row{display:flex; gap:10px; align-items:flex-start; margin:10px 0;}
+  .d-who{font-family:"Heebo",sans-serif; font-weight:800; font-size:13px; color:var(--muted); min-width:40px; padding-top:4px;}
+  .d-jp{font-family:"Noto Sans JP",sans-serif; direction:ltr; unicode-bidi:isolate; font-size:17px; font-weight:500; flex:1;}
+
+  .note{background:#faf5ea; border:1px dashed var(--line); border-radius:8px; padding:10px 16px; font-size:16px; margin:14px 0;}
+  .note b{color:var(--accent);}
+
+  .deepen{background:linear-gradient(160deg,#f3eee0,#ece3cf); border:1.5px solid #d8c89a; border-radius:14px; padding:20px 24px; margin:24px 0;}
+  .deepen-head{display:flex; align-items:center; gap:8px; font-family:"Heebo",sans-serif; font-weight:800; font-size:14px; color:#7d6324; margin-bottom:12px;}
+  .deepen-head::before{content:"🔎"; font-size:16px;}
+  .deepen h4{font-family:"Heebo",sans-serif; font-weight:700; font-size:16px; color:#7d6324; margin:16px 0 6px;}
+  .deepen h4:first-of-type{margin-top:0;}
+  .deepen p{margin:.5em 0; font-size:16px;}
+
+  .qbox{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:16px 0; box-shadow:0 2px 8px rgba(80,60,30,.04);}
+  .qbox .htag{font-family:"Heebo",sans-serif; font-weight:700; font-size:13px; color:var(--ok); margin-bottom:8px; display:flex; align-items:center; gap:7px;}
+  .qbox .htag::before{content:"✎"; font-size:15px;}
+  .q-text{font-size:18px; margin:0 0 12px; font-weight:500;}
+  .q-options{display:flex; flex-direction:column; gap:9px;}
+  .opt{font-family:inherit; font-size:17px; text-align:right; background:#fff; border:1.5px solid var(--line); border-radius:9px; padding:11px 16px; cursor:pointer; transition:.15s; color:var(--ink);}
+  .opt:hover:not(:disabled){border-color:var(--accent); background:#fffaf3;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:var(--ok-soft); border-color:var(--ok); color:#1f4d43; font-weight:700;}
+  .opt.wrong{background:var(--no-soft); border-color:var(--no); color:#7e2a13;}
+  .fb{margin:11px 0 0; font-size:16px; font-weight:600; min-height:1px;}
+  .fb-ok{color:var(--ok);} .fb-no{color:var(--no);}
+
+  .quiz-widget{background:linear-gradient(160deg,#fffdf8,#fbf4e8); border:1.5px solid var(--line); border-radius:14px; padding:22px; margin:18px 0; box-shadow:0 4px 14px rgba(80,60,30,.07);}
+  .q-progress{font-family:"Heebo",sans-serif; font-size:13px; color:var(--muted); margin-bottom:10px; display:flex; justify-content:space-between;}
+  .q-bar{height:6px; background:#eadfc9; border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  .q-bar span{display:block; height:100%; background:var(--accent); transition:width .3s;}
+  .q-result{text-align:center; padding:14px 0;}
+  .score-big{font-family:"Heebo",sans-serif; font-weight:800; font-size:46px; color:var(--accent); line-height:1;}
+  .q-result p{font-size:18px; margin:10px 0 16px;}
+  .next-btn{font-family:"Heebo",sans-serif; font-weight:700; font-size:15px; background:var(--accent); color:#fff; border:none; border-radius:8px; padding:9px 18px; cursor:pointer; transition:.15s;}
+  .next-btn:hover{background:#8e2f17;}
+
+  h2.section{font-family:"Heebo",sans-serif; font-weight:800; font-size:26px; margin:54px 0 8px; padding:12px 20px; color:#fff; background:linear-gradient(100deg,var(--gold),#7d6324); border-radius:10px;}
+  h2.section.k{background:linear-gradient(100deg,var(--accent),#8e2f17);}
+  h2.section.blue{background:linear-gradient(100deg,var(--blue),#2e4d6b);}
+
+  .done-banner{text-align:center; margin:50px 0 0; padding:26px; background:var(--ok-soft); border:1px solid #bcd9d0; border-radius:14px;}
+  .done-banner h2{font-family:"Heebo",sans-serif; color:#1f4d43; margin:0 0 6px;}
+  .footer-note{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;}}
+
+  /* ── bottom navigation bar ── */
+  .week-nav{
+    display:inline-flex; align-items:center; gap:6px;
+    position:fixed; bottom:14px; left:50%; transform:translateX(-50%); z-index:999;
+    padding:5px 10px;
+    background:rgba(255,253,248,.96); border:1px solid var(--line);
+    border-radius:999px; box-shadow:0 4px 16px rgba(80,60,30,.15); backdrop-filter:blur(8px);
+  }
+  .week-nav a,.week-nav button{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:12px;
+    padding:5px 11px; border-radius:999px; border:none; cursor:pointer;
+    text-decoration:none; transition:.15s; display:inline-flex; align-items:center; gap:3px;
+    white-space:nowrap;
+  }
+  .nav-prev,.nav-next{background:var(--accent); color:#fff;}
+  .nav-prev:hover,.nav-next:hover{background:#8e2f17;}
+  .nav-prev.disabled,.nav-next.disabled{background:#d9ccb8; color:#a09070; cursor:default; pointer-events:none;}
+  .nav-home{background:var(--ok-soft); color:#1f4d43; border:1px solid #bcd9d0;}
+  .nav-home:hover{background:#c8e8e0;}
+  .nav-top{background:var(--accent-soft); color:var(--accent); border:1px solid #e0c0b0; font-size:14px; padding:4px 9px;}
+  .nav-top:hover{background:#e8c8bc;}
+  /* ── kanji hover tooltip ── */
+  .ktip{
+    position:relative; cursor:help;
+    border-bottom:1px dotted var(--accent);
+  }
+  .ktip::after{
+    content:attr(data-h);
+    position:absolute; bottom:calc(100% + 4px); left:50%; transform:translateX(-50%);
+    background:var(--ink); color:#fff;
+    font-family:"Noto Sans JP",sans-serif; font-size:11px; font-weight:400;
+    padding:2px 7px; border-radius:5px; white-space:nowrap;
+    pointer-events:none; opacity:0; transition:opacity .15s; z-index:200;
+  }
+  .ktip:hover::after{ opacity:1; }</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">שבוע 19 מתוך 20 · <span class="jp" dir="ltr">JLPT N5</span> · חלק ה'</div>
+  <h1>סימולציית מבחן 1</h1>
+  <p class="sub">מבחן N5 מלא בתנאי זמן — שלושה חלקים</p>
+  <div class="nav-links">
+    <span>← שבוע 18: קריאה והאזנה</span>
+    <span>שבוע 20: סימולציה 2 + ליטוש ←</span>
+  </div>
+</header>
+
+<div class="exam-info">
+  <h3>📋 הנחיות לסימולציה</h3>
+  <p>הגדר טיימר ל-<strong>35 דקות</strong> (גרסה מקוצרת של זמן המבחן האמיתי) וענה על כל השאלות ברצף, בלי לחזור אחורה. נסה לדמות תנאי מבחן אמיתיים — בלי הפרעות, בלי לבדוק תשובות באמצע.</p>
+  <div class="ei-row">
+    <div class="ei-stat"><div class="ei-num">3</div><div class="ei-label">חלקים</div></div>
+    <div class="ei-stat"><div class="ei-num">35</div><div class="ei-label">שאלות</div></div>
+    <div class="ei-stat"><div class="ei-num">35</div><div class="ei-label">דקות מומלצות</div></div>
+    <div class="ei-stat"><div class="ei-num">80%</div><div class="ei-label">יעד הצלחה</div></div>
+  </div>
+</div>
+
+<div class="lead">
+  <h2>מבנה הסימולציה</h2>
+  <ol>
+    <li><strong>חלק 1 — אוצר מילים וקאנג'י</strong> (12 שאלות, ~10 דקות).</li>
+    <li><strong>חלק 2 — דקדוק וקריאה</strong> (15 שאלות, ~15 דקות).</li>
+    <li><strong>חלק 3 — הבנה (בסגנון האזנה, דרך טקסט)</strong> (8 שאלות, ~10 דקות).</li>
+  </ol>
+  <p style="margin:10px 0 0;font-size:15px;color:var(--muted)">בסוף כל חלק תוכל לראות את הניקוד שלך. נסה לא להסתכל בחומר הקודם בזמן הסימולציה — זה הזמן לבדוק היכן אתה עומד באמת.</p>
+</div>
+
+<!-- ===== PART 1: VOCAB/KANJI ===== -->
+<h2 class="section">חלק 1 — אוצר מילים וקאנג'י</h2>
+<p style="margin-top:-2px;color:var(--muted)">12 שאלות. בחר את התשובה הנכונה.</p>
+<div class="quiz-widget" id="exam-part1">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--gold);margin-bottom:8px">📝 חלק 1: אוצר מילים וקאנג'י</div>
+</div>
+
+<!-- ===== PART 2: GRAMMAR/READING ===== -->
+<h2 class="section k">חלק 2 — דקדוק וקריאה</h2>
+<p style="margin-top:-2px;color:var(--muted)">15 שאלות, כולל קטע קריאה קצר.</p>
+
+<div class="passage">
+  <div class="passage-title">קטע קריאה לשאלות 13–15</div>
+  <div class="passage-text">
+    山田さんは医者です。毎日忙しいですが、週末はゆっくり休みます。山田さんの趣味は料理です。新しい料理を作るのが好きで、よく友達を家に呼んでパーティーをします。来週は誕生日なので、友達が来て、一緒にケーキを食べる予定です。
+  </div>
+</div>
+
+<div class="quiz-widget" id="exam-part2">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--accent);margin-bottom:8px">📚 חלק 2: דקדוק וקריאה</div>
+</div>
+
+<!-- ===== PART 3: LISTENING-STYLE ===== -->
+<h2 class="section blue">חלק 3 — הבנה (בסגנון האזנה)</h2>
+<p style="margin-top:-2px;color:var(--muted)">8 שאלות. קרא את הדיאלוג והשב.</p>
+
+<div class="dialogue">
+  <div class="dialogue-title">דיאלוג 1</div>
+  <div class="d-row"><div class="d-who">A:</div><div><div class="d-jp">来週の旅行、何で行きますか。</div></div></div>
+  <div class="d-row"><div class="d-who">B:</div><div><div class="d-jp">新幹線で行こうと思っていましたが、高いので、バスにしました。</div></div></div>
+  <div class="d-row"><div class="d-who">A:</div><div><div class="d-jp">バスは時間がかかりますね。</div></div></div>
+  <div class="d-row"><div class="d-who">B:</div><div><div class="d-jp">そうですね。でも、安いほうがいいです。</div></div></div>
+</div>
+
+<div class="dialogue">
+  <div class="dialogue-title">דיאלוג 2</div>
+  <div class="d-row"><div class="d-who">店員:</div><div><div class="d-jp">何名様ですか。</div></div></div>
+  <div class="d-row"><div class="d-who">客:</div><div><div class="d-jp">3人です。あ、すみません、もう一人来るので4人です。</div></div></div>
+  <div class="d-row"><div class="d-who">店員:</div><div><div class="d-jp">かしこまりました。こちらへどうぞ。</div></div></div>
+</div>
+
+<div class="quiz-widget" id="exam-part3">
+  <div class="htag" style="font-family:'Heebo';font-weight:800;color:var(--blue);margin-bottom:8px">🎧 חלק 3: הבנה</div>
+</div>
+
+<div class="deepen">
+  <div class="deepen-head">העמקה — אסטרטגיית סימולציה</div>
+
+  <h4>למה תנאי-זמן משנים את החוויה — והכנה אליהם</h4>
+  <p>מבחן בתנאי-זמן (אפילו מדומה כמו כאן) מפעיל סוג שונה של עומס קוגניטיבי לעומת תרגול רגוע. תחת לחץ זמן, נטייה טבעית היא "להיתקע" על שאלה קשה אחת ולבזבז זמן יקר. <strong>הרגל מנטלי חשוב</strong>: אם שאלה קשה במיוחד, סמן אותה בראש, המשך קדימה, וחזור אליה אם נשאר זמן בסוף.</p>
+
+  <h4>איך לפרש את התוצאה שלך — מה זה מבחן באמת מראה</h4>
+  <p>אם הגעת ל-80%+ — מצוין, אתה במסלול טוב להצלחה במבחן האמיתי. אם בין 60-80% — תקין, אבל שווה לחזור על השבועות שבהם נפלת (בדוק אילו שאלות טעית בהן ולאיזה שבוע הן משתייכות). אם מתחת ל-60% — כדאי לחזור על חלקים גדולים מהקורס לפני סימולציה נוספת, במיוחד את טבלות-האב משבוע 17.</p>
+
+  <h4>מבנה מבחן N5 האמיתי — להכיר את הפורמט המלא</h4>
+  <p>מבחן N5 האמיתי מורכב משלושה חלקים נפרדים עם הפסקה ביניהם: 言語知識 (אוצר מילים/קאנג'י, ~20 דקות), 言語知識/読解 (דקדוק וקריאה, ~40 דקות בסך הכל עם הקודם), ו-聴解 (האזנה, ~30 דקות, עם אודיו אמיתי). הסימולציה שלנו מקוצרת ומפושטת, אך משקפת את הסוגים העיקריים של השאלות שתפגוש.</p>
+
+  <h4>מה לעשות עכשיו — לפני סימולציה 2 בשבוע הבא</h4>
+  <p>קח את התוצאות מהסימולציה הזו ובנה תוכנית-פעולה לשבוע הקרוב: רשום אילו 3-5 נושאים גרמו לך הכי הרבה טעויות, וחזור על קטעי ה"העמקה" המתאימים מהשבועות הרלוונטיים. שבוע 20 יכלול סימולציה שנייה — מטרתך היא לראות שיפור מדיד בין שתי הסימולציות.</p>
+</div>
+
+<div class="done-banner">
+  <h2>סיימת את סימולציית מבחן 1! <span class="jp">よくできました</span> 🎉</h2>
+  <p>
+    בדוק את הניקוד שלך בכל חלק, וזהה אילו נושאים דורשים חזרה נוספת לפני השבוע האחרון.<br><br>
+    שבוע 20: סימולציה מבחן 2 + ליטוש סופי — השבוע האחרון של הקורס!
+  </p>
+</div>
+
+<p class="footer-note"><span class="jp" dir="ltr">日本語 N5</span> · שבוע 19 מתוך 20 · <span class="jp" dir="ltr">頑張って！</span></p>
+</div>
+
+<script>
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+/* ── kanji reading tooltips ── */
+const KR={
+  '日':'にち','月':'つき','火':'ひ','水':'みず','木':'き','金':'きん','土':'ど',
+  '山':'やま','川':'かわ','田':'た','人':'ひと','口':'くち','手':'て','目':'め',
+  '耳':'みみ','足':'あし','車':'くるま','花':'はな','雨':'あめ','空':'そら',
+  '学':'がく','校':'こう','先':'せん','生':'せい','男':'おとこ','女':'おんな',
+  '子':'こ','小':'しょう','大':'だい','中':'ちゅう','上':'うえ','下':'した',
+  '右':'みぎ','左':'ひだり','本':'ほん','母':'はは','父':'ちち','年':'ねん',
+  '今':'いま','何':'なに','時':'じ','分':'ふん','半':'はん','前':'まえ',
+  '後':'ご','間':'あいだ','外':'そと','内':'うち','東':'ひがし','西':'にし',
+  '南':'みなみ','北':'きた','国':'くに','語':'ご','英':'えい',
+  '私':'わたし','友':'とも','名':'な','気':'き','天':'てん',
+  '電':'でん','話':'はなし','見':'み','来':'き','行':'い','食':'た','飲':'の',
+  '読':'よ','書':'か','聞':'き','言':'い','買':'か','帰':'かえ','起':'お',
+  '寝':'ね','着':'き','出':'で','入':'い','開':'あ','閉':'し','乗':'の',
+  '降':'お','使':'つか','教':'おし','習':'なら','始':'はじ','終':'お',
+  '会':'あ','待':'ま','持':'も','作':'つく','思':'おも','知':'し',
+  '住':'す','働':'はたら','遊':'あそ','泳':'およ','走':'はし','歩':'ある',
+  '立':'た','座':'すわ','休':'やす','止':'と',
+  '病':'びょう','院':'いん','店':'みせ','駅':'えき','道':'みち',
+  '公':'こう','園':'えん','図':'と','館':'かん',
+  '百':'ひゃく','千':'せん','万':'まん','円':'えん',
+  '一':'いち','二':'に','三':'さん','四':'し','五':'ご',
+  '六':'ろく','七':'なな','八':'はち','九':'きゅう','十':'じゅう',
+  '高':'たか','安':'やす','新':'あたら','古':'ふる','長':'なが',
+  '短':'みじか','広':'ひろ','多':'おお','少':'すく',
+  '早':'はや','速':'はや','遅':'おそ','強':'つよ','弱':'よわ',
+  '好':'す','楽':'たの','難':'むずか',
+  '暑':'あつ','寒':'さむ','暖':'あたた','涼':'すず',
+  '白':'しろ','黒':'くろ','赤':'あか','青':'あお',
+  '魚':'さかな','肉':'にく','野':'や','菜':'さい',
+  '卵':'たまご','牛':'ぎゅう','豚':'ぶた','猫':'ねこ','犬':'いぬ','鳥':'とり',
+  '家':'いえ','部':'へ','屋':'や','門':'もん','窓':'まど','机':'つくえ',
+  '春':'はる','夏':'なつ','秋':'あき','冬':'ふゆ',
+  '朝':'あさ','昼':'ひる','夜':'よる','週':'しゅう','曜':'よう',
+  '近':'ちか','遠':'とお','太':'ふと','細':'ほそ',
+  '明':'あか','暗':'くら','静':'しず','重':'おも','軽':'かる',
+  '辛':'から','甘':'あま','苦':'にが',
+  '町':'まち','村':'むら','市':'し','県':'けん',
+  '海':'うみ','池':'いけ','島':'しま','森':'もり',
+  '毎':'まい','午':'ご','自':'じ','転':'てん',
+  '映':'えい','画':'が','音':'おん','料':'りょう','理':'り',
+  '洗':'あら','顔':'かお','宿':'やど','題':'だい',
+  '北':'きた','駅':'えき','橋':'はし','港':'こう',
+};
+function tipify(el){
+  el.querySelectorAll('.jp').forEach(function(span){
+    if(span.querySelector('.ktip'))return;
+    span.innerHTML=span.innerHTML.replace(/[一-鿿]/g,function(ch){
+      return KR[ch]?('<span class="ktip" data-h="'+KR[ch]+'">'+ch+'</span>'):ch;
+    });
+  });
+}
+function tipifyAll(){
+  document.querySelectorAll('.jp').forEach(function(span){
+    if(span.querySelector('.ktip'))return;
+    span.innerHTML=span.innerHTML.replace(/[一-鿿]/g,function(ch){
+      return KR[ch]?('<span class="ktip" data-h="'+KR[ch]+'">'+ch+'</span>'):ch;
+    });
+  });
+}function makeQuiz(rootId,data){
+  const root=document.getElementById(rootId);
+  const head=root.querySelector('.htag');
+  let order,idx,score,locked;
+  function start(){order=shuffle([...data.keys()]);idx=0;score=0;locked=false;render();}
+  function render(){
+    [...root.children].forEach(c=>{if(c!==head)c.remove();});
+    if(idx>=order.length)return result();
+    const item=data[order[idx]];
+    const opts=shuffle(item.options.map((t,i)=>({t,correct:i===item.answer})));
+    const box=document.createElement('div');
+    box.innerHTML=`
+      <div class="q-progress"><span>שאלה ${idx+1} מתוך ${order.length}</span><span>ניקוד: ${score}</span></div>
+      <div class="q-bar"><span style="width:${idx/order.length*100}%"></span></div>
+      <p class="q-text">${item.q}</p>
+      <div class="q-options"></div>
+      <p class="fb"></p>
+      <button class="next-btn" style="display:none;margin-top:12px">הבא ←</button>`;
+    root.appendChild(box);
+    const wrap=box.querySelector('.q-options'),fb=box.querySelector('.fb'),next=box.querySelector('.next-btn');
+    opts.forEach(o=>{
+      const btn=document.createElement('button');btn.className='opt';btn.innerHTML=o.t;tipify(btn);
+      btn.addEventListener('click',()=>{
+        if(locked)return;locked=true;
+        wrap.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        if(o.correct){btn.classList.add('correct');score++;fb.textContent='✓ נכון!';fb.className='fb fb-ok';}
+        else{btn.classList.add('wrong');fb.textContent='✗ לא מדויק'+(item.note?(' — '+item.note):'');fb.className='fb fb-no';
+          [...wrap.children].forEach((c,k)=>{if(opts[k].correct)c.classList.add('correct');});}
+        next.style.display='inline-block';
+      });
+      wrap.appendChild(btn);
+    });
+    next.addEventListener('click',()=>{idx++;locked=false;render();});
+  }
+  function result(){
+    const pct=Math.round(score/data.length*100);
+    const msg=pct>=80?'מצוין! אתה מוכן למבחן 🎉':pct>=60?'תקין — חזור על הנושאים שטעית בהם.':'כדאי לחזור על חומר רב לפני הסימולציה הבאה.';
+    const box=document.createElement('div');box.className='q-result';
+    box.innerHTML=`<div class="score-big">${score} / ${data.length}</div><p>${msg}</p><button class="next-btn">התחל מחדש 🔁</button>`;
+    root.appendChild(box);
+    box.querySelector('.next-btn').addEventListener('click',start);
+  }
+  start();
+}
+const J=s=>`<span class="jp">${s}</span>`;
+
+// PART 1: Vocabulary/Kanji (12 questions, mixed from whole course)
+makeQuiz('exam-part1',[
+  {q:'מה הקריאה של '+J('先生')+'?',options:[J('せんせい'),J('さきせい'),J('せんき'),J('せいせん')],answer:0},
+  {q:'מה הפירוש של '+J('忙しい')+'?',options:['עסוק','פנוי','עייף','שמח'],answer:0},
+  {q:'איזה קאנג\'י הוא "מים"?',options:[J('水'),J('火'),J('木'),J('金')],answer:0},
+  {q:'מה הקריאה של '+J('図書館')+'?',options:[J('としょかん'),J('ずしょかん'),J('としょけん'),J('ずしょけん')],answer:0},
+  {q:'מה הפירוש של '+J('親切')+'?',options:['נחמד / אדיב','כועס','עצוב','מפורסם'],answer:0},
+  {q:'איזה קאנג\'י הוא "צפון"?',options:[J('北'),J('南'),J('東'),J('西')],answer:0},
+  {q:'מה הקריאה של '+J('一緒に')+'?',options:[J('いっしょに'),J('ひとつに'),J('いちおに'),J('いっそに')],answer:0},
+  {q:'מה הפירוש של '+J('予定')+'?',options:['תכנון / מתוכנן','עבר','זיכרון','חלום'],answer:0},
+  {q:'איזה קאנג\'י הוא "מבחן"?',options:[J('試験'),J('練習'),J('授業'),J('宿題')],answer:0},
+  {q:'מה הקריאה של '+J('医者')+'?',options:[J('いしゃ'),J('いじゃ'),J('いもの'),J('えいしゃ')],answer:0},
+  {q:'מה הפירוש של '+J('趣味')+'?',options:['תחביב','עבודה','מקצוע','בעיה'],answer:0},
+  {q:'מה הפירוש של '+J('呼ぶ')+'?',options:['להזמין / לקרוא ל...','לדבר','לכתוב','לשמוע'],answer:0}
+]);
+
+// PART 2: Grammar/Reading (15 questions including passage comprehension)
+makeQuiz('exam-part2',[
+  {q:'איזה חלקיק נכון: "図書館___本があります。"',options:[J('に'),J('で'),J('を'),J('へ')],answer:0,note:'קיום = に.'},
+  {q:'מי הנכון — "אוהב מוזיקה"',options:[J('音楽が好きです。'),J('音楽を好きです。'),J('音楽は好きます。'),J('音楽に好きです。')],answer:0},
+  {q:'מה צורת た של '+J('飲む')+'?',options:[J('飲んだ'),J('飲いた'),J('飲った'),J('飲した')],answer:0},
+  {q:'איזה חלקיק נכון: "9時___5時___働きます。" (מ...עד)',options:[J('から・まで'),J('まで・から'),J('に・で'),J('を・に')],answer:0},
+  {q:'מי הנכון — "מותר לשבת כאן?"',options:[J('ここに座ってもいいですか。'),J('ここに座りたいですか。'),J('ここに座ってはいけませんか。'),J('ここに座りませんか。')],answer:0},
+  {q:'מה צורת ない של '+J('帰る')+'?',options:[J('帰らない'),J('帰りない'),J('帰るない'),J('帰わない')],answer:0,note:'帰る קבוצה 1 (מלכודת!).'},
+  {q:'מי הנכון — "רוצה מכונית חדשה"',options:[J('新しい車がほしいです。'),J('新しい車を買いたいです。'),J('新しい車に乗りたいです。'),J('新しい車をほしいです。')],answer:0},
+  {q:'מי הנכון — "אוטובוס זול יותר מרכבת"',options:[J('電車よりバスのほうが安いです。'),J('バスより電車のほうが安いです。'),J('電車とバスが安いです。'),J('バスは電車が安いです。')],answer:0},
+  // Reading comprehension questions about the 山田さん passage
+  {q:'בקטע על 山田さん — מה המקצוע שלו?',options:['רופא','מורה','שף','סטודנט'],answer:0,note:'山田さんは医者です.'},
+  {q:'בקטע — מה התחביב של 山田さん?',options:['בישול','קריאה','ספורט','מוזיקה'],answer:0,note:'山田さんの趣味は料理です.'},
+  {q:'בקטע — מה קורה בשבוע הבא?',options:['יום הולדת עם חברים','נסיעה לחו"ל','מבחן','חתונה'],answer:0,note:'来週は誕生日なので、友達が来て.'},
+  {q:'מה הפירוש של '+J('新しい料理を作るのが好きです')+'?',options:['אוהב להכין מתכונים חדשים','לא אוהב לבשל','אוכל מתכונים חדשים בלבד','שונא מתכונים חדשים'],answer:0},
+  {q:'מי הנכון — "כי עייפתי, רוצה לישון"',options:[J('疲れたから、寝たいです。'),J('疲れますから、寝ます。'),J('疲れたので、寝ません。'),J('疲れるから、寝ました。')],answer:0},
+  {q:'מי הנכון — "החדר גדול ומואר"',options:[J('部屋は大きくて明るいです。'),J('部屋は大きいで明るいです。'),J('部屋は大きで明るいです。'),J('部屋は大きくて明るいでした。')],answer:0},
+  {q:'מי הנכון — "כשנוסעים ליפן, צריך דרכון"',options:[J('日本へ行くとき、パスポートが必要です。'),J('日本へ行くから、パスポートが必要です。'),J('日本へ行った時、パスポートが必要でした。'),J('日本へ行きたいので、パスポートがほしいです。')],answer:0}
+]);
+
+// PART 3: Listening-style comprehension (8 questions about the two dialogues)
+makeQuiz('exam-part3',[
+  {q:'בדיאלוג 1 — באיזה אמצעי תחבורה הם בסוף נוסעים?',options:['באוטובוס','ברכבת','בשינקנסן','במכונית'],answer:0,note:'高いので、バスにしました.'},
+  {q:'בדיאלוג 1 — למה לא בחרו בשינקנסן?',options:['כי הוא יקר','כי הוא לאט','כי הוא לא קיים','כי הוא מסוכן'],answer:0,note:'新幹線で行こうと思っていましたが、高いので.'},
+  {q:'בדיאלוג 1 — מה ב\' חושב על מחיר מול זמן?',options:['מעדיף זול, גם אם לוקח יותר זמן','מעדיף מהיר, גם אם יקר','לא משנה לו','רוצה גם זול וגם מהיר'],answer:0,note:'安いほうがいいです.'},
+  {q:'בדיאלוג 2 — כמה אנשים בסוף בקבוצה?',options:['4','3','2','5'],answer:0,note:'もう一人来るので4人です.'},
+  {q:'בדיאלוג 2 — מה אמר הלקוח בהתחלה?',options:['3 אנשים, ואז תיקן ל-4','4 אנשים מההתחלה','2 אנשים','לא ידוע'],answer:0,note:'3人です。あ、すみません…4人です.'},
+  {q:'מה הפירוש של '+J('かしこまりました')+' (בדיאלוג 2)?',options:['הבנתי (מנומס, בשירות)','לא הבנתי','סליחה','תודה'],answer:0},
+  {q:'מה הפירוש הכללי של דיאלוג 1?',options:['דנים באמצעי תחבורה לנסיעה','מתכננים פגישה','קונים בגדים','מדברים על מזג אוויר'],answer:0},
+  {q:'מה הפירוש הכללי של דיאלוג 2?',options:['מתקבלים למסעדה ומתקנים מספר סועדים','מזמינים אוכל','משלמים חשבון','מתלוננים על שירות'],answer:0}
+]);
+tipifyAll();
+tipifyAll();
+</script>
+<div class="week-nav">
+  <a href="N5-week18-lesson.html" class="nav-prev ">&#8594; שבוע 18</a>
+  <button class="nav-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8679;</button>
+  <a href="index.html" class="nav-home">&#127968; דף הבית</a>
+  <a href="N5-week20-lesson.html" class="nav-next ">שבוע 20 &#8592;</a>
+</div>
+
+</body>
+</html>
