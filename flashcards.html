@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>כרטיסיות זיכרון — מילים וקאנג'י | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<script>try{var n5t=JSON.parse(localStorage.getItem('n5.theme'));if(n5t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/deck-data.js"></script>
+<script src="assets/site.js" defer></script>
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre", Georgia, serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px, rgba(120,100,70,.06) 1px, transparent 0);
+    background-size:22px 22px; min-height:100vh;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:0 20px 110px;}
+  .jp{font-family:"Noto Sans JP", system-ui, sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+
+  header.masthead{text-align:center; padding:46px 20px 26px; border-bottom:3px double var(--line); margin-bottom:22px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(26px,5.5vw,38px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:16px;}
+
+  /* controls */
+  .controls{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; align-items:center; margin-bottom:6px;}
+  .seg{display:inline-flex; background:var(--card); border:1.5px solid var(--line); border-radius:999px; overflow:hidden;}
+  .seg button{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:14px; border:none; background:transparent;
+    color:var(--muted); padding:8px 16px; cursor:pointer; transition:.15s;
+  }
+  .seg button.on{background:var(--accent); color:#fff;}
+  select.week-sel{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:14px; color:var(--ink);
+    background:var(--card); border:1.5px solid var(--line); border-radius:999px; padding:8px 14px; cursor:pointer;
+  }
+  .ctrl-btn{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:14px; border:1.5px solid var(--line);
+    background:var(--card); color:var(--ink); border-radius:999px; padding:8px 16px; cursor:pointer; transition:.15s;
+  }
+  .ctrl-btn:hover{border-color:var(--accent);}
+  .ctrl-btn.on{background:var(--gold); border-color:var(--gold); color:#fff;}
+
+  .deck-stats{
+    text-align:center; font-family:"Heebo",sans-serif; font-size:13.5px; color:var(--muted); margin:10px 0 0;
+  }
+  .deck-stats b{color:var(--ok);}
+
+  /* card */
+  .fc-scene{perspective:1400px; max-width:560px; margin:20px auto 0;}
+  .fc-card{position:relative; width:100%; height:320px; transform-style:preserve-3d; transition:transform .45s cubic-bezier(.4,.9,.4,1); cursor:pointer;}
+  .fc-card.flipped{transform:rotateY(180deg);}
+  .fc-face{
+    position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; text-align:center;
+    background:var(--card); border:1.5px solid var(--line); border-radius:20px;
+    box-shadow:0 10px 28px rgba(80,60,30,.12); padding:28px 24px; overflow:hidden;
+  }
+  .fc-back{transform:rotateY(180deg); border-color:var(--gold);}
+  .fc-main{font-size:52px; line-height:1.25; font-weight:700;}
+  .fc-main.he{font-family:"Heebo",sans-serif; font-size:36px;}
+  .fc-read{font-size:24px; color:var(--muted);}
+  .fc-mean{font-family:"Heebo",sans-serif; font-size:26px; font-weight:800;}
+  .fc-hint{position:absolute; bottom:12px; font-family:"Heebo",sans-serif; font-size:12px; color:var(--muted); opacity:.8;}
+  .fc-known-mark{position:absolute; top:12px; right:16px; font-family:"Heebo",sans-serif; font-size:12px; font-weight:700; color:var(--ok);}
+  .spk-btn{
+    position:absolute; top:10px; left:12px; width:42px; height:42px; border-radius:50%;
+    background:var(--accent-soft); border:1px solid var(--line); font-size:19px; cursor:pointer; transition:.15s;
+  }
+  .spk-btn:hover{transform:scale(1.1);}
+
+  /* answer buttons */
+  .fc-actions{display:flex; gap:12px; justify-content:center; margin:20px auto 0; max-width:560px;}
+  .fc-actions button{
+    flex:1; font-family:"Heebo",sans-serif; font-weight:800; font-size:17px;
+    border:none; border-radius:12px; padding:15px 10px; cursor:pointer; transition:.15s; color:#fff;
+  }
+  .btn-no{background:var(--no); box-shadow:0 4px 12px rgba(178,58,30,.25);}
+  .btn-yes{background:var(--ok); box-shadow:0 4px 12px rgba(63,125,110,.25);}
+  .fc-actions button:hover{transform:translateY(-2px);}
+  .fc-actions button:disabled{opacity:.45; cursor:default; transform:none;}
+
+  .fc-progress{max-width:560px; margin:16px auto 0;}
+  .fc-progress .lbl{display:flex; justify-content:space-between; font-family:"Heebo",sans-serif; font-size:13px; color:var(--muted); margin-bottom:6px;}
+  .fc-bar{height:8px; background:#e0d5be; border-radius:99px; overflow:hidden;}
+  html[data-theme="dark"] .fc-bar{background:#332c22;}
+  .fc-bar span{display:block; height:100%; background:linear-gradient(90deg,var(--accent),var(--gold)); transition:width .3s;}
+
+  /* summary */
+  .fc-summary{
+    max-width:560px; margin:20px auto; background:var(--card); border:1.5px solid var(--line); border-radius:20px;
+    padding:34px 24px; text-align:center; box-shadow:0 10px 28px rgba(80,60,30,.12);
+  }
+  .fc-summary .big{font-family:"Heebo",sans-serif; font-weight:800; font-size:44px; color:var(--accent);}
+  .fc-summary p{font-family:"Heebo",sans-serif; font-size:17px; margin:10px 0 20px;}
+  .fc-summary .row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
+  .fc-summary button{
+    font-family:"Heebo",sans-serif; font-weight:800; font-size:15px; border:none; border-radius:10px;
+    padding:12px 22px; cursor:pointer; transition:.15s; color:#fff; background:var(--accent);
+  }
+  .fc-summary button.alt{background:var(--gold);}
+  .fc-summary button:hover{transform:translateY(-2px);}
+  .empty-note{text-align:center; font-family:"Heebo",sans-serif; color:var(--muted); padding:60px 0;}
+
+  .kbd-hint{text-align:center; font-family:"Heebo",sans-serif; font-size:12.5px; color:var(--muted); margin-top:18px;}
+  .kbd-hint kbd{background:var(--card); border:1px solid var(--line); border-radius:5px; padding:1px 7px; font-family:inherit;}
+
+  /* bottom nav */
+  .week-nav{
+    display:inline-flex; align-items:center; gap:6px;
+    position:fixed; bottom:14px; left:50%; transform:translateX(-50%); z-index:999;
+    padding:5px 10px; background:rgba(255,253,248,.96); border:1px solid var(--line);
+    border-radius:999px; box-shadow:0 4px 16px rgba(80,60,30,.15); backdrop-filter:blur(8px);
+  }
+  .week-nav a{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:12px;
+    padding:5px 11px; border-radius:999px; text-decoration:none; transition:.15s; white-space:nowrap;
+  }
+  .nav-home{background:var(--ok-soft); color:#1f4d43; border:1px solid #bcd9d0;}
+  .nav-home:hover{background:#c8e8e0;}
+  .nav-next{background:var(--accent); color:#fff;}
+  .nav-next:hover{background:#8e2f17;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0; transform:translateY(8px);} to{opacity:1;}}
+</style>
+</head>
+<body data-page="flashcards">
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">🎴 תרגול יומי · <span class="jp" dir="ltr">JLPT N5</span></div>
+  <h1>כרטיסיות זיכרון</h1>
+  <p class="sub">לחץ על הכרטיס להפיכה · סמן אם ידעת · ההתקדמות נשמרת אצלך בדפדפן</p>
+</header>
+
+<div class="controls">
+  <div class="seg" id="seg-type">
+    <button data-v="vocab" class="on">מילים</button>
+    <button data-v="kanji">קאנג'י</button>
+  </div>
+  <div class="seg" id="seg-dir">
+    <button data-v="jp" class="on">יפנית ← עברית</button>
+    <button data-v="he">עברית ← יפנית</button>
+  </div>
+  <select class="week-sel" id="week-sel"></select>
+  <button class="ctrl-btn" id="btn-unknown" title="תרגל רק כרטיסים שעוד לא סומנו כידועים">רק מה שלא ידעתי</button>
+  <button class="ctrl-btn" id="btn-shuffle" title="ערבב מחדש">🔀 ערבוב</button>
+</div>
+<div class="deck-stats" id="deck-stats"></div>
+
+<div id="fc-area"></div>
+
+<p class="kbd-hint">קיצורים: <kbd>רווח</kbd> הפיכת כרטיס · <kbd>1</kbd> לא ידעתי · <kbd>2</kbd> ידעתי · <kbd>ר</kbd>/<kbd>S</kbd> השמעה</p>
+
+</div>
+
+<div class="week-nav">
+  <a href="index.html" class="nav-home">&#127968; דף הבית</a>
+  <a href="kana.html" class="nav-next">קאנה ←</a>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  'use strict';
+  const N5 = window.N5, DECKS = window.N5_DECKS || {};
+  const $ = s => document.querySelector(s);
+  const area = $('#fc-area');
+
+  const state = {
+    type: 'vocab',        // vocab | kanji
+    dir: 'jp',            // jp = יפנית קדימה, he = עברית קדימה
+    week: 'all',
+    onlyUnknown: false,
+    deck: [], idx: 0, flipped: false,
+    sessionYes: 0, sessionNo: 0
+  };
+
+  const knownKey = c => (state.type === 'vocab' ? 'v:' : 'k:') + c[0];
+  const getKnown = () => N5.store.get('fcKnown', {});
+
+  /* ---- week selector ---- */
+  const sel = $('#week-sel');
+  function fillWeekSel(){
+    sel.innerHTML = '';
+    const all = document.createElement('option');
+    all.value = 'all'; all.textContent = 'כל השבועות';
+    sel.appendChild(all);
+    Object.keys(DECKS).map(Number).sort((a,b)=>a-b).forEach(w => {
+      const d = DECKS[w];
+      const n = state.type === 'vocab' ? d.vocab.length : d.kanji.length;
+      if (!n) return;
+      const o = document.createElement('option');
+      o.value = w; o.textContent = 'שבוע ' + w + ' — ' + d.title + ' (' + n + ')';
+      sel.appendChild(o);
+    });
+    sel.value = state.week === 'all' || sel.querySelector('option[value="'+state.week+'"]') ? state.week : 'all';
+  }
+
+  /* ---- deck building ---- */
+  function buildDeck(){
+    const known = getKnown();
+    let cards = [];
+    const weeks = state.week === 'all' ? Object.keys(DECKS) : [state.week];
+    weeks.forEach(w => {
+      const d = DECKS[w]; if (!d) return;
+      (state.type === 'vocab' ? d.vocab : d.kanji).forEach(c => cards.push(c));
+    });
+    if (state.onlyUnknown) cards = cards.filter(c => !known[knownKey(c)]);
+    for (let i = cards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [cards[i], cards[j]] = [cards[j], cards[i]];
+    }
+    state.deck = cards; state.idx = 0; state.flipped = false;
+    state.sessionYes = 0; state.sessionNo = 0;
+    render();
+  }
+
+  /* ---- stats line ---- */
+  function renderStats(){
+    const known = getKnown();
+    let total = 0, kn = 0;
+    Object.keys(DECKS).forEach(w => {
+      (state.type === 'vocab' ? DECKS[w].vocab : DECKS[w].kanji).forEach(c => {
+        total++; if (known[knownKey(c)]) kn++;
+      });
+    });
+    $('#deck-stats').innerHTML = 'סומנו כידועים: <b>' + kn + '</b> מתוך ' + total +
+      (state.type === 'vocab' ? ' מילים' : ' קאנג\'י') + ' בקורס';
+  }
+
+  /* ---- render ---- */
+  function render(){
+    renderStats();
+    area.innerHTML = '';
+    if (!state.deck.length) {
+      area.innerHTML = '<div class="empty-note">🎉 אין כרטיסים בסינון הזה — הכול סומן כידוע!<br>בטל את "רק מה שלא ידעתי" או בחר שבוע אחר.</div>';
+      return;
+    }
+    if (state.idx >= state.deck.length) return renderSummary();
+
+    const c = state.deck[state.idx]; // [jp, read, he]
+    const jpFront = state.dir === 'jp';
+    const known = getKnown()[knownKey(c)];
+
+    const scene = document.createElement('div');
+    scene.className = 'fc-scene';
+    scene.innerHTML =
+      '<div class="fc-card' + (state.flipped ? ' flipped' : '') + '" data-nospeak>' +
+        '<div class="fc-face fc-front">' +
+          (known ? '<span class="fc-known-mark">✓ ידוע</span>' : '') +
+          (jpFront ? '<button class="spk-btn" title="השמע">🔊</button>' : '') +
+          (jpFront
+            ? '<div class="fc-main jp">' + c[0] + '</div>'
+            : '<div class="fc-main he">' + c[2] + '</div>') +
+          '<div class="fc-hint">לחץ להפיכה ↻</div>' +
+        '</div>' +
+        '<div class="fc-face fc-back">' +
+          '<button class="spk-btn" title="השמע">🔊</button>' +
+          '<div class="fc-main jp" style="font-size:40px">' + c[0] + '</div>' +
+          (c[1] && c[1] !== c[0] ? '<div class="fc-read jp">' + c[1] + '</div>' : '') +
+          '<div class="fc-mean">' + c[2] + '</div>' +
+        '</div>' +
+      '</div>';
+    area.appendChild(scene);
+
+    const actions = document.createElement('div');
+    actions.className = 'fc-actions';
+    actions.innerHTML =
+      '<button class="btn-no" ' + (state.flipped ? '' : 'disabled') + '>✗ לא ידעתי</button>' +
+      '<button class="btn-yes" ' + (state.flipped ? '' : 'disabled') + '>✓ ידעתי</button>';
+    area.appendChild(actions);
+
+    const prog = document.createElement('div');
+    prog.className = 'fc-progress';
+    prog.innerHTML =
+      '<div class="lbl"><span>כרטיס ' + (state.idx + 1) + ' מתוך ' + state.deck.length + '</span>' +
+      '<span>✓ ' + state.sessionYes + ' · ✗ ' + state.sessionNo + '</span></div>' +
+      '<div class="fc-bar"><span style="width:' + (state.idx / state.deck.length * 100) + '%"></span></div>';
+    area.appendChild(prog);
+
+    const card = scene.querySelector('.fc-card');
+    card.addEventListener('click', e => {
+      if (e.target.closest('.spk-btn')) return;
+      flip();
+    });
+    scene.querySelectorAll('.spk-btn').forEach(b =>
+      b.addEventListener('click', e => { e.stopPropagation(); N5.speak(c[1] || c[0]); }));
+    actions.querySelector('.btn-no').addEventListener('click', () => answer(false));
+    actions.querySelector('.btn-yes').addEventListener('click', () => answer(true));
+  }
+
+  function flip(){
+    state.flipped = !state.flipped;
+    const card = area.querySelector('.fc-card');
+    if (card) card.classList.toggle('flipped', state.flipped);
+    area.querySelectorAll('.fc-actions button').forEach(b => b.disabled = !state.flipped);
+    if (state.flipped) {
+      const c = state.deck[state.idx];
+      if (state.dir === 'he') N5.speak(c[1] || c[0]); // בצד היפני שנחשף — השמע
+    }
+  }
+
+  function answer(knew){
+    const c = state.deck[state.idx];
+    const known = getKnown();
+    if (knew) { known[knownKey(c)] = true; state.sessionYes++; }
+    else { delete known[knownKey(c)]; state.sessionNo++; }
+    N5.store.set('fcKnown', known);
+    state.idx++; state.flipped = false;
+    render();
+  }
+
+  function renderSummary(){
+    const total = state.deck.length;
+    const pct = Math.round(state.sessionYes / total * 100);
+    if (pct === 100) N5.confetti(50);
+    const div = document.createElement('div');
+    div.className = 'fc-summary';
+    div.innerHTML =
+      '<div class="big">' + state.sessionYes + ' / ' + total + '</div>' +
+      '<p>' + (pct === 100 ? 'מושלם! ידעת הכול 🎉' : pct >= 70 ? 'יפה מאוד! עוד סיבוב קצר על מה שפספסת ותשלוט בזה.' : 'התחלה טובה — חזרה היא סוד הזיכרון. נסה שוב!') + '</p>' +
+      '<div class="row">' +
+        (state.sessionNo ? '<button id="sum-redo">חזור על מה שלא ידעתי (' + state.sessionNo + ')</button>' : '') +
+        '<button class="alt" id="sum-again">סיבוב חדש 🔁</button>' +
+      '</div>';
+    area.appendChild(div);
+    const redo = div.querySelector('#sum-redo');
+    if (redo) redo.addEventListener('click', () => {
+      state.onlyUnknown = true;
+      $('#btn-unknown').classList.add('on');
+      buildDeck();
+    });
+    div.querySelector('#sum-again').addEventListener('click', buildDeck);
+  }
+
+  /* ---- controls wiring ---- */
+  function segWire(id, key, after){
+    document.querySelectorAll('#' + id + ' button').forEach(b => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('#' + id + ' button').forEach(x => x.classList.remove('on'));
+        b.classList.add('on');
+        state[key] = b.dataset.v;
+        if (after) after();
+        buildDeck();
+      });
+    });
+  }
+  segWire('seg-type', 'type', fillWeekSel);
+  segWire('seg-dir', 'dir');
+  sel.addEventListener('change', () => { state.week = sel.value; buildDeck(); });
+  $('#btn-unknown').addEventListener('click', function(){
+    state.onlyUnknown = !state.onlyUnknown;
+    this.classList.toggle('on', state.onlyUnknown);
+    buildDeck();
+  });
+  $('#btn-shuffle').addEventListener('click', buildDeck);
+
+  /* ---- keyboard ---- */
+  document.addEventListener('keydown', e => {
+    if (e.target.matches('input, select, textarea')) return;
+    if (e.key === ' ' || e.key === 'Enter') {
+      if (area.querySelector('.fc-card')) { e.preventDefault(); flip(); }
+    } else if (e.key === '1' && state.flipped) answer(false);
+    else if (e.key === '2' && state.flipped) answer(true);
+    else if (e.key === 's' || e.key === 'S' || e.key === 'ר') {
+      const c = state.deck[state.idx];
+      if (c) N5.speak(c[1] || c[0]);
+    }
+  });
+
+  fillWeekSel();
+  buildDeck();
+});
+</script>
+</body>
+</html>

@@ -132,8 +132,11 @@
   .wrap>*{animation:rise .5s ease both;}
   @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;}}
 </style>
+<script>try{var n5t=JSON.parse(localStorage.getItem('n5.theme'));if(n5t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js" defer></script>
 </head>
-<body>
+<body data-page="home">
 
 <div class="hero">
   <div class="badge">JLPT N5 · קורס עברית מלא</div>
@@ -143,12 +146,39 @@
     <div class="stat"><div class="num">20</div><div class="lbl">שבועות לימוד</div></div>
     <div class="stat"><div class="num">110</div><div class="lbl">קאנג'י</div></div>
     <div class="stat"><div class="num">800</div><div class="lbl">מילים</div></div>
+    <div class="stat"><div class="num"><span id="n5-streak">0</span> <span class="streak-flame">🔥</span></div><div class="lbl">ימי רצף</div></div>
+  </div>
+  <div id="n5-continue"></div>
+  <div class="progress-wrap">
+    <div class="progress-label"><span>ההתקדמות שלי</span><span id="n5-prog-label">0 מתוך 20 שבועות הושלמו</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="n5-prog-fill" style="width:0%"></div></div>
   </div>
 </div>
 
 
 
 <div class="wrap">
+
+  <!-- ══ TOOLS ══ -->
+  <div class="phase-label gold">כלי תרגול</div>
+  <div class="phase-title">תרגול יומי מהיר</div>
+  <div class="phase-sub">חמש דקות ביום שוות יותר משעה פעם בשבוע</div>
+  <div class="tools-grid">
+    <a class="tool-card" href="flashcards.html">
+      <span class="ico">🎴</span>
+      <span>
+        <span class="t">כרטיסיות זיכרון</span><br>
+        <span class="d">כל 252 המילים ו-110 הקאנג'י של הקורס — עם הקראה, סינון לפי שבוע ומעקב "ידעתי / לא ידעתי"</span>
+      </span>
+    </a>
+    <a class="tool-card" href="kana.html">
+      <span class="ico">🈁</span>
+      <span>
+        <span class="t">היראגאנה וקטקאנה</span><br>
+        <span class="d">טבלאות קאנה מלאות עם השמעה בלחיצה + משחק זיהוי מהירות עם שיאים</span>
+      </span>
+    </a>
+  </div>
 
   <!-- ══ PHASE 1 ══ -->
   <div class="phase-label">חלק א'</div>
@@ -166,16 +196,15 @@
         <span class="tag v">מילים: 10</span>
         <span class="tag">קאנג'י: 1–7</span>
       </div>
-      <div style="font-size:11px;color:var(--muted);font-family:'Heebo',sans-serif;margin-bottom:4px">שם קובץ: N5-week1-lesson.html</div>
       <a class="week-btn" href="N5-week1-lesson.html">פתח שבוע 1 <span class="arrow">←</span></a>
     </div>
 
     <div class="week-card">
       <div class="week-num">שבוע 2</div>
       <div class="week-title">קישור שמות והכמויות</div>
-      <div class="week-topics">החלקיק <span class="jp">の</span>, מספרים 1–10,000, שאלת מחיר עם <span class="jp">いくら</span>, המטבע <span class="jp">円</span></div>
+      <div class="week-topics">החלקיק <span class="jp">の</span>, מספרים 1–10,000, שאלת מחיר עם <span class="jp">いくら</span>, המטבע <span class="jp">円</span>, בקשות עם <span class="jp">をください</span></div>
       <div class="week-tags">
-        <span class="tag g">דקדוק: 3 נושאים</span>
+        <span class="tag g">דקדוק: 4 נושאים</span>
         <span class="tag v">מילים: 12</span>
         <span class="tag">קאנג'י: 8–10, 百千万円</span>
       </div>
@@ -242,9 +271,9 @@
     <div class="week-card">
       <div class="week-num">שבוע 7</div>
       <div class="week-title">עבר מנומס ותנועה</div>
-      <div class="week-topics">עבר <span class="jp">ました／ませんでした</span>, זמן עם <span class="jp">に</span>, כיוון עם <span class="jp">へ／に</span>, מקום פעולה עם <span class="jp">で</span></div>
+      <div class="week-topics">עבר <span class="jp">ました／ませんでした</span>, זמן עם <span class="jp">に</span>, כיוון עם <span class="jp">へ／に</span>, מקום פעולה עם <span class="jp">で</span>, מטרת תנועה <span class="jp">〜に行く</span></div>
       <div class="week-tags">
-        <span class="tag g">דקדוק: 4 נושאים</span>
+        <span class="tag g">דקדוק: 5 נושאים</span>
         <span class="tag v">מילים: 18</span>
         <span class="tag">קאנג'י: לימודים ×7</span>
       </div>
@@ -254,9 +283,9 @@
     <div class="week-card">
       <div class="week-num">שבוע 8</div>
       <div class="week-title">אמצעי וסיבה</div>
-      <div class="week-topics"><span class="jp">で</span> כאמצעי, <span class="jp">と</span> עם אדם, <span class="jp">から〜まで</span> (מ...עד...), <span class="jp">から</span> כסיבה</div>
+      <div class="week-topics"><span class="jp">で</span> כאמצעי, <span class="jp">と</span> עם אדם, <span class="jp">から〜まで</span> (מ...עד...), <span class="jp">から</span> ו-<span class="jp">ので</span> כסיבה</div>
       <div class="week-tags">
-        <span class="tag g">דקדוק: 4 נושאים</span>
+        <span class="tag g">דקדוק: 5 נושאים</span>
         <span class="tag v">מילים: 18</span>
         <span class="tag">קאנג'י: גדלים ×7</span>
       </div>
@@ -273,9 +302,9 @@
     <div class="week-card">
       <div class="week-num">שבוע 9</div>
       <div class="week-title">צורת מילון וצורת ない</div>
-      <div class="week-topics">קבוצות פעלים, צורת מילון (רגיל), שלילה רגילה <span class="jp">ない</span>, רגיל מול מנומס, <span class="jp">と思います</span></div>
+      <div class="week-topics">קבוצות פעלים, צורת מילון (רגיל), שלילה רגילה <span class="jp">ない</span>, רגיל מול מנומס, <span class="jp">と思います</span>, <span class="jp">のが好き</span></div>
       <div class="week-tags">
-        <span class="tag g">דקדוק: 4 נושאים</span>
+        <span class="tag g">דקדוק: 5 נושאים</span>
         <span class="tag v">מילים: 18</span>
         <span class="tag">קאנג'י: כיוונים ×7</span>
       </div>
@@ -284,9 +313,9 @@
     <div class="week-card">
       <div class="week-num">שבוע 10</div>
       <div class="week-title">עבר רגיל (た)</div>
-      <div class="week-topics">צורת <span class="jp">た</span> וחמשת קבוצות שינוי הצליל, עבר שלילי <span class="jp">なかった</span>, דיבור יומיומי לא-פורמלי</div>
+      <div class="week-topics">צורת <span class="jp">た</span> וחמשת קבוצות שינוי הצליל, עבר שלילי <span class="jp">なかった</span>, ניסיון <span class="jp">たことがある</span>, <span class="jp">たり〜たり</span></div>
       <div class="week-tags">
-        <span class="tag g">דקדוק: 3 נושאים</span>
+        <span class="tag g">דקדוק: 5 נושאים</span>
         <span class="tag v">מילים: 16</span>
         <span class="tag">קאנג'י: כיוונים ×7</span>
       </div>
@@ -295,9 +324,9 @@
     <div class="week-card">
       <div class="week-num">שבוע 11</div>
       <div class="week-title">צורת て: בקשות והתמשכות</div>
-      <div class="week-topics">יצירת צורת <span class="jp">て</span>, בקשות <span class="jp">てください</span>, פעולה מתמשכת ומצב <span class="jp">〜ています</span></div>
+      <div class="week-topics">יצירת צורת <span class="jp">て</span>, בקשות <span class="jp">てください</span>, פעולה מתמשכת ומצב <span class="jp">〜ています</span>, רצף <span class="jp">てから</span></div>
       <div class="week-tags">
-        <span class="tag g">דקדוק: 3 נושאים</span>
+        <span class="tag g">דקדוק: 4 נושאים</span>
         <span class="tag v">מילים: 15</span>
         <span class="tag">קאנג'י: מדינות ×7</span>
       </div>
@@ -306,9 +335,9 @@
     <div class="week-card">
       <div class="week-num">שבוע 12</div>
       <div class="week-title">רשות ואיסור</div>
-      <div class="week-topics"><span class="jp">てもいいです</span> (רשות), <span class="jp">てはいけません</span> (איסור), הצעת עזרה <span class="jp">ましょうか</span></div>
+      <div class="week-topics"><span class="jp">てもいいです</span> (רשות), <span class="jp">てはいけません</span> (איסור), הצעת עזרה <span class="jp">ましょうか</span>, <span class="jp">ないでください</span>, חובה <span class="jp">なくてはいけません</span></div>
       <div class="week-tags">
-        <span class="tag g">דקדוק: 3 נושאים</span>
+        <span class="tag g">דקדוק: 4 נושאים</span>
         <span class="tag v">מילים: 15</span>
         <span class="tag">קאנג'י: חזרה ×7</span>
       </div>
@@ -324,9 +353,9 @@
     <div class="week-card">
       <div class="week-num">שבוע 13</div>
       <div class="week-title">רצונות</div>
-      <div class="week-topics"><span class="jp">たい</span> (רוצה לפעולה), <span class="jp">がほしい</span> (רוצה חפץ), שילוב עם סיבות</div>
+      <div class="week-topics"><span class="jp">たい</span> (רוצה לפעולה), <span class="jp">がほしい</span> (רוצה חפץ), תוכניות עם <span class="jp">つもり</span>, שילוב עם סיבות</div>
       <div class="week-tags">
-        <span class="tag g">דקדוק: 3 נושאים</span>
+        <span class="tag g">דקדוק: 4 נושאים</span>
         <span class="tag v">מילים: 11</span>
         <span class="tag">קאנג'י: זמן ורצון ×5</span>
       </div>
@@ -335,9 +364,9 @@
     <div class="week-card">
       <div class="week-num">שבוע 14</div>
       <div class="week-title">חיבור רעיונות</div>
-      <div class="week-topics">שרשור תארי-<span class="jp">い</span> עם <span class="jp">くて</span>, שרשור תארי-<span class="jp">な</span> עם <span class="jp">で</span>, <span class="jp">もう</span> / <span class="jp">まだ</span></div>
+      <div class="week-topics">שרשור תארי-<span class="jp">い</span> עם <span class="jp">くて</span>, שרשור תארי-<span class="jp">な</span> עם <span class="jp">で</span>, <span class="jp">もう</span> / <span class="jp">まだ</span>, <span class="jp">なる</span> ו-<span class="jp">すぎる</span></div>
       <div class="week-tags">
-        <span class="tag g">דקדוק: 3 נושאים</span>
+        <span class="tag g">דקדוק: 4 נושאים</span>
         <span class="tag v">מילים: 10</span>
         <span class="tag">קאנג'י: אור וגודל ×5</span>
       </div>
@@ -346,9 +375,9 @@
     <div class="week-card">
       <div class="week-num">שבוע 15</div>
       <div class="week-title">השוואות ומנייה</div>
-      <div class="week-topics"><span class="jp">より / のほうが</span> (השוואה), מילות מנייה (人/枚/本/冊/匹), חזרה על מילות שאלה</div>
+      <div class="week-topics"><span class="jp">より / のほうが</span> (השוואה), סופרלטיב <span class="jp">一番</span>, מילות מנייה (人/枚/本/冊/匹), חזרה על מילות שאלה</div>
       <div class="week-tags">
-        <span class="tag g">דקדוק: 3 נושאים</span>
+        <span class="tag g">דקדוק: 4 נושאים</span>
         <span class="tag v">מילים: 11</span>
         <span class="tag">קאנג'י: מנייה ×4</span>
       </div>
@@ -357,9 +386,9 @@
     <div class="week-card">
       <div class="week-num">שבוע 16</div>
       <div class="week-title">חיבור וסיוג</div>
-      <div class="week-topics"><span class="jp">ね / よ</span> (חלקיקי סוף-משפט), <span class="jp">だけ</span> (רק), <span class="jp">とき</span> (כש...), חזרה כוללת על חלק ד'</div>
+      <div class="week-topics"><span class="jp">ね / よ</span> (חלקיקי סוף-משפט), <span class="jp">だけ</span> (רק), <span class="jp">とき</span> (כש...), <span class="jp">でしょう</span> (כנראה), <span class="jp">前に</span> (לפני ש...), חזרה כוללת</div>
       <div class="week-tags">
-        <span class="tag g">דקדוק: 4 נושאים</span>
+        <span class="tag g">דקדוק: 6 נושאים</span>
         <span class="tag v">מילים: 10</span>
         <span class="tag">קאנג'י: סיכום ×4</span>
       </div>
@@ -427,6 +456,11 @@
       <li><a href="https://www.japanesetest4you.com" target="_blank">Japanese Test 4 You</a> — מבחני N5 לתרגול</li>
       <li><strong>Anki</strong> — חבילת JLPT N5 להורדה: חפש "JLPT N5" ב-AnkiWeb</li>
     </ul>
+  </div>
+
+  <div class="footer-note">
+    ההתקדמות, הניקוד והרצף נשמרים בדפדפן שלך בלבד ·
+    <a href="#" id="n5-reset" style="color:var(--muted)">איפוס התקדמות</a>
   </div>
 
 </div>

@@ -1,0 +1,185 @@
+/* ═══════════════════════════════════════════════════════════
+   site.css — שכבת שדרוג משותפת לכל דפי הקורס
+   סרגל כלים צף · מצב לילה · הקראה · מעקב התקדמות · טוסטים
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── סרגל כלים צף ── */
+.n5-toolbar{
+  position:fixed; top:14px; left:14px; z-index:1000;
+  display:flex; flex-direction:column; gap:8px;
+}
+.n5-tool{
+  width:42px; height:42px; border-radius:50%;
+  background:var(--card,#fffdf8); border:1.5px solid var(--line,#e6dcc7);
+  box-shadow:0 3px 10px rgba(60,40,20,.14);
+  font-size:19px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  transition:transform .15s, background .2s; padding:0; line-height:1;
+}
+.n5-tool:hover{transform:scale(1.1);}
+.n5-tool.active{background:var(--accent,#b23a1e); border-color:var(--accent,#b23a1e);}
+
+/* ── פס התקדמות קריאה עליון ── */
+.n5-readbar{
+  position:fixed; top:0; right:0; height:4px; width:0%;
+  background:linear-gradient(90deg,var(--accent,#b23a1e),var(--gold,#9a7b2e));
+  z-index:1001; transition:width .1s linear; border-radius:0 0 0 4px;
+}
+
+/* ── טקסט יפני לחיץ (הקראה) ── */
+.speakable{cursor:pointer; border-radius:4px; transition:background .15s;}
+.speakable:hover{background:rgba(178,58,30,.10);}
+.speakable.speaking{background:rgba(178,58,30,.18); box-shadow:0 0 0 2px rgba(178,58,30,.25);}
+
+/* ── טוסט ── */
+.n5-toast{
+  position:fixed; bottom:74px; left:50%; transform:translate(-50%,16px);
+  background:var(--ink,#231f19); color:#fff9ef;
+  font-family:"Heebo",sans-serif; font-weight:700; font-size:14px;
+  padding:10px 20px; border-radius:999px; box-shadow:0 6px 20px rgba(0,0,0,.25);
+  opacity:0; pointer-events:none; z-index:1200; transition:.3s; max-width:88vw; text-align:center;
+}
+.n5-toast.show{opacity:1; transform:translate(-50%,0);}
+
+/* ── שיא אישי בתיבות בחינה ── */
+.n5-best{
+  font-family:"Heebo",sans-serif; font-size:12.5px; font-weight:700;
+  color:var(--gold,#9a7b2e); background:rgba(154,123,46,.1);
+  border:1px solid rgba(154,123,46,.3);
+  display:inline-block; padding:2px 10px; border-radius:999px; margin-bottom:8px;
+}
+
+/* ── כפתור השלמת שבוע ── */
+.n5-complete-btn{
+  font-family:"Heebo",sans-serif; font-weight:800; font-size:16px;
+  border:none; border-radius:10px; padding:12px 26px; cursor:pointer;
+  margin-top:14px; transition:.15s;
+  background:var(--ok,#3f7d6e); color:#fff; box-shadow:0 4px 12px rgba(63,125,110,.3);
+}
+.n5-complete-btn:hover{transform:translateY(-2px);}
+.n5-complete-btn.undone{background:#8d8672; box-shadow:none;}
+
+/* ── קונפטי ── */
+.n5-confetti{position:fixed; top:-12px; width:9px; height:14px; z-index:1300; pointer-events:none;
+  animation:n5fall linear forwards;}
+@keyframes n5fall{
+  to{transform:translateY(105vh) rotate(720deg); opacity:.2;}
+}
+
+/* ── תגי התקדמות בדף הבית ── */
+.tag.score-tag{background:#eee6f5; color:#6b4d8f;}
+.week-card.done{border-color:var(--ok,#3f7d6e);}
+.week-card.done::before{background:var(--ok,#3f7d6e) !important;}
+.week-card.done .week-num::after{content:" · הושלם ✓"; color:var(--ok,#3f7d6e);}
+.hero-continue{
+  display:inline-flex; align-items:center; gap:8px; margin-top:26px;
+  font-family:"Heebo",sans-serif; font-weight:800; font-size:17px;
+  background:var(--accent,#b23a1e); color:#fff; text-decoration:none;
+  padding:13px 30px; border-radius:999px; box-shadow:0 6px 18px rgba(150,60,30,.35);
+  transition:.15s;
+}
+.hero-continue:hover{transform:translateY(-2px); box-shadow:0 8px 22px rgba(150,60,30,.4);}
+.streak-flame{color:var(--accent,#b23a1e);}
+
+/* ── כרטיסי כלי תרגול בדף הבית ── */
+.tools-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:10px 0 0;}
+@media(max-width:540px){.tools-grid{grid-template-columns:1fr;}}
+.tool-card{
+  display:flex; align-items:center; gap:14px; text-decoration:none; color:var(--ink,#231f19);
+  background:var(--card,#fffdf8); border:1.5px solid var(--line,#e6dcc7); border-radius:14px;
+  padding:18px 20px; transition:.15s; position:relative; overflow:hidden;
+}
+.tool-card:hover{transform:translateY(-2px); box-shadow:0 6px 16px rgba(80,60,30,.12); border-color:var(--gold,#9a7b2e);}
+.tool-card .ico{font-size:34px; line-height:1;}
+.tool-card .t{font-family:"Heebo",sans-serif; font-weight:800; font-size:18px;}
+.tool-card .d{font-size:14px; color:var(--muted,#6f6555); line-height:1.45;}
+
+/* ═══════════════ מצב לילה ═══════════════ */
+html[data-theme="dark"]{
+  --paper:#181512; --card:#241f1a; --ink:#ece3d2; --muted:#a89a83;
+  --accent:#e0663f; --accent-soft:#3d241a; --gold:#d3ab55; --line:#3b332a;
+  --ok:#63b39c; --ok-soft:#20342e; --no:#e0663f; --no-soft:#3d241a;
+  --locked:#5a5344; --locked-soft:#26221c; --blue:#8fb0d8;
+}
+html[data-theme="dark"] body{
+  background:var(--paper); color:var(--ink);
+  background-image:radial-gradient(circle at 1px 1px, rgba(220,190,140,.05) 1px, transparent 0);
+}
+html[data-theme="dark"] .hero{background:linear-gradient(175deg,#241f1a 0%,#181512 100%);}
+html[data-theme="dark"] .hero::before{color:rgba(224,102,63,.06);}
+html[data-theme="dark"] .quiz-widget{background:linear-gradient(160deg,#241f1a,#1e1a15);}
+html[data-theme="dark"] .note{background:#2a241d;}
+html[data-theme="dark"] table{background:#241f1a;}
+html[data-theme="dark"] thead th{background:#312920; color:var(--ink);}
+html[data-theme="dark"] tbody tr:nth-child(even){background:#2a241d;}
+html[data-theme="dark"] .opt{background:#2a241d; color:var(--ink);}
+html[data-theme="dark"] .opt:hover:not(:disabled){background:#332b22;}
+html[data-theme="dark"] .opt.correct{color:#a8dcc9;}
+html[data-theme="dark"] .opt.wrong{color:#f0b09a;}
+html[data-theme="dark"] .topic strong{color:#f0a488;}
+html[data-theme="dark"] .lead h2, html[data-theme="dark"] .q-text{color:var(--ink);}
+html[data-theme="dark"] .q-bar{background:#332c22;}
+html[data-theme="dark"] .progress-bar{background:#332c22;}
+html[data-theme="dark"] .done-banner{background:var(--ok-soft); border-color:#3d5c52;}
+html[data-theme="dark"] .done-banner h2{color:#a8dcc9;}
+html[data-theme="dark"] .week-nav{background:rgba(36,31,26,.96); border-color:var(--line);}
+html[data-theme="dark"] .nav-home{background:var(--ok-soft); color:#a8dcc9; border-color:#3d5c52;}
+html[data-theme="dark"] .nav-home:hover{background:#2a453d;}
+html[data-theme="dark"] .nav-top{background:var(--accent-soft); color:#f0a488; border-color:#5c3a2a;}
+html[data-theme="dark"] .nav-top:hover{background:#4d2e20;}
+html[data-theme="dark"] .nav-prev.disabled, html[data-theme="dark"] .nav-next.disabled{background:#3b332a; color:#6f6555;}
+html[data-theme="dark"] .reveal-ans{background:var(--ok-soft); color:var(--ink);}
+html[data-theme="dark"] .fb-ok{color:#7fcdb4;}
+html[data-theme="dark"] .fb-no{color:#f0a488;}
+html[data-theme="dark"] .tag{background:var(--accent-soft); color:#f0a488;}
+html[data-theme="dark"] .tag.g{background:var(--ok-soft); color:#7fcdb4;}
+html[data-theme="dark"] .tag.v{background:#332b1c; color:var(--gold);}
+html[data-theme="dark"] .tag.score-tag{background:#2e2638; color:#c3a8e8;}
+html[data-theme="dark"] .tag.locked-tag{background:var(--locked-soft); color:var(--locked);}
+html[data-theme="dark"] .speakable:hover{background:rgba(224,102,63,.14);}
+html[data-theme="dark"] .n5-toast{background:#efe6d4; color:#241f1a;}
+html[data-theme="dark"] .ktip::after{background:#efe6d4; color:#241f1a;}
+html[data-theme="dark"] .ex-x .ex-jp{color:#c98570;}
+
+/* ── תיקוני ניגודיות: תיבות ותבניות ייחודיות בשיעורים ── */
+html[data-theme="dark"] .formula{background:#39281d; border-color:#5e4231;}
+html[data-theme="dark"] .formula-blue{background:#1f2836; border-color:#3d4f6b;}
+html[data-theme="dark"] .formula-green{background:#20342e; border-color:#3d5c52;}
+html[data-theme="dark"] .warn{background:#3a2420; border-color:#5e3a2e;}
+html[data-theme="dark"] .note-blue{background:#1f2836; border-color:#3d4f6b;}
+html[data-theme="dark"] .trap-card{background:#3a2420; border-color:#5e3a2e;}
+html[data-theme="dark"] .passage-text{background:#2a241d;}
+html[data-theme="dark"] .deepen{background:linear-gradient(160deg,#2b2417,#231e13); border-color:#57492a;}
+html[data-theme="dark"] .deepen-head,
+html[data-theme="dark"] .deepen h4{color:#d3ab55;}
+html[data-theme="dark"] .deepen .ex{background:var(--card);}
+html[data-theme="dark"] .chain-card .cc-ex,
+html[data-theme="dark"] .particle-card .p-ex,
+html[data-theme="dark"] .p-card .pc-ex{background:#2a241d;}
+html[data-theme="dark"] .compare-head,
+html[data-theme="dark"] .pvp-head,
+html[data-theme="dark"] .particle-row.head{background:#312920; color:var(--ink);}
+html[data-theme="dark"] .vg-card.g1,
+html[data-theme="dark"] .g-card.g1,
+html[data-theme="dark"] .contrast-box.ha{background:#362a22; border-color:#5e4231;}
+html[data-theme="dark"] .vg-card.g2,
+html[data-theme="dark"] .g-card.g2,
+html[data-theme="dark"] .contrast-box.ga,
+html[data-theme="dark"] .ny-card.yo{background:#1f2836; border-color:#3d4f6b;}
+html[data-theme="dark"] .vg-card.g3,
+html[data-theme="dark"] .g-card.g3,
+html[data-theme="dark"] .ny-card.ne,
+html[data-theme="dark"] .pp-card.allow{background:#20342e; border-color:#3d5c52;}
+html[data-theme="dark"] .pp-card.forbid{background:#3d241a; border-color:#5e3a2e;}
+html[data-theme="dark"] .day-card.sat .kanji,
+html[data-theme="dark"] .day-card.sat .he{color:#8fb0d8;}
+body, .week-card, .qbox, .ex, table, .opt, .note, .quiz-widget, .reveal, .tool-card{
+  transition:background .25s ease, background-color .25s ease, border-color .25s ease, color .25s ease;
+}
+
+/* ── הסתרת קריאות (מצב תרגול) ── */
+html.hide-readings .ex-jp .r{
+  filter:blur(6px); cursor:pointer; transition:filter .2s;
+}
+html.hide-readings .ex-jp .r:hover{filter:blur(0);}
+html.hide-readings td.jp + td.jp{filter:blur(6px); transition:filter .2s;}
+html.hide-readings td.jp + td.jp:hover{filter:blur(0);}
