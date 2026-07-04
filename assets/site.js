@@ -332,12 +332,20 @@
     window.addEventListener('resize', checkReveal, { passive: true });
   }
 
-  /* ---------- קאנה מרחפת במסך הפתיחה ---------- */
+  /* ---------- קאנה מרחפת — בכל הדפים ---------- */
   function floatingKana() {
-    const layer = document.getElementById('n5-kana-layer');
-    if (!layer || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let layer = document.getElementById('n5-kana-layer'); // שכבת הפתיחה בדף הבית
+    const inHero = !!layer;
+    if (!layer) { // בשאר הדפים — שכבת רקע קבועה מאחורי התוכן
+      layer = document.createElement('div');
+      layer.className = 'n5-kana-global';
+      layer.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(layer);
+    }
     const chars = 'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん日本語学生水火木金土円時人先';
-    for (let i = 0; i < 16; i++) {
+    const count = inHero ? 16 : 12;
+    for (let i = 0; i < count; i++) {
       const s = document.createElement('span');
       s.textContent = chars[Math.floor(Math.random() * chars.length)];
       s.style.left = (Math.random() * 96) + '%';
@@ -351,7 +359,6 @@
 
   /* ---------- קישוט דף הבית ---------- */
   function decorateHome() {
-    floatingKana();
     const weeks = store.get('weeks', {});
     const scores = store.get('scores', {});
     let doneCount = 0;
@@ -422,6 +429,7 @@
     recordDay();
     markSpeakables();
     scrollReveal();
+    floatingKana();
 
     if (PAGE === 'lesson') {
       buildReadbar();

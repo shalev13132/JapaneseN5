@@ -173,6 +173,19 @@ html[data-theme="dark"] .pp-card.forbid{background:#3d241a; border-color:#5e3a2e
 html[data-theme="dark"] .day-card.sat .kanji,
 html[data-theme="dark"] .day-card.sat .he{color:#8fb0d8;}
 
+/* ── קאנה מרחפת — שכבת רקע בכל הדפים ── */
+.n5-kana-global{position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:-1;}
+.n5-kana-global span{
+  position:absolute; bottom:-70px; font-family:"Noto Sans JP",sans-serif; font-weight:500;
+  color:var(--accent,#b23a1e); opacity:0; animation:n5kanarise linear infinite;
+}
+@keyframes n5kanarise{
+  0%{transform:translateY(0) rotate(-8deg); opacity:0;}
+  10%{opacity:var(--op,.1);}
+  85%{opacity:var(--op,.1);}
+  100%{transform:translateY(-108vh) rotate(10deg); opacity:0;}
+}
+
 /* ═══════════════ שכבת פרימיום עתידנית ═══════════════ */
 ::selection{background:var(--accent,#b23a1e); color:#fff;}
 html{scrollbar-color:var(--accent,#b23a1e) transparent; scrollbar-width:thin;}
