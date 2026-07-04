@@ -168,6 +168,8 @@
   .ktip:hover::after{ opacity:1; }</style>
 <script>try{var n5t=JSON.parse(localStorage.getItem('n5.theme'));if(n5t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
 <link rel="stylesheet" href="assets/site.css">
+<script src="assets/deck-data.js"></script>
+<script src="assets/quiz-bank.js"></script>
 <script src="assets/site.js" defer></script>
 </head>
 <body>
@@ -674,10 +676,11 @@ function tipifyAll(){
     });
   });
 }function makeQuiz(rootId,data){
+  if(window.N5_QUIZ)data=window.N5_QUIZ.expand(rootId,data);
   const root=document.getElementById(rootId);
   const head=root.querySelector('.htag');
   let order,idx,score,locked;
-  function start(){order=shuffle([...data.keys()]);idx=0;score=0;locked=false;render();}
+  function start(){order=shuffle([...data.keys()]).slice(0,data.__show||data.length);idx=0;score=0;locked=false;render();}
   function render(){
     [...root.children].forEach(c=>{if(c!==head)c.remove();});
     if(idx>=order.length)return result();
@@ -708,10 +711,10 @@ function tipifyAll(){
     next.addEventListener('click',()=>{idx++;locked=false;render();});
   }
   function result(){
-    const pct=Math.round(score/data.length*100);
+    const pct=Math.round(score/order.length*100);
     const msg=pct>=80?'מצוין! אתה שולט בחומר 🎉':pct>=60?'יפה! עוד קצת חזרה ותהיה מצוין.':'כדאי לחזור על החומר ולנסות שוב.';
     const box=document.createElement('div');box.className='q-result';
-    box.innerHTML=`<div class="score-big">${score} / ${data.length}</div><p>${msg}</p><button class="next-btn">התחל מחדש 🔁</button>`;
+    box.innerHTML=`<div class="score-big">${score} / ${order.length}</div><p>${msg}</p><button class="next-btn">התחל מחדש 🔁</button>`;
     root.appendChild(box);
     box.querySelector('.next-btn').addEventListener('click',start);
   }
