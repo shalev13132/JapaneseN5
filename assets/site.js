@@ -302,8 +302,56 @@
     });
   }
 
+  /* ---------- חשיפה בגלילה ---------- */
+  function scrollReveal() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const raw = [...document.querySelectorAll('.topic, .week-card, .tool-card, .quiz-widget, .tips, .done-banner, .kana-block, .ex, .qbox, .reveal')];
+    const set = new Set(raw);
+    // בלי אלמנטים מקוננים — רק ההורה העליון מקבל אנימציה
+    let pending = raw.filter(el => {
+      let p = el.parentElement;
+      while (p) { if (set.has(p)) return false; p = p.parentElement; }
+      return el.getBoundingClientRect().top > window.innerHeight;
+    });
+    if (!pending.length) return;
+    pending.forEach(el => el.classList.add('n5-sr'));
+    function checkReveal() {
+      if (!pending.length) return;
+      const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 40;
+      const limit = window.innerHeight * 0.93;
+      pending = pending.filter(el => {
+        if (atBottom || el.getBoundingClientRect().top < limit) { el.classList.add('n5-in'); return false; }
+        return true;
+      });
+    }
+    let tick = false;
+    window.addEventListener('scroll', () => {
+      if (tick) return; tick = true;
+      requestAnimationFrame(() => { checkReveal(); tick = false; });
+    }, { passive: true });
+    window.addEventListener('resize', checkReveal, { passive: true });
+  }
+
+  /* ---------- קאנה מרחפת במסך הפתיחה ---------- */
+  function floatingKana() {
+    const layer = document.getElementById('n5-kana-layer');
+    if (!layer || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const chars = 'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん日本語学生水火木金土円時人先';
+    for (let i = 0; i < 16; i++) {
+      const s = document.createElement('span');
+      s.textContent = chars[Math.floor(Math.random() * chars.length)];
+      s.style.left = (Math.random() * 96) + '%';
+      s.style.fontSize = (18 + Math.random() * 30) + 'px';
+      s.style.setProperty('--op', (0.05 + Math.random() * 0.09).toFixed(2));
+      s.style.animationDuration = (14 + Math.random() * 18) + 's';
+      s.style.animationDelay = (-Math.random() * 26) + 's';
+      layer.appendChild(s);
+    }
+  }
+
   /* ---------- קישוט דף הבית ---------- */
   function decorateHome() {
+    floatingKana();
     const weeks = store.get('weeks', {});
     const scores = store.get('scores', {});
     let doneCount = 0;
@@ -373,6 +421,7 @@
     buildToolbar();
     recordDay();
     markSpeakables();
+    scrollReveal();
 
     if (PAGE === 'lesson') {
       buildReadbar();

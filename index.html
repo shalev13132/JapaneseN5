@@ -24,18 +24,61 @@
   }
   .jp{font-family:"Noto Sans JP",system-ui,sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
 
-  /* ── HERO ── */
+  /* ── WELCOME HERO ── */
   .hero{
-    text-align:center; padding:64px 24px 48px;
+    min-height:100svh; display:flex; align-items:center; justify-content:center;
+    text-align:center; padding:70px 24px 90px;
     background:linear-gradient(175deg,#fffdf8 0%,#f4eee2 100%);
     border-bottom:3px double var(--line); position:relative; overflow:hidden;
   }
+  html[data-theme="dark"] .hero{background:radial-gradient(120% 90% at 50% 0%, #262019 0%, #181512 72%);}
   .hero::before{
     content:"日本語"; position:absolute; font-family:"Noto Sans JP",sans-serif;
-    font-size:180px; font-weight:700; color:rgba(178,58,30,.04);
+    font-size:clamp(180px,30vw,320px); font-weight:700; color:rgba(178,58,30,.05);
     top:50%; left:50%; transform:translate(-50%,-50%);
-    pointer-events:none; white-space:nowrap; direction:ltr;
+    pointer-events:none; white-space:nowrap; direction:ltr; z-index:0;
+    animation:heropulse 9s ease-in-out infinite;
   }
+  @keyframes heropulse{0%,100%{transform:translate(-50%,-50%) scale(1);}50%{transform:translate(-50%,-50%) scale(1.05);}}
+  html[data-theme="dark"] .hero::before{color:rgba(224,102,63,.07);}
+  .hero .blob{position:absolute; border-radius:50%; filter:blur(80px); pointer-events:none; z-index:0; animation:blobfloat 18s ease-in-out infinite alternate;}
+  .hero .blob.b1{width:440px; height:440px; background:radial-gradient(circle, rgba(178,58,30,.28), transparent 65%); top:-110px; right:-110px;}
+  .hero .blob.b2{width:380px; height:380px; background:radial-gradient(circle, rgba(154,123,46,.26), transparent 65%); bottom:-90px; left:-90px; animation-delay:-9s;}
+  html[data-theme="dark"] .hero .blob.b1{background:radial-gradient(circle, rgba(224,102,63,.35), transparent 65%);}
+  html[data-theme="dark"] .hero .blob.b2{background:radial-gradient(circle, rgba(211,171,85,.28), transparent 65%);}
+  @keyframes blobfloat{from{transform:translate(0,0) scale(1);} to{transform:translate(-46px,54px) scale(1.18);}}
+  #n5-kana-layer{position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:1;}
+  #n5-kana-layer span{
+    position:absolute; bottom:-70px; font-family:"Noto Sans JP",sans-serif; font-weight:500;
+    color:var(--accent); opacity:0; animation:kanarise linear infinite;
+  }
+  @keyframes kanarise{
+    0%{transform:translateY(0) rotate(-8deg); opacity:0;}
+    10%{opacity:var(--op,.1);}
+    85%{opacity:var(--op,.1);}
+    100%{transform:translateY(-108vh) rotate(10deg); opacity:0;}
+  }
+  .hero-inner{position:relative; z-index:2; max-width:660px;}
+  .hero-greet{font-family:"Heebo",sans-serif; font-weight:700; font-size:16px; color:var(--gold); margin:0 0 8px;}
+  .hero-greet .jp{font-size:21px; color:var(--accent); font-weight:700;}
+  html[data-theme="dark"] .hero h1{
+    background:linear-gradient(92deg,#ffb38a 0%,#ffe3a8 55%,#ffb38a 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  html[data-theme="dark"] .hero h1 span{color:transparent;}
+  .hero-cta-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:16px;}
+  .hero-mini{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:14px;
+    color:var(--accent); background:var(--card); border:1.5px solid var(--line);
+    padding:9px 20px; border-radius:999px; text-decoration:none; transition:.15s;
+  }
+  .hero-mini:hover{border-color:var(--accent); transform:translateY(-2px); box-shadow:0 6px 16px rgba(150,60,30,.15);}
+  .scroll-hint{
+    position:absolute; bottom:16px; left:50%; transform:translateX(-50%); z-index:2;
+    border:none; background:none; color:var(--muted); font-size:22px; cursor:pointer;
+    animation:hintbob 1.8s ease-in-out infinite;
+  }
+  @keyframes hintbob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,9px);}}
   .hero .badge{
     display:inline-block; background:var(--accent); color:#fff;
     font-family:"Heebo",sans-serif; font-weight:800; font-size:13px;
@@ -139,20 +182,31 @@
 <body data-page="home">
 
 <div class="hero">
-  <div class="badge">JLPT N5 · קורס עברית מלא</div>
-  <h1>קורס <span>יפנית</span> מאפס<br>עד מבחן <span class="jp" dir="ltr" style="font-size:.9em">N5</span></h1>
-  <p>20 שבועות · הסברים בעברית · שאלות אינטראקטיביות · קאנג'י · אוצר מילים</p>
-  <div class="hero-stats">
-    <div class="stat"><div class="num">20</div><div class="lbl">שבועות לימוד</div></div>
-    <div class="stat"><div class="num">110</div><div class="lbl">קאנג'י</div></div>
-    <div class="stat"><div class="num">800</div><div class="lbl">מילים</div></div>
-    <div class="stat"><div class="num"><span id="n5-streak">0</span> <span class="streak-flame">🔥</span></div><div class="lbl">ימי רצף</div></div>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div id="n5-kana-layer" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="badge">JLPT N5 · קורס עברית מלא</div>
+    <p class="hero-greet"><span class="jp">こんにちは！</span> ברוכים הבאים למסע שלכם אל היפנית</p>
+    <h1>קורס <span>יפנית</span> מאפס<br>עד מבחן <span class="jp" dir="ltr" style="font-size:.9em">N5</span></h1>
+    <p>20 שבועות · הסברים בעברית · שאלות אינטראקטיביות · קאנג'י · אוצר מילים</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="num">20</div><div class="lbl">שבועות לימוד</div></div>
+      <div class="stat"><div class="num">110</div><div class="lbl">קאנג'י</div></div>
+      <div class="stat"><div class="num">800</div><div class="lbl">מילים</div></div>
+      <div class="stat"><div class="num"><span id="n5-streak">0</span> <span class="streak-flame">🔥</span></div><div class="lbl">ימי רצף</div></div>
+    </div>
+    <div id="n5-continue"></div>
+    <div class="hero-cta-row">
+      <a class="hero-mini" href="flashcards.html">🎴 כרטיסיות זיכרון</a>
+      <a class="hero-mini" href="kana.html">🈁 קאנה + משחק זיהוי</a>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>ההתקדמות שלי</span><span id="n5-prog-label">0 מתוך 20 שבועות הושלמו</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="n5-prog-fill" style="width:0%"></div></div>
+    </div>
   </div>
-  <div id="n5-continue"></div>
-  <div class="progress-wrap">
-    <div class="progress-label"><span>ההתקדמות שלי</span><span id="n5-prog-label">0 מתוך 20 שבועות הושלמו</span></div>
-    <div class="progress-bar"><div class="progress-fill" id="n5-prog-fill" style="width:0%"></div></div>
-  </div>
+  <button class="scroll-hint" onclick="document.querySelector('.wrap').scrollIntoView({behavior:'smooth'})" title="גלול אל תוכן הקורס">▼</button>
 </div>
 
 

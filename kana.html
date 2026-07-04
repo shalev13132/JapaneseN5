@@ -58,6 +58,12 @@
   .kana-cell .k{font-family:"Noto Sans JP",sans-serif; font-size:30px; font-weight:700; line-height:1.2; display:block;}
   .kana-cell .ro{font-family:"Heebo",sans-serif; font-size:12.5px; color:var(--muted); display:block; transition:.15s;}
   .kana-cell.ghost{visibility:hidden;}
+  .kana-grid.cols3{grid-template-columns:repeat(3,1fr); max-width:520px;}
+  .kana-note{
+    background:var(--card); border:1px dashed var(--line); border-radius:10px;
+    padding:12px 18px; font-size:16px; margin:20px 0 0;
+  }
+  .kana-note b{color:var(--accent);}
   html.hide-romaji .kana-cell .ro{opacity:0;}
   html.hide-romaji .kana-cell:hover .ro{opacity:1;}
 
@@ -177,19 +183,36 @@ document.addEventListener('DOMContentLoaded', function(){
     [['ば','ba'],['び','bi'],['ぶ','bu'],['べ','be'],['ぼ','bo']],
     [['ぱ','pa'],['ぴ','pi'],['ぷ','pu'],['ぺ','pe'],['ぽ','po']]
   ];
+  const YOON = [
+    [['きゃ','kya'],['きゅ','kyu'],['きょ','kyo']],
+    [['しゃ','sha'],['しゅ','shu'],['しょ','sho']],
+    [['ちゃ','cha'],['ちゅ','chu'],['ちょ','cho']],
+    [['にゃ','nya'],['にゅ','nyu'],['にょ','nyo']],
+    [['ひゃ','hya'],['ひゅ','hyu'],['ひょ','hyo']],
+    [['みゃ','mya'],['みゅ','myu'],['みょ','myo']],
+    [['りゃ','rya'],['りゅ','ryu'],['りょ','ryo']],
+    [['ぎゃ','gya'],['ぎゅ','gyu'],['ぎょ','gyo']],
+    [['じゃ','ja'],['じゅ','ju'],['じょ','jo']],
+    [['びゃ','bya'],['びゅ','byu'],['びょ','byo']],
+    [['ぴゃ','pya'],['ぴゅ','pyu'],['ぴょ','pyo']]
+  ];
   const toKata = h => h.replace(/[぀-ゟ]/g, c => String.fromCharCode(c.charCodeAt(0) + 0x60));
 
   /* ── טבלאות ── */
   const chartArea = $('#chart-area');
   function buildChart(script){
     chartArea.innerHTML = '';
-    const blocks = [['גוג\'ואון — הטבלה הבסיסית', GOJUON], ['דאקוטן והנדאקוטן — צלילים קוליים', DAKUTEN]];
-    blocks.forEach(([title, rows]) => {
+    const blocks = [
+      ['גוג\'ואון — הטבלה הבסיסית', GOJUON, 5],
+      ['דאקוטן והנדאקוטן — צלילים קוליים', DAKUTEN, 5],
+      ['יוֹאוֹן — צלילים משולבים (קאנה + ゃ・ゅ・ょ קטנים)', YOON, 3]
+    ];
+    blocks.forEach(([title, rows, cols]) => {
       const b = document.createElement('div');
       b.className = 'kana-block';
       b.innerHTML = '<h2>' + title + '</h2>';
       const g = document.createElement('div');
-      g.className = 'kana-grid';
+      g.className = 'kana-grid' + (cols === 3 ? ' cols3' : '');
       rows.forEach(row => row.forEach(cell => {
         const d = document.createElement('div');
         if (!cell) { d.className = 'kana-cell ghost'; g.appendChild(d); return; }
@@ -206,6 +229,12 @@ document.addEventListener('DOMContentLoaded', function(){
       b.appendChild(g);
       chartArea.appendChild(b);
     });
+    const extra = document.createElement('div');
+    extra.className = 'kana-note';
+    extra.innerHTML = script === 'kata'
+      ? '<b>עוד שניים חשובים:</b> <span class="jp">ッ</span> קטן מכפיל את העיצור שאחריו. הקו <span class="jp">ー</span> מאריך את התנועה: <span class="jp">コーヒー</span> (kōhī, קפה) · <span class="jp">ケーキ</span> (kēki, עוגה).'
+      : '<b>עוד שניים חשובים:</b> <span class="jp">っ</span> קטן (סוֹקוּאוֹן) מכפיל את העיצור שאחריו: <span class="jp">きって</span> (kitte, בול) לעומת <span class="jp">きて</span> (kite). הארכת תנועה נכתבת בתנועה נוספת: <span class="jp">おかあさん</span> (okāsan, אמא).';
+    chartArea.appendChild(extra);
   }
 
   /* ── תצוגות ── */
@@ -239,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   function buildPool(){
     const flat = [];
-    [GOJUON, DAKUTEN].forEach(rows => rows.forEach(r => r.forEach(c => { if (c) flat.push(c); })));
+    [GOJUON, DAKUTEN, YOON].forEach(rows => rows.forEach(r => r.forEach(c => { if (c) flat.push(c); })));
     G.pool = [];
     flat.forEach(c => {
       if (G.script === 'hira' || G.script === 'both') G.pool.push([c[0], c[1]]);

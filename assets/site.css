@@ -172,6 +172,58 @@ html[data-theme="dark"] .pp-card.allow{background:#20342e; border-color:#3d5c52;
 html[data-theme="dark"] .pp-card.forbid{background:#3d241a; border-color:#5e3a2e;}
 html[data-theme="dark"] .day-card.sat .kanji,
 html[data-theme="dark"] .day-card.sat .he{color:#8fb0d8;}
+
+/* ═══════════════ שכבת פרימיום עתידנית ═══════════════ */
+::selection{background:var(--accent,#b23a1e); color:#fff;}
+html{scrollbar-color:var(--accent,#b23a1e) transparent; scrollbar-width:thin;}
+::-webkit-scrollbar{width:11px; height:11px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,var(--accent,#b23a1e),var(--gold,#9a7b2e));
+  border-radius:99px; border:3px solid var(--paper,#f4eee2);
+}
+
+/* חשיפה בגלילה */
+.n5-sr{opacity:0; transform:translateY(26px);
+  transition:opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1);}
+.n5-sr.n5-in{opacity:1; transform:translateY(0);}
+@media (prefers-reduced-motion: reduce){.n5-sr{opacity:1; transform:none; transition:none;}}
+
+/* מיקרו-אינטראקציות */
+.week-card, .tool-card, .kana-cell, .qbox, .quiz-widget{transition:transform .2s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;}
+.week-card:hover{transform:translateY(-3px); box-shadow:0 10px 26px rgba(80,60,30,.13);}
+.week-btn, .hero-continue, .next-btn, .reveal-btn, .n5-complete-btn{position:relative; overflow:hidden;}
+.week-btn::after, .hero-continue::after{
+  content:''; position:absolute; top:0; left:-80%; width:50%; height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:skewX(-20deg); transition:left .45s ease;
+}
+.week-btn:hover::after, .hero-continue:hover::after{left:130%;}
+
+/* זכוכית וזוהר ניאון במצב לילה */
+html[data-theme="dark"] .n5-tool{
+  background:rgba(36,31,26,.6); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  border-color:rgba(224,102,63,.4); box-shadow:0 0 18px rgba(224,102,63,.16);
+}
+html[data-theme="dark"] .week-nav{
+  background:rgba(24,21,18,.55); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border-color:rgba(224,102,63,.35); box-shadow:0 0 28px rgba(224,102,63,.15);
+}
+html[data-theme="dark"] .week-btn,
+html[data-theme="dark"] .hero-continue,
+html[data-theme="dark"] .next-btn,
+html[data-theme="dark"] .reveal-btn{box-shadow:0 0 18px rgba(224,102,63,.35);}
+html[data-theme="dark"] .progress-fill,
+html[data-theme="dark"] .q-bar span,
+html[data-theme="dark"] .fc-bar span,
+html[data-theme="dark"] .g-bar span{box-shadow:0 0 14px rgba(224,102,63,.55);}
+html[data-theme="dark"] .week-card:hover,
+html[data-theme="dark"] .tool-card:hover{border-color:rgba(224,102,63,.55); box-shadow:0 12px 36px rgba(224,102,63,.15);}
+html[data-theme="dark"] .kana-cell:hover{border-color:rgba(224,102,63,.6); box-shadow:0 0 20px rgba(224,102,63,.22);}
+html[data-theme="dark"] .fc-face{box-shadow:0 12px 36px rgba(0,0,0,.5), 0 0 24px rgba(224,102,63,.1) !important;}
+html[data-theme="dark"] h2.section{box-shadow:0 0 24px rgba(211,171,85,.16);}
+html[data-theme="dark"] .n5-readbar{box-shadow:0 0 12px rgba(224,102,63,.7);}
+html[data-theme="dark"] .hero-stats .num{text-shadow:0 0 22px rgba(224,102,63,.45);}
 body, .week-card, .qbox, .ex, table, .opt, .note, .quiz-widget, .reveal, .tool-card{
   transition:background .25s ease, background-color .25s ease, border-color .25s ease, color .25s ease;
 }
