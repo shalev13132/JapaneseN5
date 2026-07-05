@@ -10,6 +10,10 @@
 <script>try{var n5t=JSON.parse(localStorage.getItem('n5.theme'));if(n5t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
 <link rel="stylesheet" href="assets/site.css">
 <script src="assets/site.js" defer></script>
+<script src="assets/word-art.js" defer></script>
+<script src="assets/game.js" defer></script>
+<script src="assets/firebase-config.js" defer></script>
+<script src="assets/social.js" defer></script>
 <style>
   :root{
     --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
@@ -89,6 +93,14 @@
   .g-opts button.correct{background:var(--ok-soft); border-color:var(--ok); color:var(--ok);}
   .g-opts button.wrong{background:var(--no-soft); border-color:var(--no); color:var(--no);}
   .g-streak{font-family:"Heebo",sans-serif; font-weight:800; color:var(--gold); min-height:24px; margin-top:10px; font-size:15px;}
+  .g-hint{
+    font-size:16px; width:38px; height:38px; border-radius:50%;
+    border:1.5px solid var(--line); background:var(--paper); cursor:pointer;
+    transition:.15s; line-height:1; padding:0;
+  }
+  .g-hint:hover:not(:disabled){border-color:var(--accent); background:var(--accent-soft); transform:scale(1.12);}
+  .g-hint:disabled{opacity:.4; cursor:default;}
+  .g-hint-lbl{font-family:"Heebo",sans-serif; font-size:11.5px; color:var(--muted); display:block; margin-top:3px;}
   .g-start,.g-result button{
     font-family:"Heebo",sans-serif; font-weight:800; font-size:17px; background:var(--accent); color:#fff;
     border:none; border-radius:12px; padding:14px 34px; cursor:pointer; transition:.15s; margin-top:14px;
@@ -318,16 +330,19 @@ document.addEventListener('DOMContentLoaded', function(){
       '<div class="g-meta"><span>שאלה ' + (G.q + 1) + ' / ' + G.total + '</span><span>ניקוד: ' + G.score + '</span></div>' +
       '<div class="g-bar"><span style="width:' + (G.q / G.total * 100) + '%"></span></div>' +
       '<div class="gq' + (k2r ? '' : ' ro') + '">' + (k2r ? answer[0] : answer[1]) + '</div>' +
+      (k2r ? '<button class="g-hint" title="עזרה: השמע את ההגייה">🔊</button><span class="g-hint-lbl">צריך עזרה? לחץ להשמעה</span>' : '') +
       '<div class="g-opts">' + opts.map(o =>
         '<button class="' + (k2r ? '' : 'jp-opt') + '" data-ro="' + o[1] + '" data-k="' + o[0] + '">' + (k2r ? o[1] : o[0]) + '</button>'
       ).join('') + '</div>' +
       '<div class="g-streak"></div>';
-    if (k2r) N5.speak(answer[0]);
+    const hintBtn = gbox.querySelector('.g-hint');
+    if (hintBtn) hintBtn.addEventListener('click', () => N5.speak(answer[0]));
     const streakEl = gbox.querySelector('.g-streak');
     gbox.querySelectorAll('.g-opts button').forEach(b => {
       b.addEventListener('click', () => {
         if (!G.playing) return;
         gbox.querySelectorAll('.g-opts button').forEach(x => x.disabled = true);
+        if (hintBtn) hintBtn.disabled = true;
         const right = b.dataset.ro === answer[1] && (k2r || b.dataset.k === answer[0]);
         if (right) {
           b.classList.add('correct');
@@ -340,7 +355,7 @@ document.addEventListener('DOMContentLoaded', function(){
             if (x.dataset.ro === answer[1] && (k2r || x.dataset.k === answer[0])) x.classList.add('correct');
           });
         }
-        if (!k2r) N5.speak(answer[0]);
+        N5.speak(answer[0]); // אחרי שהתשובה נחשפה — חיזוק שמיעתי, כבר לא מסגיר
         setTimeout(() => { G.q++; nextQ(); }, right ? 650 : 1400);
       });
     });
