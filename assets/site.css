@@ -422,8 +422,32 @@ html.hide-readings td.jp + td.jp:hover{filter:blur(0);}
 }
 
 /* ═══════════════ פאנל פרופיל וחברים ═══════════════ */
-.n5-prof-btn{overflow:hidden;}
+.n5-prof-btn{position:relative;}
 .n5-prof-img{width:100%; height:100%; object-fit:cover; border-radius:50%;}
+.n5-prof-dot{
+  position:absolute; top:-4px; left:-4px; min-width:17px; height:17px;
+  background:#e03131; color:#fff; border:2px solid var(--card,#fffdf8);
+  border-radius:99px; font-family:"Heebo",sans-serif; font-style:normal;
+  font-size:10px; font-weight:800; line-height:13px; padding:0 3px;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 2px 6px rgba(0,0,0,.3); animation:n5dotpop .35s cubic-bezier(.2,1.6,.4,1);
+}
+@keyframes n5dotpop{from{transform:scale(0);}to{transform:scale(1);}}
+
+/* ── חזרה מרווחת ── */
+#review-count{
+  display:inline-block; min-width:18px; margin-inline-start:6px;
+  background:#e03131; color:#fff; border-radius:99px;
+  font-size:11px; font-weight:800; padding:1px 6px; line-height:1.4;
+}
+#review-count:empty{display:none;}
+.ctrl-btn.has-due{border-color:#e03131;}
+.n5-due-badge{
+  display:inline-block; margin-inline-start:8px; vertical-align:2px;
+  background:#e03131; color:#fff; border-radius:99px;
+  font-size:11.5px; font-weight:800; padding:2px 9px; line-height:1.5;
+  animation:n5dotpop .35s cubic-bezier(.2,1.6,.4,1);
+}
 .n5-panel{
   position:fixed; top:0; bottom:0; left:0; z-index:1250;
   width:min(340px, 92vw); background:var(--card,#fffdf8);
@@ -515,6 +539,43 @@ html.hide-readings td.jp + td.jp:hover{filter:blur(0);}
 .n5-p-row .nm{flex:1; min-width:0; font-size:14px; font-weight:700; color:var(--ink,#231f19); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
 .n5-p-row .nm small{display:block; font-weight:400; font-size:11px; color:var(--muted,#6f6555);}
 .n5-p-row b{color:var(--gold,#9a7b2e); font-size:14px; white-space:nowrap;}
+
+/* ═══════════════ מודאלים: מסך פתיחה ומיזוג התקדמות ═══════════════ */
+.n5-modal{
+  position:fixed; inset:0; z-index:1450; display:flex; align-items:center; justify-content:center;
+  padding:20px; background:rgba(35,25,15,.5); backdrop-filter:blur(6px);
+  opacity:0; transition:opacity .3s;
+}
+.n5-modal.show{opacity:1;}
+.n5-modal-card{
+  background:var(--card,#fffdf8); border:1.5px solid var(--line,#e6dcc7); border-radius:22px;
+  max-width:430px; width:100%; padding:30px 28px; text-align:center;
+  font-family:"Heebo",sans-serif; box-shadow:0 24px 70px rgba(0,0,0,.35);
+  transform:translateY(16px) scale(.96); transition:transform .35s cubic-bezier(.2,1.4,.4,1);
+}
+.n5-modal.show .n5-modal-card{transform:none;}
+.n5-modal-card h2{font-weight:800; font-size:22px; margin:10px 0 6px; color:var(--ink,#231f19);}
+.n5-modal-card p{color:var(--muted,#6f6555); font-size:15px; line-height:1.65; margin:0 0 14px;}
+.n5-modal-row{display:flex; flex-direction:column; gap:10px; margin-top:6px;}
+.n5-modal-main{
+  font-family:"Heebo",sans-serif; font-weight:800; font-size:15px; border:none; cursor:pointer;
+  background:var(--accent,#b23a1e); color:#fff; border-radius:10px; padding:12px; transition:.15s;
+  box-shadow:0 5px 14px rgba(150,60,30,.3);
+}
+.n5-modal-main:hover{transform:translateY(-1px);}
+.n5-modal-alt{
+  font-family:"Heebo",sans-serif; font-weight:700; font-size:14.5px; cursor:pointer;
+  background:var(--paper,#f4eee2); color:var(--ink,#231f19);
+  border:1.5px solid var(--line,#e6dcc7); border-radius:10px; padding:11px; transition:.15s;
+}
+.n5-modal-alt:hover{border-color:var(--accent,#b23a1e);}
+.n5-modal .n5-p-google{margin:0;}
+.n5-w-logo{
+  font-family:"Noto Sans JP",sans-serif; font-weight:700; font-size:52px; line-height:1.1;
+  background:linear-gradient(92deg,var(--accent,#b23a1e),var(--gold,#9a7b2e));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.n5-w-note{font-size:12.5px !important; margin:14px 0 0 !important;}
 
 /* מצב לילה לרכיבים החדשים */
 html[data-theme="dark"] .n5-xp-chip{background:rgba(36,31,26,.7); backdrop-filter:blur(12px);}

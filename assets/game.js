@@ -438,7 +438,22 @@
       watchQuizBonus();
       buildWeekTrail();
     }
-    if (PAGE === 'home') buildCourseMap();
+    if (PAGE === 'home') { buildCourseMap(); dueBadgeHome(); }
+  }
+
+  /* תג "לחזרה היום" על כרטיס הכרטיסיות בדף הבית */
+  function dueBadgeHome() {
+    var s = store.get('srs', null);
+    if (!s) return;
+    var now = Date.now(), n = 0, k;
+    for (k in s) if (s[k].due <= now) n++;
+    if (!n) return;
+    var t = document.querySelector('a.tool-card[href="flashcards.html"] .t');
+    if (!t) return;
+    var b = document.createElement('span');
+    b.className = 'n5-due-badge';
+    b.textContent = '🔁 ' + n + ' לחזרה';
+    t.appendChild(b);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();

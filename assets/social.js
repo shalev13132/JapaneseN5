@@ -10,7 +10,8 @@
   var store = N5.store;
   var CFG = window.N5_FIREBASE_CONFIG || null;
   var SDK = 'https://www.gstatic.com/firebasejs/10.12.2/';
-  var SYNC_KEYS = { weeks: 1, scores: 1, days: 1, xp: 1, trail: 1, fcKnown: 1 };
+  var SYNC_KEYS = { weeks: 1, scores: 1, days: 1, xp: 1, trail: 1, fcKnown: 1, srs: 1, kanaBest: 1, listenBest: 1 };
+  var PROGRESS_KEYS = ['weeks', 'scores', 'days', 'xp', 'trail', 'fcKnown', 'srs', 'kanaBest', 'listenBest', 'xpToday', 'xpDayBonus', 'lastVisit'];
 
   var db = null, auth = null, me = null, myDoc = null, panel = null, panelOpen = false;
   var profBtn = null, sdkReady = false, sdkLoading = false, pushTimer = null;
@@ -31,6 +32,23 @@
     if (me && me.photoURL) {
       profBtn.innerHTML = '<img class="n5-prof-img" src="' + me.photoURL + '" alt="" referrerpolicy="no-referrer">';
     } else profBtn.textContent = '👤';
+    setBadge(badgeN); // הרינדור מוחק את הנקודה — נחזיר אותה
+  }
+
+  /* נקודה אדומה על כפתור הפרופיל — בקשות חברות ממתינות */
+  var badgeN = 0;
+  function setBadge(n) {
+    badgeN = n || 0;
+    if (!profBtn) return;
+    var b = profBtn.querySelector('.n5-prof-dot');
+    if (!badgeN) { if (b) b.remove(); return; }
+    if (!b) { b = document.createElement('i'); b.className = 'n5-prof-dot'; profBtn.appendChild(b); }
+    b.textContent = badgeN > 9 ? '9+' : badgeN;
+  }
+  function checkPendingBadge() {
+    if (!me || !db) return;
+    db.collection('requests').where('to', '==', me.uid).where('status', '==', 'pending').get()
+      .then(function (qs) { setBadge(qs.size); }).catch(function () { });
   }
 
   /* ═══════════ פאנל ═══════════ */
@@ -110,7 +128,7 @@
     var g = panel.querySelector('.n5-p-google');
     if (g) g.addEventListener('click', signIn);
     var so = panel.querySelector('.n5-p-signout');
-    if (so) so.addEventListener('click', function () { auth.signOut(); N5.toast('התנתקת — ההתקדמות ממשיכה להישמר מקומית'); });
+    if (so) so.addEventListener('click', signOutFlow);
     var cp = panel.querySelector('.n5-p-copy');
     if (cp) cp.addEventListener('click', function () {
       var code = myDoc && myDoc.code;
@@ -145,27 +163,85 @@
     })(0);
   }
 
+  var justSignedIn = false;
   function signIn() {
+    justSignedIn = true;
     loadSDK(function () {
       var prov = new firebase.auth.GoogleAuthProvider();
       auth.signInWithPopup(prov).catch(function (e) {
+        justSignedIn = false;
         if (e && e.code === 'auth/popup-blocked') N5.toast('החלון נחסם — אפשר חלונות קופצים לאתר זה');
         else if (e && e.code !== 'auth/popup-closed-by-user') N5.toast('ההתחברות נכשלה: ' + (e.message || e));
       });
     });
   }
+  function signOutFlow() {
+    auth.signOut().then(function () {
+      clearLocalProgress();                 // ההתקדמות כבר שמורה בענן של החשבון
+      store.set('owner', null);
+      store.set('authChoice', null);        // מסך הפתיחה יוצג למשתמש הבא
+      location.reload();
+    });
+  }
 
   function onAuth(user) {
     me = user;
+    if (!user) {
+      myDoc = null; setBadge(0); syncProfBtn();
+      if (panelOpen) render();
+      maybeWelcome();
+      return;
+    }
+    store.set('authChoice', 'google');
+    closeWelcome();
     syncProfBtn();
-    if (!user) { myDoc = null; if (panelOpen) render(); return; }
     ensureUserDoc().then(function () {
+      checkPendingBadge();
       if (panelOpen) { render(); refreshSocial(); }
-      N5.toast('שלום ' + (user.displayName || '') + '! ההתקדמות מסתנכרנת בענן ☁️');
+      if (justSignedIn) {
+        justSignedIn = false;
+        N5.toast('שלום ' + (user.displayName || '') + '! ההתקדמות מסתנכרנת בענן ☁️');
+        setTimeout(function () { location.reload(); }, 1400);   // רענון — שכל המסך ישקף את החשבון
+      }
     }).catch(function (e) {
       console.error('N5 sync:', e);
       N5.toast('שגיאה בסנכרון — נסה לרענן');
     });
+  }
+
+  /* ═══════════ מסך פתיחה — אורח או Google ═══════════ */
+  var welcomeEl = null;
+  var G_SVG = '<svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3l5.7-5.7C34.3 6.1 29.4 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3l5.7-5.7C34.3 6.1 29.4 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.1 5.7l6.2 5.2C36.9 40.4 44 35 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg>';
+  function maybeWelcome() {
+    if (!CFG || welcomeEl) return;
+    if (store.get('authChoice', null)) return;
+    welcomeEl = document.createElement('div');
+    welcomeEl.className = 'n5-modal n5-welcome';
+    welcomeEl.setAttribute('dir', 'rtl');
+    welcomeEl.innerHTML = '<div class="n5-modal-card">' +
+      '<div class="n5-w-logo" dir="ltr">日本語</div>' +
+      '<h2>ברוכים הבאים לקורס יפנית N5!</h2>' +
+      '<p>20 שבועות מאפס ועד המבחן — חינם, בעברית, עם משחקים, נקודות ומעקב התקדמות.</p>' +
+      '<div class="n5-modal-row">' +
+      '<button class="n5-p-google">' + G_SVG + ' התחברות עם Google</button>' +
+      '<button class="n5-modal-alt">המשך כאורח 👋</button>' +
+      '</div>' +
+      '<p class="n5-w-note">התחברות שומרת את ההתקדמות בענן, מסנכרנת בין מכשירים ופותחת תחרות עם חברים.<br>גם כאורח הכול נשמר בדפדפן — ואפשר להתחבר בכל שלב דרך כפתור 👤.</p>' +
+      '</div>';
+    document.body.appendChild(welcomeEl);
+    setTimeout(function () { if (welcomeEl) welcomeEl.classList.add('show'); }, 30);
+    welcomeEl.querySelector('.n5-p-google').addEventListener('click', signIn);
+    welcomeEl.querySelector('.n5-modal-alt').addEventListener('click', function () {
+      store.set('authChoice', 'guest');
+      closeWelcome();
+      N5.toast('ממשיכים כאורח — אפשר להתחבר בכל רגע דרך 👤');
+    });
+  }
+  function closeWelcome() {
+    if (!welcomeEl) return;
+    var el = welcomeEl; welcomeEl = null;
+    el.classList.remove('show');
+    setTimeout(function () { el.remove(); }, 300);
   }
 
   /* ═══════════ מסמך משתמש + מיזוג התקדמות ═══════════ */
@@ -173,11 +249,13 @@
     return {
       weeks: store.get('weeks', {}), scores: store.get('scores', {}),
       days: store.get('days', []), xp: store.get('xp', 0),
-      trail: store.get('trail', {}), fcKnown: store.get('fcKnown', {})
+      trail: store.get('trail', {}), fcKnown: store.get('fcKnown', {}),
+      srs: store.get('srs', {}),
+      kanaBest: store.get('kanaBest', {}), listenBest: store.get('listenBest', {})
     };
   }
   function mergeProgress(a, b) {
-    var out = { weeks: {}, scores: {}, days: [], xp: Math.max(a.xp || 0, b.xp || 0), trail: {}, fcKnown: {} };
+    var out = { weeks: {}, scores: {}, days: [], xp: Math.max(a.xp || 0, b.xp || 0), trail: {}, fcKnown: {}, srs: {}, kanaBest: {}, listenBest: {} };
     var k, w;
     [a.weeks || {}, b.weeks || {}].forEach(function (m) { for (k in m) if (m[k] && m[k].done && !out.weeks[k]) out.weeks[k] = m[k]; });
     [a.scores || {}, b.scores || {}].forEach(function (m) {
@@ -190,27 +268,79 @@
       for (w in m) { out.trail[w] = out.trail[w] || {}; for (k in m[w]) out.trail[w][k] = 1; }
     });
     [a.fcKnown || {}, b.fcKnown || {}].forEach(function (m) { for (k in m) if (m[k]) out.fcKnown[k] = m[k]; });
+    [a.srs || {}, b.srs || {}].forEach(function (m) {
+      for (k in m) if (!out.srs[k] || (m[k].last || 0) > (out.srs[k].last || 0)) out.srs[k] = m[k];
+    });
+    ['kanaBest', 'listenBest'].forEach(function (bk) {
+      [a[bk] || {}, b[bk] || {}].forEach(function (m) {
+        for (k in m) if (!(k in out[bk]) || m[k] > out[bk][k]) out[bk][k] = m[k];
+      });
+    });
     return out;
   }
   function applyLocal(p) {
-    store.set('weeks', p.weeks); store.set('scores', p.scores); store.set('days', p.days);
-    store.set('xp', p.xp); store.set('trail', p.trail); store.set('fcKnown', p.fcKnown);
+    p = p || {};
+    store.set('weeks', p.weeks || {}); store.set('scores', p.scores || {}); store.set('days', p.days || []);
+    store.set('xp', p.xp || 0); store.set('trail', p.trail || {}); store.set('fcKnown', p.fcKnown || {});
+    store.set('srs', p.srs || {});
+    store.set('kanaBest', p.kanaBest || {}); store.set('listenBest', p.listenBest || {});
     if (window.N5G) N5G.syncChip(false);
+  }
+  function clearLocalProgress() {
+    PROGRESS_KEYS.forEach(function (k) { try { localStorage.removeItem('n5.' + k); } catch (e) { } });
+  }
+  function meaningfulLocal() {
+    var p = localProgress();
+    return (p.xp || 0) > 0 || Object.keys(p.weeks).length > 0 || Object.keys(p.scores).length > 0 ||
+      Object.keys(p.fcKnown).length > 0 || Object.keys(p.srs).length > 0;
   }
 
   function ensureUserDoc() {
     var ref = db.collection('users').doc(me.uid);
     return ref.get().then(function (snap) {
-      if (snap.exists) {
-        myDoc = snap.data();
-        var merged = mergeProgress(localProgress(), myDoc.progress || {});
-        applyLocal(merged);
+      myDoc = snap.exists ? snap.data() : null;
+      var remote = (myDoc && myDoc.progress) || {};
+      var owner = store.get('owner', null);
+
+      function finish(mergeLocal) {
+        if (!mergeLocal) clearLocalProgress();
+        applyLocal(mergeLocal ? mergeProgress(localProgress(), remote) : remote);
+        store.set('owner', me.uid);
+        if (!myDoc) {
+          return makeCode().then(function (code) {
+            myDoc = { code: code, friends: [] };
+            return push(true);
+          });
+        }
         return push(true);
       }
-      return makeCode().then(function (code) {
-        myDoc = { code: code, friends: [] };
-        return push(true);
-      });
+
+      if (owner === me.uid) return finish(true);            // המכשיר של אותו חשבון — מיזוג רגיל
+      if (owner && owner !== me.uid) return finish(false);  // התקדמות של חשבון אחר — לא ממזגים
+      if (!meaningfulLocal()) return finish(true);          // אין התקדמות מקומית משמעותית
+      return askMergeGuest().then(finish);                  // התקדמות אורח — המשתמש מחליט
+    });
+  }
+
+  /* דיאלוג: לצרף התקדמות אורח לחשבון? */
+  function askMergeGuest() {
+    return new Promise(function (resolve) {
+      var p = localProgress();
+      var ov = document.createElement('div');
+      ov.className = 'n5-modal';
+      ov.innerHTML = '<div class="n5-modal-card">' +
+        '<div style="font-size:44px">🎒</div>' +
+        '<h2>נמצאה התקדמות במכשיר הזה</h2>' +
+        '<p>מישהו למד כאן כאורח (⚡ ' + (p.xp || 0) + ' XP). אם זו ההתקדמות שלך — נצרף אותה לחשבון. אם היא של מישהו אחר — נתחיל מהחשבון שלך, וההתקדמות המקומית תימחק מהמכשיר.</p>' +
+        '<div class="n5-modal-row">' +
+        '<button class="n5-modal-main">✓ זו שלי — צרף לחשבון</button>' +
+        '<button class="n5-modal-alt">זה לא שלי — התחל מהחשבון שלי</button>' +
+        '</div></div>';
+      document.body.appendChild(ov);
+      setTimeout(function () { ov.classList.add('show'); }, 30);
+      function done(v) { ov.classList.remove('show'); setTimeout(function () { ov.remove(); }, 300); resolve(v); }
+      ov.querySelector('.n5-modal-main').addEventListener('click', function () { done(true); });
+      ov.querySelector('.n5-modal-alt').addEventListener('click', function () { done(false); });
     });
   }
   function makeCode() {
@@ -298,6 +428,7 @@
     if (!host) return;
     return db.collection('requests').where('to', '==', me.uid).where('status', '==', 'pending').get()
       .then(function (qs) {
+        setBadge(qs.size);
         if (!qs.size) { host.innerHTML = ''; return; }
         var h = '<h4 class="n5-p-sub">💌 בקשות חברות</h4>';
         qs.forEach(function (doc) {
@@ -323,6 +454,7 @@
     }
     batch.commit().then(function () {
       row.remove();
+      setBadge(badgeN - 1);
       if (accept) { N5.toast('חבר חדש! 🎉'); renderBoard(); }
     }).catch(function (e) { console.error(e); N5.toast('שגיאה'); });
   }

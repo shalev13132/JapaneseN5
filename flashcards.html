@@ -3,11 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<meta name="description" content="כרטיסיות זיכרון לכל 252 המילים ו-110 הקאנג'י של קורס יפנית N5 — עם הקראה, סינון לפי שבוע ומעקב אישי.">
+<meta property="og:image" content="https://shalev13132.github.io/JapaneseN5/assets/og-image.png">
 <title>כרטיסיות זיכרון — מילים וקאנג'י | יפנית N5</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-<script>try{var n5t=JSON.parse(localStorage.getItem('n5.theme'));if(n5t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
+<script>try{var n5t=JSON.parse(localStorage.getItem('n5.theme'));if(n5t==='dark'||(n5t==null&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
 <link rel="stylesheet" href="assets/site.css">
 <script src="assets/deck-data.js"></script>
 <script src="assets/site.js" defer></script>
@@ -160,6 +164,7 @@
   <select class="week-sel" id="week-sel"></select>
   <button class="ctrl-btn" id="btn-unknown" title="תרגל רק כרטיסים שעוד לא סומנו כידועים">רק מה שלא ידעתי</button>
   <button class="ctrl-btn" id="btn-shuffle" title="ערבב מחדש">🔀 ערבוב</button>
+  <button class="ctrl-btn" id="btn-review" title="חזרה חכמה: כרטיסים שסימנת חוזרים בדיוק כשמגיע הזמן לרענן אותם">🔁 חזרה יומית<b id="review-count"></b></button>
 </div>
 <div class="deck-stats" id="deck-stats"></div>
 
@@ -186,12 +191,48 @@ document.addEventListener('DOMContentLoaded', function(){
     dir: 'jp',            // jp = יפנית קדימה, he = עברית קדימה
     week: 'all',
     onlyUnknown: false,
+    review: false,
     deck: [], idx: 0, flipped: false,
     sessionYes: 0, sessionNo: 0
   };
 
   const knownKey = c => (state.type === 'vocab' ? 'v:' : 'k:') + c[0];
   const getKnown = () => N5.store.get('fcKnown', {});
+
+  /* ---- חזרה מרווחת (SRS) ---- */
+  const SRS_DAYS = [0, 1, 3, 7, 14, 30];           // ימים עד החזרה הבאה, לפי "קופסה"
+  const getSrs = () => N5.store.get('srs', {});
+  function srsMark(key, knew){
+    const s = getSrs();
+    const e = s[key] || { box: 0 };
+    if (knew) {
+      e.box = Math.min(SRS_DAYS.length - 1, (e.box || 0) + 1);
+      e.due = Date.now() + SRS_DAYS[e.box] * 86400000;
+    } else {
+      e.box = 0;
+      e.due = Date.now() + 10 * 60000;             // יופיע שוב בעוד 10 דקות
+    }
+    e.last = Date.now();
+    s[key] = e;
+    N5.store.set('srs', s);
+  }
+  function srsDueCards(){
+    const s = getSrs(), now = Date.now(), prefix = state.type === 'vocab' ? 'v:' : 'k:';
+    const cards = [];
+    Object.keys(DECKS).forEach(w => {
+      (state.type === 'vocab' ? DECKS[w].vocab : DECKS[w].kanji).forEach(c => {
+        const e = s[prefix + c[0]];
+        if (e && e.due <= now) cards.push([c, e.due]);
+      });
+    });
+    return cards.sort((a, b) => a[1] - b[1]).map(p => p[0]);
+  }
+  function syncReviewBtn(){
+    const n = srsDueCards().length;
+    const el = $('#review-count');
+    if (el) el.textContent = n ? n : '';
+    $('#btn-review').classList.toggle('has-due', n > 0);
+  }
 
   /* ---- week selector ---- */
   const sel = $('#week-sel');
@@ -215,18 +256,23 @@ document.addEventListener('DOMContentLoaded', function(){
   function buildDeck(){
     const known = getKnown();
     let cards = [];
-    const weeks = state.week === 'all' ? Object.keys(DECKS) : [state.week];
-    weeks.forEach(w => {
-      const d = DECKS[w]; if (!d) return;
-      (state.type === 'vocab' ? d.vocab : d.kanji).forEach(c => cards.push(c));
-    });
-    if (state.onlyUnknown) cards = cards.filter(c => !known[knownKey(c)]);
-    for (let i = cards.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [cards[i], cards[j]] = [cards[j], cards[i]];
+    if (state.review) {
+      cards = srsDueCards();               // לפי סדר דחיפות, בלי ערבוב
+    } else {
+      const weeks = state.week === 'all' ? Object.keys(DECKS) : [state.week];
+      weeks.forEach(w => {
+        const d = DECKS[w]; if (!d) return;
+        (state.type === 'vocab' ? d.vocab : d.kanji).forEach(c => cards.push(c));
+      });
+      if (state.onlyUnknown) cards = cards.filter(c => !known[knownKey(c)]);
+      for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+      }
     }
     state.deck = cards; state.idx = 0; state.flipped = false;
     state.sessionYes = 0; state.sessionNo = 0;
+    syncReviewBtn();
     render();
   }
 
@@ -239,8 +285,10 @@ document.addEventListener('DOMContentLoaded', function(){
         total++; if (known[knownKey(c)]) kn++;
       });
     });
+    const due = srsDueCards().length;
     $('#deck-stats').innerHTML = 'סומנו כידועים: <b>' + kn + '</b> מתוך ' + total +
-      (state.type === 'vocab' ? ' מילים' : ' קאנג\'י') + ' בקורס';
+      (state.type === 'vocab' ? ' מילים' : ' קאנג\'י') + ' בקורס' +
+      (due ? ' · 🔁 לחזרה עכשיו: <b>' + due + '</b>' : '');
   }
 
   /* ---- render ---- */
@@ -248,7 +296,9 @@ document.addEventListener('DOMContentLoaded', function(){
     renderStats();
     area.innerHTML = '';
     if (!state.deck.length) {
-      area.innerHTML = '<div class="empty-note">🎉 אין כרטיסים בסינון הזה — הכול סומן כידוע!<br>בטל את "רק מה שלא ידעתי" או בחר שבוע אחר.</div>';
+      area.innerHTML = state.review
+        ? '<div class="empty-note">🎉 אין כרטיסים לחזרה כרגע — הזיכרון שלך מעודכן!<br>עבור על כרטיסים לפי שבוע וסמן "ידעתי / לא ידעתי" — הם ייכנסו לתור החזרה החכמה ויחזרו בדיוק כשצריך לרענן אותם.</div>'
+        : '<div class="empty-note">🎉 אין כרטיסים בסינון הזה — הכול סומן כידוע!<br>בטל את "רק מה שלא ידעתי" או בחר שבוע אחר.</div>';
       return;
     }
     if (state.idx >= state.deck.length) return renderSummary();
@@ -321,6 +371,9 @@ document.addEventListener('DOMContentLoaded', function(){
     if (knew) { known[knownKey(c)] = true; state.sessionYes++; }
     else { delete known[knownKey(c)]; state.sessionNo++; }
     N5.store.set('fcKnown', known);
+    srsMark(knownKey(c), knew);   // כל סימון מזין את תור החזרה החכמה
+    if (state.review && window.N5G) N5G.addXP(knew ? 2 : 1, area.querySelector('.fc-actions'));
+    syncReviewBtn();
     state.idx++; state.flipped = false;
     render();
   }
@@ -369,6 +422,11 @@ document.addEventListener('DOMContentLoaded', function(){
     buildDeck();
   });
   $('#btn-shuffle').addEventListener('click', buildDeck);
+  $('#btn-review').addEventListener('click', function(){
+    state.review = !state.review;
+    this.classList.toggle('on', state.review);
+    buildDeck();
+  });
 
   /* ---- keyboard ---- */
   document.addEventListener('keydown', e => {

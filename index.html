@@ -3,6 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<meta name="description" content="קורס יפנית N5 חינמי ומלא בעברית — 20 שבועות של דקדוק, קאנג'י ואוצר מילים, עם מבחנים אינטראקטיביים, כרטיסיות זיכרון, מעקב התקדמות ותחרות עם חברים.">
+<meta property="og:title" content="קורס יפנית N5 בעברית — מאפס עד המבחן 🇯🇵">
+<meta property="og:description" content="20 שבועות של יפנית בחינם: שיעורים בעברית, מבחנים אינטראקטיביים, כרטיסיות, נקודות XP ותחרות עם חברים.">
+<meta property="og:image" content="https://shalev13132.github.io/JapaneseN5/assets/og-image.png">
+<meta property="og:url" content="https://shalev13132.github.io/JapaneseN5/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary_large_image">
 <title>קורס יפנית N5 — דף הבית</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -175,7 +185,7 @@
   .wrap>*{animation:rise .5s ease both;}
   @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;}}
 </style>
-<script>try{var n5t=JSON.parse(localStorage.getItem('n5.theme'));if(n5t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
+<script>try{var n5t=JSON.parse(localStorage.getItem('n5.theme'));if(n5t==='dark'||(n5t==null&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
 <link rel="stylesheet" href="assets/site.css">
 <script src="assets/site.js" defer></script>
 <script src="assets/word-art.js" defer></script>
@@ -204,6 +214,7 @@
     <div class="hero-cta-row">
       <a class="hero-mini" href="flashcards.html">🎴 כרטיסיות זיכרון</a>
       <a class="hero-mini" href="kana.html">🈁 קאנה + משחק זיהוי</a>
+      <a class="hero-mini" href="listening.html">🎧 תרגול האזנה</a>
     </div>
     <div class="progress-wrap">
       <div class="progress-label"><span>ההתקדמות שלי</span><span id="n5-prog-label">0 מתוך 20 שבועות הושלמו</span></div>
@@ -234,6 +245,13 @@
       <span>
         <span class="t">היראגאנה וקטקאנה</span><br>
         <span class="d">טבלאות קאנה מלאות עם השמעה בלחיצה + משחק זיהוי מהירות עם שיאים</span>
+      </span>
+    </a>
+    <a class="tool-card" href="listening.html">
+      <span class="ico">🎧</span>
+      <span>
+        <span class="t">תרגול האזנה</span><br>
+        <span class="d">שמע מילה ובחר את המשמעות או את הכתיב — אימון הבנת הנשמע על כל אוצר המילים של הקורס</span>
       </span>
     </a>
   </div>

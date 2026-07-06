@@ -50,7 +50,9 @@
     if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
     else document.documentElement.removeAttribute('data-theme');
   }
-  applyTheme(store.get('theme', null));
+  var theme0 = store.get('theme', null);
+  if (theme0 == null && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) theme0 = 'dark';
+  applyTheme(theme0);
 
   /* ---------- הקראה קולית (Web Speech API) ---------- */
   let jaVoice = null;
@@ -130,7 +132,7 @@
     themeBtn.addEventListener('click', () => {
       const dark = document.documentElement.getAttribute('data-theme') === 'dark';
       applyTheme(dark ? null : 'dark');
-      store.set('theme', dark ? null : 'dark');
+      store.set('theme', dark ? 'light' : 'dark'); // 'light' מפורש — כדי לא ליפול חזרה למצב המערכת
       syncThemeBtn();
     });
     bar.appendChild(themeBtn);
