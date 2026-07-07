@@ -307,6 +307,8 @@
   /* ---------- חשיפה בגלילה ---------- */
   function scrollReveal() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // כשיש תמיכה באנימציות מונעות-גלילה של CSS — site.css מטפל בזה
+    if (window.CSS && CSS.supports && CSS.supports('animation-timeline: view()')) return;
     const raw = [...document.querySelectorAll('.topic, .week-card, .tool-card, .quiz-widget, .tips, .done-banner, .kana-block, .ex, .qbox, .reveal')];
     const set = new Set(raw);
     // בלי אלמנטים מקוננים — רק ההורה העליון מקבל אנימציה

@@ -590,3 +590,73 @@ html[data-theme="dark"] .n5-toast{background:#efe6d4; color:#241f1a;}
 @media (prefers-reduced-motion: reduce){
   .n5-xp-chip.bump, .n5-map-bubble, .n5-rail-node.current, .n5-map-node.current, .n5-levelup-burst{animation:none;}
 }
+
+/* ═══════════════ שכבת 2026 — טכנולוגיות CSS מודרניות ═══════════════ */
+
+/* מעברי עמודים חלקים בין דפי האתר (View Transitions API) */
+@view-transition { navigation: auto; }
+@media (prefers-reduced-motion: no-preference){
+  ::view-transition-old(root){animation:n5vt-out .16s ease both;}
+  ::view-transition-new(root){animation:n5vt-in .3s ease both;}
+}
+@keyframes n5vt-out{to{opacity:0; transform:translateY(10px) scale(.995);}}
+@keyframes n5vt-in{from{opacity:0; transform:translateY(-10px) scale(.995);}}
+
+/* אנימציות חשיפה מונעות-גלילה ב-CSS טהור — רצות מחוץ ל-main thread.
+   כשהדפדפן תומך, site.js מוותר על גרסת ה-JS לטובת אלו. */
+@media (prefers-reduced-motion: no-preference){
+  @supports (animation-timeline: view()){
+    .topic, .week-card, .tool-card, .quiz-widget, .tips, .kana-block,
+    .ex:not(.topic *), .qbox:not(.topic *), .reveal:not(.topic *){
+      animation: n5-view-rise both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+@keyframes n5-view-rise{
+  from{opacity:.001; transform:translateY(26px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* ריכוך קפיצי אמיתי (spring) באמצעות linear() */
+:root{
+  --n5-spring: linear(0, 0.36 12%, 0.76 24%, 1.04 38%, 1.11 50%, 1.04 66%, 0.99 82%, 1);
+  accent-color: var(--accent, #b23a1e);
+}
+@supports (transition-timing-function: linear(0, 1)){
+  .n5-tool, .n5-xp-chip, .n5-map-node, .n5-rail-node, .b-tile, .char-grid button, .kana-cell{
+    transition: transform .5s var(--n5-spring), background .25s ease, border-color .25s ease, box-shadow .3s ease, opacity .2s ease;
+  }
+  .week-btn, .hero-continue, .hero-mini, .n5-complete-btn, .g-start, .next-btn, .reveal-btn, .b-check, .n5-p-google{
+    transition: transform .45s var(--n5-spring), background .2s ease, box-shadow .3s ease;
+  }
+}
+
+/* משטחי זכוכית גם במצב יום */
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
+  .n5-tool, .n5-xp-chip{
+    background:color-mix(in srgb, var(--card,#fffdf8) 74%, transparent);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  }
+  .week-nav, .n5-rail{
+    background:color-mix(in srgb, var(--card,#fffdf8) 66%, transparent);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  }
+}
+
+/* מצבי הצלחה/טעות חכמים עם :has() */
+@supports selector(:has(*)){
+  .qbox:has(.fb-ok){border-color:var(--ok,#3f7d6e); box-shadow:0 0 0 3px color-mix(in srgb, var(--ok,#3f7d6e) 16%, transparent);}
+  .qbox:has(.fb-no){border-color:color-mix(in srgb, var(--no,#b23a1e) 55%, var(--line,#e6dcc7));}
+  .quiz-widget:has(.q-result){border-color:var(--gold,#9a7b2e); box-shadow:0 0 26px color-mix(in srgb, var(--gold,#9a7b2e) 22%, transparent);}
+}
+
+/* טיפוגרפיה מאוזנת ונגישות מקלדת */
+h1, h2, h3, .week-title, .phase-title{text-wrap:balance;}
+p{text-wrap:pretty;}
+:focus-visible{outline:2.5px solid var(--accent,#b23a1e); outline-offset:2px; border-radius:6px;}
+
+/* תחושת לחיצה פיזית */
+.opt:active:not(:disabled), .week-btn:active, .g-opts button:active:not(:disabled),
+.b-tile:active, .n5-tool:active, .hero-mini:active, .ctrl-btn:active{transform:scale(.96);}

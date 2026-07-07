@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<meta name="description" content="בניית משפטים ביפנית — סדר את האריחים למשפט נכון, בסגנון דואולינגו. תרגול סדר מילים וחלקיקים לרמת N5.">
+<meta property="og:image" content="https://shalev13132.github.io/JapaneseN5/assets/og-image.png">
+<title>בניית משפטים — סדר את האריחים | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<script>try{var n5t=JSON.parse(localStorage.getItem('n5.theme'));if(n5t==='dark'||(n5t==null&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/deck-data.js"></script>
+<script src="assets/sentence-data.js"></script>
+<script src="assets/site.js" defer></script>
+<script src="assets/word-art.js" defer></script>
+<script src="assets/game.js" defer></script>
+<script src="assets/firebase-config.js" defer></script>
+<script src="assets/social.js" defer></script>
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre", Georgia, serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px, rgba(120,100,70,.06) 1px, transparent 0);
+    background-size:22px 22px; min-height:100vh;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 110px;}
+  .jp{font-family:"Noto Sans JP", system-ui, sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+
+  header.masthead{text-align:center; padding:46px 20px 26px; border-bottom:3px double var(--line); margin-bottom:22px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(26px,5.5vw,38px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:16px;}
+
+  .controls{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:20px;}
+  .week-sel{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:14px;
+    background:var(--card); color:var(--ink); border:1.5px solid var(--line);
+    border-radius:999px; padding:8px 16px; cursor:pointer;
+  }
+
+  .game-box{
+    max-width:620px; margin:0 auto; background:var(--card); border:1.5px solid var(--line);
+    border-radius:20px; padding:26px 24px; text-align:center; box-shadow:0 10px 28px rgba(80,60,30,.1);
+  }
+  .g-meta{display:flex; justify-content:space-between; font-family:"Heebo",sans-serif; font-size:13px; color:var(--muted); margin-bottom:8px;}
+  .g-bar{height:6px; background:#eadfc9; border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  html[data-theme="dark"] .g-bar{background:#332c22;}
+  .g-bar span{display:block; height:100%; background:var(--accent); transition:width .3s;}
+
+  .b-he{font-family:"Heebo",sans-serif; font-weight:800; font-size:21px; margin:2px 0 4px; color:var(--ink);}
+  .b-cap{font-family:"Heebo",sans-serif; font-size:12.5px; color:var(--muted); margin-bottom:12px;}
+
+  .b-answer{
+    min-height:64px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:center;
+    direction:ltr; background:var(--paper); border:2px dashed var(--line); border-radius:14px;
+    padding:12px; margin-bottom:14px; transition:border-color .25s, background .25s;
+  }
+  .b-answer.ok{border-color:var(--ok); background:var(--ok-soft); border-style:solid;}
+  .b-answer.no{border-color:var(--no); background:var(--no-soft); border-style:solid;}
+  .b-bank{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; direction:ltr; min-height:56px;}
+  .b-tile{
+    font-family:"Noto Sans JP",sans-serif; font-weight:700; font-size:20px;
+    background:var(--card); color:var(--ink); border:1.5px solid var(--line); border-bottom-width:3.5px;
+    border-radius:12px; padding:9px 14px; cursor:pointer; transition:transform .15s, opacity .2s, border-color .2s;
+    direction:ltr;
+  }
+  .b-tile:hover{transform:translateY(-2px); border-color:var(--accent);}
+  .b-tile:active{transform:scale(.95);}
+  .b-answer .b-tile{background:var(--accent-soft); border-color:var(--accent);}
+  .b-bank .b-tile.used{opacity:0; pointer-events:none; transform:scale(.6);}
+
+  .b-row{display:flex; gap:10px; justify-content:center; margin-top:14px;}
+  .b-check,.g-start,.g-result button{
+    font-family:"Heebo",sans-serif; font-weight:800; font-size:16px; background:var(--accent); color:#fff;
+    border:none; border-radius:12px; padding:12px 32px; cursor:pointer; transition:.15s;
+  }
+  .b-check:disabled{background:var(--line); color:var(--muted); cursor:default;}
+  .b-check:hover:not(:disabled),.g-start:hover,.g-result button:hover{transform:translateY(-2px);}
+  .b-clear{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:14px; background:var(--paper); color:var(--muted);
+    border:1.5px solid var(--line); border-radius:12px; padding:12px 18px; cursor:pointer; transition:.15s;
+  }
+  .b-clear:hover{border-color:var(--accent); color:var(--accent);}
+  .b-fb{font-family:"Heebo",sans-serif; font-weight:700; min-height:28px; margin-top:12px; font-size:15.5px;}
+  .b-fb .jp{font-size:18px;}
+  .b-fb.ok{color:var(--ok);} .b-fb.no{color:var(--no);}
+  .g-start{margin-top:14px; padding:14px 34px; font-size:17px;}
+  .g-result .big{font-family:"Heebo",sans-serif; font-weight:800; font-size:48px; color:var(--accent);}
+  .g-best{font-family:"Heebo",sans-serif; font-size:14px; color:var(--gold); font-weight:700; margin-top:8px;}
+
+  .week-nav{
+    display:inline-flex; align-items:center; gap:6px;
+    position:fixed; bottom:14px; left:50%; transform:translateX(-50%); z-index:999;
+    padding:5px 10px; background:rgba(255,253,248,.96); border:1px solid var(--line);
+    border-radius:999px; box-shadow:0 4px 16px rgba(80,60,30,.15); backdrop-filter:blur(8px);
+  }
+  .week-nav a{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:12px;
+    padding:5px 11px; border-radius:999px; text-decoration:none; transition:.15s; white-space:nowrap;
+  }
+  .nav-home{background:var(--ok-soft); color:#1f4d43; border:1px solid #bcd9d0;}
+  .nav-next{background:var(--accent); color:#fff;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0; transform:translateY(8px);} to{opacity:1;}}
+</style>
+</head>
+<body data-page="builder">
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">✍️ בניית משפטים · <span class="jp" dir="ltr">文を作る</span></div>
+  <h1>סדר את האריחים למשפט</h1>
+  <p class="sub">קרא את המשפט בעברית ובנה אותו ביפנית — זהירות מאריחי מלכודת!</p>
+</header>
+
+<div class="controls">
+  <select class="week-sel" id="week-sel"></select>
+</div>
+
+<div class="game-box" id="game-box"></div>
+
+</div>
+
+<div class="week-nav">
+  <a href="index.html" class="nav-home">&#127968; דף הבית</a>
+  <a href="writing.html" class="nav-next">תרגול כתיבה ←</a>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  'use strict';
+  const N5 = window.N5, SENT = window.N5_SENTENCES || {}, DECKS = window.N5_DECKS || {};
+  const $ = s => document.querySelector(s);
+  const gbox = $('#game-box');
+
+  const G = { week: 'all', order: [], q: 0, total: 8, score: 0, playing: false };
+  const bestKey = () => 'w' + G.week;
+  const PARTICLES = ['は', 'が', 'を', 'に', 'で', 'も', 'の', 'と', 'へ', 'から'];
+
+  /* ---- בורר שבועות ---- */
+  const sel = $('#week-sel');
+  (function fillWeeks(){
+    const all = document.createElement('option');
+    all.value = 'all'; all.textContent = 'כל השבועות';
+    sel.appendChild(all);
+    Object.keys(SENT).map(Number).sort((a,b)=>a-b).forEach(w => {
+      const o = document.createElement('option');
+      o.value = w;
+      o.textContent = 'שבוע ' + w + (DECKS[w] ? ' — ' + DECKS[w].title : '');
+      sel.appendChild(o);
+    });
+  })();
+  sel.addEventListener('change', () => { G.week = sel.value; renderStart(); });
+
+  function shuffle(a){ for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i],a[j]] = [a[j],a[i]]; } return a; }
+
+  function pool(){
+    const weeks = G.week === 'all' ? Object.keys(SENT) : [G.week];
+    const out = [];
+    weeks.forEach(w => (SENT[w] || []).forEach(s => out.push({ s: s, w: w })));
+    return out;
+  }
+
+  /* אריחי מלכודת: חלקיק שלא במשפט + מילה אקראית מאותו שבוע */
+  function distractors(item){
+    const used = {};
+    item.s.t.forEach(t => used[t] = 1);
+    const out = [];
+    const parts = shuffle(PARTICLES.filter(p => !used[p]));
+    if (parts.length) out.push(parts[0]);
+    const deck = DECKS[item.w];
+    if (deck && deck.vocab.length) {
+      const words = shuffle(deck.vocab.map(v => v[0].replace(/（[^）]*）/g, '').split('／')[0].split('/')[0].trim())
+        .filter(v => v && !used[v] && v.length <= 5));
+      if (words.length) out.push(words[0]);
+    }
+    return out;
+  }
+
+  function renderStart(){
+    G.playing = false;
+    const n = Math.min(G.total, pool().length);
+    const best = N5.store.get('buildBest', {})[bestKey()];
+    gbox.innerHTML =
+      '<p style="font-family:Heebo;font-weight:700;font-size:17px;margin:0">' + n + ' משפטים · בנה נכון וצבור ⚡</p>' +
+      (best != null ? '<div class="g-best">🏆 השיא שלך: ' + best + ' / ' + G.total + '</div>' : '') +
+      '<button class="g-start">התחל ▶</button>';
+    gbox.querySelector('.g-start').addEventListener('click', startGame);
+  }
+  function startGame(){
+    G.order = shuffle(pool()).slice(0, G.total);
+    if (!G.order.length) { N5.toast('אין משפטים לשבוע הזה עדיין'); return; }
+    G.q = 0; G.score = 0; G.playing = true;
+    nextQ();
+  }
+
+  function nextQ(){
+    if (G.q >= G.order.length) return endGame();
+    const item = G.order[G.q];
+    const tiles = shuffle(item.s.t.map((t, i) => ({ t: t, id: i })).concat(
+      distractors(item).map((t, i) => ({ t: t, id: 'x' + i }))
+    ));
+    const picked = [];
+
+    gbox.innerHTML =
+      '<div class="g-meta"><span>משפט ' + (G.q + 1) + ' / ' + G.order.length + '</span><span>ניקוד: ' + G.score + '</span></div>' +
+      '<div class="g-bar"><span style="width:' + (G.q / G.order.length * 100) + '%"></span></div>' +
+      '<div class="b-he">"' + item.s.he + '"</div>' +
+      '<div class="b-cap">לחץ על האריחים לפי הסדר · לחיצה על אריח שנבחר מחזירה אותו</div>' +
+      '<div class="b-answer" data-nospeak></div>' +
+      '<div class="b-bank" data-nospeak></div>' +
+      '<div class="b-row"><button class="b-check" disabled>בדיקה ✓</button><button class="b-clear">נקה 🧹</button></div>' +
+      '<p class="b-fb"></p>';
+
+    const ans = gbox.querySelector('.b-answer'), bank = gbox.querySelector('.b-bank');
+    const check = gbox.querySelector('.b-check'), fb = gbox.querySelector('.b-fb');
+    let done = false;
+
+    tiles.forEach(tile => {
+      const b = document.createElement('button');
+      b.className = 'b-tile'; b.textContent = tile.t;
+      b.addEventListener('click', () => {
+        if (done) return;
+        b.classList.add('used');
+        picked.push(tile);
+        const chip = document.createElement('button');
+        chip.className = 'b-tile'; chip.textContent = tile.t;
+        chip.addEventListener('click', () => {
+          if (done) return;
+          const k = picked.indexOf(tile);
+          if (k > -1) picked.splice(k, 1);
+          chip.remove();
+          b.classList.remove('used');
+          check.disabled = picked.length === 0;
+        });
+        ans.appendChild(chip);
+        check.disabled = false;
+      });
+      bank.appendChild(b);
+    });
+
+    gbox.querySelector('.b-clear').addEventListener('click', () => {
+      if (done) return;
+      picked.length = 0;
+      ans.innerHTML = '';
+      bank.querySelectorAll('.b-tile').forEach(t => t.classList.remove('used'));
+      check.disabled = true;
+    });
+
+    check.addEventListener('click', () => {
+      if (done) return;
+      done = true;
+      check.disabled = true;
+      const guess = picked.map(p => p.t);
+      const right = guess.length === item.s.t.length && guess.every((t, i) => t === item.s.t[i]);
+      const full = item.s.t.join('');
+      if (right) {
+        G.score++;
+        ans.classList.add('ok');
+        fb.textContent = '✓ מצוין!';
+        fb.className = 'b-fb ok';
+        if (window.N5G) N5G.addXP(3, ans);
+        N5.speak(full);
+      } else {
+        ans.classList.add('no');
+        fb.innerHTML = '✗ לא בדיוק. המשפט: <span class="jp">' + full + '</span>';
+        fb.className = 'b-fb no';
+        N5.speak(full);
+      }
+      setTimeout(() => { G.q++; nextQ(); }, right ? 1300 : 3000);
+    });
+  }
+
+  function endGame(){
+    G.playing = false;
+    const total = G.order.length;
+    const bests = N5.store.get('buildBest', {});
+    const prev = bests[bestKey()];
+    const isRecord = prev == null || G.score > prev;
+    if (isRecord) { bests[bestKey()] = G.score; N5.store.set('buildBest', bests); }
+    const pct = G.score / total;
+    if (window.N5G) N5G.addXP(pct >= 0.8 ? 12 : pct >= 0.6 ? 6 : 3, gbox);
+    if (G.score === total || (isRecord && prev != null)) N5.confetti(45);
+    gbox.innerHTML =
+      '<div class="g-result">' +
+        '<div class="big">' + G.score + ' / ' + total + '</div>' +
+        (isRecord ? '<div class="g-best">🏆 שיא אישי חדש!</div>' : (prev != null ? '<div class="g-best">השיא שלך: ' + prev + '</div>' : '')) +
+        '<p style="font-family:Heebo;margin:8px 0 0">' + (pct === 1 ? 'בנאי משפטים מושלם! 完璧！' : pct >= 0.7 ? 'סדר המילים כבר יושב לך ביד!' : 'חלקיקים הם חיה קטנה ועקשנית — עוד סיבוב?') + '</p>' +
+        '<button>עוד סיבוב 🔁</button>' +
+      '</div>';
+    gbox.querySelector('button').addEventListener('click', startGame);
+  }
+
+  renderStart();
+});
+</script>
+</body>
+</html>

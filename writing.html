@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<meta name="description" content="תרגול כתיבה יפנית — צפה בסדר המשיכות של קאנה וקאנג'י (KanjiVG) ואמן את היד עם ציור על המסך וציון מיידי.">
+<meta property="og:image" content="https://shalev13132.github.io/JapaneseN5/assets/og-image.png">
+<title>תרגול כתיבה — קאנה וקאנג'י | יפנית N5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<script>try{var n5t=JSON.parse(localStorage.getItem('n5.theme'));if(n5t==='dark'||(n5t==null&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/deck-data.js"></script>
+<script src="assets/site.js" defer></script>
+<script src="assets/word-art.js" defer></script>
+<script src="assets/game.js" defer></script>
+<script src="assets/firebase-config.js" defer></script>
+<script src="assets/social.js" defer></script>
+<style>
+  :root{
+    --paper:#f4eee2; --card:#fffdf8; --ink:#231f19; --muted:#6f6555;
+    --accent:#b23a1e; --accent-soft:#f3ddd2; --gold:#9a7b2e; --line:#e6dcc7;
+    --ok:#3f7d6e; --ok-soft:#e3f0eb; --no:#b23a1e; --no-soft:#f6e1da;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Frank Ruhl Libre", Georgia, serif; font-size:18px; line-height:1.8;
+    background-image:radial-gradient(circle at 1px 1px, rgba(120,100,70,.06) 1px, transparent 0);
+    background-size:22px 22px; min-height:100vh;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 110px;}
+  .jp{font-family:"Noto Sans JP", system-ui, sans-serif; direction:ltr; unicode-bidi:isolate; font-weight:500;}
+
+  header.masthead{text-align:center; padding:46px 20px 26px; border-bottom:3px double var(--line); margin-bottom:22px;}
+  header.masthead .kicker{font-family:"Heebo",sans-serif; letter-spacing:.06em; color:var(--accent); font-size:13px; font-weight:800;}
+  header.masthead h1{font-family:"Heebo",sans-serif; font-weight:800; font-size:clamp(26px,5.5vw,38px); margin:.2em 0 .15em;}
+  header.masthead .sub{color:var(--muted); margin:0; font-size:16px;}
+
+  .controls{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:18px;}
+  .seg{display:inline-flex; background:var(--card); border:1.5px solid var(--line); border-radius:999px; overflow:hidden;}
+  .seg button{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:14.5px; border:none; background:transparent;
+    color:var(--muted); padding:9px 18px; cursor:pointer; transition:.15s;
+  }
+  .seg button.on{background:var(--accent); color:#fff;}
+  .week-sel{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:14px;
+    background:var(--card); color:var(--ink); border:1.5px solid var(--line);
+    border-radius:999px; padding:8px 16px; cursor:pointer;
+  }
+  .hidden{display:none !important;}
+
+  .char-grid{
+    display:flex; flex-wrap:wrap; gap:7px; justify-content:center; direction:ltr;
+    max-width:640px; margin:0 auto 20px;
+  }
+  .char-grid button{
+    font-family:"Noto Sans JP",sans-serif; font-weight:700; font-size:21px;
+    width:46px; height:46px; border-radius:11px; cursor:pointer; transition:.15s;
+    background:var(--card); color:var(--ink); border:1.5px solid var(--line);
+  }
+  .char-grid button:hover{border-color:var(--accent); transform:translateY(-2px);}
+  .char-grid button.on{background:var(--accent); border-color:var(--accent); color:#fff;}
+
+  .practice{
+    max-width:460px; margin:0 auto; background:var(--card); border:1.5px solid var(--line);
+    border-radius:20px; padding:22px; text-align:center; box-shadow:0 10px 28px rgba(80,60,30,.1);
+  }
+  .p-cap{font-family:"Heebo",sans-serif; font-size:14.5px; color:var(--muted); min-height:24px; margin-bottom:10px;}
+  .p-cap b{color:var(--ink); font-size:16px;}
+  .stage{
+    position:relative; width:300px; height:300px; margin:0 auto; direction:ltr;
+    background:
+      linear-gradient(var(--line) 1px, transparent 1px) 0 50% / 100% 50.5% no-repeat,
+      linear-gradient(90deg, var(--line) 1px, transparent 1px) 50% 0 / 50.5% 100% no-repeat,
+      var(--paper);
+    border:2px solid var(--line); border-radius:16px; overflow:hidden;
+    touch-action:none; cursor:crosshair;
+  }
+  .stage .ghost{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:"Noto Sans JP",sans-serif; font-weight:500; font-size:225px; line-height:1;
+    color:rgba(120,100,70,.18); pointer-events:none; user-select:none;
+  }
+  html[data-theme="dark"] .stage .ghost{color:rgba(236,227,210,.13);}
+  .stage svg{position:absolute; inset:0; width:100%; height:100%; pointer-events:none;}
+  .stage canvas{position:absolute; inset:0;}
+  .p-btns{display:flex; gap:8px; justify-content:center; margin-top:16px; flex-wrap:wrap;}
+  .p-btns button{
+    font-family:"Heebo",sans-serif; font-weight:800; font-size:14.5px;
+    border:none; border-radius:11px; padding:10px 18px; cursor:pointer; transition:.15s;
+  }
+  .p-btns button:hover{transform:translateY(-2px);}
+  .btn-anim{background:var(--gold); color:#fff;}
+  .btn-clear{background:var(--paper); color:var(--muted); border:1.5px solid var(--line) !important;}
+  .btn-grade{background:var(--accent); color:#fff;}
+  .p-fb{font-family:"Heebo",sans-serif; font-weight:800; font-size:17px; min-height:30px; margin-top:12px;}
+  .p-fb.good{color:var(--ok);} .p-fb.mid{color:var(--gold);} .p-fb.bad{color:var(--no);}
+  .p-note{font-size:13px; color:var(--muted); font-family:"Heebo",sans-serif; margin-top:8px;}
+
+  .week-nav{
+    display:inline-flex; align-items:center; gap:6px;
+    position:fixed; bottom:14px; left:50%; transform:translateX(-50%); z-index:999;
+    padding:5px 10px; background:rgba(255,253,248,.96); border:1px solid var(--line);
+    border-radius:999px; box-shadow:0 4px 16px rgba(80,60,30,.15); backdrop-filter:blur(8px);
+  }
+  .week-nav a{
+    font-family:"Heebo",sans-serif; font-weight:700; font-size:12px;
+    padding:5px 11px; border-radius:999px; text-decoration:none; transition:.15s; white-space:nowrap;
+  }
+  .nav-home{background:var(--ok-soft); color:#1f4d43; border:1px solid #bcd9d0;}
+  .nav-next{background:var(--accent); color:#fff;}
+  .wrap>*{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0; transform:translateY(8px);} to{opacity:1;}}
+</style>
+</head>
+<body data-page="writing">
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">🖌️ תרגול כתיבה · <span class="jp" dir="ltr">書き方</span></div>
+  <h1>כתוב קאנה וקאנג'י ביד</h1>
+  <p class="sub">בחר אות, צפה בסדר המשיכות, ואז צייר אותה בעצמך על המסך — עם ציון מיידי</p>
+</header>
+
+<div class="controls">
+  <div class="seg" id="seg-script">
+    <button data-v="hira" class="on">היראגאנה</button>
+    <button data-v="kata">קטקאנה</button>
+    <button data-v="kanji">קאנג'י</button>
+  </div>
+  <select class="week-sel hidden" id="week-sel"></select>
+</div>
+
+<div class="char-grid" id="char-grid"></div>
+
+<div class="practice">
+  <div class="p-cap" id="p-cap">בחר אות מהרשימה למעלה 👆</div>
+  <div class="stage" id="stage">
+    <div class="ghost" id="ghost"></div>
+    <canvas id="draw" width="600" height="600" style="width:300px;height:300px"></canvas>
+  </div>
+  <div class="p-btns">
+    <button class="btn-anim" id="btn-anim">▶ סדר משיכות</button>
+    <button class="btn-clear" id="btn-clear">🧹 נקה</button>
+    <button class="btn-grade" id="btn-grade">✓ בדוק אותי</button>
+  </div>
+  <p class="p-fb" id="p-fb"></p>
+  <p class="p-note">אנימציית המשיכות באדיבות פרויקט הקוד הפתוח KanjiVG</p>
+</div>
+
+</div>
+
+<div class="week-nav">
+  <a href="index.html" class="nav-home">&#127968; דף הבית</a>
+  <a href="builder.html" class="nav-next">בניית משפטים ←</a>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  'use strict';
+  const N5 = window.N5, DECKS = window.N5_DECKS || {};
+  const $ = s => document.querySelector(s);
+
+  const HIRA = 'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん'.split('');
+  const toKata = h => String.fromCharCode(h.charCodeAt(0) + 0x60);
+
+  const state = { script: 'hira', week: 'all', ch: null };
+  const grid = $('#char-grid'), cap = $('#p-cap'), ghost = $('#ghost'), fb = $('#p-fb');
+  const stage = $('#stage'), canvas = $('#draw'), ctx = canvas.getContext('2d');
+  const awarded = {};           // XP פעם אחת לכל תו בכל ביקור
+  let svgEl = null, animTimers = [], drawnAny = false;
+
+  /* ---- בורר שבועות לקאנג'י ---- */
+  const sel = $('#week-sel');
+  (function fillWeeks(){
+    const all = document.createElement('option');
+    all.value = 'all'; all.textContent = 'כל הקאנג\'י';
+    sel.appendChild(all);
+    Object.keys(DECKS).map(Number).sort((a,b)=>a-b).forEach(w => {
+      if (!DECKS[w].kanji.length) return;
+      const o = document.createElement('option');
+      o.value = w; o.textContent = 'שבוע ' + w;
+      sel.appendChild(o);
+    });
+  })();
+  sel.addEventListener('change', () => { state.week = sel.value; buildGrid(); });
+
+  document.querySelectorAll('#seg-script button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#seg-script button').forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+      state.script = b.dataset.v;
+      sel.classList.toggle('hidden', state.script !== 'kanji');
+      buildGrid();
+    });
+  });
+
+  function kanjiList(){
+    const weeks = state.week === 'all' ? Object.keys(DECKS) : [state.week];
+    const out = [], seen = {};
+    weeks.forEach(w => (DECKS[w].kanji || []).forEach(k => {
+      const ch = (k[0] || '').trim();
+      if (ch.length === 1 && !seen[ch]) { seen[ch] = 1; out.push(k); }
+    }));
+    return out;
+  }
+
+  function buildGrid(){
+    grid.innerHTML = '';
+    let items;
+    if (state.script === 'kanji') items = kanjiList().map(k => ({ ch: k[0], info: k }));
+    else items = HIRA.map(h => ({ ch: state.script === 'kata' ? toKata(h) : h, info: null }));
+    items.forEach(it => {
+      const b = document.createElement('button');
+      b.textContent = it.ch;
+      b.addEventListener('click', () => {
+        grid.querySelectorAll('button').forEach(x => x.classList.remove('on'));
+        b.classList.add('on');
+        pick(it);
+      });
+      grid.appendChild(b);
+    });
+    if (items.length) { grid.firstChild.classList.add('on'); pick(items[0]); }
+  }
+
+  function pick(it){
+    state.ch = it.ch;
+    clearCanvas();
+    fb.textContent = ''; fb.className = 'p-fb';
+    cap.innerHTML = it.info
+      ? '<b class="jp">' + it.ch + '</b> · <span class="jp">' + (it.info[1] || '') + '</span> · ' + (it.info[2] || '')
+      : '<b class="jp">' + it.ch + '</b> · צייר בעקבות הצללית';
+    loadStrokes(it.ch);
+  }
+
+  /* ---- KanjiVG: תבנית + אנימציית סדר משיכות ---- */
+  function stopAnim(){ animTimers.forEach(clearTimeout); animTimers = []; }
+  function loadStrokes(ch){
+    stopAnim();
+    if (svgEl) { svgEl.remove(); svgEl = null; }
+    ghost.textContent = ch;                       // נסתר אם ה-SVG נטען
+    ghost.style.display = 'flex';
+    const hex = ch.codePointAt(0).toString(16).padStart(5, '0');
+    fetch('https://cdn.jsdelivr.net/gh/KanjiVG/kanjivg@master/kanji/' + hex + '.svg')
+      .then(r => { if (!r.ok) throw 0; return r.text(); })
+      .then(txt => {
+        if (state.ch !== ch) return;              // המשתמש כבר עבר לאות אחרת
+        const doc = new DOMParser().parseFromString(txt, 'image/svg+xml');
+        const src = doc.querySelector('svg');
+        if (!src) throw 0;
+        svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svgEl.setAttribute('viewBox', src.getAttribute('viewBox') || '0 0 109 109');
+        while (src.firstChild) svgEl.appendChild(src.firstChild);
+        svgEl.querySelectorAll('path').forEach(p => {
+          p.style.fill = 'none';
+          p.style.stroke = 'rgba(120,100,70,.35)';
+          p.style.strokeWidth = '3.2';
+          p.style.strokeLinecap = 'round';
+          p.style.strokeLinejoin = 'round';
+        });
+        svgEl.querySelectorAll('text').forEach(t => {
+          t.style.fill = 'var(--gold)';
+          t.style.fontSize = '7px';
+          t.style.fontFamily = 'Heebo, sans-serif';
+        });
+        stage.insertBefore(svgEl, canvas);
+        ghost.style.display = 'none';             // התבנית המדויקת החליפה את הצללית
+      })
+      .catch(() => { /* אין רשת / אין קובץ — נשארים עם צללית הגופן */ });
+  }
+  $('#btn-anim').addEventListener('click', () => {
+    if (!svgEl) { N5.toast('אנימציית המשיכות לא נטענה — בדוק חיבור לאינטרנט'); return; }
+    stopAnim();
+    const paths = Array.from(svgEl.querySelectorAll('path'));
+    let at = 0;
+    paths.forEach(p => {
+      const len = p.getTotalLength();
+      p.style.transition = 'none';
+      p.style.stroke = 'rgba(120,100,70,.25)';
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = len;
+    });
+    // הצתה מדורגת של משיכה אחרי משיכה
+    paths.forEach(p => {
+      const len = p.getTotalLength();
+      const dur = Math.min(900, Math.max(280, len * 9));
+      animTimers.push(setTimeout(() => {
+        p.style.transition = 'stroke-dashoffset ' + dur + 'ms ease';
+        p.style.stroke = 'var(--accent)';
+        p.style.strokeDashoffset = '0';
+      }, at));
+      at += dur + 140;
+    });
+    animTimers.push(setTimeout(() => {
+      paths.forEach(p => { p.style.strokeDasharray = 'none'; });
+    }, at + 250));
+  });
+
+  /* ---- ציור ---- */
+  ctx.lineWidth = 22; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  function accent(){ return getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#b23a1e'; }
+  let drawing = false, last = null;
+  function pos(e){
+    const r = canvas.getBoundingClientRect();
+    return { x: (e.clientX - r.left) * 2, y: (e.clientY - r.top) * 2 };
+  }
+  canvas.style.pointerEvents = 'auto';
+  canvas.addEventListener('pointerdown', e => {
+    drawing = true; drawnAny = true; last = pos(e);
+    try { canvas.setPointerCapture(e.pointerId); } catch (err) { }
+    ctx.strokeStyle = accent();
+    ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(last.x + .1, last.y + .1); ctx.stroke();
+  });
+  canvas.addEventListener('pointermove', e => {
+    if (!drawing) return;
+    const p = pos(e);
+    ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(p.x, p.y); ctx.stroke();
+    last = p;
+  });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(ev =>
+    canvas.addEventListener(ev, () => { drawing = false; }));
+  function clearCanvas(){ ctx.clearRect(0, 0, canvas.width, canvas.height); drawnAny = false; }
+  $('#btn-clear').addEventListener('click', () => { clearCanvas(); fb.textContent = ''; fb.className = 'p-fb'; });
+
+  /* ---- ציון: כיסוי התבנית מול קשקוש מחוץ לה ---- */
+  const CELLS = 60;
+  function gridOf(imgData){
+    const g = new Uint8Array(CELLS * CELLS);
+    const step = 600 / CELLS;
+    for (let cy = 0; cy < CELLS; cy++) for (let cx = 0; cx < CELLS; cx++) {
+      outer:
+      for (let y = 0; y < step; y += 3) for (let x = 0; x < step; x += 3) {
+        const px = Math.floor(cx * step + x), py = Math.floor(cy * step + y);
+        if (imgData.data[(py * 600 + px) * 4 + 3] > 40) { g[cy * CELLS + cx] = 1; break outer; }
+      }
+    }
+    return g;
+  }
+  function near(g, cx, cy, rad){
+    for (let dy = -rad; dy <= rad; dy++) for (let dx = -rad; dx <= rad; dx++) {
+      const x = cx + dx, y = cy + dy;
+      if (x >= 0 && y >= 0 && x < CELLS && y < CELLS && g[y * CELLS + x]) return true;
+    }
+    return false;
+  }
+  function grade(){
+    if (!state.ch) return;
+    if (!drawnAny) { fb.textContent = 'קודם צייר את האות ✍️'; fb.className = 'p-fb mid'; return; }
+    // תבנית מהגופן על קנבס סמוי
+    const off = document.createElement('canvas');
+    off.width = 600; off.height = 600;
+    const octx = off.getContext('2d');
+    octx.font = '500 450px "Noto Sans JP", sans-serif';
+    octx.textAlign = 'center'; octx.textBaseline = 'middle';
+    octx.fillText(state.ch, 300, 330);
+    const tpl = gridOf(octx.getImageData(0, 0, 600, 600));
+    const usr = gridOf(ctx.getImageData(0, 0, 600, 600));
+    let tplN = 0, cover = 0, usrN = 0, stray = 0;
+    for (let y = 0; y < CELLS; y++) for (let x = 0; x < CELLS; x++) {
+      if (tpl[y * CELLS + x]) { tplN++; if (near(usr, x, y, 2)) cover++; }
+      if (usr[y * CELLS + x]) { usrN++; if (!near(tpl, x, y, 3)) stray++; }
+    }
+    if (!tplN || !usrN) return;
+    const score = Math.round((cover / tplN) * 100 * (1 - 0.65 * (stray / usrN)));
+    let cls, msg;
+    if (score >= 85) { cls = 'good'; msg = '🎉 ' + score + '/100 — יד של קליגרף! ' ; }
+    else if (score >= 65) { cls = 'good'; msg = '✨ ' + score + '/100 — יפה מאוד!'; }
+    else if (score >= 40) { cls = 'mid'; msg = '💪 ' + score + '/100 — כמעט! עקוב צמוד יותר אחרי הצללית'; }
+    else { cls = 'bad'; msg = '🖌️ ' + score + '/100 — נסה שוב, לאט ובגדול'; }
+    fb.textContent = msg; fb.className = 'p-fb ' + cls;
+    if (score >= 65 && !awarded[state.ch]) {
+      awarded[state.ch] = 1;
+      if (window.N5G) N5G.addXP(2, fb);
+    }
+    if (score >= 85) N5.confetti(25);
+  }
+  $('#btn-grade').addEventListener('click', grade);
+
+  /* טוענים את הגופן לפני ציור התבנית הראשונה */
+  if (document.fonts && document.fonts.load) document.fonts.load('500 450px "Noto Sans JP"');
+
+  buildGrid();
+});
+</script>
+</body>
+</html>
