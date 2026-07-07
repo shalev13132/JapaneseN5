@@ -240,6 +240,16 @@ document.addEventListener('DOMContentLoaded', function(){
 
   /* ---- KanjiVG: תבנית + אנימציית סדר משיכות ---- */
   function stopAnim(){ animTimers.forEach(clearTimeout); animTimers = []; }
+  function resetStrokes(){
+    stopAnim();
+    if (!svgEl) return;
+    svgEl.querySelectorAll('path').forEach(p => {
+      p.style.transition = 'none';
+      p.style.stroke = 'rgba(120,100,70,.35)';
+      p.style.strokeDasharray = 'none';
+      p.style.strokeDashoffset = '0';
+    });
+  }
   function loadStrokes(ch){
     stopAnim();
     if (svgEl) { svgEl.remove(); svgEl = null; }
@@ -325,7 +335,11 @@ document.addEventListener('DOMContentLoaded', function(){
   ['pointerup', 'pointercancel', 'pointerleave'].forEach(ev =>
     canvas.addEventListener(ev, () => { drawing = false; }));
   function clearCanvas(){ ctx.clearRect(0, 0, canvas.width, canvas.height); drawnAny = false; }
-  $('#btn-clear').addEventListener('click', () => { clearCanvas(); fb.textContent = ''; fb.className = 'p-fb'; });
+  $('#btn-clear').addEventListener('click', () => {
+    clearCanvas();
+    resetStrokes();          // מחזיר את התבנית לצללית עדינה אחרי אנימציה
+    fb.textContent = ''; fb.className = 'p-fb';
+  });
 
   /* ---- ציון: כיסוי התבנית מול קשקוש מחוץ לה ---- */
   const CELLS = 60;

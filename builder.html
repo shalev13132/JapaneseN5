@@ -78,6 +78,9 @@
   .b-tile:active{transform:scale(.95);}
   .b-answer .b-tile{background:var(--accent-soft); border-color:var(--accent);}
   .b-bank .b-tile.used{opacity:0; pointer-events:none; transform:scale(.6);}
+  .b-answer .b-tile.ok-t{background:var(--ok-soft); border-color:var(--ok); color:var(--ok);}
+  .b-answer .b-tile.no-t{background:var(--no-soft); border-color:var(--no); color:var(--no); animation:bshake .45s ease;}
+  @keyframes bshake{0%,100%{transform:translateX(0);}25%{transform:translateX(-5px);}60%{transform:translateX(5px);}}
 
   .b-row{display:flex; gap:10px; justify-content:center; margin-top:14px;}
   .b-check,.g-start,.g-result button{
@@ -264,6 +267,10 @@ document.addEventListener('DOMContentLoaded', function(){
       const guess = picked.map(p => p.t);
       const right = guess.length === item.s.t.length && guess.every((t, i) => t === item.s.t[i]);
       const full = item.s.t.join('');
+      // צביעת כל אריח: ירוק במקום הנכון, אדום במקום שגוי
+      Array.from(ans.children).forEach((chip, i) => {
+        chip.classList.add(chip.textContent === item.s.t[i] ? 'ok-t' : 'no-t');
+      });
       if (right) {
         G.score++;
         ans.classList.add('ok');
@@ -271,13 +278,20 @@ document.addEventListener('DOMContentLoaded', function(){
         fb.className = 'b-fb ok';
         if (window.N5G) N5G.addXP(3, ans);
         N5.speak(full);
+        setTimeout(() => { G.q++; nextQ(); }, 1300);
       } else {
         ans.classList.add('no');
-        fb.innerHTML = '✗ לא בדיוק. המשפט: <span class="jp">' + full + '</span>';
+        fb.innerHTML = '✗ האריחים האדומים במקום הלא נכון. המשפט: <span class="jp">' + full + '</span>';
         fb.className = 'b-fb no';
         N5.speak(full);
+        // בלי מעבר אוטומטי — לומדים מהטעות וממשיכים כשמוכנים
+        const nextB = document.createElement('button');
+        nextB.className = 'b-check';
+        nextB.textContent = 'הבא ←';
+        nextB.addEventListener('click', () => { G.q++; nextQ(); });
+        gbox.querySelector('.b-row').appendChild(nextB);
+        nextB.focus();
       }
-      setTimeout(() => { G.q++; nextQ(); }, right ? 1300 : 3000);
     });
   }
 
