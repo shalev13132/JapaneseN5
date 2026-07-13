@@ -104,6 +104,35 @@
     if (!hasJP(txt)) return;
     speak(txt, jp);
   });
+
+  /* ---- שאלות רב-ברירה: לחיצה ראשונה משמיעה, שנייה בוחרת ----
+     חל רק על תשובות שיש בהן יפנית (בשיעורים). ב-capture כדי לעצור
+     את בחירת התשובה של הדף בלחיצה הראשונה. */
+  document.addEventListener('click', function (e) {
+    const opt = e.target.closest('.qbox .opt, .quiz-widget .opt');
+    if (!opt || opt.disabled) return;
+    const txt = jpText(opt);
+    if (!hasJP(txt)) return;                 // תשובה בעברית — בחירה רגילה
+    if (opt.dataset.armed === '1') {         // לחיצה שנייה — בוחרים באמת
+      delete opt.dataset.armed;
+      opt.classList.remove('opt-armed');
+      return;
+    }
+    e.stopPropagation();                     // לחיצה ראשונה — רק השמעה
+    e.preventDefault();
+    const box = opt.closest('.qbox, .quiz-widget');
+    if (box) box.querySelectorAll('.opt[data-armed]').forEach(o => {
+      delete o.dataset.armed;
+      o.classList.remove('opt-armed');
+    });
+    opt.dataset.armed = '1';
+    opt.classList.add('opt-armed');
+    speak(txt, opt);
+    if (!store.get('hintTwoClick', false)) {
+      toast('🔊 קודם שומעים — לחיצה נוספת על התשובה תבחר אותה');
+      store.set('hintTwoClick', true);
+    }
+  }, true);
   let markTimer = null;
   function markSpeakables() {
     document.querySelectorAll('.jp, .ex-jp .r, .passage-text').forEach(el => {
